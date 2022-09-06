@@ -1,0 +1,106 @@
+<div class="modal fade" id="editModal-{{company.id}}" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                                                        
+<div id="editModal-{{object.id}}" class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="detailModalLabel">Edit {{object.name}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+
+    <form action="editcompany_url" method="post">
+    {% comment %} <form action="{% url 'contact:editcompany' object.pk %}" method="post"> {% endcomment %}
+				{% csrf_token %}
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_name">Name </label>
+          <input type="text" name="name" id="id_name" required="" class="form-control" type="text">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_industry">Industry</label>
+          <input type="text" name="industry" id="id_industry" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_annual_revenue">Annual revenue</label>
+          <input type="number" name="annual_revenue" id="id_annual_revenue" class="form-control">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_email">Email</label>
+          <input type="email" name="email" id="id_email" class="form-control " value ="{{company.email}}">
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="form-group col-6">
+          <label for="id_mobile">Mobile </label>
+          <input type="text" name="mobile" id="id_mobile"
+            pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_website">Website</label>
+          <input type="text" name="website" id="id_website" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_adress">Adress </label>
+          <input type="text" name="adress" id="id_adress" class="form-control">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_responsible_person">Responsible person </label>
+          <input type="text" name="responsible_person" id="id_responsible_person" class="form-control">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_source"> Source </label>
+          <input type="text" name="source" id="id_source" class="form-control">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_company_type">company type </label>
+          <select class="form-control" name="company_type" id="id_company_type">
+            <option value="" selected="">Select company type</option>
+            <option value="CL">client</option>
+            <option value="F">supplier</option>
+            <option value="P">partner </option>
+            <option value="CN">concurrent </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_collab_start"> Collab start </label>
+          <input type="date" name="collab_start" id="id_collab_start" class="form-control" value ="company.collab_start">
+        </div>
+        <div class="form-group col-6">
+          <label for="id_project_type">project type </label>
+          <select class="form-control" name="project_type" id="id_project_type">
+            <option value="" selected="">Select company type</option>
+            <option value="EC">e-commerce</option>
+            <option value="WSF">web site</option>
+            <option value="WA">web app </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="id_logo"> logo </label>
+          <input type="file" id="id_logo" name="logo" class="file-upload-browse btn btn-primary">
+        </div>
+      </div>
+  
+  
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+      </div>
+    </form>
+  </div>
+</div>
+    </div>
+  </div>  

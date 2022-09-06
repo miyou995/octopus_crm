@@ -1,0 +1,63 @@
+from django.db import models
+from contact.models import Company
+from accounts.models import User
+from tinymce import models as tinymce_models
+from .choice import *
+from django.db.models import Sum
+
+
+# Create your models here.
+class Project (models.Model): 
+    name                    = models.CharField(max_length=254)
+    cost                    = models.DecimalField(max_digits=20 , decimal_places=0, default=0)
+    started_date            = models.DateField(blank=True, null=True) 
+    deadline                = models.DateField(blank=True, null=True) 
+    project_type            = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)
+    contract                = models.CharField(choices=CONTRACT_TYPE_CHOICES, max_length=2, blank=True, null=True)
+    contract_expiration     = models.DateField(blank=True, null=True) 
+    status                  = models.CharField(choices=STATUS_TYPE_CHOICES, max_length=2, blank=True, null=True)
+    description             = tinymce_models.HTMLField( blank=True, null=True)
+    created                 = models.DateTimeField(auto_now_add=True)
+    updated                 = models.DateTimeField(auto_now=True)
+
+    company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
+    manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
+    team                    = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE,verbose_name="team", related_name='project_teams')
+
+
+    def __str__(self):
+        return self.name
+
+    # @property
+    # def get_status_class(self):
+    #     if self.status == "CF":
+    #         return "badge-success"
+    #     elif self.status == "CP":
+    #         return "badge-info"
+    #     elif self.status == "PE":
+    #         return "badge-warning"
+    #     else:
+    #         return "badge-danger"
+    
+    # def get_project_dettes(self):
+    #     cost = self.cost
+    #     transactions = self.transactions.aggregate(Sum('amount'))
+    #     reste = self.cost - transactions['amount__sum']
+    #     return int(reste)
+
+
+
+
+class Task(models.Model):
+    started_date        = models.DateField(blank=True, null=True) 
+    deadline            = models.DateField(blank=True, null=True)
+    created             = models.DateTimeField(auto_now_add=True)
+    updated             = models.DateTimeField(auto_now=True)
+
+    project             = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='tasks')
+    user                = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='supervised_tasks')
+
+    def __str__(self):
+        return self.project
+
+   

@@ -1,0 +1,101 @@
+[
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Assistant",
+            "permissions": [
+                    [ "add_project", "project", "project" ],
+                    [ "change_project", "project", "project" ],
+                    [ "view_project", "project", "project" ], 
+                    [ "add_company", "contact", "company" ],
+                    [ "change_company", "contact", "company" ],
+                    [ "view_company", "contact", "company" ], 
+                    [ "add_employee", "contact", "employee" ],
+                    [ "change_employee", "contact", "employee" ],
+                    [ "view_employee", "contact", "employee" ], 
+                    [ "add_lead", "contact", "lead" ],
+                    [ "change_lead", "contact", "lead" ],
+                    [ "view_lead", "contact", "lead" ], 
+                    [ "add_event", "meetings", "event" ],
+                    [ "change_event", "meetings", "event" ],
+                    [ "view_event", "meetings", "event" ],
+                    [ "add_meet", "meetings", "meet" ],
+                    [ "change_meet", "meetings", "meet" ],
+                    [ "view_meet", "meetings", "meet" ]
+                ]
+            }
+            
+    },     
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Developer",
+            "permissions": [
+                    [ "view_project", "project", "project" ],                  
+                    [ "view_company", "contact", "company" ], 
+                    [ "view_employee", "contact", "employee" ], 
+                    [ "view_lead", "contact", "lead" ], 
+                    [ "add_event", "meetings", "event" ],
+                    [ "change_event", "meetings", "event" ],
+                    [ "view_event", "meetings", "event" ],
+                    [ "add_meet", "meetings", "meet" ],
+                    [ "change_meet", "meetings", "meet" ],
+                    [ "view_meet", "meetings", "meet" ]
+                ]
+            }
+            
+    },    
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Commercial",
+            "permissions": [
+                    [ "add_project", "project", "project" ],
+                    [ "change_project", "project", "project" ],
+                    [ "view_project", "project", "project" ], 
+                    [ "add_company", "contact", "company" ],
+                    [ "change_company", "contact", "company" ],
+                    [ "view_company", "contact", "company" ], 
+                    [ "add_employee", "contact", "employee" ],
+                    [ "change_employee", "contact", "employee" ],
+                    [ "view_employee", "contact", "employee" ], 
+                    [ "add_lead", "contact", "lead" ],
+                    [ "change_lead", "contact", "lead" ],
+                    [ "view_lead", "contact", "lead" ], 
+                    [ "add_event", "meetings", "event" ],
+                    [ "change_event", "meetings", "event" ],
+                    [ "view_event", "meetings", "event" ],
+                    [ "add_meet", "meetings", "meet" ],
+                    [ "change_meet", "meetings", "meet" ],
+                    [ "view_meet", "meetings", "meet" ]
+                ]
+            }
+            
+    },      
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Marketer",
+            "permissions": [
+                    [ "view_project", "project", "project" ], 
+                    [ "view_company", "contact", "company" ], 
+                    [ "view_employee", "contact", "employee" ]
+                ]
+            }
+            
+    },      
+    {
+        "model": "auth.group",
+        "fields": {
+            "name": "Content_creator",
+            "permissions": [
+                    [ "view_project", "project", "project" ],                  
+                    [ "view_company", "contact", "company" ], 
+                    [ "view_employee", "contact", "employee" ], 
+                    [ "view_lead", "contact", "lead" ], 
+                    [ "view_event", "meetings", "event" ]
+                ]
+            }
+            
+    }    
+]

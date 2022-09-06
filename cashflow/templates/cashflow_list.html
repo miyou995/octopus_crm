@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Cashflow</title>
+{% endblock %}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            Cashflow
+        </h3>
+    </div> 
+    <div class="row">
+      <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Total</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0"> {{transactions_count}} </h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+       <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Payment</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0">{{total_payment.amount__sum}} DZD</h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Salary</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0">{{total_salaire.amount__sum}} DZD</h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Charge</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0">{{total_charges.amount__sum}} DZD </h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Debt</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0">{{total_dettes}} DZD </h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+       <div class="col-md-2 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Allocated</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h4 class="mb-0">{{total_allouer.amount__sum}} DZD </h4>
+                              
+                          </div>
+                      </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="GET">
+                    <div class="d-md-flex justify-content-between align-items-center">
+                            <tr class="row">    
+                                <td><input type="search" class="form-control"   name="project" placeholder="project"> </td>  
+                                <td ><input type="date" class="form-control"  name="date"  placeholder="Date"></td> 
+                                <td >
+                                    <select class="form-control select bg-white" name="tr_type" >
+                                        <option value="">Select transaction type</option>
+                                        <option value="PA">paiement</option>
+                                        <option value="SA">salaire</option>
+                                        <option value="CR">creance</option>												
+                                        <option value="CR">charges</option>												
+                                        <option value="AL">allouer</option>												
+                                    </select>
+                                </td>       
+                                <td >  
+                                    <button type="submit" class="btn btn-primary mr-2"> <i class="fas fa-filter"></i></button>
+                                </td>
+                            </tr>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'project:addtransaction' %}" > <button type="submit" class="btn btn-primary mr-2" style="float:right;"> New</button><a>
+          <h4 class="card-title">transaction list</h4>
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    <div class="row">
+                 
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                                        <thead style="background-color: #2b2155; color:#fff;">
+                                            <tr role="row">
+                                                <th style="width:200px;">Account</th>
+                                                <th style="width:200px;">project</th>
+                                                <th style="width:200px;">type</th>
+                                                <th style="width:200px;">made_by</th>
+                                                <th style="width:200px;">amount</th>
+                                                <th style="width:200px;">date</th>
+                                                <th style="width:200px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                                        {% for transaction in transactions %}
+                                        <tr role="row" class="odd">
+                                                <td > <span class="badge badge-pill badge-light"> <a href="{% url 'cashflow:accounttdetail' transaction.account.pk %}" style="text-decoration : none; color:black;" > {{transaction.account}} </a></span></td>
+                                                {% if transaction.project %}
+                                                   <td> <a href="{{transaction.project.get_absolute_url}}" style=" text-decoration:none; color:black;"><span class=" badge badge-pill badge-light">  {{transaction.project}}</span> </a></td>
+                                                {% else %}
+                                                    <td><span class="badge badge-pill badge-light"> </span>  </td>      
+                                                {% endif %}
+                                                {% if transaction.get_tr_type_display %}
+                                                    <td> {{transaction.get_tr_type_display}} </td>      
+                                                {% else %}
+                                                    <td> {{transaction.other}} </td>      
+                                                {% endif %}
+                                                <td> {{transaction.made_by}}</td>
+                                                <td><span  class="badge badge-pill badge-info"> {{transaction.amount}} DZD</span> </td>
+                                                <td> <span  class="d-block text-info">{{transaction.date}}</span></td>
+                                                <td>
+                                                <a href="#">
+                                                <button class="btn btn-outline-primary">view</button></a>
+                                                <a href="#">
+                                                <button class="btn btn-outline-primary">edit</button></a>
+                                                <a href="#">
+                                                    <button class="btn btn-outline-primary">delete</button></a>
+                                                </td>
+                                            </tr>    
+                                        {% endfor %}
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                                       
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+    <!-- main-panel ends -->
+</div>
+</div>
+{% endblock content %}

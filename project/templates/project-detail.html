@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Project</title>
+{% endblock %}
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Project</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Project</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- /Page Header -->
+        <div class="row bg-white">
+            <div class="container bg-white">
+                
+                <!-- Doctor Widget -->
+                <div class="card bg-white">
+                    <div class="card-body bg-white">
+    
+                        <div class="doctor-widget">
+                            <div class="doc-info-left">
+                            
+                                <div class="doc-info-cont">
+                                    <h4 class="doc-name">{{project.name}}</h4>
+                                    <br>
+                                    <p >Company : {{project.company}}</p>
+                                    <p >Active : {{project.active}}</p>
+                                    <p >Follow up : {{project.follow_up}}</p>
+                                    <p >Deadline : {{project.deadline}}</p>
+                                    <p >Source :  {{project.get_source_display}}</p>
+                                   
+                                </div>
+                            </div>
+                            <div class="doc-info-right">
+                                <div class="clini-infos">
+                                     <p >Manager : {{project.manager}}</p>
+                                    <p >Deposit : {{project.deposit}}</p>
+                                    <p >Due : {{project.due}}</p>
+                                    <p >Contract : {{project.get_contract_display}}</p>
+                                    <p >Type : {{project.get_project_type_display}}</p>
+                                    <p >Status : {{project.get_status_display}}</p> 
+                            </div>
+                        </div>
+                   
+                    </div>
+                </div>
+                
+                <!-- /Doctor Widget -->	
+                <!-- Doctor Details Tab -->
+            <div class="card bg-white">
+                <div class="card-body pt-0 bg-white">
+                    <!-- Tab Menu -->
+                    <nav class="user-tabs mb-4 bg-white">
+                        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
+                            </li>
+                            
+                        </ul>
+                </nav>
+                <!-- /Tab Menu -->
+                
+                <!-- Tab Content -->
+                <div class="tab-content pt-0">
+                    <!-- Overview Content -->
+                    <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-9">
+                            
+                                <!-- About Details -->
+                                <div class="widget about-widget">
+                                    <h4 class="widget-title">Project detail</h4>
+                                    <p>{{project.description}} </p>
+                                </div>
+                                <!-- /About Details -->
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+{% endblock content %}

@@ -1,0 +1,2 @@
+2022-04-25 10:52:28,710 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-25 10:55:36,220 django.utils.autoreload INFO     C:\Users\user\OneDrive\Bureau\crm-octopus\config\settings.py changed, reloading.

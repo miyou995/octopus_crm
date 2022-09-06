@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            Profile
+        </h3>
+    </div>
+
+    <div class="main-content">
+        <section class="section">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-4">
+                        <div class="card author-box">
+                            <div class="card-body">
+                                <div class="author-box-center">
+                                    {% if user.picture %}
+                                    <img src="{{user.picture.url}}" alt="profile"
+                                        class="rounded-circle author-box-picture">
+                                    {% else %}
+                                    <img src="{% static 'images/avatar.png' %}"
+                                        class="rounded-circle author-box-picture" alt="logo" />
+                                    {% endif %}
+
+                                </div>
+                                <div class="text-center">
+                                    <div class="author-box-description">
+                                        <div class="author-box-name">
+                                            <a href="#"> {{ user.get_username }}</a>
+                                        </div>
+                                        <div class="author-box-job"> {{user.role}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-12 col-lg-8">
+                        <div class="card">
+                            <div class="padding-20">
+                                <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#about"
+                                            role="tab" aria-selected="true">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#settings"
+                                            role="tab" aria-selected="false">Setting</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content tab-bordered" id="myTab3Content">
+                                    <div class="tab-pane fade show active" id="about" role="tabpanel"
+                                        aria-labelledby="home-tab2">
+                                        <div class="row">
+                                            <div class="col-md-3 col-6 b-r">
+                                                <strong>Full Name</strong>
+                                                <br>
+                                                <p class="text-muted">{{user.pseudo}}</p>
+                                            </div>
+                                            <div class="col-md-3 col-6 b-r">
+                                                <strong>Mobile</strong>
+                                                <br>
+                                                <p class="text-muted">(123) 456 7890</p>
+                                            </div>
+                                            <div class="col-md-3 col-6 b-r">
+                                                <strong>Email</strong>
+                                                <br>
+                                                <p class="text-muted">{{user.email}}</p>
+                                            </div>
+                                            <div class="col-md-3 col-6">
+                                                <strong>Location</strong>
+                                                <br>
+                                                <p class="text-muted">India</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="section-title">Notes</div>
+                                        <ul>
+                                            {{user.notes}}
+                                        </ul>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="settings" role="tabpanel"
+                                        aria-labelledby="profile-tab2">
+                                        <form method="post" action="{% url 'accounts:edituser' user.pk %}">
+                                            {% csrf_token %}
+                                            <div class="card-header">
+                                                <h4>Edit Profile</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-md-6 col-12">
+                                                        <label for="id_pseudo">Name</label>
+                                                        <input type="text" class="form-control" value="{{user.pseudo}}" name="pseudo" id="id_pseudo">
+                                                        <div class="invalid-feedback">
+                                                            Please fill in the first name
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6 col-12">
+                                                        <label for="id_role">Role</label>
+                                                        <input type="text" class="form-control" value="{{user.role}}" name="role" id="id_role">
+                                                        <div class="invalid-feedback">
+                                                            Please fill in the last name
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-7 col-12">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" name='email' value="{{user.email}}">
+                                                        <div class="invalid-feedback">
+                                                            Please fill in the email
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-5 col-12">
+                                                        <label>Phone</label>
+                                                        <input type="tel" class="form-control" name='mobile' value="{{user.mobile}}">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-12">
+                                                        <label>Notes</label>
+                                                        <textarea  id="id_notes" name="notes"
+                                                            class="form-control summernote-simple" rows="10"> 
+                                                            {{user.notes|safe}}
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group mb-0 col-12">
+                                                        <label>Photo</label>
+                                                        <div class="input-group col-sm-9">
+                                                            <input type="file" id="id_picture" name="picture"
+                                                                class="file-upload-browse btn btn-primary">
+                                                            {% comment %} <input type="text"
+                                                                class="form-control file-upload-info" name="picture"
+                                                                id="id_picture" disabled="" placeholder="Upload Image">
+                                                            <span class="input-group-append">
+
+                                                                <button class="file-upload-browse btn btn-primary"
+                                                                    type="file">Upload</button>
+                                                            </span> {% endcomment %}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer text-right">
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- main-panel ends -->
+    </div>
+
+    {% endblock content %}

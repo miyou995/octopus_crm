@@ -1,0 +1,61 @@
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Signup</title>
+{% endblock %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.addons.css' %}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row w-100">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left p-5">
+                <div class="brand-logo">
+                  <img src="{% static 'images/logo.png' %}" alt="logo" style="width:400px; heght400px;">
+                </div>
+                <h4>vous avez créer un compte avec succès</h4>
+                <h6 class="font-weight-light">Malheureusement, vous ne pouvez pas vous connecter.</h6>
+                <h6 class="font-weight-light">Veuillez patienter pendant que des privilèges vous sont accordés.</h6>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+
+   <!-- plugins:js -->
+   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+   <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
+   <!-- endinject -->
+   <!-- inject:js -->
+   <script src="{% static 'js/off-canvas.js' %}"></script>
+   <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+   <script src="{% static 'js/misc.js' %}"></script>
+   <script src="{% static 'js/settings.js' %}"></script>
+   <script src="{% static 'js/todolist.js' %}"></script>
+   <!-- endinject -->
+ </body>
+
+
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Cashflow</title>
+{% endblock %}
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+    
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+             <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title bg-white">Cashflow</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active bg-white">Cashflow</li>
+                    </ul>
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-sm-12">
+                    <!-- Project Settings Form --> 
+                    <form action="{% url 'cashflow:addaccounts' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row form-row">
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                   
+                                </div>
+                            </div>     
+                        </div>
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_manager">owner</label>
+                                        <select name="owner" id="id_owner" class="form-control select bg-white">
+                                            {% for company in companies %}
+                                            <option value="{{company.id}}">{{company.name}}</option>
+                                            {% endfor %}	
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_type"> type </label>              
+                                        <select class="form-control select bg-white" name="type" id="id_type" >
+                                                <option value="IN">IN</option>
+                                                <option value="OU">OUt</option>	
+                                        </select>
+                                          
+                                    </div>
+                                </div>
+                        
+                        </div>    
+                    </div>       
+                        <br>
+                        <div> 
+                             <input type="submit" value="Save" class="btnn" name="_save">
+                        </div>
+                        
+                    </form>
+                    <!-- /Poject Settings Form -->
+            </div>			
+        </div>
+        
+    </div>			
+</div>
+<br>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+{% endblock content %}

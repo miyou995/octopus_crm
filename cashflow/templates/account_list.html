@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Cashflow</title>
+{% endblock %}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            Cashflow
+        </h3>
+    </div> 
+    <div class="col-md-6 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-0">Total</h4>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-inline-block pt-3">
+                        <div class="d-md-flex">
+                            <h2 class="mb-0">{{ account_count }} </h2>
+                            
+                        </div>
+                    </div>
+                    <div class="d-inline-block">
+                        <i class="fas fa-solid fa-money-bill text-info icon-lg"></i>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="GET">
+                    <div class="d-md-flex justify-content-between align-items-center">
+                            <tr class="row">    
+                                <input class="form-control mr-sm-2 bg-white" type="search" placeholder="Search" aria-label="Search" name="name">
+                                <td> </td>  
+                                <td > <input type="date" class="form-control bg-white" name="created" > </td> 
+                                <td >
+                                    <select class="form-control select bg-white" name="acc_type" >
+                                        <option value="">select account type</option>
+                                        <option value="IN">IN</option>
+                                        <option value="OU">OUt</option>	
+                                    </select>
+                                </td>
+                            
+                                
+                                <td >  
+                                    <button type="submit" class="btn btn-primary mr-2"> <i class="fas fa-filter"></i></button>
+                                </td>
+                            </tr>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <a href="#" > <button type="submit" class="btn btn-primary mr-2" style="float:right;">New</button><a>
+            <h4 class="card-title">Accounts</h4>
+                <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        {% for account in accounts %} 
+                                            <div class="col-md-3 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex flex-row">
+                                                            <h6 class="badge badge-pill badge-dark"> {{account.get_acc_type_display}}</h6>
+                                                            <div class="ml-3">
+                                                                <a href="{% url 'cashflow:accounttdetail' account.pk %}" style="text-decoration : none; color:black;" > 
+                                                                <h3>{{account.name}}</h3>  </a>
+                                                                <p class="text-muted"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                          
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-panel ends -->
+</div>
+</div>
+{% endblock content %}

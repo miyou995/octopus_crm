@@ -1,0 +1,20 @@
+<div id="deleteContent" class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="detailModalLabel">Delete client</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <form  method="post" class="form-sample"
+    {% comment %} action="{% url 'contact:clientdelete' pk=employee.pk %}"  {% endcomment %} >
+      {% csrf_token %}
+      <p style="font-size: 16px;">
+        Are you sure you want to delete <span class="text-danger"> {{employee.name}} </span> ?
+      </p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <button type="submit" class="btn btn-primary">Delete</button>
+  </div>
+</div>

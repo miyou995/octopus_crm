@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block branding %}
+<h1 id="head">
+  <a href="https://www.octopus-consulting.com" target="_blank">
+    <img src="{% static 'images/admin_logo.png' %}" width="195" alt="Octo SHOP ADMIN" >
+  </a>
+</h1>
+{% endblock branding %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">  
+{% endblock extrastyle %}

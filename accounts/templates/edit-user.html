@@ -1,0 +1,77 @@
+{% comment %} {% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Profile</title> 
+{% endblock %} {% endcomment %}
+
+{% block content %}
+
+<div class="content-wrapper">
+  <div class="page-header">
+      <h3 class="page-title">
+        Profile
+      </h3>
+  </div> 
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Edit your account</h4>
+        <form action="{% url 'accounts:edituser' user.pk %}"  method="put"  class="form-sample" enctype="multipart/form-data">
+            {% csrf_token %}
+          <p class="card-description">
+          </p>
+          <div class="row">
+         
+                <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="id_pseudo">Name :</label>
+                    <div class="col-sm-9">
+                    <input  type="text" name="pseudo"  id="id_pseudo"  required="" class="form-control"  value="{{user.pseudo}}">
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="id_role">Role :</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="role" class="form-control " maxlength="150" required="" id="id_role" value="{{user.role}}"> 
+                    </div>
+                </div>
+              </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                      <label class="col-sm-3 col-form-label" for="id_notes">Tasks :</label>
+                      <div class="col-sm-9">
+                        <textarea cols="40" rows="10" name="notes"  id="id_notes" class="form-control "  > {{user.notes|safe}}</textarea>
+                      </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="id_picture">Photo :</label>
+                        <div class="input-group col-sm-9">
+                          <input type="file" id="id_picture" name="picture" class="file-upload-browse btn btn-primary" >
+                          {% comment %} <input type="text" class="form-control file-upload-info"  name="picture"  id="id_picture"  disabled="" placeholder="Upload Image">
+                            <span class="input-group-append">
+                             
+                              <button class="file-upload-browse btn btn-primary" type="file">Upload</button>
+                            </span> {% endcomment %}
+                        </div>
+                        
+                    </div>
+                 </div>
+                   
+          </div>
+              {% comment %} <input type="submit" class="btn btn-primary mr-2"> {% endcomment %}
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  
+  </div> 
+  <!-- main-panel ends -->
+</div>
+
+{% endblock content %}

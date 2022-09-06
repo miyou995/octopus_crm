@@ -1,0 +1,9 @@
+
+venv 
+venv/
+/venv
+.env
+/.env
+/media 
+db.sqlite3
+config/local_settings.py

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Companies</title>
+{% endblock %}
+<style>
+    .icn {
+        color: #555556;
+    }
+    img.logo {
+        width: 40px;
+    }
+    .form-control {
+        margin: 4px;
+    }
+</style>
+
+    <div class="modal fade" id="addModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            {% include 'company_add.html'%}
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          {% include 'company_delete.html'%}
+        </div>
+    </div>
+    {% comment %} <div class="modal fade" id="editModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            {% include "modal_company_edit.html" with object=company editcompany_url=editcompany_url %}
+        </div>
+    </div>  {% endcomment %}
+
+    <div class="main-wrapper main-wrapper-1">
+        <!-- Main Content -->
+        <div class="main-content">
+                                        
+                  {% include 'snippets/message.html' %}
+                                        
+            <section class="section">   
+           
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="primary">Companies list</h4>
+                                    <div class="card-header-action">
+                                        <div class="row">
+                                            <button data-toggle="modal" data-target="#addModal" class="btn btn-primary plus">
+                                                <i data-feather="plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="total" style="margin-left: 20px;">
+                                            <strong>Total : </strong>
+                                            {{ company_count }}
+                                        </div>
+                                        <form action="" method="GET" style="margin-left:auto ;">
+                                            <div class="d-md-flex align-items-center">
+                                                <tr class="row">
+                                                    <td>
+                                                        <input type="search" class="form-control"
+                                                            placeholder="Project name" aria-label="Search" name="name">
+                                                    </td>
+                                                    <td>
+                                                        <input type="date" class="form-control"
+                                                            placeholder="collab_start" name="started_date">
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-control select" name="project_type">
+                                                            <option value="">Project type</option>
+                                                            <option value="EC">e-commerce</option>
+                                                            <option value="WS">web site</option>
+                                                            <option value="WA">web app</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary"><i
+                                                                data-feather="filter"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="table-1">
+                                            <thead>
+                                                <tr>
+                                                    <th>Logo </th>
+                                                    <th>Name </th>
+                                                    <th>Responsible</th>
+                                                    <th>Type</th>
+                                                    <th>Project</th>
+                                                    <th>source</th>
+                                                    <th>Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for company in companies %}
+                                                    <tr>
+                                                        {% if company.logo %}
+                                                        <td><img src="{{company.logo.url}}" alt="logo" class="logo" /> </td>
+                                                        {% else %}
+                                                        <td><img src="{% static 'images/favicon.png' %}" alt="logo"
+                                                                class="logo" />
+                                                        </td>
+                                                        {% endif %} 
+                                                        <td>{{company.name}}</td>
+                                                        <td>{{company.responsible_person}}</td>
+                                                        <td> {{company.get_company_type_display}}</td>
+                                                        <td>{{company.get_project_type_display}} </td>
+                                                        <td>{{company.source}}</td>
+                                                        <td><span class="d-block text-info">{{company.collab_start}}</span>
+                                                        </td>
+                                                    <td>
+                                                            <a data-toggle="modal" data-target="#editModal-{{company.id}}" class="btn icn">
+                                                            <i data-feather="edit"></i>
+                                                            </a>
+                                                            <a data-toggle="modal" data-target="#deleteModal" class="btn icn"><i data-feather="trash"></i></a>
+                                                            <a href=" {% url 'contact:companydetail' company.pk %}" class="btn icn"><i data-feather="eye"></i></a>
+                                                        </td> 
+                                                    </tr>
+                                                {% endfor %}
+                                             
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% for company in companies %}
+    {% url 'contact:editcompany' company.pk as editcompany_url %} 
+        {% include "modal_company_edit.html" with object=company editcompany_url=editcompany_url %}
+    {% endfor %}
+
+{% endblock content %}

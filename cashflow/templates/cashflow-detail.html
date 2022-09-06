@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Cashflow</title>
+{% endblock %}
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title bg-white">Cashflow</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active bg-white">Cashflow</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- /Page Header -->
+        <div class="row bg-white">
+            <div class="container bg-white">
+                
+                <!-- Doctor Widget -->
+                <div class="card bg-white">
+                    <div class="card-body bg-white">
+    
+                        <div class="doctor-widget">
+                            <div class="doc-info-left">
+                            
+                                <div class="doc-info-cont">
+                                    <h4 class="doc-name badge badge-pill bg-info-light">{{account.owner}}</h4>
+                                    <br>
+                                    
+                                </div>
+                            </div>
+                            <div class="doc-info-right">
+                                <div class="clini-infos">
+                                    <h4 class="doc-name badge bg-secondary">{{account.get_type_display}}</h4>
+                                    <br>
+                            </div>
+                        </div>
+                   
+                    </div>
+                </div>
+                
+                <!-- /Doctor Widget -->	
+                <!-- Doctor Details Tab -->
+            <div class="card bg-white">
+                <div class="card-body pt-0 bg-white">
+                    <!-- Tab Menu -->
+                    <nav class="user-tabs mb-4 bg-white">
+                        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active ">Overview</a>
+                            </li>
+  
+                        </ul>
+                </nav>
+                <!-- /Tab Menu -->
+                
+                        <!-- /Feed Activity -->
+                <!-- Tab Content -->
+                <div class="tab-content pt-0">
+                    <!-- Overview Content -->
+                    <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+                        <div class="row">
+                            
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card bg-white">
+                                      <div class="card-body">
+                                        <div class="dash-widget-header">
+                                          <span class="dash-widget-icon text-danger border-danger">
+                                            <i class="fa fa-money"></i>
+                                          </span>
+                                          <div class="dash-count">
+                                            <h3>{{account_payment.amount__sum}} DZD</h3>
+                                          </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                          <h6 class="text-muted">Payment</h6>
+                                          <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger w-50"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card bg-white">
+                                      <div class="card-body">
+                                        <div class="dash-widget-header">
+                                          <span class="dash-widget-icon text-warning  border-warning">
+                                            <i class="fa fa-money"></i>
+                                          </span>
+                                          <div class="dash-count">
+                                            <h3>{{account_creance.amount__sum}} </h3>
+                                          </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                          <h6 class="text-muted">Debt</h6>
+                                          <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning  w-50"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card bg-white">
+                                      <div class="card-body">
+                                        <div class="dash-widget-header">
+                                          <span class="dash-widget-icon text-primary  border-primary">
+                                            <i class="fa fa-money"></i>
+                                          </span>
+                                          <div class="dash-count">
+                                            <h3> </h3>
+                                          </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                          <h6 class="text-muted">Cost</h6>
+                                          <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary  w-50"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card bg-white">
+                                      <div class="card-body">
+                                        <div class="dash-widget-header">
+                                          <span class="dash-widget-icon text-success  border-success">
+                                            <i class="fa fa-money"></i>
+                                          </span>
+                                          <div class="dash-count">
+                                            <h3> </h3>
+                                          </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                          <h6 class="text-muted">paycheck</h6>
+                                          <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success  w-50"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                        </div>
+                        <div class="row bg-white">
+                            <div class="col-md-12 d-flex bg-white">
+                            
+                                <!-- Recent Orders -->
+                                <div class="card card-table flex-fill bg-white">
+                                    <div class="card-header bg-white">
+                                        <h4 class="card-title bg-white">Transactions</h4>
+                                    </div>
+                                    <div class="card-body bg-white">
+                                        <div class="table-responsive">
+                                            <table class="table table-center mb-0 bg-white">
+                                                <thead class=" bg-white">
+                                                    <tr>
+                                                        <th>Account</th>
+                                                        <th>Receiver</th>
+                                                        <th>Project</th>
+                                                        <th>Type</th>                                              
+                                                        <th>Amount</th>
+                                                        <th>Date</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for transaction in payments  %}
+                                                    <tr>
+                                                        <td> <a href="">{{transaction.account}} </a></td>
+                                                        <td> {{transaction.receiver}} </a></td>
+                                                        <td> <span class="badge badge-pill bg-info-light">{{transaction.project}} </span></td>
+                                                        <td> <span class="badge badge-pill bg-info-light">{{transaction.get_type_display}}</span> </td>
+                                                        <td><span class="badge badge-pill bg-info-light">{{transaction.amount}} DZD</span></td>
+                                                        <td><span class="d-block text-info">{{transaction.date}}</span></td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+                                                                <a href="" class="btn btn-sm bg-success-light">
+                                                                    Edit
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    {% endfor %}
+                                                    </tr> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Recent Orders -->
+                                
+                            </div>
+                            
+                    </div>
+                </div>
+        
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+{% endblock content %}

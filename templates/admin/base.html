@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+
+{% block title %}{{ title }} | {{ site_title|default:_('PMATEL Dashboard') }}{% endblock %}
+
+
+
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">  
+{% endblock extrastyle %}
+{% block extrahead %}{{ block.super }}
+<link rel="icon" href="{% static 'images/admin_logo.png' %}" sizes="48x48" />
+<style>
+  :root {
+      --primary: #264b5d;
+      --primary-fg: #eee;
+      --body-fg: #eeeeee;
+      
+      --body-bg: #121212;
+      --body-quiet-color: #e0e0e0;
+      --body-loud-color: #ffffff;
+  
+      --breadcrumbs-link-fg: #e0e0e0;
+      --breadcrumbs-bg: var(--primary);
+  
+      --link-fg: #81d4fa;
+      --link-hover-color: #4ac1f7;
+      --link-selected-fg: #6f94c6;
+  
+      --hairline-color: #272727;
+      --border-color: #353535;
+  
+      --error-fg: #e35f5f;
+      --message-success-bg: #006b1b;
+      --message-warning-bg: #583305;
+      --message-error-bg: #570808;
+  
+      --darkened-bg: #212121;
+      --selected-bg: #00363a;
+      --selected-row: #212121;
+  
+      --close-button-bg: #333333;
+      --close-button-hover-bg: #666666;
+    }
+  </style>
+{% endblock %}

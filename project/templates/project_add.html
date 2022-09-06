@@ -1,0 +1,125 @@
+<div id="editContent" class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="detailModalLabel">Add project</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+            <section class="section">
+              <div class="section-body">       
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                 
+                        <form class="wizard_with_validation" action="{% url 'project:addproject' %}" method="POST">
+                        {% csrf_token %}
+                          <h3></h3>
+                          <fieldset>
+                            <div class="form-group form-float center-block">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_name" style="font-weight:bold;">Project title</label>
+                                <input type="text"  name="name" id="id_name" required class="form-control" placeholder="Enter a title" required>
+                              </div>
+                            </div>
+                            <div class="form-group form-float center-block">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_project_type" style="font-weight:bold;">Type </label>
+                                <select class="form-control" name="project_type" id="id_project_type">
+                                  <option value="" selected="">Select a project type</option>
+                                  <option value="EC">e-commerce</option>
+                                  <option value="WS">web site</option>
+                                  <option value="WA">web app</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_company" style="font-weight:bold;">Company </label>
+                                <select class="form-control" name="company" id="id_company">
+                                  <option value="" selected="">Select a company</option>
+                                  {% for company in companies %}
+                                  <option value="{{company.id}}">{{company.name}}</option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+          
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_status" style="font-weight:bold;"> status </label>
+          
+                                <select class="form-control" name="status" id="id_status">
+                                  <option value="" selected="">Select status</option>
+                                  <option value="CF">confirm</option>
+                                  <option value="CP">completed</option>
+                                  <option value="PE">pending </option>
+                                  <option value="CA">cancelled </option>
+                                </select>
+                              </div>
+                            </div>
+                          </fieldset>
+          
+                          <h3></h3>
+                          <fieldset>
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_contract" style="font-weight:bold;">contract </label>
+          
+                                <select class="form-control" name="contract" id="id_contract">
+                                  <option value="" selected="">Select a contract type</option>
+                                  <option value="H">hosting</option>
+                                  <option value="A">annual</option>
+                                  <option value="S">semi-anuual</option>
+                                  <option value="Q">quarterly</option>
+                                  <option value="AD">adverisement</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_contract_expiration" style="font-weight:bold;">Contract expiration </label>
+                                <input type="date" name="contract_expiration" id="id_contract_expiration" required maxlength="200"
+                                  class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_started_date" style="font-weight:bold;">Start date</label>
+                                <input type="date" name="started_date" id="id_started_date" required maxlength="200"
+                                  class="form-control">
+                              </div>
+                            </div>         
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label class="col-sm-3 col-form-label" style="font-weight:bold;" for="id_cost">Cost</label>
+                                <input type="number" name="cost" id="id_cost" required="" maxlength="200" class="form-control">
+                              </div>
+                            </div>
+                          </fieldset>
+          
+                          <h3></h3>
+                          <fieldset>
+                            <div class="form-group form-float">
+                              <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                <label for="id_manager" style="font-weight:bold;">Manager</label>
+                                <input type="text" name="name" id="id_manager" required class="form-control" required>
+                              </div>
+          
+                              <div class="form-group form-float">
+                                <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                  <label for="id_deadline" style="font-weight:bold;">Deadline</label>
+                                  <input type="date" name="deadline" id="id_deadline" maxlength="200" class="form-control">
+                                </div>
+                              </div>
+                              <div class="form-group form-float">
+                                <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                                  <label for="id_description" style="font-weight:bold;">description </label>
+                                  <textarea name="description" class="form-control bg-white" id="id_description"> </textarea>
+                                </div>
+                              </div>
+                          </fieldset>    
+                        </form>                     
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+  </div>
