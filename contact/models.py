@@ -24,6 +24,7 @@ class Company(models.Model):
     collab_start        = models.DateField(blank=True, null=True)
     created             = models.DateField(auto_now=True)
     updated             = models.DateField(auto_now_add=True)
+    postal_code         = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
