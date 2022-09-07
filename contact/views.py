@@ -45,8 +45,9 @@ class CompanyUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Up
     permission_required = "contact.update_company"
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Erreur comited please enter your real informtions")
-        return redirect('contact:company_update')
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:editcompany')
+
 
         # print(form.errors)
         # return super().form_invalid(form)
