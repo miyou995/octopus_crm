@@ -2940,7 +2940,7 @@ tr:first-child>td>.fc-day-grid-event {
 }
 
 .wizard .steps a {
-    border-radius: 0px;
+    border-radius: 10px;
     -moz-transition: .5s;
     -o-transition: .5s;
     -webkit-transition: .5s;
@@ -2964,11 +2964,13 @@ tr:first-child>td>.fc-day-grid-event {
 }
 
 .wizard .steps .error a {
-    background-color: #f44336 !important
+    background-color: #f44336 !important;
+    border-radius: 10px;
 }
 
 .wizard .steps .current a {
-    background-color: #6777ef
+    background-color: #6777ef;
+    border-radius: 10px;
 }
 
 .wizard .steps .current a:active,

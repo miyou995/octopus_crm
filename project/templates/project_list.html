@@ -19,11 +19,11 @@
       {% include 'project_add.html'%}
     </div>
   </div>
-  {% comment %} <div class="modal fade" id="editModal" role="dialog">
+   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'project_edit.html'%}
     </div>
-  </div> {% endcomment %}
+  </div> 
   
   {%comment%}
   <!-- <div class="modal fade" id="deleteModal" role="dialog">
@@ -119,11 +119,14 @@
                           <td><a href="#"   
                             hx-target="#editContent" data-toggle="modal"
                            data-target="#editModal" hx-swap="innerHTML" class="btn icn"> 
-                           <i class="fa fa-edit"></i></a>
-                            {% comment %} <a href="{% url 'project:projectdelete' project.pk %}" class="btn icn"><i
-                              class="fa fa-trash"></i></a> {% endcomment %}
-                            {% comment %} <a href="{% url 'project:projectdetail' project.pk %}" class="btn icn">
-                              <i class="fa fa-eye"></i></a> {% endcomment %}
+                           <i data-feather="edit"></i></a>
+                            {% comment %}{% url 'project:projectdelete' project.pk %}  {% endcomment %}
+                             <a href="" class="btn icn"  hx-target="#editContent" data-toggle="modal"
+                             data-target="#deleteModal" hx-swap="innerHTML" ><i
+                              data-feather="trash"></i></a>
+                            {% comment %}{% url 'project:projectdetail' project.pk %} {% endcomment %}
+                             <a href="" class="btn icn">
+                              <i data-feather="eye"></i></a> 
                           </td>
                         </tr>
                         {% comment %} {% endfor %} {% endcomment %}
