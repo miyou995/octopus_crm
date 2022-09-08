@@ -1,7 +1,19 @@
 from django.db import models
 from .choice import *
+from django.urls import reverse
 
+class CompanyManager(models.Manager):
+    def is_client(self):
+        return self.objects.filter(company_type='CL')
 
+    def is_fournisseur(self):
+        return Company.objects.filter(company_type='F')
+    
+    def is_partenaire(self):
+        return Company.objects.filter(company_type='P')
+    
+    def is_concurrent(self):
+        return Company.objects.filter(company_type='CN')
 
 
 class Company(models.Model):
@@ -26,12 +38,17 @@ class Company(models.Model):
     updated             = models.DateField(auto_now_add=True)
     postal_code         = models.IntegerField(blank=True, null=True)
 
+    objects             = CompanyManager()
+    # camopany_managing   = CompanyQueryset().as_manager()
+
     def __str__(self):
         return self.name
     
-    # def get_absolute_url(self):
-    #     return reverse("contact:companydetail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("contact:companydetail", kwargs={"pk": self.pk})
 
-
+    @property
+    def is_responsible_person(self):
+        return self.responsible_person
 
 
