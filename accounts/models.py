@@ -41,6 +41,72 @@ class UserManager(BaseUserManager):
         )
         return self._create_user(email, password, **extra_fields)
     
+
+    
+    @property
+    def is_assistant(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Assistant").exists())
+    @property
+    def is_developer(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Developer").exists())
+    @property
+    def is_commercial(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Commercial").exists())
+    @property
+    def is_marketer(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Marketer").exists() )
+    @property
+    def is_content_creator(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())
+    
+    # MY QS @@@@@@@@@@@@@@@@2
+
+    @property
+    def is_employee(self):
+        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='EM'))
+
+    @property
+    def is_employee(self):
+        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='CL')) 
+
+# ROLE TYPES
+    @property
+    def is_assistant(self):
+        return User.objects.filter(role='AS')
+
+    @property
+    def is_developer(self):
+        return User.objects.filter(role='DV')
+
+    @property
+    def is_commercial(self):
+        return User.objects.filter(role='CM')
+
+    @property
+    def is_marketert(self):
+        return User.objects.filter(role='MK')
+
+    @property
+    def is_content_creator(self):
+        return User.objects.filter(role='CC')
+
+    @property
+    def is_designer(self):
+        return User.objects.filter(role='DS')
+
+#  CLIENT LEAD
+
+    @property
+    def get_client_interested(self):
+        return User.objects.filter(client_lead='I')
+
+    @property
+    def get_client_call_again(self):
+        return User.objects.filter(client_lead='CA')
+
+    @property
+    def get_client_not_interested(self):
+        return User.objects.filter(client_lead='NI')
  
 
 
@@ -50,7 +116,7 @@ class User(AbstractUser):
     email           = models.EmailField('email address', unique=True)
     picture         = models.ImageField(upload_to='images/faces', null=True, blank=True)
     pseudo          = models.CharField( max_length=150, null=True, blank=True)
-    role            = models.CharField( max_length=150, null=True, blank=True)
+    role            = models.CharField(choices=ROLE_TYPE_CHOICE, max_length=2, blank=True, null=True)
     decision        = models.CharField(choices=DECISION_TYPE_CHOICES, max_length=2, blank=True, null=True)
     mobile          = models.CharField(max_length=13, blank=True, null=True)
 
@@ -62,7 +128,6 @@ class User(AbstractUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
     user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=2, blank=True, null=True)
-    fonction        = models.CharField(choices=FUNCTION_TYPE_CHOICE, max_length=2, blank=True, null=True)
     client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=256)
     project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)
     collab_start    = models.DateField(blank=True, null=True)
@@ -76,5 +141,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.company)
-
-
