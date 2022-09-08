@@ -5,7 +5,49 @@ from .choice import *
 from contact.models import Company
 
 
+
+class UserQueryset(models.QuerySet):
+   
+    # MY QS @@@@@@@@@@@@@@@@2
+    def is_employee(self):
+        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='EM'))
+
+    def is_employee(self):
+        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='CL')) 
+
+# ROLE TYPES
+    def is_assistant(self):
+        return self.objects.filter(role='AS')
+
+    def is_developer(self):
+        return self.objects.filter(role='DV')
+
+    def is_commercial(self):
+        return self.objects.filter(role='CM')
+
+    def is_marketert(self):
+        return self.objects.filter(role='MK')
+
+    def is_content_creator(self):
+        return self.objects.filter(role='CC')
+
+    def is_designer(self):
+        return self.objects.filter(role='DS')
+
+#  CLIENT LEAD
+
+    def get_client_interested(self):
+        return self.objects.filter(client_lead='I')
+
+    def get_client_call_again(self):
+        return self.objects.filter(client_lead='CA')
+
+    def get_client_not_interested(self):
+        return self.objects.filter(client_lead='NI')
+ 
+
 class UserManager(BaseUserManager):
+    user_queryset     = UserQueryset()
     use_in_migrations = True
 
     def _create_user(self, email, password,**extra_fields):
@@ -42,72 +84,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
     
 
-    
-    @property
-    def is_assistant(self):
-        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Assistant").exists())
-    @property
-    def is_developer(self):
-        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Developer").exists())
-    @property
-    def is_commercial(self):
-        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Commercial").exists())
-    @property
-    def is_marketer(self):
-        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Marketer").exists() )
-    @property
-    def is_content_creator(self):
-        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())
-    
-    # MY QS @@@@@@@@@@@@@@@@2
 
-    @property
-    def is_employee(self):
-        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='EM'))
-
-    @property
-    def is_employee(self):
-        return self.is_active and (self.is_superuser or self.is_staff and User.objects.filter(user_type='CL')) 
-
-# ROLE TYPES
-    @property
-    def is_assistant(self):
-        return User.objects.filter(role='AS')
-
-    @property
-    def is_developer(self):
-        return User.objects.filter(role='DV')
-
-    @property
-    def is_commercial(self):
-        return User.objects.filter(role='CM')
-
-    @property
-    def is_marketert(self):
-        return User.objects.filter(role='MK')
-
-    @property
-    def is_content_creator(self):
-        return User.objects.filter(role='CC')
-
-    @property
-    def is_designer(self):
-        return User.objects.filter(role='DS')
-
-#  CLIENT LEAD
-
-    @property
-    def get_client_interested(self):
-        return User.objects.filter(client_lead='I')
-
-    @property
-    def get_client_call_again(self):
-        return User.objects.filter(client_lead='CA')
-
-    @property
-    def get_client_not_interested(self):
-        return User.objects.filter(client_lead='NI')
- 
 
 
 class User(AbstractUser):
@@ -141,3 +118,19 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.company)
+    
+    @property
+    def is_assistant(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Assistant").exists())
+    @property
+    def is_developer(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Developer").exists())
+    @property
+    def is_commercial(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Commercial").exists())
+    @property
+    def is_marketer(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Marketer").exists() )
+    @property
+    def is_content_creator(self):
+        return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())

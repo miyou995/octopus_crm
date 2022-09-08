@@ -10,7 +10,7 @@ from project.models import Project
 # Create your models here.
 
 class event(models.Model):
-    title            = models.CharField(max_length=180, blank=True, null=True)
+    title           = models.CharField(max_length=180, blank=True, null=True)
     description     = models.TextField(blank=True, null=True)
     start_date      = models.DateField()
     deadline        = models.DateField()
@@ -31,7 +31,6 @@ class event(models.Model):
 
 TICKET_STATUTE_TYPES = (
     ('OP', 'opened'),
-
     ('CL', 'closed'),
 )
 

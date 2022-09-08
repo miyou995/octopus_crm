@@ -5,6 +5,47 @@ from tinymce import models as tinymce_models
 from .choice import *
 from django.db.models import Sum
 
+class ProjectManager(models.Manager):
+
+    def is_ecommerce(self):
+        return Project.objects.filter(project_type='EC')
+    
+    def is_website(self):
+        return Project.objects.filter(project_type='WS')
+    
+    def is_webapp(self):
+        return Project.objects.filter(project_type='WA')
+    
+    # CONTRACT TYPE
+    def is_hosting(self):
+        return Project.objects.filter(contract='H')
+    
+    def is_annual(self):
+        return Project.objects.filter(contract='A')
+    
+    def is_semi_annual(self):
+        return Project.objects.filter(contract='S')
+    
+    def is_quarterly(self):
+        return Project.objects.filter(contract='Q')
+    
+    def is_advertisement(self):
+        return Project.objects.filter(contract='AD')
+
+
+# STATUS TYPES
+    def is_confirmed(self):
+        return Project.objects.filter(status='CF')
+    
+    def is_completed(self):
+        return Project.objects.filter(status='CP')
+    def is_pending(self):
+        return Project.objects.filter(status='PE')
+
+    def is_cancelled(self):
+        return Project.objects.filter(status='CA')
+
+
 
 # Create your models here.
 class Project (models.Model): 
@@ -23,6 +64,9 @@ class Project (models.Model):
     company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
     manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
     team                    = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE,verbose_name="team", related_name='project_teams')
+
+    objects                 = models.Manager()
+    managing                = ProjectManager()
 
 
     def __str__(self):
@@ -47,7 +91,6 @@ class Project (models.Model):
 
 
 
-
 class Task(models.Model):
     started_date        = models.DateField(blank=True, null=True) 
     deadline            = models.DateField(blank=True, null=True)
@@ -59,5 +102,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.project
+
 
    
