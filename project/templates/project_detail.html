@@ -1,148 +1,146 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
 {% block title %}
-<title>Project</title>
+<title>Project Details</title>
 {% endblock %}
+<!-- Main Wrapper -->
 
 <div class="content-wrapper">
-  <div class="page-header">
-      <h3 class="page-title">
-        Project
-      </h3>
-  </div> 
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="border-bottom text-center pb-4">
-                <h3>{{project.name}}</h3>
-                <p></p>
-              </div>                     
-              <div class="border-bottom  py-4">
-                <div class="py-4">
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> Company</span> <span class="float-right text-muted"> <a href="{% url 'contact:companydetail' project.company.pk %}" style=" text-decoration:none; color:black;"> {{project.company}} </a> </span>  </p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> Start date </span><span class="float-right text-info">{{project.started_date}}</span> </p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> Deadline</span> <span class="float-right text-danger"> {{project.deadline}}</span></p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> manager</span><span class="float-right  text-success"> <a href="{% url 'contact:clientdetail' project.manager.pk %}" style=" text-decoration:none; color:green;">  {{project.manager}} </a> </span> </p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> type</span><span class="float-right text-muted"> {{project.get_project_type_display}} </span> </p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> contract</span><span  class="float-right badge badge-pill badge-dark"> {{project.get_contract_display}} </span> </p>
-                  <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> status </span>  {% if project.get_status_display == 'confirm' %}
-                                                                                                                    <span class="float-right badge badge-pill badge-success"> {{project.get_status_display}}</span>
-                                                                                                            {% elif project.get_status_display == 'completed' %}
-                                                                                                                    <span class="float-right badge badge-pill badge-info">{{project.get_status_display}}</span>
-                                                                                                            {% else  %}
-                                                                                                                    <span class="float-right badge badge-pill badge-warning">{{project.get_status_display}}</span>
-                                                                                                            {% endif %}
-                                                                                              
-                  {% comment %} <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> cost </span><span class="float-right badge badge-pill badge-info">  {{project.cost}} </span> </p> {% endcomment %}
-                </div>                                                       
-              </div>
-            </div>
-            <div class="col-lg-8 pl-lg-5">
-              <div class="d-flex justify-content-between">
-                <div>
-                  <h5>Overview</h5>
-                  <div class="d-flex align-items-center">
-                    <h5 class="mb-0 mr-2 text-muted"></h5>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-4 py-2 border-top ">
-                <ul class="nav profile-navbar">
-               
-                </ul>
-              </div>
-                 <div class="profile-feed">
-                  <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title"> Description</h4>
-                      <p class="card-description">
-                         {{project.description|safe}}
-                      </p>
-                   
-                    </div>
-                  </div>
-                </div> <br>
-                <div class="row">
-                  
-                  <div class="col-md-3 grid-margin" style="margin-left: 250px;">
-                      <div class="card">
-                          <div class="card-body">
-                              <h4 class="card-title mb-0">Cost</h4>
-                              <div class="d-flex justify-content-between align-items-center">
-                                  <div class="d-inline-block pt-3">
-                                      <div class="d-md-flex">
-                                          <h4 class="mb-0">{{project.cost}} DZD</h4>
-                                          
-                                      </div>
-                                  </div>
-                              
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                      <div class="col-md-3 grid-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-0">Debt</h4>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-inline-block pt-3">
-                                        <div class="d-md-flex">
-                                            <h4 class="mb-0">{{project.get_project_dettes}} DZD</h4>
-                                            
-                                        </div>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                          </div>
-                      </div>
-                </div>
-                  <div class="profile-feed">
-                <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title"> Transactions </h4>
-                      <p class="card-description">
-                       
-                      </p>
-                      <div class="table-responsive">
-                        <table class="table">
-                          <thead style="background-color: #2b2155; color:#fff;">
-                            <tr>
-                              <th>Made by</th>
-                              <th>Amount</th>
-                              <th>Date </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {% for transaction in project_transactions %}
-                           <tr>
-                               <td> <a href="#" style=" text-decoration:none; color:black;"><span  class=" badge badge-pill badge-light">{{transaction.made_by}} </span></a></td>
-                               <td><span class="fe text-black"> {{transaction.amount}} DZD</span></td>
-                               <td><span class="fe text-info">{{transaction.created}}</span></td>
-                           </tr>
-                            {% endfor %} 
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                
-                </div>
+  <div class="main-content">
 
-               
+    <section class="section">
+      <div class="section-body">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-4">
+            <div class="card author-box">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="author-box-description">
+                    <div class="author-box-name">
+                      <h3>{{project.name}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="py-4">
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Company</span>
+                      <span class="float-right text-muted"> {{project.company}}</span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Deadline</span>
+                      <span class="float-right text-muted"> {{project.deadline}}</span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Source</span>
+                      <span class="float-right text-muted">
+                        {{project.get_source_display}}</span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Manager</span>
+                      <span class="float-right text-muted">
+                        {{project.manager}}
+                      </span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Deposit</span>
+                      <span class="float-right text-muted">
+                        {{project.deposit}}
+                      </span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Due</span>
+                      <span class="float-right text-muted">
+                        {{project.due}}
+                      </span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Contract</span>
+                      <span class="float-right text-muted">
+                        {{project.get_contract_display}}
+                      </span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Type</span>
+                      <span class="float-right text-muted">
+                        {{project.get_project_type_display}}
+                      </span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Status</span>
+                      <span class="float-right text-muted">
+                        {{project.get_status_display}}
+                      </span>
+                    </p>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div> 
-          
+          </div>
+
+          <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+              <div class="card">
+                <div class="card-statistic-4">
+                  <div class="align-items-center justify-content-between">
+                    <div class="row ">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                        <div class="card-content">
+                          <h5 class="font-15">New Booking</h5>
+                          <h2 class="mb-3 font-18">258</h2>
+                          <p class="mb-0"><span class="col-green">10%</span> Increase</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          <div class="col-12 col-md-12 col-lg-6">
+            <div class="card">
+              <div class="padding-20">
+                <h4>Overview</h4>
+                <div class="card-body">
+                  <h5 class="card-title">Description</h5>
+                  <p class="card-description">
+                    {{project.description|safe}}
+                  </p>
+                </div>
+                <div class="tab-content tab-bordered">
+                  <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
+                    <h5 class="card-title">Transactions</h5>
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr>
+                            <th>Made by</th>
+                            <th>Amount</th>
+                            <th>Date </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for transaction in project_transactions %}
+                          <tr>
+                            <td> <a href="#" style=" text-decoration:none;font-weight: bold; color:#555556;"><span
+                                  class=" badge badge-pill badge-light">{{transaction.made_by}} </span></a></td>
+                            <td><span class="d-block"> {{transaction.amount}} DZD</span></td>
+                            <td><span class="d-block">{{transaction.created}}</span></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </div>
-  <!-- main-panel ends -->         
+
 {% endblock content %}
