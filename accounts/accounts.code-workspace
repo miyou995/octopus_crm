@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../bills"
+		},
+		{
+			"path": "../cashflow"
+		},
+		{
+			"path": "../config"
+		},
+		{
+			"path": "../contact"
+		},
+		{
+			"path": "../core"
+		},
+		{
+			"path": "../events"
+		},
+		{
+			"path": "../project"
+		},
+		{
+			"path": "../static"
+		},
+		{
+			"path": "../templates"
+		}
+	]
+}

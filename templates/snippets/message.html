@@ -1,7 +1,7 @@
 {% if messages %}
     {% for message in messages %}
-        <div class="alert alert-success {{ message.tags }}  alert-dismissible text-center" role="alert" >
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <div class="alert alert-success {{ message.tags }}  alert-dismissible text-center fade show" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="onButtonPress()">
             <span aria-hidden="true">&times;</span>
         </button>
         {{message}}

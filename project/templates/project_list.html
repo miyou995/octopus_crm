@@ -1,48 +1,47 @@
 {% extends "base.html" %}
 {% load static %}
+
+
 {% block content %}
 {% block title %}
 <title>Projects</title>
 {% endblock %}
+
 <style>
   .icn {
     color: #555556;
   }
+
   .form-control {
     margin: 4px;
   }
 </style>
-<div class="loader"></div>
-<div id="app">
+
+
   <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'project_add.html'%}
     </div>
   </div>
-   <div class="modal fade" id="editModal" role="dialog">
+  <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'project_edit.html'%}
     </div>
-  </div> 
-  
-  {%comment%}
-  <!-- <div class="modal fade" id="deleteModal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable
-    " role="document">
+  </div>
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       {% include 'client_delete.html'%}
     </div>
   </div>
-  <div class="modal fade" id="editModal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-      {% include 'client_edit.html'%}
-    </div>
-  </div> -->
-  {%endcomment%}
+
+
   <div class="main-wrapper main-wrapper-1">
+
     <!-- Main Content -->
     <div class="main-content">
       <section class="section">
         <div class="section-body">
+
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -50,18 +49,25 @@
                   <h4 class="primary">Projects list</h4>
                   <div class="card-header-action">
                     <div class="row">
+
+
                       <button hx-get="{% url 'project:addproject' %}" hx-target="#addContent" data-toggle="modal"
                         data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
-                        <i data-feather = 'plus'></i>
+                        <i data-feather="plus"></i>
                       </button>
+
                     </div>
+
                   </div>
+
                 </div>
                 <div class="card-body">
+
                   <div class="row">
                     <div class="total" style="margin-left: 20px;">
                       <strong>Total : </strong>
                       {{ project_count }}</div>
+
                     <form action="" method="GET" style="margin-left:auto ;">
                       <div class="d-md-flex align-items-center">
                         <tr class="row">
@@ -83,6 +89,7 @@
                             <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
                           </td>
                         </tr>
+
                       </div>
                     </form>
                   </div>
@@ -103,7 +110,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% comment %} {% for project in projects %} {% endcomment %}
+                        {% for project in projects %}
                         <tr>
                           <td>{{project.name}}</td>
                           <td>{{project.started_date}}</td>
@@ -115,21 +122,21 @@
                           <td><span
                               class="badge badge-pill {{project.get_status_class}}">{{project.get_status_display}}</span>
                           </td>
-                           {% comment %}{% url 'project:editproject' project.pk %}  {% endcomment %}
-                          <td><a href="#"   
+
+                          <td><a href="{% url 'project:editproject' project.pk %}" 
                             hx-target="#editContent" data-toggle="modal"
                            data-target="#editModal" hx-swap="innerHTML" class="btn icn"> 
                            <i data-feather="edit"></i></a>
-                            {% comment %}{% url 'project:projectdelete' project.pk %}  {% endcomment %}
-                             <a href="" class="btn icn"  hx-target="#editContent" data-toggle="modal"
-                             data-target="#deleteModal" hx-swap="innerHTML" ><i
+
+                            <a href="{% url 'project:projectdelete' project.pk %}" class="btn icn"><i
                               data-feather="trash"></i></a>
-                            {% comment %}{% url 'project:projectdetail' project.pk %} {% endcomment %}
-                             <a href="" class="btn icn">
-                              <i data-feather="eye"></i></a> 
+
+                            <a href="{% url 'project:projectdetail' project.pk %}" class="btn icn">
+                              <i data-feather="eye"></i></a>
                           </td>
                         </tr>
-                        {% comment %} {% endfor %} {% endcomment %}
+                        {% endfor %}
+
                       </tbody>
                     </table>
                   </div>
@@ -142,4 +149,6 @@
     </div>
   </div>
 </div>
+
+
 {% endblock content %}

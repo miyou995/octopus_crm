@@ -5971,6 +5971,19 @@ blockquote .blockquote-footer {
     font-size: 13px
 }
 
+#visitorMap {
+    height: 400px
+}
+
+#visitorMap2,
+#visitorMap3 {
+    height: 350px
+}
+
+#visitorMap4 {
+    height: 190px
+}
+
 .sidebar-gone-show {
     display: none !important
 }
@@ -11739,6 +11752,13 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 
 .dark .form-check .form-check-sign .check {
     border: 1px solid rgba(228, 224, 224, 0.54)
+}
+
+.dark #visitorMap,
+.dark #visitorMap2,
+.dark #visitorMap3,
+.dark #visitorMap4 {
+    background-color: #353c48 !important
 }
 
 .dark .note-editor.note-frame .note-editing-area .note-editable {

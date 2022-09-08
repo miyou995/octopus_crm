@@ -12591,6 +12591,10 @@ a.text-dark:hover {
     content: "\f6bb"
 }
 
+.fa-canadian-maple-leaf:before {
+    content: "\f785"
+}
+
 .fa-candy-cane:before {
     content: "\f786"
 }
@@ -17400,7 +17404,7 @@ a.text-dark:hover {
     font-weight: 900;
     font-display: auto;
     src: url(../fonts/webfonts/fa-solid-900.eot);
-    src: url(../fonts/webfonts/fa-solid-900d41d.eot?#iefix) format("embedded-opentype"), url(../fonts/webfonts/fa-solid-900.woff2) format("woff2"), url(../fonts/webfonts/fa-solid-900.woff) format("woff"), url(../fonts/webfonts/fa-solid-900.ttf) format("truetype"), url(../fonts/webfonts/fa-solid-900.svg#fontawesome) format("svg")
+    src: url(../fonts/webfonts/fa-solid-900d41d.eot?#iefix) format("embedded-opentype"), url(../fonts/webfonts/fa-solid-900.woff2) format("woff2"), url(..static/fonts/webfonts/fa-solid-900.woff) format("woff"), url(..static/fonts/webfonts/fa-solid-900.ttf) format("truetype"), url(..static/fonts/webfonts/fa-solid-900.svg#fontawesome) format("svg")
 }
 
 .fa,
