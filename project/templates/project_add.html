@@ -9,13 +9,15 @@
               <div class="section-body">       
                 <div class="row clearfix">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                 
-                        <form class="wizard_with_validation" method="POST">
+                        <form action="{% url 'project:addproject' %}" id="createProjectForm" class="wizard_with_validation"  method="POST">
+                            {% csrf_token %}
                           <h3></h3>
+                          
                           <fieldset>
                             <div class="form-group form-float center-block">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_name" style="font-weight:bold;">Project title</label>
-                                <input type="text"  name="name" id="id_name" required class="form-control" placeholder="Enter a title" required>
+                                <input type="text"  name="name" id="id_name" class="form-control" placeholder="Enter a title" required>
                               </div>
                             </div>
                             <div class="form-group form-float center-block">
@@ -82,14 +84,14 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_started_date" style="font-weight:bold;">Start date</label>
-                                <input type="date" name="started_date" id="id_started_date" required maxlength="200"
+                                <input type="date" name="started_date" id="id_started_date" maxlength="200"
                                   class="form-control">
                               </div>
                             </div>         
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label class="col-sm-3 col-form-label" style="font-weight:bold;" for="id_cost">Cost</label>
-                                <input type="number" name="cost" id="id_cost" required="" maxlength="200" class="form-control">
+                                <input type="number" name="cost" id="id_cost" maxlength="200" class="form-control">
                               </div>
                             </div>
                           </fieldset>
@@ -99,7 +101,7 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_manager" style="font-weight:bold;">Manager</label>
-                                <input type="text" name="name" id="id_manager" required class="form-control" required>
+                                <input type="text" name="name" id="id_manager" class="form-control">
                               </div>
           
                               <div class="form-group form-float">
@@ -110,13 +112,16 @@
                               </div>
                               <div class="form-group form-float">
                                 <div class="form-line col-lg-14 col-md-14 col-xs-10">
-                                  <label for="id_description" style="font-weight:bold;">description </label>
+                                  <label for="id_description" style="font-weight:bold;">Description </label>
                                   <textarea name="description" class="form-control bg-white" id="id_description"> </textarea>
                                 </div>
                               </div>
-                          </fieldset>    
-                        </form>                     
-                  </div>
+                          </fieldset>   
+                        </form>
+                        <div class="actions clearfix"> 
+                            <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" form="createProjectForm">Creer</button>                     
+                        </div
+                      </div>
                 </div>
               </div>
             </section>
