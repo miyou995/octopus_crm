@@ -2833,7 +2833,7 @@ tr:first-child>td>.fc-day-grid-event {
     display: block;
     padding: 0.5em 1em;
     text-decoration: none;
-    border-radius: 0px
+    border-radius: 5px
 }
 
 .wizard>.actions .disabled a {

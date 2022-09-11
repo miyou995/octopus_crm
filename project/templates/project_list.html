@@ -7,20 +7,9 @@
 <title>Projects</title>
 {% endblock %}
 
-<style>
-  .icn {
-    color: #555556;
-  }
-
-  .form-control {
-    margin: 4px;
-  }
-</style>
-
-
   <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'project_add.html'%}
+      {% include 'project_add.html' %}
     </div>
   </div>
   <div class="modal fade" id="editModal" role="dialog">
@@ -34,8 +23,6 @@
     </div>
   </div>
 
-
-  <div class="main-wrapper main-wrapper-1">
 
     <!-- Main Content -->
     <div class="main-content">
@@ -55,7 +42,7 @@
                         data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
                         <i data-feather="plus"></i>
                       </button>
-
+                      
                     </div>
 
                   </div>
