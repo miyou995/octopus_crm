@@ -1,6 +1,6 @@
 from django.db.models.query import QuerySet
 from django.db.models.query_utils import Q
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponse, request
 from django.urls.base import reverse_lazy
@@ -15,6 +15,8 @@ from django.views.generic import (
 )
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
+
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
@@ -37,6 +39,8 @@ class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
     def handle_no_permission(self):
         return redirect(self.get_login_url())
 #project    
+
+@method_decorator(login_required, name='dispatch')
 class ProjectListView(RedirectPermissionRequiredMixin,ListView): 
     template_name= "project_list.html"
     model = Project 
@@ -64,6 +68,7 @@ class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
         context["projects"] = filters.qs
         return context
         
+@method_decorator(login_required, name='dispatch')
 class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView):
     template_name= "project_add.html"
     form_class= AddProjectForm

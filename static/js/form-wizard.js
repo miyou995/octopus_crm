@@ -44,7 +44,9 @@ $(function () {
             setButtonWavesEffect(event);
         },
         onStepChanging: function (event, currentIndex, newIndex) {
-            if (currentIndex > newIndex) { return true; }
+            if (currentIndex > newIndex) {
+                return true;
+            }
 
             if (currentIndex < newIndex) {
                 form.find('.body:eq(' + newIndex + ') label.error').remove();
@@ -62,7 +64,17 @@ $(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            alert("Good job!", "Submitted!", "success");
+
+            // $('#finish').click(function (e) {
+               
+            //     // e.preventDefault();       
+            //     // form.submit();
+            //     // debugger;
+            //     // $('#addModal').modal('hide');
+            //     // return false;
+
+            // });
+          
         }
     });
 
@@ -76,11 +88,11 @@ $(function () {
         errorPlacement: function (error, element) {
             $(element).parents('.form-group').append(error);
         },
-        rules: {
-            'confirm': {
-                equalTo: '#password'
-            }
-        }
+        // rules: {
+        //     'confirm': {
+        //         equalTo: '#password'
+        //     }
+        // }
     });
 
 

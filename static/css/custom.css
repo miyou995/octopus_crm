@@ -3,3 +3,15 @@
 
 /*# sourceMappingURL= */
 
+.icn {
+    color: #555556;
+}
+img.logo {
+    width: 40px;
+}
+.form-control {
+    margin: 4px;
+}
+#finish {
+    display: none!important;
+}
