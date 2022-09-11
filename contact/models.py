@@ -2,9 +2,25 @@ from django.db import models
 from .choice import *
 from django.urls import reverse
 
-class CompanyManager(models.Manager):
+class CompanyQueryset(models.QuerySet):
     def is_client(self):
-        return self.objects.filter(company_type='CL')
+        return Company.objects.filter(company_type='CL')
+
+    def is_fournisseur(self):
+        return Company.objects.filter(company_type='F')
+    
+    def is_partenaire(self):
+        return Company.objects.filter(company_type='P')
+    
+    def is_concurrent(self):
+        return Company.objects.filter(company_type='CN')
+
+
+
+class CompanyManager(models.Manager):
+    queryset        = CompanyQueryset()
+    def is_client(self):
+        return Company.objects.filter(company_type='CL')
 
     def is_fournisseur(self):
         return Company.objects.filter(company_type='F')
