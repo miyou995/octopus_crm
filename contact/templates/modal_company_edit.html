@@ -11,9 +11,8 @@
   </div>
   <div class="modal-body">
 
-    <form action="{{editcompany_url}}" method="post"> {% comment %} editcompany_url {% endcomment %}
+    <form action="{{editcompany_url}}" method="post">
 
-    {% comment %} <form action="{% url 'contact:editcompany' object.pk %}" method="post"> {% endcomment %}
 				{% csrf_token %}
       <div class="row">
         <div class="form-group col-6">
@@ -22,13 +21,13 @@
         </div>
         <div class="form-group col-6">
           <label for="id_industry">Industry</label>
-          <input type="text" name="industry" id="id_industry" class="form-control" value="{{company.industry}}">
+          <input type="text" name="industry" id="id_industry" class="form-control" {% if company.industry %} value="{{company.industry}}" {% endif %} >
         </div>
       </div>
       <div class="row">
         <div class="form-group col-6">
           <label for="id_annual_revenue">Annual revenue</label>
-          <input type="number" name="annual_revenue" id="id_annual_revenue" class="form-control" value="{{company.annual_revenue}}">
+          <input type="number" name="annual_revenue" id="id_annual_revenue" class="form-control" {% if company.annual_revenue %} value="{{company.annual_revenue}}" {% endif %} >
         </div>
         <div class="form-group col-6">
           <label for="id_email">Email</label>
@@ -39,7 +38,7 @@
         <div class="form-group col-6">
           <label for="id_mobile">Mobile </label>
           <input type="text" name="mobile" id="id_mobile" value="{{company.mobile}}"
-            pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" class="form-control">
+             class="form-control"> <!-- pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$"-->
         </div>
         <div class="form-group col-6">
           <label for="id_website">Website</label>
@@ -60,7 +59,7 @@
       <div class="row">
         <div class="form-group col-6">
           <label for="id_source"> Source </label>
-          <input type="text" name="source" id="id_source" class="form-control" ">
+          <input type="text" name="source" id="id_source" class="form-control" >
         </div>
         <div class="form-group col-6">
           <label for="id_company_type">company type </label>
