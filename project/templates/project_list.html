@@ -26,6 +26,7 @@
 
     <!-- Main Content -->
     <div class="main-content">
+      {% include 'snippets/message.html' %}
       <section class="section">
         <div class="section-body">
 
@@ -115,7 +116,7 @@
                            data-target="#editModal" hx-swap="innerHTML" class="btn icn"> 
                            <i data-feather="edit"></i></a>
 
-                            <a href="{% url 'project:projectdelete' project.pk %}" class="btn icn"><i
+                            <a data-toggle="modal" data-target="#deleteModal" class="btn icn"><i
                               data-feather="trash"></i></a>
 
                             <a href="{% url 'project:projectdetail' project.pk %}" class="btn icn">

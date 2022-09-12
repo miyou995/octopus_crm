@@ -4,7 +4,7 @@ PROJECT_TYPE_CHOICES = (
     ('WA', 'web app'),
 )
 
-FUNCTION_TYPE_CHOICE =(
+ROLE_TYPE_CHOICE =(
     ('DS', 'design'),
     ('WD', 'web developer'),
 
