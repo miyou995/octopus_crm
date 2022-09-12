@@ -1,6 +1,12 @@
-<div id="editContent" class="modal-content">
-  <div class="modal-header">
-    <h4 class="modal-title" id="detailModalLabel">Edit project</h4>
+{% comment %} {% url 'project:editproject' project.pk %} {% endcomment %}
+
+
+<div class="modal fade" id="editContent-{{project.id}}" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    
+<div id="editContent-{{project.id}}" class="modal-content">
+  <div class="modal-header" >
+    <h4 class="modal-title" id="detailModalLabel">Edit project gfdfgdf {{project.pk}}</h4> 
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
       aria-hidden="true">&times;</span></button>
   </div>
@@ -9,7 +15,8 @@
               <div class="section-body">       
                 <div class="row clearfix">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                 
-                        <form class="wizard_with_validation" method="POST">
+                        <form action="{{editproject_url}}" class="wizard_with_validation" id="editProjectForm" method="POST">
+                        {% csrf_token %}
                           <h3></h3>
                           <fieldset>
                             <div class="form-group form-float center-block">
@@ -115,10 +122,16 @@
                                 </div>
                               </div>
                           </fieldset>    
-                        </form>                     
+                        </form>
+                        <div class="actions clearfix"> 
+                            <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" form="editProjectForm">Edit</button>                     
+                        </div
                   </div>
                 </div>
               </div>
             </section>
           </div>
   </div>
+</div>
+</div>
+

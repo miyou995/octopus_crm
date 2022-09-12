@@ -14,9 +14,12 @@
   </div>
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'project_edit.html'%}
+      {% include 'project_edit.html' with object=project editproject_url=editproject_url %}
     </div>
   </div>
+
+
+
   <div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       {% include 'client_delete.html'%}
@@ -26,6 +29,7 @@
 
     <!-- Main Content -->
     <div class="main-content">
+    {% include 'snippets/message.html' %}
       <section class="section">
         <div class="section-body">
 
@@ -33,7 +37,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="primary">Projects list</h4>
+                  <h4 class="primary">Projects list </h4>
                   <div class="card-header-action">
                     <div class="row">
 
@@ -99,7 +103,8 @@
                       <tbody>
                         {% for project in projects %}
                         <tr>
-                          <td>{{project.name}}</td>
+                        
+                          <td>{{project.name}} {{project.pk}}</td>
                           <td>{{project.started_date}}</td>
                           <td class="text-danger"> {{project.deadline}}</td>
                           <td> {{project.manager}}</td>
@@ -110,11 +115,17 @@
                               class="badge badge-pill {{project.get_status_class}}">{{project.get_status_display}}</span>
                           </td>
 
-                          <td><a href="{% url 'project:editproject' project.pk %}" 
-                            hx-target="#editContent" data-toggle="modal"
-                           data-target="#editModal" hx-swap="innerHTML" class="btn icn"> 
-                           <i data-feather="edit"></i></a>
+                          
+                          <td>
+                            <a data-toggle="modal" data-target="#editContent-{{project.pk}}" class="btn icn">
+                            <i data-feather="edit"></i>
+                            </a>
 
+                          {% comment %} <a href="{% url 'project:editproject' project.pk %}" 
+                            hx-target="#editContent" data-toggle="modal"
+                           data-target="#editContent-{{project.pk}}" hx-swap="innerHTML" class="btn icn"> 
+                           <i data-feather="edit"></i></a> {% endcomment %}
+ 
                             <a href="{% url 'project:projectdelete' project.pk %}" class="btn icn"><i
                               data-feather="trash"></i></a>
 
@@ -137,5 +148,9 @@
   </div>
 </div>
 
+{% for project in projects %}
+  {% url 'project:editproject' project.pk as editproject_url %}
+    {% comment %} {% include "project_edit.html" with object=project editproject_url=editproject_url %} {% endcomment %}
+{% endfor %}
 
 {% endblock content %}
