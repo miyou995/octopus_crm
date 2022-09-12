@@ -25,7 +25,7 @@ class UserQueryset(models.QuerySet):
     def is_commercial(self):
         return self.objects.filter(role='CM')
 
-    def is_marketert(self):
+    def is_marketer(self):
         return self.objects.filter(role='MK')
 
     def is_content_creator(self):
