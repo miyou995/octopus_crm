@@ -15,11 +15,11 @@
           {% include 'company_delete.html'%}
         </div>
     </div>
-    {% comment %} <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal fade" id="editModal" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
             {% include "modal_company_edit.html" with object=company editcompany_url=editcompany_url %}
         </div>
-    </div>  {% endcomment %}
+    </div> 
 
     
         <!-- Main Content -->
@@ -110,9 +110,9 @@
                                                         <td><span class="d-block text-info">{{company.collab_start}}</span>
                                                         </td>
                                                     <td>
-                                                            {% comment %} <a href=" {% url 'contact:editcompany' company.pk %}"
-                                                            class="btn icn"><i data-feather="edit"></i></a> {% endcomment %}
-                                                            <a data-toggle="modal" data-target="#editModal-{{company.id}}" class="btn icn">
+                                                           {% comment %} <a href=" {% url 'contact:editcompany' company.pk %}"
+                                                            class="btn icn"><i data-feather="edit"></i></a>  {% endcomment %}
+                                                            <a data-toggle="modal" data-target="#editModal-{{company.pk}}" class="btn icn">
                                                             <i data-feather="edit"></i>
                                                             </a>
                                                             <a data-toggle="modal" data-target="#deleteModal" class="btn icn"><i data-feather="trash"></i></a>
@@ -133,15 +133,9 @@
         </div>
     </div>
 </div>
-    {% comment %} {% for company in companies %}
+    {% for company in companies %}
         {% url 'contact:editcompany' company.pk as editcompany_url %} 
           {% include "modal_company_edit.html" with object=company editcompany_url=editcompany_url %}
-    {% endfor %} {% endcomment %}
-    {% comment %} {% include "modal_company_edit.html" with object=company editcompany_url=editcompany_url %} {% endcomment %}
-
- {% for company in companies %}
-        {% url 'contact:editcompany' company.pk as editcompany_url %} 
-          {% include "modal_company_edit.html" with editcompany_url=editcompany_url %}
-{% endfor %} 
+    {% endfor %}
 
 {% endblock content %}

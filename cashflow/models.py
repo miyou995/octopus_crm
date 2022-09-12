@@ -18,7 +18,21 @@ TRANSACTION_TYPE_CHOICES= (
     ('AL', 'allouer'),  
 )
 
+class AccountQueryset(models.QuerySet):
+    def get_actif_account(self):
+        return Account.objects.filter(actif=True)
+
+    def get_inactif_account(self):
+        return Account.objects.filter(actif=False)
+    
+    def get_account_in(self):
+        return Account.objects.filter(acc_type='IN')
+    
+    def get_account_out(self):
+        return Account.objects.filter(acc_type='OUT')
+
 class AccountManager(models.Manager):
+    queries = AccountQueryset
     def get_actif_account(self):
         return Account.objects.filter(actif=True)
 

@@ -5,9 +5,12 @@ PROJECT_TYPE_CHOICES = (
 )
 
 ROLE_TYPE_CHOICE =(
-    ('DS', 'design'),
-    ('WD', 'web developer'),
-
+    ('DS', 'designer'),
+    ('DV', 'developer'),
+    ('AS', 'assistant'),
+    ('CM', 'commercial'),
+    ('MK', 'marketer'),
+    ('CC', 'content creator'),
 )
 
 LEADSTATUTE_TYPE_CHOICE = (
