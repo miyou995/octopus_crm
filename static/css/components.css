@@ -2804,13 +2804,13 @@ tr:first-child>td>.fc-day-grid-event {
 .wizard>.actions {
     position: relative;
     display: block;
-    text-align: right;
+    text-align: center;
     width: 100%
 }
 
 .wizard>.actions>ul {
     display: inline-block;
-    text-align: right
+    /* align-content: center; */
 }
 
 .wizard>.actions>ul>li {

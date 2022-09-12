@@ -30,6 +30,7 @@
     <!-- Main Content -->
     <div class="main-content">
     {% include 'snippets/message.html' %}
+
       <section class="section">
         <div class="section-body">
 
@@ -121,12 +122,13 @@
                             <i data-feather="edit"></i>
                             </a>
 
+
                           {% comment %} <a href="{% url 'project:editproject' project.pk %}" 
                             hx-target="#editContent" data-toggle="modal"
                            data-target="#editContent-{{project.pk}}" hx-swap="innerHTML" class="btn icn"> 
                            <i data-feather="edit"></i></a> {% endcomment %}
  
-                            <a href="{% url 'project:projectdelete' project.pk %}" class="btn icn"><i
+                            <a href="{% url 'project:projectdelete' project.pk %}"  data-toggle="modal" data-target="#deleteModal" class="btn icn"><i
                               data-feather="trash"></i></a>
 
                             <a href="{% url 'project:projectdetail' project.pk %}" class="btn icn">

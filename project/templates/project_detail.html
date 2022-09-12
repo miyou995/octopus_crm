@@ -36,7 +36,7 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Source</span>
                       <span class="float-right text-muted">
-                        {{project.get_source_display}}</span>
+                        {% comment %} {{project.get_source_display}}</span> {% endcomment %}
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Manager</span>
@@ -47,7 +47,7 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Deposit</span>
                       <span class="float-right text-muted">
-                        {{project.deposit}}
+                        {% comment %} {{project.deposit}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
@@ -59,19 +59,19 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Contract</span>
                       <span class="float-right text-muted">
-                        {{project.get_contract_display}}
+                        {% comment %} {{project.get_contract_display}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Type</span>
                       <span class="float-right text-muted">
-                        {{project.get_project_type_display}}
+                        {% comment %} {{project.get_project_type_display}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Status</span>
                       <span class="float-right text-muted">
-                        {{project.get_status_display}}
+                        {% comment %} {{project.get_status_display}} {% endcomment %}
                       </span>
                     </p>
                   </div>
@@ -98,7 +98,7 @@
                 </div>
               </div>
             </div> -->
-          <div class="col-12 col-md-12 col-lg-6">
+          {% comment %} <div class="col-12 col-md-12 col-lg-6">
             <div class="card">
               <div class="padding-20">
                 <h4>Overview</h4>
@@ -136,7 +136,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </section>

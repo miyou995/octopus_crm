@@ -11,7 +11,6 @@ ROLE_TYPE_CHOICE =(
     ('CM', 'commercial'),
     ('MK', 'marketer'),
     ('CC', 'content creator'),
-
 )
 
 LEADSTATUTE_TYPE_CHOICE = (
