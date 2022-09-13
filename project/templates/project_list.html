@@ -152,7 +152,7 @@
 
 {% for project in projects %}
   {% url 'project:editproject' project.pk as editproject_url %}
-    {% comment %} {% include "project_edit.html" with object=project editproject_url=editproject_url %} {% endcomment %}
+    {% include "project_edit.html" with object=project editproject_url=editproject_url %}
 {% endfor %}
 
 {% endblock content %}

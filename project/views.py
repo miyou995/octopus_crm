@@ -40,7 +40,6 @@ class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
         return redirect(self.get_login_url())
 #project    
 
-@method_decorator(login_required, name='dispatch')
 class ProjectListView(RedirectPermissionRequiredMixin,ListView): 
     template_name= "project_list.html"
     model = Project 
@@ -68,7 +67,6 @@ class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
         context["projects"] = filters.qs
         return context
         
-@method_decorator(login_required, name='dispatch')
 class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView):
     template_name= "project_add.html"
     form_class= AddProjectForm
@@ -100,6 +98,7 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
         context = super(ProjectUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         # context["employees"] = Employee.objects.all()
+        context["projects"] = Project.objects.all()
         return context
    
 
