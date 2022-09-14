@@ -23,7 +23,9 @@
       {% include 'client_edit.html'%}
     </div>
   </div>
+
   <div class="main-content">
+                  {% include 'snippets/message.html' %}
       <section class="section">
         <div class="section-body">
           <div class="row">
@@ -92,9 +94,11 @@
                       <tbody>
                         {% for employee in employees %}
                         <tr>
-                          <td>{{employee.name}}</td>
-                          <td> <a href="{% url 'contact:companydetail' employee.company.pk %}">
-                              {{employee.company}}</a></td>
+                          <td>{{employee.name}} {{employee.pk}} </td>
+                          <td> {% if employee.company %}
+                          <a href="{% url 'contact:companydetail' employee.company.pk %}">{{employee.company}}</a>
+                          {% endif %}
+                          </td>
                           <td>{{employee.email}}</td>
                           <td>{{employee.mobile}}</td>
                           <td><span class="fe text-warning"> {{employee.get_decision_display}} </span></td>
@@ -110,8 +114,8 @@
                               data-target="#deleteModal" hx-swap="innerHTML" class="btn icn"><i
                               data-feather="trash"></i></a>
                             
-                            <a href="{% url 'contact:clientdetail' employee.pk %}" class="btn icn"><i
-                                data-feather="more-horizontal"></i></a>
+                            <a  href="{% url 'contact:clientdetail' employee.pk %}"  class="btn icn"> <i data-feather="eye"></i>
+                              </a>
                           </td>
                         </tr>
                         {% endfor %}
@@ -122,12 +126,9 @@
               </div>
             </div>
           </div>
-
-
-
-          {% endblock content %}
         </div>
       </section>
     </div>
   </div>
 </div>
+{% endblock content %}
