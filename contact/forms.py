@@ -17,4 +17,4 @@ class CompanyAddForm(ModelForm):
 class AddClientForm(ModelForm):
     class Meta:
         model = User
-        fields =['name', 'company', 'mobile', 'decision', 'email','project_type', 'collab_start', 'source' ]
+        fields =['name', 'company', 'mobile', 'decision', 'email','project_type', 'collab_start', 'source', 'password' ]

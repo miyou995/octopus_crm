@@ -1,5 +1,4 @@
 
-
 <div class="modal fade" id="editModal-{{company.id}}" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document">
                                                         
@@ -9,8 +8,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
         aria-hidden="true">&times;</span></button>
   </div>
+  
   <div class="modal-body">
-
     <form action="{{editcompany_url}}" class="wizard_with_validation" id="editCompanyForm-{{company.pk}}" method="post">
 
 				{% csrf_token %}
@@ -140,6 +139,3 @@
 </div>
 </div>  
 
-
-
-{% comment %} {% endblock content %} {% endcomment %}

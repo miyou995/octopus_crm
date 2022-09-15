@@ -38,9 +38,13 @@
                       <span class="float-right text-muted"> {{employee.address}} </span>
                     </p>
                     <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> company</span>
-                      <span class="float-right text-muted"> <a
-                          href="{% url 'contact:companydetail' employee.company.pk %}" style=" text-decoration:none;">
-                          {{employee.company}} </a></span>
+                      <span class="float-right text-muted"> 
+                        {% comment %} {% if employee.company %} {% endcomment %}
+                          <a href="{{employee.company.get_absolute_url}}" style="text-decoration:none;">
+                            {{employee.company}} 
+                          </a>
+                        {% comment %} {% endif %} {% endcomment %}
+                      </span>
                     </p>
                     <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> decision</span><span
                         class="float-right fe text-warning"> {{employee.get_decision_display}} </span> </p>
