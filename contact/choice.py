@@ -10,3 +10,4 @@ PROJECT_TYPE_CHOICES = (
     ('WS', 'web site'),
     ('WA', 'web app'),
 )
+

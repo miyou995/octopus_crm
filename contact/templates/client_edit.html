@@ -1,92 +1,99 @@
-<div id="editContent" class="modal-content">
+<div class="modal fade" id="editContent-{{employee.pk}}" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+
+<div id="editContent-{{employee.pk}}" class="modal-content">
   <div class="modal-header">
-    <h4 class="modal-title" id="detailModalLabel">Edit client</h4>
+    <h4 class="modal-title" id="detailModalLabel">Edit client {{employee.name}}</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
         aria-hidden="true">&times;</span></button>
   </div>
 
   <div class="modal-body">
-    <form 
-    {%comment%}
-    hx-post="{% url 'contact:editclient' employee.pk %}"   {%endcomment%}
-     hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
-
+    <form action="{{editclient_url}}" class="wizard_with_validation" id="editEmployeeForm-{{employee.pk}}" method="post">
       {% csrf_token %}
         <div class="row">
-          <div class="form-group col-6">
-            <label for="id_name">Name</label>
-            <input type="text" name="name" id="id_name" required="" class="form-control" type="text" autofocus>
+            <div class="form-group col-6">
+              <label for="id_name">Name</label>
+              <input type="text" name="name" id="id_name" {% if employee.name %} value="{{employee.name}}" {% endif %}
+              required class="form-control" type="text" autofocus>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_company">Company</label>
+              <select class="form-control" name="company"  id="id_company">
+                <option value="" selected>Select a company </option>
+                  {% for company in companies %}
+                    <option  value="{{company.pk}}" {% if employee.company.id == company.id %}selected{% endif %} >{{company.name}}</option>                
+                  {% endfor %}
+              </select>
+            </div>
           </div>
-          <div class="form-group col-6">
-            <label for="id_company">Company</label>
-            <select class="form-control" name="company" id="id_company">
-              
-              <option value="" selected>Select a company</option>
-              
-              {% for company in companies %}
-              <option value="{{company.id}}">{{company.name}}</option>
-              {% endfor %}
-            </select>
+       
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_decision">Decision</label>
+              <select class="form-control" name="decision" id="id_decision">
+                <option value="1" selected>*</option>
+                <option value="2">**</option>
+                <option value="3">***</option>
+                <option value="4">****</option>
+                <option value="5">*****</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_slug">Mobile</label>
+              <input type="text" name="mobile" id="id_mobile" 
+                pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" maxlength="200" maxlength="150"
+                class="form-control">
+            </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_category">Email</label>
+              <input type="email" name="email"  class="form-control" {% if employee.email %} value="{{employee.email}}" {% endif %} autofocus>
+            </div>
 
-        <div class="row">
-          <div class="form-group col-6">
-            <label for="id_decision">Decision</label>
-            <select class="form-control" name="decision" id="id_decision">
-              <option value="1" selected>*</option>
-              <option value="2">**</option>
-              <option value="3">***</option>
-              <option value="4">****</option>
-              <option value="5">*****</option>
-            </select>
-          </div>
-          <div class="form-group col-6">
-            <label for="id_slug">Mobile</label>
-            <input type="text" name="mobile" id="id_mobile" required=""
-              pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" maxlength="200" maxlength="150"
-              class="form-control">
-          </div>
-        </div>
+            <div class="form-group col-6">
+              <label for="id_category">Password</label>
+              <input type="text" name="password" {% if user.password %} value="{{user.password}}" {% endif %} class="form-control" autofocus>
+            </div>
 
-        <div class="row">
-          <div class="form-group col-6">
-            <label for="id_category">Email</label>
-            <inputtype="email" name="email" required="" class="form-control" autofocus>
+            <div class="form-group col-6">
+              <label for="id_address">Address</label>
+              <input type="text" name="address" id="id_address" {% if employee.address %} value="{{employee.address}}" {% endif %} class="form-control">
+            </div>
           </div>
-          <div class="form-group col-6">
-            <label for="id_address">Address</label>
-            <input type="text" name="address" id="id_address" required="" class="form-control">
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col-6">
-            <label for="id_source">Source</label>
-              <input type="text" name="source" id="id_source" required="" class="form-control" autofocus>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_source">Source</label>
+                <input type="text" name="source" id="id_source" {% if employee.source %} value="{{employee.source}}" {% endif %} class="form-control" autofocus>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_project_type">Project type</label>
+              <select class="form-control" name="project_type" {% if employee.project_type %} value="{{employee.project_type}}" {% endif %} id="id_project_type">
+                <option value="" selected>Company type</option>
+                <option value="EC">e-commerce</option>
+                <option value="WSF">web site</option>
+                <option value="WA">web app </option>
+              </select>
+            </div>
           </div>
-          <div class="form-group col-6">
-            <label for="id_project_type">Project type</label>
-            <select class="form-control" name="project_type" id="id_project_type">
-              <option value="" selected>Company type</option>
-              <option value="EC">e-commerce</option>
-              <option value="WSF">web site</option>
-              <option value="WA">web app </option>
-            </select>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_collab_start">Collab start</label>
+              <input type="date" name="collab_start" id="id_collab_start" {% if employee.collab_start %} value="{{employee.collab_start}}" {% endif %} class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <label for="id_collab_start">Collab start</label>
-            <input type="date" name="collab_start" id="id_collab_start" class="form-control">
-          </div>
-        </div>
       </form>
-     
+     <div class="actions clearfix"> 
+      <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" form="editEmployeeForm-{{employee.pk}}">Edit</button>                     
+    </div>
   </div>
-  <div class="modal-footer">
+  {% comment %} <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
     <button type="submit" class="btn btn-primary">Edit</button>
-  </div>
+  </div> {% endcomment %}
+</div>
+</div>
 </div>
 
