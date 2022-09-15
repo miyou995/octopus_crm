@@ -2633,7 +2633,7 @@ h6 {
 p,
 ul:not(.list-unstyled),
 ol {
-    line-height: 28px
+    line-height: 15px
 }
 
 .shadow {
@@ -2665,7 +2665,7 @@ select.form-control:not([size]):not([multiple]),
 .form-control:not(.form-control-sm):not(.form-control-lg) {
     font-size: 14px;
     padding: 10px 15px;
-    height: 42px
+    height: 30px
 }
 
 textarea.form-control {
@@ -3904,6 +3904,10 @@ select.form-control:not([size]):not([multiple]) {
 .table td,
 .table:not(.table-bordered) th {
     border-top: none
+}
+
+#mytable td, #mytable th{
+   border-top: 1px solid #dee2e6;
 }
 
 .table:not(.table-sm):not(.table-md):not(.dataTable) td,
