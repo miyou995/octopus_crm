@@ -33,10 +33,10 @@
                       <span class="float-left" style="font-weight: bold;">Deadline</span>
                       <span class="float-right text-muted"> {{project.deadline}}</span>
                     </p>
-                    <p class="clearfix">
+                    {% comment %} <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Source</span>
                       <span class="float-right text-muted">
-                        {% comment %} {{project.get_source_display}}</span> {% endcomment %}
+                        {{project.source}}</span> {% endcomment %}
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Manager</span>
@@ -59,18 +59,20 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Contract</span>
                       <span class="float-right text-muted">
-                        {% comment %} {{project.get_contract_display}} {% endcomment %}
+                        {{project.contract}}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Type</span>
                       <span class="float-right text-muted">
+                      {{project.project_type}}
                         {% comment %} {{project.get_project_type_display}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Status</span>
                       <span class="float-right text-muted">
+                        {{project.status}}
                         {% comment %} {{project.get_status_display}} {% endcomment %}
                       </span>
                     </p>

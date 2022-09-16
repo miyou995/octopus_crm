@@ -70,13 +70,15 @@
           <label for="id_source">Source</label>
             <input type="text" name="source" id="id_source" {% if employee.source %} value="{{employee.source}}" {% endif %} class="form-control" autofocus>
         </div>
+
         <div class="form-group col-6">
-          <label for="id_project_type">Project type</label>
-          <select class="form-control" name="project_type" {% if employee.project_type %} value="{{employee.project_type}}" {% endif %} id="id_project_type">
-            <option value="" selected>Company type</option>
-            <option value="EC">e-commerce</option>
-            <option value="WSF">web site</option>
-            <option value="WA">web app </option>
+          <label for="id_project_name">Project name</label>
+          <select class="form-control" name="project_name" id="id_project_name">
+            <option value="" selected>project name</option>
+            {% for project in projects %}
+            <option value="{{project.pk}}" {% if employee.project.pk == project.pk %} selected {% endif %}>{{project.name}}</option>
+            
+            {% endfor %}
           </select>
         </div>
       </div>

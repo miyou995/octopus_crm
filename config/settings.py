@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bills',
     'events',
     'django_extensions',
+    
     # 'cities',
 ]
 

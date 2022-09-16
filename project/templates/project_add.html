@@ -37,8 +37,9 @@
                                 <select class="form-control" name="company" id="id_company">
                                   <option value="" selected="">Select a company</option>
                                   {% for company in companies %}
-                                  <option value="{{company.id}}">{{company.name}}</option>
+                                  <option value="{{company.id}}" {% if project.company.pk == company.pk %}  {% endif %} selected>{{company.name}}</option>
                                   {% endfor %}
+
                                 </select>
                               </div>
                             </div>
@@ -101,7 +102,7 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_manager" style="font-weight:bold;">Manager</label>
-                                <input type="text" name="name" id="id_manager" class="form-control">
+                                <input type="text" name="manager" id="id_manager" class="form-control">
                               </div>
           
                               <div class="form-group form-float">
@@ -120,7 +121,7 @@
                         </form>
                         <div> 
                             <button type="submit" style="float:right " class="waves-effect btn btn-primary" form="createProjectForm">Add</button>                     
-                        </div
+                        </div>
                       </div>
                 </div>
               </div>

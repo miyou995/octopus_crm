@@ -105,6 +105,8 @@ class  AddClientView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
     def get_context_data(self, **kwargs):
         context = super(AddClientView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
+        context["projects"] = Project.objects.all()
+
         return context 
 
 
@@ -121,6 +123,8 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         # context["employees"] = User.objects.all()
         context["employees"] = filters.qs
         context["companies"] = Company.objects.all()
+        context["projects"] = Project.objects.all()
+
         return context
 
 
@@ -149,6 +153,8 @@ class ClientDetailView(RedirectPermissionRequiredMixin, DetailView):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
         User_id = self.get_object().id
         context["projects"] = Project.objects.all()
+        context["employees"] = User.objects.all()
+        context["companies"] = Company.objects.all()
         context["client_projects"] = Project.objects.filter(manager=User_id)
         return context
 

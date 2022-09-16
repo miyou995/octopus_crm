@@ -66,6 +66,7 @@
                               <option value="WA">web app</option>
                             </select>
                           </td>
+
                           <td>
                             <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
                           </td>
@@ -103,7 +104,11 @@
                           <td>{{employee.email}}</td>
                           <td>{{employee.mobile}}</td>
                           <td><span class="fe text-warning"> {{employee.get_decision_display}} </span></td>
-                          <td> {{employee.get_project_type_display}} </td>
+                          <td> {% if employee.project %}
+                            <a href="{% url 'project:projectdetail' employee.project.pk %}"> {{employee.project}}</a>
+                            {% else %}
+                            <a href="#">sidoutest</a>
+                          {% endif %} </td>
                           <td>{{employee.source}}</td>
                           <td><span class="d-block text-info">{{employee.collab_start}}</span></td>
 
