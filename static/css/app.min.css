@@ -178,12 +178,12 @@ a:hover {
     color: #0056b3;
     text-decoration: underline
 }
-
+/* 
 a:not([href]):not([tabindex]) {
     color: inherit;
     text-decoration: none
-}
-
+} */
+/* 
 a:not([href]):not([tabindex]):focus,
 a:not([href]):not([tabindex]):hover {
     color: inherit;
@@ -192,7 +192,7 @@ a:not([href]):not([tabindex]):hover {
 
 a:not([href]):not([tabindex]):focus {
     outline: 0
-}
+} */
 
 code,
 kbd,
@@ -12314,6 +12314,17 @@ a.text-dark:hover {
 .fa-bell:before {
     content: "\f0f3"
 }
+
+
+.fa-circle-ellipsis:before {
+    content: "\e10a"
+}
+
+.fa-circle-info:before {
+    content: "\f05a"
+}
+
+
 
 .fa-bell-slash:before {
     content: "\f1f6"

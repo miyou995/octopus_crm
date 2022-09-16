@@ -2,58 +2,67 @@
 {% load static %}
 {% block content %}
 {% block title %}
-<title>Details client</title>
+<title>Client details</title>
 {% endblock %}
 
-<div class="content-wrapper">
-  <div class="page-header">
-    <h3 class="page-title">
-      Details client
-    </h3>
-  </div>
+
+
 
   <div class="main-content">
+  <h3>Client detail</h3>
     <section class="section">
       <div class="section-body">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-4">
             <div class="card author-box">
               <div class="card-body">
+                {% comment %} <div class="author-box-center">
+                  {% if employee.logo %}
+                  <td><img src="{{employee.logo.url}}" alt="profile" class="rounded-circle author-box-picture"> </td>
+
+                  {% else %}
+                  <td><img src="{% static 'images/favicon.png' %}" alt="logo"
+                      class="rounded-circle author-box-picture" /> </td>
+                  {% endif %}
+                </div> {% endcomment %}
                 <div class="text-center">
                   <div class="author-box-description">
                     <div class="author-box-name">
-                      <h3> {{employee.name}}</h3>
+                      <h3> {{user.name}}</h3>
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
                   <div class="py-4">
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> email</span>
-                      <span class="float-right text-muted"> {{employee.email}}</span>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Name: </span>
+                      <span class="float-right text-muted"> {{user.name}}</span>
                     </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> mobile</span>
-                      <span class="float-right text-muted"> {{employee.mobile}} </span>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Email: </span>
+                      <span class="float-right text-muted"> {{user.email}}</span>
                     </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> adress</span>
-                      <span class="float-right text-muted"> {{employee.address}} </span>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">mobile </span>
+                      <span class="float-right text-muted"> {{user.mobile}} </span>
                     </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> company</span>
-                      <span class="float-right text-muted"> 
-                        {% comment %} {% if employee.company %} {% endcomment %}
-                          <a href="{{employee.company.get_absolute_url}}" style="text-decoration:none;">
-                            {{employee.company}} 
-                          </a>
-                        {% comment %} {% endif %} {% endcomment %}
-                      </span>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> adress</span>
+                      <span class="float-right text-muted">{{user.adress}}</span>
                     </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> decision</span><span
-                        class="float-right fe text-warning"> {{employee.get_decision_display}} </span> </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> source</span><span
-                        class="float-right text-muted"> {{employee.source}} </span> </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> type</span><span
-                        class="float-right text-muted"> {{employee.get_project_type_display}} </span> </p>
-                    <p class="clearfix"> <span class="float-left" style="font-weight: bold;"> Start date </span><span
-                        class="float-right text-info">{{employee.collab_start}}</span> </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> source</span>
+                      <span class="float-right text-muted"> {{user.source}}</span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">type</span>
+                      <span class="float-right text-muted"> {{user.get_project_type_display}}</span>
+                    </p>
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Start date</span>
+                      <span class="float-right text-muted">{{user.collab_start}}</span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -64,56 +73,67 @@
             <div class="card">
               <div class="padding-20">
                 <h4>Overview</h4>
-                <div class="tab-content tab-bordered" id="myTab3Content">
+                {% comment %} <div class="tab-content tab-bordered" id="myTab3Content">
                   <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
+
                     <h6 class="card-title"> Employees</h6>
+
                     <div class="table-responsive">
                       <table class="table table-striped" id="table-1">
+
                         <thead>
                           <tr>
-                            <th>Project</th>
-                            <th>Start date</th>
-                            <th>Status</th>
-                            <th>Cost</th>
-                            <th>Subscription type</th>
+                            <th style="width: 100px;"> Name</th>
+                            <th style="width: 100px;"> Decision case</th>
+                            <th style="width: 100px;">Phone number</th>
+                            <th style="width: 100px;">Email</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          {% for project in client_projects %}
-                          <tr role="row" class="odd">
-                            <td> 
-                              <span><a
-                                  href="{% url 'project:projectdetail' project.pk %}"
-                                  style=" text-decoration:none; color:black;"> {{project.name}} </span></td>
-                            <td> <span class="d-block text-info">{{project.started_date}}</span></td>
-                            <td>
-                              {% if project.get_status_display == 'Confirm' %}
-                              <span class="badge badge-pill badge-success">{{project.get_status_display}}</span>
-                              
-                              {% elif project.get_status_display == 'Completed' %}
-                              <span class="badge badge-pill badge-info">{{project.get_status_display}}</span>
-                              {% else  %}
-                              <span class="badge badge-pill badge-warning">{{project.get_status_display}}</span>
-                              {% endif %}</td>
-                            <td><span class="text-info">{{project.cost}} DZD </span></td>
-                            <td><span class="badge badge-pill badge-secondary">{{project.get_contract_display}}</span></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
                       </table>
                     </div>
                   </div>
-                </div>
+                </div> {% endcomment %}
               </div>
 
+              <div class="tab-content tab-bordered" id="myTab3Content">
+                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
 
+                  <h6 class="card-title">Projects</h6>
+
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                          <th style="width: 100px;">Project</th>
+                          <th style="width: 100px;">Start date</th>
+                          <th style="width: 100px;">Status</th>
+                          <th style="width: 100px;">Cost</th>
+                          <th style="width: 100px;">Subscription type</th>
+                        </tr>
+                    
+                      </thead>
+                      <tbody>
+                      {% for project in projects %}
+                      <tr>
+                        <td>{% if user.project %} {{project.}} {% endif %}</td>
+                        <td>{{project.started_date}}</td>
+                        <td>{{project.get_status_display}}</td>
+                        <td>{{project.cost}}</td>
+                        <td>{{project.get_contract_display}}</td>
+                      </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
-    </section>
   </div>
+</div>
+</div>
 </div>
 <!-- main-panel ends -->
 {% endblock content %}

@@ -51,6 +51,8 @@ class ProjectListView(RedirectPermissionRequiredMixin,ListView):
         # print('total dettes', dettes)
         filters=ProjectFilter(self.request.GET, queryset=Project.objects.all())
         context["projects"] = filters.qs
+        context["companies"] = Company.objects.all()
+        context["employees"] = User.objects.all()
         return context
     
 class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
@@ -60,9 +62,9 @@ class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProjectDetailView, self).get_context_data(**kwargs)
         project = self.get_object()
-        project.get_project_dettes()
+        # project.get_project_dettes()
         project_id = self.get_object().id
-        context["project_transactions"] = Transaction.objects.filter(project=project_id)
+        # context["project_transactions"] = Transaction.objects.filter(project=project_id)
         filters=ProjectFilter(self.request.GET, queryset=Project.objects.all())
         context["projects"] = filters.qs
         return context
@@ -80,7 +82,7 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
-        # context["employees"] = Employee.objects.all()
+        context["employees"] = User.objects.all()
         return context
    
  
