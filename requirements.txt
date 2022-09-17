@@ -20,7 +20,7 @@ html5lib==1.1
 MarkupPy==1.14
 odfpy==1.4.1
 openpyxl==3.0.9
-Pillow==9.1.0
+# Pillow==9.1.0
 pycparser==2.21
 pydot==1.4.2
 pydyf==0.1.2

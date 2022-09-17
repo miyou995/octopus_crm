@@ -1,8 +1,10 @@
+import imp
 from django.db import models
 from django.contrib.auth.models import (AbstractUser, BaseUserManager)
 from tinymce import models as tinymce_models
 from .choice import *
 from contact.models import Company
+from django.urls import reverse
 
 
 
@@ -91,11 +93,12 @@ class User(AbstractUser):
     username        = None
     name            = models.CharField(max_length=120, blank=True, null=True)
     email           = models.EmailField('email address', unique=True)
+
     picture         = models.ImageField(upload_to='images/faces', null=True, blank=True)
     pseudo          = models.CharField( max_length=150, null=True, blank=True)
     role            = models.CharField(choices=ROLE_TYPE_CHOICE, max_length=2, blank=True, null=True)
     decision        = models.CharField(choices=DECISION_TYPE_CHOICES, max_length=2, blank=True, null=True)
-    mobile          = models.CharField(max_length=13, blank=True, null=True)
+    mobile          = models.CharField(max_length=13, unique=True, blank=True, null=True)
 
 
     notes           = tinymce_models.HTMLField( blank=True, null=True)
@@ -105,8 +108,9 @@ class User(AbstractUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
     user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=2, blank=True, null=True)
-    client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=256)
+    client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=256, blank=True, null=True)
     project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)
+    project_name    = models.CharField(max_length=120, blank=True, null=True)
     collab_start    = models.DateField(blank=True, null=True)
     source          = models.CharField( max_length=250, blank=True, null=True)
     
@@ -118,6 +122,10 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.company)
+    
+    @property
+    def get_absolute_url(self):
+        return reverse("contact:clientdetail", kwargs={'pk': self.pk})
     
     @property
     def is_assistant(self):

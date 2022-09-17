@@ -20,7 +20,7 @@
   </div>
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-      {% include 'client_edit.html'%}
+      {% include 'client_edit.html' with editclient_url=editclient_url %}
     </div>
   </div>
 
@@ -66,6 +66,7 @@
                               <option value="WA">web app</option>
                             </select>
                           </td>
+
                           <td>
                             <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
                           </td>
@@ -96,18 +97,22 @@
                         <tr>
                           <td>{{employee.name}} {{employee.pk}} </td>
                           <td> {% if employee.company %}
-                          <a href="{% url 'contact:companydetail' employee.company.pk %}">{{employee.company}}</a>
+                          {% comment %} "{% url 'contact:companydetail' employee.company.pk %}" {% endcomment %}
+                          <a href="{{employee.company.get_absolute_url}}">{{employee.company}}</a>
                           {% endif %}
                           </td>
                           <td>{{employee.email}}</td>
                           <td>{{employee.mobile}}</td>
                           <td><span class="fe text-warning"> {{employee.get_decision_display}} </span></td>
-                          <td> {{employee.get_project_type_display}} </td>
+                          <td> {% if employee.project %}
+                            <a href="{% url 'project:projectdetail' employee.project.pk %}"> {{employee.project}}</a>
+                            {% else %}
+                            <a href="#">sidoutest</a>
+                          {% endif %} </td>
                           <td>{{employee.source}}</td>
                           <td><span class="d-block text-info">{{employee.collab_start}}</span></td>
 
-                          <td><a hx-get="{% url 'contact:editclient' employee.pk %}" hx-target="#editContent" data-toggle="modal"
-                            data-target="#editModal" hx-swap="innerHTML" class="btn icn"><i
+                          <td><a data-toggle="modal" data-target="#editContent-{{employee.pk}}" class="btn icn"><i
                                 data-feather="edit"></i></a>
 
                             <a hx-get="{% url 'contact:clientdelete' employee.pk %}" hx-target="#deleteContent" data-toggle="modal"
@@ -131,4 +136,10 @@
     </div>
   </div>
 </div>
+
+{% for employee in employees %}
+  {% url 'contact:editclient' employee.pk as editclient_url %}
+  {% include "client_edit.html" with editclient_url=editclient_url %}
+{% endfor %}
+
 {% endblock content %}

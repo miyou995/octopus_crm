@@ -72,6 +72,7 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
         filters= CompanyFilter(self.request.GET, queryset=Company.objects.all().order_by('collab_start'))
+        context["company_count"] = Company.objects.all().count()
         context["companies"] = filters.qs
         return context
 
@@ -92,15 +93,20 @@ class  AddClientView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
     template_name= "client_add.html"
     form_class= AddClientForm
     model = User
-    success_message = "Client added successfully."
+
+    success_message = "the employee created successfully."
     permission_required= 'contact.add_client'
     success_url = reverse_lazy('contact:clientlist')
+
     def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:clientlist')
+
     def get_context_data(self, **kwargs):
         context = super(AddClientView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
+        context["projects"] = Project.objects.all()
+
         return context 
 
 
@@ -114,7 +120,11 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         # context["Users"] =User.objects.all().order_by('collab_start')
         context["client_count"] =User.objects.all().count()
         filters=Userfilter(self.request.GET, queryset=User.objects.all().order_by('collab_start'))
-        context["Users"] = filters.qs
+        # context["employees"] = User.objects.all()
+        context["employees"] = filters.qs
+        context["companies"] = Company.objects.all()
+        context["projects"] = Project.objects.all()
+
         return context
 
 
@@ -125,13 +135,16 @@ class ClientUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Upd
     permission_required= 'contact.change_Cclient'
     success_message = "Client updated successfully."
     success_url = reverse_lazy('contact:clientlist')
-    def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+
+
     def get_context_data(self, **kwargs):
         context = super(ClientUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         return context
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:clientlist')
+    
 class ClientDetailView(RedirectPermissionRequiredMixin, DetailView):
     model = User
     template_name= "client_detail.html"
@@ -140,6 +153,8 @@ class ClientDetailView(RedirectPermissionRequiredMixin, DetailView):
         context = super(ClientDetailView, self).get_context_data(**kwargs)
         User_id = self.get_object().id
         context["projects"] = Project.objects.all()
+        context["employees"] = User.objects.all()
+        context["companies"] = Company.objects.all()
         context["client_projects"] = Project.objects.filter(manager=User_id)
         return context
 

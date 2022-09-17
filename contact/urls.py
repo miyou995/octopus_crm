@@ -14,7 +14,7 @@ urlpatterns = [
     path('detailcompany/<int:pk>/',login_required(CompanyDetailView.as_view()), name='companydetail'),
     #CLIENT
     path('clientlist', login_required(ClientListView.as_view()), name='clientlist'),
-    path('addclient', login_required(AddClientView.as_view()), name="addclient"),
+    path('clientlist/addclient', login_required(AddClientView.as_view()), name="addclient"),
     path('editclient/<int:pk>/', login_required(ClientUpdateView.as_view()), name="editclient"),
     path('clientdetail/<int:pk>/', login_required(ClientDetailView.as_view()), name="clientdetail"),
     path('clientdelete/<int:pk>/', login_required(ClientDeleteView.as_view()), name="clientdelete"),

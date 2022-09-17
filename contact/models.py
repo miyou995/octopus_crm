@@ -59,7 +59,8 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
-    
+        
+    @property
     def get_absolute_url(self):
         return reverse("contact:companydetail", kwargs={"pk": self.pk})
 
