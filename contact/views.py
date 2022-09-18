@@ -36,6 +36,11 @@ class CompanyAddView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
         print(form.errors)
         return super().form_invalid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyAddView, self).get_context_data(**kwargs)
+        context["employees"] = User.objects.all()
+        return context
+
 class CompanyUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Company
     form_class = CompanyAddForm
@@ -62,6 +67,8 @@ class CompanyDetailView(RedirectPermissionRequiredMixin, DetailView):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         company_id = self.get_object().id
         context["company_projects"] = Project.objects.filter(company = company_id)
+        context["projects"] = Project.objects.all()
+        context["employees"] = User.objects.all()
         return context
 
 class CompanyListView(RedirectPermissionRequiredMixin, ListView):
@@ -164,4 +171,3 @@ class ClientDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Del
     permission_required= 'client.delete_company'
     success_message = "Client deleted successfully."
     success_url = reverse_lazy('contact:clientlist')
-

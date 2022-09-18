@@ -18,10 +18,7 @@
         <div class="form-group col-6">
           <label for="id_company">Company</label>
           <select class="form-control" name="company" {% if employee.company %} value="{{employee.company}}" {% endif %} id="id_company">
-            
             <option value="" selected>Select a company</option>
-            
-            
             {% for company in companies %}
               <option value="{{company.id}}">{{company.name}}</option>
             {% endfor %}
@@ -76,8 +73,7 @@
           <select class="form-control" name="project_name" id="id_project_name">
             <option value="" selected>project name</option>
             {% for project in projects %}
-            <option value="{{project.pk}}" {% if employee.project.pk == project.pk %} selected {% endif %}>{{project.name}}</option>
-            
+            <option value="{{project.pk}}" >{{project.name}}</option>
             {% endfor %}
           </select>
         </div>

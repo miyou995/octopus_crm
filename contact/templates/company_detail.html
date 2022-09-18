@@ -76,54 +76,54 @@
 
           <div class="col-12 col-md-12 col-lg-8">
             <div class="card">
-              <div class="padding-20">
-                <h4>Overview</h4>
-                <div class="tab-content tab-bordered" id="myTab3Content">
-                  <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
+              <h4>Overview</h4>
+              <div class="tab-content tab-bordered" id="myTab3Content">
+                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
 
-                    <h6 class="card-title"> Employees</h6>
+                  <h6 class="card-title"> Employees</h6>
 
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="table-1">
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
 
-                        <thead>
-                          <tr>
-                            <th style="width: 100px;"> Name</th>
-                            <th style="width: 100px;"> Role</th>
-                            <th style="width: 100px;"> Decision case</th>
-                            <th style="width: 100px;">Phone number</th>
-                            <th style="width: 100px;">Email</th>
-                          </tr>
-                        </thead>
+                      <thead>
+                        <tr>
+                          <th style="width: 100px;"> Name</th>
+                          <th style="width: 100px;"> Role</th>
+                          <th style="width: 100px;"> Decision case</th>
+                          <th style="width: 100px;">Phone number</th>
+                          <th style="width: 100px;">Email</th>
+                        </tr>
+                      </thead>
 
-                        <tbody>
-                        {% for employee in employees %}
-                         <tr>
-                            <td>{{employee.name}}</td>
-                            <td>{{employee.role}}</td>
-                            <td>{{employee.decision}}</td>
-                            <td>{{employee.mobile}}</td>
-                            <td>{{employee.email}}</td>
-                          </tr>
+                      <tbody>
+                      {% for employee in employees %}
+                      {% if employee.company.pk == company.pk %}
+                        <tr>
+                          <td>{{employee.name}}</td>
+                          <td>{{employee.role}}</td>
+                          <td>{{employee.decision}}</td>
+                          <td>{{employee.mobile}}</td>
+                          <td>{{employee.email}}</td>
+                        </tr>
+                      {% endif %}
+                      {% endfor %}
+                        
+                      </tbody>
+                      {% comment %} <tbody>
+                        {% for employee in company_employees %}
+                        <tr>
+                          <td> <a href="{% url 'contact:clientdetail' employee.pk %}">{{employee.name}}
+                            </a></td>
+                          <td><span class="fe text-warning">
+                              {{employee.get_decision_display}} </span>
+                          </td>
+                          <td>{{employee.mobile}}</td>
+                          <td> {{employee.email}} </td>
+                        </tr>
                         {% endfor %}
-                         
-                        </tbody>
-                        {% comment %} <tbody>
-                          {% for employee in company_employees %}
-                          <tr>
-                            <td> <a href="{% url 'contact:clientdetail' employee.pk %}">{{employee.name}}
-                              </a></td>
-                            <td><span class="fe text-warning">
-                                {{employee.get_decision_display}} </span>
-                            </td>
-                            <td>{{employee.mobile}}</td>
-                            <td> {{employee.email}} </td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      {% endcomment %}
-                      </table>
-                    </div>
+                      </tbody>
+                    {% endcomment %}
+                    </table>
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@
                         </tr>
                     
                       </thead>
-{% comment %}                       
+                      {% comment %}                       
                       <tbody>
                         {% for project in company_projects %}
                         <tr>
