@@ -121,7 +121,7 @@ class User(AbstractUser):
 
 
     def __str__(self):
-        return str(self.company)
+        return self.name
     
     @property
     def get_absolute_url(self):

@@ -89,12 +89,25 @@
                         <thead>
                           <tr>
                             <th style="width: 100px;"> Name</th>
+                            <th style="width: 100px;"> Role</th>
                             <th style="width: 100px;"> Decision case</th>
                             <th style="width: 100px;">Phone number</th>
                             <th style="width: 100px;">Email</th>
                           </tr>
                         </thead>
-                        
+
+                        <tbody>
+                        {% for employee in employees %}
+                         <tr>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.role}}</td>
+                            <td>{{employee.decision}}</td>
+                            <td>{{employee.mobile}}</td>
+                            <td>{{employee.email}}</td>
+                          </tr>
+                        {% endfor %}
+                         
+                        </tbody>
                         {% comment %} <tbody>
                           {% for employee in company_employees %}
                           <tr>
