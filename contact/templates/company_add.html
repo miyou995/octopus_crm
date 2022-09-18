@@ -9,8 +9,7 @@
       <div class="section-body">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form action="{% url 'contact:addcompany' %}" id="addCompanyForm" class="wizard_with_validation"
-              method="POST">
+            <form action="{% url 'contact:addcompany' %}" id="addCompanyForm" class="wizard_with_validation" method="POST">
               {% csrf_token %}
               <h3></h3>
               <fieldset>
@@ -55,16 +54,29 @@
                     <input type="text" name="website" id="id_website" class="form-control">
                   </div>
                 </div>
+                
                 <div class="form-group form-float">
                   <div class="form-line col-lg-14 col-md-14 col-xs-10">
-                    <label for="id_adress">Adress </label>
-                    <input type="text" name="adress" id="id_adress" class="form-control">
+                    <label for="id_company_type">company type </label>
+                    <select class="form-control" name="company_type" id="id_company_type">
+                      <option value="" selected="">Select company type</option>
+                      <option value="CL">client</option>
+                      <option value="F">supplier</option>
+                      <option value="P">partner </option>
+                      <option value="CN">concurrent </option>
+                    </select>
                   </div>
                 </div>
+
                 <div class="form-group form-float">
                   <div class="form-line col-lg-14 col-md-14 col-xs-10">
                     <label for="id_responsible_person">Responsible person </label>
-                    <input type="text" name="responsible_person" id="id_responsible_person" class="form-control">
+                    <select name="responsible_person" id="id_responsible_person" class="form-control">
+                    <option value="" selected="">Select Responsible person</option>
+                      {% for employee in employees %}
+                        <option value="{{employee.pk}}">{{employee.name}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
 
@@ -80,16 +92,11 @@
               <fieldset>
                 <div class="form-group form-float">
                   <div class="form-line col-lg-14 col-md-14 col-xs-10">
-                    <label for="id_company_type">company type </label>
-                    <select class="form-control" name="company_type" id="id_company_type">
-                      <option value="" selected="">Select company type</option>
-                      <option value="CL">client</option>
-                      <option value="F">supplier</option>
-                      <option value="P">partner </option>
-                      <option value="CN">concurrent </option>
-                    </select>
+                    <label for="id_adress">Adress </label>
+                    <input type="text" name="adress" id="id_adress" class="form-control">
                   </div>
                 </div>
+
                 <div class="form-group form-float">
                   <div class="form-line col-lg-14 col-md-14 col-xs-10">
                     <label for="id_collab_start"> Collab start </label>
