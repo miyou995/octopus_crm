@@ -21,8 +21,8 @@
 
 
   <div class="modal fade" id="deleteModal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-      {% include 'client_delete.html'%}
+    <div class="modal-dialog modal-dialog-centered " role="document">
+      {% include 'project_delete.html' with object=project projectdelete_url=projectdelete_url %}
     </div>
   </div>
 
@@ -108,7 +108,8 @@
                           <td>{{project.name}} {{project.pk}}</td>
                           <td>{{project.started_date}}</td>
                           <td class="text-danger"> {{project.deadline}}</td>
-                          <td> {{project.manager}}</td>
+                          
+                          <td><a {% if project.manager %} href="{{project.manager.get_absolute_url}}" {% endif %}>{{project.manager}}</a>  </td>
                           <td class="text-info"> {{project.cost}} DZD</td>
                           <td> {{project.get_project_type_display}} </td>
                           <td>{{project.get_contract_display}}</td>
@@ -121,18 +122,13 @@
                             <a data-toggle="modal" data-target="#editContent-{{project.pk}}" class="btn icn">
                             <i data-feather="edit"></i>
                             </a>
-
-
-                          {% comment %} <a href="{% url 'project:editproject' project.pk %}" 
-                            hx-target="#editContent" data-toggle="modal"
-                           data-target="#editContent-{{project.pk}}" hx-swap="innerHTML" class="btn icn"> 
-                           <i data-feather="edit"></i></a> {% endcomment %}
  
-                            <a href="{% url 'project:projectdelete' project.pk %}"  data-toggle="modal" data-target="#deleteModal" class="btn icn"><i
-                              data-feather="trash"></i></a>
+                            <a data-toggle="modal" data-target="#deleteContent-{{project.pk}}" class="btn icn">
+                            <i data-feather="trash"></i>
+                            </a>
 
                             <a href="{% url 'project:projectdetail' project.pk %}" class="btn icn">
-                              <i data-feather="eye"></i></a>
+                            <i data-feather="eye"></i></a>
                           </td>
                         </tr>
                         {% endfor %}
@@ -152,7 +148,9 @@
 
 {% for project in projects %}
   {% url 'project:editproject' project.pk as editproject_url %}
+  {% url 'project:projectdelete' project.pk as projectdelete_url %}
     {% include "project_edit.html" with object=project editproject_url=editproject_url %}
+    {% include "project_delete.html" with object=project projectdelete_url=projectdelete_url %}
 {% endfor %}
 
 {% endblock content %}

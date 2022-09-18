@@ -48,6 +48,12 @@
                       <span class="float-right text-muted"> {{user.mobile}} </span>
                     </p>
                     <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Company: </span>
+                      <span class="float-right text-muted"><a {% if user.company %}
+                       href="{{user.company.get_absolute_url}}" {% endif %}>{{user.company}}</a></span>
+                    </p>
+
+                    <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> adress</span>
                       <span class="float-right text-muted">{{user.adress}}</span>
                     </p>
@@ -114,13 +120,15 @@
                       </thead>
                       <tbody>
                       {% for project in projects %}
+                      {% if user == project.manager %}
                       <tr>
-                        <td>{% if user.project %} {{project.}} {% endif %}</td>
+                        <td> {{project.name}} </td>
                         <td>{{project.started_date}}</td>
                         <td>{{project.get_status_display}}</td>
                         <td>{{project.cost}}</td>
                         <td>{{project.get_contract_display}}</td>
                       </tr>
+                      {% endif %}
                       {% endfor %}
                       </tbody>
                     </table>

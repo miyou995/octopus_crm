@@ -53,7 +53,7 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Due</span>
                       <span class="float-right text-muted">
-                        {{project.due}}
+                        {% comment %} {{project.due}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
@@ -65,14 +65,14 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Type</span>
                       <span class="float-right text-muted">
-                      {{project.project_type}}
+                      {% comment %} {{project.project_type}} {% endcomment %}
                         {% comment %} {{project.get_project_type_display}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Status</span>
                       <span class="float-right text-muted">
-                        {{project.status}}
+                        {% comment %} {{project.status}} {% endcomment %}
                         {% comment %} {{project.get_status_display}} {% endcomment %}
                       </span>
                     </p>
