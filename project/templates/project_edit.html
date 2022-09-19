@@ -54,10 +54,9 @@
           
                                 <select class="form-control" name="status" {% if project.status %} value="{{project.status}}" {% endif %} id="id_status">
                                   <option value="" selected="">Select status</option>
-                                  <option value="CF">confirm</option>
-                                  <option value="CP">completed</option>
-                                  <option value="PE">pending </option>
-                                  <option value="CA">cancelled </option>
+                                  {% for key, value in projectstatus %}
+                                    <option value={{key}}>{{value}}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>
@@ -71,11 +70,9 @@
           
                                 <select class="form-control" name="contract" {% if project.contract %} value="{{project.contract}}" {% endif %} id="id_contract">
                                   <option value="" selected="">Select a contract type</option>
-                                  <option value="H">hosting</option>
-                                  <option value="A">annual</option>
-                                  <option value="S">semi-anuual</option>
-                                  <option value="Q">quarterly</option>
-                                  <option value="AD">adverisement</option>
+                                  {% for key, value in contracts %}
+                                    <option value={{key}}>{{value}}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>

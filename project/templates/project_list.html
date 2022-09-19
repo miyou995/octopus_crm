@@ -30,10 +30,8 @@
     <!-- Main Content -->
     <div class="main-content">
     {% include 'snippets/message.html' %}
-
       <section class="section">
         <div class="section-body">
-
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -42,19 +40,15 @@
                   <div class="card-header-action">
                     <div class="row">
 
-
                       <button hx-get="{% url 'project:addproject' %}" hx-target="#addContent" data-toggle="modal"
                         data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
                         <i data-feather="plus"></i>
-                      </button>
-                      
+                      </button>      
                     </div>
-
                   </div>
 
                 </div>
                 <div class="card-body">
-
                   <div class="row">
                     <div class="total" style="margin-left: 20px;">
                       <strong>Total : </strong>
@@ -71,10 +65,10 @@
                           </td>
                           <td>
                             <select class="form-control select" name="project_type">
-                              <option value="">Project type</option>
-                              <option value="EC">e-commerce</option>
-                              <option value="WS">web site</option>
-                              <option value="WA">web app</option>
+                              <option value="">selcet a project type</option>
+                              {% for key, value in projecttypes %}
+                              <option value={{key}}>{{value}}</option>
+                              {% endfor %}
                             </select>
                           </td>
                           <td>

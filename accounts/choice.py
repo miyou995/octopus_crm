@@ -35,6 +35,6 @@ DECISION_TYPE_CHOICES= (
 )
 
 USER_TYPE_CHOICES =(
-    ('EM', 'employee'),
-    ('CM', 'company'),
+    ('IN', 'interne'),
+    ('EX', 'externe'),
 )
