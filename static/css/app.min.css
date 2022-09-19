@@ -1921,11 +1921,28 @@ pre code {
     color: #212529
 }
 
+.tab {
+    width: 30%;
+    margin-bottom: 1rem;
+    color: #212529
+}
+.tab th {
+    color: #666;
+}
+.tab tr, .tab th {
+    padding: .75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+.tab tr td {
+    text-align: center;
+}
+
 .table td,
 .table th {
     padding: .75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6
+    border-bottom: 1px solid #dee2e6;
+    
 }
 
 .table thead th {
@@ -2260,6 +2277,17 @@ pre code {
 
 .table-responsive>.table-bordered {
     border: 0
+}
+
+.form-inv{
+    border: none !important;
+    /* border-bottom:1px solid #ced4da !important; */
+    width:50% !important;
+    display: inline !important;
+}
+
+input:-internal-autofill-selected {
+    background-color: white !important;
 }
 
 .form-control {
@@ -9262,7 +9290,7 @@ button.bg-dark:hover {
 
 .ml-4,
 .mx-4 {
-    margin-left: 1.5rem !important
+    margin-left: 8.5rem !important
 }
 
 .m-5 {

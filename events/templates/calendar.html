@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Calendar</title>
+{% endblock %}
+<style>
+  #EventTitle {
+    border-bottom: 1px solid #e4e6fc !important;
+    width: 80% !important;
+
+  }
+
+  #EventTitle::after {
+    border: none;
+    border-bottom: 1px solid #e4e6fc !important;
+  }
+
+  #EventTitle:focus {
+    border: none;
+    border-bottom: 1px solid #e4e6fc !important;
+  }
+
+  #colorEvent {
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: white;
+  }
+
+  .time {
+    margin-top: 10px !important;
+  }
+  .check {
+    display: inline;
+    
+  }
+  .checkbox {
+    width: 15px;
+    height: 15px;
+  }
+.popup {
+  height: 35px !important;
+}
+
+</style>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <input type="text" name="EventTitle" id="EventTitle" class="form-control form-inv" placeholder="Event Title"
+          required>
+        <input type="color" name="EventTitle" id="colorEvent" class="" value="#6777ef">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <form action="#" id="createProjectForm" method="POST">
+
+              <!-- <div class="row check" style="float: right;" >
+                    <label for="">Toute la journée</label>
+                    <input type="checkbox" id="" class="checkbox">
+                  </div> -->
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="id_name" style="font-weight:bold;">Start Date</label>
+                  <input type="date" name="date-start" id="" class="form-control popup">
+                </div>
+                <div class="form-group col-4">
+                  <label for="id_name" style="font-weight:bold;"> </label>
+                  <input type="time" id="" class="form-control popup time">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="id_name" style="font-weight:bold;">End Date</label>
+                  <input type="date" name="date-end" id="" class="form-control popup time">
+                </div>
+                <div class="form-group col-4">
+                  <label for="id_name" style="font-weight:bold;"> </label>
+                  <input type="time" id="" class="form-control popup time">
+                </div>
+              </div>
+              <!-- <div class="row check" >
+                    <label for="">Toute la journée</label>
+                    <input type="checkbox" id="" class="checkbox">
+                  </div> -->
+              <div class="row">
+                <div class="form-group col-8">
+                  <label for="" style="font-weight:bold;">Members</label>
+                  <select class="form-control popup" name="" id="">
+                    <option value="1" selected>aaaa</option>
+                    <option value="">eeeee</option>
+                    <option value="">eeeee</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="id_name" style="font-weight:bold;">Description</label>
+                  <textarea name="Description" id="" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+            </form>
+            <div>
+              <button type="submit" style="float:right " class="waves-effect btn btn-primary"
+                form="createProjectForm">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Calendar</h4>
+            </div>
+            <div class="card-body">
+              <div class="fc-overflow">
+                <div id="myEvent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+{% endblock %}
