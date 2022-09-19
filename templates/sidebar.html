@@ -28,7 +28,7 @@
           </a>
           <ul class="dropdown-menu">             
             <li><a class="nav-link" href="{% url 'events:calendar' %}">Calender</a></li>
-            <li><a class="nav-link" href="#">Tasks</a></li>              
+            <li><a class="nav-link" href="{% url 'events:eventslist' %}">Events</a></li>              
           </ul>
         </li>
       
@@ -44,21 +44,24 @@
               Page</span></a></li>
         <li class="menu-header">Otika</li>
          -->
-        <li class="dropdown"> 
-          <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>Cashflow</span></a>
-          <ul class="dropdown-menu">   
+         <li class="dropdown">
+          <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file"></i><span>Bills</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="{% url 'bills:invoice' %}">Invoice</a></li>
+            <li><a class="nav-link" href="#">Proforma</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="menu-toggle nav-link has-dropdown"><i
+              data-feather="dollar-sign"></i><span>Cashflow</span></a>
+          <ul class="dropdown-menu">
             <li><a class="nav-link" href="#">Accounts</a></li>
-            <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>Bills</span></a>
-            <ul class="dropdown-menu">
-              <li><a class="nav-link" href="{% url 'bills:invoice' %}">Invoice</a></li>
-              <li><a class="nav-link" href="#">Proforma</a></li>
-            </ul>
             <li><a class="nav-link" href="#">Transaction</a></li>
           </ul>
-        </li> 
-         
-        <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i data-feather="list"></i><span>Projects</span></a></li>
-    
+        </li>
+        
+        <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i
+              data-feather="list"></i><span>Projects</span></a></li>
          <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="user-check"></i><span>Auth</span></a>
