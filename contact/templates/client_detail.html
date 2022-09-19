@@ -44,13 +44,17 @@
                     </p>
 
                     <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Role: </span>
+                      <span class="float-right text-muted"> {{user.role}}</span>
+                    </p>
+
+                    <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">mobile </span>
                       <span class="float-right text-muted"> {{user.mobile}} </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Company: </span>
-                      <span class="float-right text-muted"><a {% if user.company %}
-                       href="{{user.company.get_absolute_url}}" {% endif %}>{{user.company}}</a></span>
+                      <span class="float-right text-muted">{% if user.company %} <a href="{{user.company.get_absolute_url}}" >{{user.company.name}}</a> {% else %} None{% endif %}</span>
                     </p>
 
                     <p class="clearfix">

@@ -29,6 +29,7 @@ from .forms import AddProjectForm
 from cashflow.models import Transaction
 from .filters import ProjectFilter
 from django.db.models import Sum
+from .choice import PROJECT_TYPE_CHOICES, CONTRACT_TYPE_CHOICES, STATUS_TYPE_CHOICES, TRANSACTION_TYPE_CHOICES
 
 import logging
 from pprint import pprint
@@ -53,6 +54,8 @@ class ProjectListView(RedirectPermissionRequiredMixin,ListView):
         context["projects"] = filters.qs
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+
         return context
     
 class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
@@ -83,6 +86,10 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context = super(AddProjectView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
+        context["projectstatus"] = STATUS_TYPE_CHOICES
+        context["transactions"] = TRANSACTION_TYPE_CHOICES
+        context["contracts"] = CONTRACT_TYPE_CHOICES
+
         return context
    
  
@@ -101,6 +108,11 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
         context["companies"] = Company.objects.all()
         # context["employees"] = Employee.objects.all()
         context["projects"] = Project.objects.all()
+        context["projectstatus"] = STATUS_TYPE_CHOICES
+        context["transactions"] = TRANSACTION_TYPE_CHOICES
+        context["contracts"] = CONTRACT_TYPE_CHOICES
+
+
         return context
    
 

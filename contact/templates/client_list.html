@@ -40,8 +40,8 @@
                           data-feather="plus"></i></button>
                     </div>
                   </div>
-
                 </div>
+
                 <div class="card-body">
                   <div class="row">
                     <div class="total" style="margin-left: 20px;">
@@ -60,10 +60,10 @@
                           </td>
                           <td>
                             <select class="form-control select" name="project_type">
-                              <option value="">Project type</option>
-                              <option value="EC">e-commerce</option>
-                              <option value="WS">web site</option>
-                              <option value="WA">web app</option>
+                            <option value="">selcet a project type</option>
+                            {% for key, value in projecttypes %}
+                              <option value={{key}}>{{value}}</option>
+                            {% endfor %}
                             </select>
                           </td>
 
@@ -86,7 +86,7 @@
                           <th>Email</th>
                           <th>Phone number</th>
                           <th>Decision</th>
-                          <th>Project</th>
+                          {% comment %} <th>Project</th> {% endcomment %}
                           <th>source</th>
                           <th>Date</th>
                           <th>Action</th>
@@ -97,18 +97,15 @@
                         <tr>
                           <td>{{employee.name}} {{employee.pk}} </td>
                           <td> {% if employee.company %}
-                          {% comment %} "{% url 'contact:companydetail' employee.company.pk %}" {% endcomment %}
                           <a href="{{employee.company.get_absolute_url}}">{{employee.company}}</a>
                           {% endif %}
                           </td>
                           <td>{{employee.email}}</td>
                           <td>{{employee.mobile}}</td>
                           <td><span class="fe text-warning"> {{employee.get_decision_display}} </span></td>
-                          <td> {% if employee.project %}
-                            <a href="{% url 'project:projectdetail' employee.project.pk %}"> {{employee.project}}</a>
-                            {% else %}
-                            <a href="#">sidoutest</a>
-                          {% endif %} </td>
+                          {% comment %} <td>
+                            <a href="{{employee.project.get_absolute_url}}">{{employee.project_name}}</a>
+                           </td> {% endcomment %}
                           <td>{{employee.source}}</td>
                           <td><span class="d-block text-info">{{employee.collab_start}}</span></td>
 
