@@ -2664,8 +2664,8 @@ ol {
 select.form-control:not([size]):not([multiple]),
 .form-control:not(.form-control-sm):not(.form-control-lg) {
     font-size: 14px;
-    padding: 10px 15px;
-    height: 30px
+    padding: 0px 15px;
+    height: 40px;
 }
 
 textarea.form-control {

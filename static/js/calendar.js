@@ -1,73 +1,73 @@
-(function($) {
-  'use strict';
-  $(function() {
-    if ($('#calendar').length) {
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,basicWeek,basicDay'
-        },
-        defaultDate: '2017-07-12',
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: [{
-            title: 'All Day Event',
-            start: '2017-07-08'
-          },
-          {
-            title: 'Long Event',
-            start: '2017-07-01',
-            end: '2017-07-07'
-          },
-          {
-            id: 999,
-            title: 'Repeating Event',
-            start: '2017-07-09T16:00:00'
-          },
-          {
-            id: 999,
-            title: 'Repeating Event',
-            start: '2017-07-16T16:00:00'
-          },
-          {
-            title: 'Conference',
-            start: '2017-07-11',
-            end: '2017-07-13'
-          },
-          {
-            title: 'Meeting',
-            start: '2017-07-12T10:30:00',
-            end: '2017-07-12T12:30:00'
-          },
-          {
-            title: 'Lunch',
-            start: '2017-07-12T12:00:00'
-          },
-          {
-            title: 'Meeting',
-            start: '2017-07-12T14:30:00'
-          },
-          {
-            title: 'Happy Hour',
-            start: '2017-07-12T17:30:00'
-          },
-          {
-            title: 'Dinner',
-            start: '2017-07-12T20:00:00'
-          },
-          {
-            title: 'Birthday Party',
-            start: '2017-07-13T07:00:00'
-          },
-          {
-            title: 'Click for Google',
-            url: 'http://google.com/',
-            start: '2017-07-28'
-          }
-        ]
-      })
-    }
-  });
-})(jQuery);
+var today = new Date();
+year = today.getFullYear();
+month = today.getMonth();
+day = today.getDate();
+var calendar = $('#myEvent').fullCalendar({
+ 
+  height: 'auto',
+  defaultView: 'month',
+  editable: true,
+  selectable: true,
+  header: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'month,agendaWeek,agendaDay,listMonth'
+  },
+  events: [{
+    title: "Palak Jani",
+    start: new Date(year, month, day, 11, 30),
+    end: new Date(year, month, day, 12, 00),
+    backgroundColor: "#00bcd4"
+  }, {
+    title: "Priya Sarma",
+    start: new Date(year, month, day, 13, 30),
+    end: new Date(year, month, day, 14, 00),
+    backgroundColor: "#fe9701"
+  }, {
+    title: "John Doe",
+    start: new Date(year, month, day, 17, 30),
+    end: new Date(year, month, day, 18, 00),
+    backgroundColor: "#F3565D"
+  }, {
+    title: "Sarah Smith",
+    start: new Date(year, month, day, 19, 00),
+    end: new Date(year, month, day, 19, 30),
+    backgroundColor: "#1bbc9b"
+  }, {
+    title: "Airi Satou",
+    start: new Date(year, month, day + 1, 19, 00),
+    end: new Date(year, month, day + 1, 19, 30),
+    backgroundColor: "#DC35A9",
+  }, {
+    title: "Angelica Ramos",
+    start: new Date(year, month, day + 1, 21, 00),
+    end: new Date(year, month, day + 1, 21, 30),
+    backgroundColor: "#fe9701",
+  }, {
+    title: "Palak Jani",
+    start: new Date(year, month, day + 3, 11, 30),
+    end: new Date(year, month, day + 3, 12, 00),
+    backgroundColor: "#00bcd4"
+  }, {
+    title: "Priya Sarma",
+    start: new Date(year, month, day + 5, 2, 30),
+    end: new Date(year, month, day + 5, 3, 00),
+    backgroundColor: "#9b59b6"
+  }, {
+    title: "John Doe",
+    start: new Date(year, month, day + 7, 17, 30),
+    end: new Date(year, month, day + 7, 18, 00),
+    backgroundColor: "#F3565D"
+  }, {
+    title: "Mark Hay",
+    start: new Date(year, month, day + 5, 9, 30),
+    end: new Date(year, month, day + 7, 10, 00),
+    backgroundColor: "#F3565D"
+  }]
+});
+
+$(".fc-body").click(function(){
+  $(this).attr("href", "#myModal");
+  $(this).attr("data-toggle", "modal");
+});
+   

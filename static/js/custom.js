@@ -10,6 +10,9 @@
   $('.alert').alert('close');
 }   
 
+
+        
+      
  
 let i =1;
 
@@ -27,6 +30,8 @@ function add(){
   }
 }
 
+
+/*global $, window*/
 $.fn.editableTableWidget = function (options) {
 	'use strict';
 	return $(this).each(function () {
@@ -151,6 +156,9 @@ $.fn.editableTableWidget = function (options) {
 
 };
 $.fn.editableTableWidget.defaultOptions = {
+	cloneProperties: ['padding', 'padding-top', 'padding-bottom', 'padding-left', 'padding-right',
+					  'text-align', 'font', 'font-size', 'font-family', 'font-weight',
+					  'border', 'border-top', 'border-bottom', 'border-left', 'border-right'],
 	editor: $('<input>')
 };
 
