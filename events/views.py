@@ -4,3 +4,7 @@ from django.views.generic import TemplateView
 
 class CalendarView(TemplateView):
     template_name = "calendar.html" 
+
+
+class EventsListView(TemplateView):
+    template_name = "events_list.html" 

@@ -6,13 +6,11 @@
  */
  "use strict";
 
- function onButtonPress() {
-  $('.alert').alert('close');
-}   
-
-
+ $('.alert').show().delay(5000).fadeOut();
         
-      
+	function onButtonPress() {
+		$('.alert').alert('close');
+	  }        
  
 let i =1;
 
