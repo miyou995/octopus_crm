@@ -6,6 +6,6 @@ app_name = 'bills'
 
 urlpatterns = [
     
-  path('invoice',InvoiceView.as_view(), name='invoice'),
+  path('invoice/',InvoiceView.as_view(), name='invoice'),
     
 ]

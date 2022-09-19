@@ -25,9 +25,11 @@ urlpatterns = [
      path('admin/', admin.site.urls),
      path ('', include('core.urls')), 
      path ('', include('accounts.urls')),    
-     path ('contact/', include('contact.urls')), 
-     path ('project/', include('project.urls')), 
-     path ('cashflow/', include('cashflow.urls')),
+     path ('', include('contact.urls')), 
+     path ('', include('project.urls')), 
+     path ('', include('cashflow.urls')),
+     path('', include('events.urls')),
+     path('', include('bills.urls')),
 
      
     #  path('__debug__/', include('debug_toolbar.urls')),
