@@ -13,6 +13,9 @@ from django.urls.base import reverse_lazy
 from .models import Company
 from project.models import Project
 from accounts.models import User
+from accounts.choice import ROLE_TYPE_CHOICE, DECISION_TYPE_CHOICES, PROJECT_TYPE_CHOICES
+from contact.choice import COMPANY_TYPE_CHOICES
+
 from .forms import CompanyAddForm , AddClientForm
 from django.contrib import messages
 from .filters import CompanyFilter, Userfilter
@@ -39,6 +42,9 @@ class CompanyAddView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
     def get_context_data(self, **kwargs):
         context = super(CompanyAddView, self).get_context_data(**kwargs)
         context["employees"] = User.objects.all()
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["companytypes"] = COMPANY_TYPE_CHOICES
+
         return context
 
 class CompanyUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -48,6 +54,12 @@ class CompanyUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Up
     success_message = "Company updated successfully"
     success_url = reverse_lazy('contact:companylist')
     permission_required = "contact.update_company"
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyUpdateView, self).get_context_data(**kwargs)
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["companytypes"] = COMPANY_TYPE_CHOICES
+
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
@@ -81,6 +93,8 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
         filters= CompanyFilter(self.request.GET, queryset=Company.objects.all().order_by('collab_start'))
         context["company_count"] = Company.objects.all().count()
         context["companies"] = filters.qs
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+
         return context
 
 class CompanyDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -113,6 +127,8 @@ class  AddClientView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
         context = super(AddClientView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         context["projects"] = Project.objects.all()
+        context["roles"] = ROLE_TYPE_CHOICE
+        context["decisions"] = DECISION_TYPE_CHOICES
 
         return context 
 
@@ -131,6 +147,7 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         context["employees"] = filters.qs
         context["companies"] = Company.objects.all()
         context["projects"] = Project.objects.all()
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
 
         return context
 

@@ -72,12 +72,12 @@
 
         <div class="form-group form-float center-block">
           <div class="form-line col-lg-14 col-md-14 col-xs-10">
-            <label for="id_project_type">project type </label>
-            <select class="form-control" name="project_type" id="id_project_type">
+            <label for="id_company_type">company type </label>
+            <select class="form-control" name="company_type" id="id_company_type">
               <option value="" selected="">Select company type</option>
-              <option value="EC">e-commerce</option>
-              <option value="WSF">web site</option>
-              <option value="WA">web app </option>
+                      {% for key, value in companytypes %}
+                        <option value={{key}}>{{value}}</option>
+                      {% endfor %}
             </select>
           </div>
         </div>
@@ -87,9 +87,9 @@
             <label for="id_project_type">project type </label>
             <select class="form-control" name="project_type" id="id_project_type">
               <option value="" selected="">Select company type</option>
-              <option value="EC">e-commerce</option>
-              <option value="WSF">web site</option>
-              <option value="WA">web app </option>
+                {% for key, value in projecttypes %}
+                 <option value={{key}}>{{value}}</option>
+                {% endfor %}
             </select>
           </div>
         </div>

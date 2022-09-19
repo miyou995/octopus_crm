@@ -25,9 +25,9 @@
                                 <label for="id_project_type" style="font-weight:bold;">Type </label>
                                 <select class="form-control" name="project_type" id="id_project_type">
                                   <option value="" selected="">Select a project type</option>
-                                  <option value="EC">e-commerce</option>
-                                  <option value="WS">web site</option>
-                                  <option value="WA">web app</option>
+                                  {% for key, value in projecttypes %}
+                                    <option value={{key}}>{{value}}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>
@@ -49,11 +49,10 @@
                                 <label for="id_status" style="font-weight:bold;"> status </label>
           
                                 <select class="form-control" name="status" id="id_status">
-                                  <option value="" selected="">Select status</option>
-                                  <option value="CF">confirm</option>
-                                  <option value="CP">completed</option>
-                                  <option value="PE">pending </option>
-                                  <option value="CA">cancelled </option>
+                                  <option value="" selected>Select status</option>
+                                  {% for key, value in projectstatus %}
+                                    <option value={{key}}>{{value}}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>
@@ -67,11 +66,9 @@
           
                                 <select class="form-control" name="contract" id="id_contract">
                                   <option value="" selected="">Select a contract type</option>
-                                  <option value="H">hosting</option>
-                                  <option value="A">annual</option>
-                                  <option value="S">semi-anuual</option>
-                                  <option value="Q">quarterly</option>
-                                  <option value="AD">adverisement</option>
+                                  {% for key, value in contracts %}
+                                    <option value={{key}}>{{value}}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>

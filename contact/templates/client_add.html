@@ -30,11 +30,9 @@
         <div class="form-group col-6">
           <label for="id_decision">Decision</label>
           <select class="form-control" name="decision" id="id_decision">
-            <option value="1" selected>*</option>
-            <option value="2">**</option>
-            <option value="3">***</option>
-            <option value="4">****</option>
-            <option value="5">*****</option>
+          {% for key, value in decisions %}
+            <option value={{key}} selected>{{value}}</option>
+          {% endfor %}
           </select>
         </div>
         <div class="form-group col-6">
@@ -57,6 +55,16 @@
         </div>
 
         <div class="form-group col-6">
+          <label for="id_role">role</label>
+          <select class="form-control" name="role" id="id_role">
+            <option value="" selected>selcet a role</option>
+            {% for key, value in roles %}
+            <option value={{key}}>{{value}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-6">
           <label for="id_address">Address</label>
           <input type="text" name="address" id="id_address" {% if employee.address %} value="{{employee.address}}" {% endif %} class="form-control">
         </div>
@@ -67,7 +75,7 @@
           <label for="id_source">Source</label>
             <input type="text" name="source" id="id_source" {% if employee.source %} value="{{employee.source}}" {% endif %} class="form-control" autofocus>
         </div>
-
+{% comment %} 
         <div class="form-group col-6">
           <label for="id_project_name">Project name</label>
           <select class="form-control" name="project_name" id="id_project_name">
@@ -76,7 +84,7 @@
             <option value="{{project.pk}}" >{{project.name}}</option>
             {% endfor %}
           </select>
-        </div>
+        </div> {% endcomment %}
       </div>
       <div class="row">
         <div class="form-group col-6">

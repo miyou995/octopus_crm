@@ -62,10 +62,10 @@
                                                     </td>
                                                     <td>
                                                         <select class="form-control select" name="project_type">
-                                                            <option value="">Project type</option>
-                                                            <option value="EC">e-commerce</option>
-                                                            <option value="WS">web site</option>
-                                                            <option value="WA">web app</option>
+                                                        <option value="">selcet a project type</option>
+                                                        {% for key, value in projecttypes %}
+                                                        <option value={{key}}>{{value}}</option>
+                                                        {% endfor %}
                                                         </select>
                                                     </td>
                                                     <td>
