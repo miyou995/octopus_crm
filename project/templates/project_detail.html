@@ -27,21 +27,14 @@
                   <div class="py-4">
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Company</span>
-                      <span class="float-right text-muted"> {{project.company}}</span>
+                      <span class="float-right text-muted"> <a href="{{project.company.get_absolute_url}}">{{project.company}}</a></span>
                     </p>
-                    <p class="clearfix">
-                      <span class="float-left" style="font-weight: bold;">Deadline</span>
-                      <span class="float-right text-muted"> {{project.deadline}}</span>
-                    </p>
-                    {% comment %} <p class="clearfix">
-                      <span class="float-left" style="font-weight: bold;">Source</span>
-                      <span class="float-right text-muted">
-                        {{project.source}}</span> {% endcomment %}
+
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Manager</span>
                       <span class="float-right text-muted">
-                        {{project.manager}}
+                      <a href="{{project.manager.get_absolute_url}}">{{project.manager}}</a>
                       </span>
                     </p>
                     <p class="clearfix">
@@ -59,22 +52,51 @@
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Contract</span>
                       <span class="float-right text-muted">
-                        {{project.contract}}
+                      {% for key, value in contracts %}
+                        {% if project.contract == key %}
+                          {{value}}
+                        {% endif %}
+                      {% endfor %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Type</span>
                       <span class="float-right text-muted">
+                      {% for key, value in projecttypes %}
+                        {% if project.project_type == key %}
+                          {{value}}
+                        {% endif %}
+                      {% endfor %}
                       {% comment %} {{project.project_type}} {% endcomment %}
                         {% comment %} {{project.get_project_type_display}} {% endcomment %}
                       </span>
                     </p>
                     <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Start Date</span>
+                      <span class="float-right text-muted"> {{project.started_date}}</span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Contract Expiration Date</span>
+                      <span class="float-right text-muted"> {{project.contract_expiration}}</span>
+                    </p>
+
+                    <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Status</span>
                       <span class="float-right text-muted">
+                      {% for key, value in projectstatus %}
+                        {% if project.status == key %}
+                          {{value}}
+                        {% endif %}
+                      {% endfor %}
                         {% comment %} {{project.status}} {% endcomment %}
                         {% comment %} {{project.get_status_display}} {% endcomment %}
                       </span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Deadline</span>
+                      <span class="float-right text-muted"> {{project.deadline}}</span>
                     </p>
                   </div>
 

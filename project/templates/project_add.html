@@ -26,7 +26,7 @@
                                 <select class="form-control" name="project_type" id="id_project_type">
                                   <option value="" selected="">Select a project type</option>
                                   {% for key, value in projecttypes %}
-                                    <option value={{key}}>{{value}}</option>
+                                    <option value="{{key}}">{{value}}</option>
                                   {% endfor %}
                                 </select>
                               </div>
@@ -51,7 +51,7 @@
                                 <select class="form-control" name="status" id="id_status">
                                   <option value="" selected>Select status</option>
                                   {% for key, value in projectstatus %}
-                                    <option value={{key}}>{{value}}</option>
+                                    <option value="{{key}}">{{value}}</option>
                                   {% endfor %}
                                 </select>
                               </div>
@@ -67,7 +67,7 @@
                                 <select class="form-control" name="contract" id="id_contract">
                                   <option value="" selected="">Select a contract type</option>
                                   {% for key, value in contracts %}
-                                    <option value={{key}}>{{value}}</option>
+                                    <option value="{{key}}">{{value}}</option>
                                   {% endfor %}
                                 </select>
                               </div>

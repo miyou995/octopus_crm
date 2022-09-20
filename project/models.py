@@ -5,6 +5,7 @@ from tinymce import models as tinymce_models
 from .choice import *
 from django.db.models import Sum
 from django.urls import reverse
+from .choice import CONTRACT_TYPE_CHOICES
 
 class ProjectQueryset(models.QuerySet):
     def is_ecommerce(self):
@@ -117,6 +118,13 @@ class Project (models.Model):
     def get_absolute_url(self):
         return reverse("project:projectdetail", kwargs={"pk": self.pk})
 
+    # @property
+    # def get_contract_name(**kwargs):
+    #     for key, value in CONTRACT_TYPE_CHOICES:
+    #         if key == 'Q':
+    #             value = value
+    #     return value
+        
     # @property
     # def get_status_class(self):
     #     if self.status == "CF":

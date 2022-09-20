@@ -89,7 +89,7 @@
           <div class="row">
             <div class="form-group col-6">
               <label for="id_collab_start">Collab start</label>
-              <input type="date" name="collab_start" id="id_collab_start" {% if employee.collab_start %} value="{{employee.collab_start}}" {% endif %} class="form-control">
+              <input type="date" name="collab_start" id="id_collab_start" {% if employee.collab_start %} value="{{employee.collab_start|date:'Y-m-d'}}" {% endif %} class="form-control">
             </div>
           </div>
       </form>

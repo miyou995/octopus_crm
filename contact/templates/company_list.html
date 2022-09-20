@@ -103,7 +103,11 @@
                                                         </td>
                                                         {% endif %} 
                                                         <td>{{company.name}}</td>
-                                                        <td>{% if company.responsible_person %} <a href="{{company.responsible_person.get_absolute_url}}">{{company.responsible_person}}</a> {% endif %} </td>
+                                                        <td>
+                                                        {% for employee in employees %}
+                                                        {% if employee.name == company.responsible_person %} <a href="{{company.responsible_person.get_absolute_url}}">{{company.responsible_person}}</a> {% endif %}
+                                                        {% endfor %}
+                                                         </td>
                                                         <td> {{company.get_company_type_display}}</td>
                                                         <td>{{company.get_project_type_display}} </td>
                                                         <td>{{company.source}}</td>
