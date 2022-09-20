@@ -59,6 +59,8 @@ class CompanyUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Up
         context = super(CompanyUpdateView, self).get_context_data(**kwargs)
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         context["companytypes"] = COMPANY_TYPE_CHOICES
+        context["employees"] = User.objects.all()
+
 
 
     def form_invalid(self, form):
@@ -81,6 +83,8 @@ class CompanyDetailView(RedirectPermissionRequiredMixin, DetailView):
         context["company_projects"] = Project.objects.filter(company = company_id)
         context["projects"] = Project.objects.all()
         context["employees"] = User.objects.all()
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["companytypes"] = COMPANY_TYPE_CHOICES
         return context
 
 class CompanyListView(RedirectPermissionRequiredMixin, ListView):
@@ -94,6 +98,10 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
         context["company_count"] = Company.objects.all().count()
         context["companies"] = filters.qs
         context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["companytypes"] = COMPANY_TYPE_CHOICES
+        context["employees"] = User.objects.all()
+
+
 
         return context
 

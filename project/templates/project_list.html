@@ -29,9 +29,9 @@
 
     <!-- Main Content -->
     <div class="main-content">
-      <div class="alert">
+      {% comment %} <div class="alert"> {% endcomment %}
          {% include 'snippets/message.html' %}
-      </div>
+      {% comment %} </div> {% endcomment %}
       <section class="section">
         <div class="section-body">
           <div class="row">
@@ -115,11 +115,11 @@
 
                           
                           <td>
-                            <a data-toggle="modal" data-target="#editContent-{{project.pk}}" class="btn icn">
+                            <a href="{{editproject_url}}" data-toggle="modal" data-target="#editContent-{{project.pk}}" class="btn icn">
                             <i data-feather="edit"></i>
                             </a>
  
-                            <a data-toggle="modal" data-target="#deleteContent-{{project.pk}}" class="btn icn">
+                            <a href="{{projectdelete_url}}" data-toggle="modal" data-target="#deleteContent-{{project.pk}}" class="btn icn">
                             <i data-feather="trash"></i>
                             </a>
 

@@ -55,7 +55,9 @@ class ProjectListView(RedirectPermissionRequiredMixin,ListView):
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
         context["projecttypes"] = PROJECT_TYPE_CHOICES
-
+        context["projectstatus"] = STATUS_TYPE_CHOICES
+        context["transactions"] = TRANSACTION_TYPE_CHOICES
+        context["contracts"] = CONTRACT_TYPE_CHOICES
         return context
     
 class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
@@ -70,6 +72,10 @@ class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
         # context["project_transactions"] = Transaction.objects.filter(project=project_id)
         filters=ProjectFilter(self.request.GET, queryset=Project.objects.all())
         context["projects"] = filters.qs
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["projectstatus"] = STATUS_TYPE_CHOICES
+        context["transactions"] = TRANSACTION_TYPE_CHOICES
+        context["contracts"] = CONTRACT_TYPE_CHOICES
         return context
         
 class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView):
@@ -82,6 +88,7 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     def form_invalid(self, form):
         pprint(form.errors)
         return super().form_invalid(form)
+
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
@@ -89,7 +96,7 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context["projectstatus"] = STATUS_TYPE_CHOICES
         context["transactions"] = TRANSACTION_TYPE_CHOICES
         context["contracts"] = CONTRACT_TYPE_CHOICES
-
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
         return context
    
  
@@ -106,13 +113,12 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
     def get_context_data(self, **kwargs):
         context = super(ProjectUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
-        # context["employees"] = Employee.objects.all()
+        context["employees"] = User.objects.all()
         context["projects"] = Project.objects.all()
         context["projectstatus"] = STATUS_TYPE_CHOICES
         context["transactions"] = TRANSACTION_TYPE_CHOICES
         context["contracts"] = CONTRACT_TYPE_CHOICES
-
-
+        context["projecttypes"] = PROJECT_TYPE_CHOICES
         return context
    
 

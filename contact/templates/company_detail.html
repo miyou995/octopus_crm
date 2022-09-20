@@ -61,8 +61,14 @@
                       <span class="float-right text-muted"> {{company.annual_revenue}}</span>
                     </p>
                     <p class="clearfix">
-                      <span class="float-left" style="font-weight: bold;">type</span>
-                      <span class="float-right text-muted"> {{company.get_project_type_display}}</span>
+                      <span class="float-left" style="font-weight: bold;">company type</span>
+                      <span class="float-right text-muted">
+                      {% for key, value in companytypes %}
+                        {% if company.company_type == key %}
+                          {{value}}
+                        {% endif %}
+                      {% endfor %}
+                      </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Start date</span>

@@ -1,6 +1,7 @@
 from django.db import models
 from .choice import *
 from django.urls import reverse
+# from accounts.models import User
 
 class CompanyQueryset(models.QuerySet):
     def is_client(self):
@@ -44,7 +45,6 @@ class Company(models.Model):
     art_code            = models.CharField(max_length=150, null=True, blank=True)
     nif_code            = models.CharField( max_length=150, null=True, blank=True)
     nis_code            = models.CharField( max_length=150, null=True, blank=True)
-    responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
     source              = models.CharField(max_length=250, blank=True, null=True)
     company_type        = models.CharField(choices=COMPANY_TYPE_CHOICES, max_length=2, blank=True, null=True)
     project_type        = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)
@@ -53,6 +53,8 @@ class Company(models.Model):
     created             = models.DateField(auto_now=True)
     updated             = models.DateField(auto_now_add=True)
     postal_code         = models.IntegerField(blank=True, null=True)
+    responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
+
 
     objects             = CompanyManager()
     # camopany_managing   = CompanyQueryset().as_manager()

@@ -1,5 +1,3 @@
-{% comment %} {% url 'project:editproject' project.pk %} {% endcomment %}
-
 
 <div class="modal fade" id="editContent-{{project.id}}" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -28,11 +26,14 @@
                             <div class="form-group form-float center-block">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_project_type" style="font-weight:bold;">Type </label>
-                                <select class="form-control" name="project_type" {% if project.project_type %} value="{{project.project_type}}" {% endif %}id="id_project_type">
-                                  <option {% if project.project_type %} value="{{project.project_type}}" {% endif %} selected>Select a project type</option>
-                                  <option value="EC">e-commerce</option>
-                                  <option value="WS">web site</option>
-                                  <option value="WA">web app</option>
+                                <select class="form-control" name="project_type" id="id_project_type">
+                                  {% for key, value in projecttypes %}
+                                    {% if project.project_type == key %}
+                                      <option value="{{project.project_type}}">{{value}}</option>
+                                    {% else %}
+                                      <option value="{{key}}">{{value}}</option>
+                                    {% endif %}
+                                  {% endfor %}
                                 </select>
                               </div>
                             </div>
@@ -42,7 +43,11 @@
                                 <select class="form-control" name="company" id="id_company">
                                   <option value="" selected="">Select a company</option>
                                   {% for company in companies %}
-                                  <option {% if project.company.pk == company.pk %} value="{{company.id}}" {% endif %}>{{company.name}}</option>
+                                    {% if project.company.pk == company.pk %}
+                                    <option value="{{company.id}}" selected>{{company.name}}</option>
+                                    {% else %}
+                                    <option value="{{company.id}}">{{company.name}}</option>
+                                    {% endif %}
                                   {% endfor %}
                                 </select>
                               </div>
@@ -51,11 +56,14 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_status" style="font-weight:bold;"> status </label>
-          
-                                <select class="form-control" name="status" {% if project.status %} value="{{project.status}}" {% endif %} id="id_status">
+                                <select class="form-control" name="status" id="id_status">
                                   <option value="" selected="">Select status</option>
                                   {% for key, value in projectstatus %}
-                                    <option value={{key}}>{{value}}</option>
+                                    {% if project.status == key %}
+                                      <option value="{{project.status}}" selected>{{value}}</option>
+                                    {% else %}
+                                      <option value="{{key}}">{{value}}</option>
+                                    {% endif %}
                                   {% endfor %}
                                 </select>
                               </div>
@@ -67,26 +75,28 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_contract" style="font-weight:bold;">contract </label>
-          
-                                <select class="form-control" name="contract" {% if project.contract %} value="{{project.contract}}" {% endif %} id="id_contract">
-                                  <option value="" selected="">Select a contract type</option>
+                                <select class="form-control" name="contract" id="id_contract">
                                   {% for key, value in contracts %}
-                                    <option value={{key}}>{{value}}</option>
+                                    {% if project.contract == key %}
+                                      <option  value="{{project.contract}}" selected>{{value}}</option>
+                                    {% else %}
+                                      <option value="{{key}}">{{value}}</option>
+                                    {% endif %}
                                   {% endfor %}
                                 </select>
                               </div>
                             </div>
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
-                                <label for="id_contract_expiration" style="font-weight:bold;">Contract expiration </label>
-                                <input type="date" name="contract_expiration" {% if project.contract_expiration %} value="{{project.contract_expiration}}" {% endif %} id="id_contract_expiration" maxlength="200"
+                                <label for="id_contract_expiration" style="font-weight:bold;">Contract expiration date </label>
+                                <input type="date" name="contract_expiration" {% if project.contract_expiration %} value="{{project.contract_expiration|date:'Y-m-d'}}" {% endif %} id="id_contract_expiration" maxlength="200"
                                   class="form-control">
                               </div>
                             </div>
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_started_date" style="font-weight:bold;">Start date</label>
-                                <input type="date" name="started_date" {% if project.started_date %} value="{{project.started_date}}" {% endif %} id="id_started_date" maxlength="200"
+                                <input type="date" name="started_date" {% if project.started_date %} value="{{project.started_date|date:'Y-m-d'}}" {% endif %} id="id_started_date" maxlength="200"
                                   class="form-control">
                               </div>
                             </div>         
@@ -103,11 +113,13 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_manager" style="font-weight:bold;">Manager</label>
-                                {% comment %} <input type="text" {% if project.manager %} name="manager" {% endif %}  id="id_manager" class="form-control"> {% endcomment %}
                                 <select class="form-control" name="manager" id="id_manager">
-                                  <option value="" selected="">Select the manager</option>
                                   {% for employee in employees %}
-                                    <option value="{{employee.id}}" >{{employee.name}}</option>
+                                    {% if project.manager.id == employee.id%}
+                                    <option value="{{project.manager}}" selected>{{employee.name}}</option>
+                                    {% else %}
+                                      <option value="{{employee.id}}">{{employee.name}}</option>
+                                    {% endif %}
                                   {% endfor %}
                                   </select>
                               </div>
@@ -116,9 +128,10 @@
                             <div class="form-group form-float">
                               <div class=" col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_deadline" style="font-weight:bold;">Deadline</label>
-                                <input type="date" name="deadline" {% if project.deadline %} value="{{project.deadline}}" {% endif %} id="id_deadline" maxlength="200" class="form-control">
+                                <input type="date" name="deadline" {% if project.deadline %} value="{{project.deadline|date:'Y-m-d'}}" {% endif %} id="id_deadline" maxlength="200" class="form-control">
                               </div>
                             </div>
+                            
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_description" style="font-weight:bold;">description </label>
