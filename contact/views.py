@@ -15,6 +15,7 @@ from project.models import Project
 from accounts.models import User
 from accounts.choice import ROLE_TYPE_CHOICE, DECISION_TYPE_CHOICES, PROJECT_TYPE_CHOICES
 from contact.choice import COMPANY_TYPE_CHOICES
+from project.choice import CONTRACT_TYPE_CHOICES
 
 from .forms import CompanyAddForm , AddClientForm
 from django.contrib import messages
@@ -35,9 +36,11 @@ class CompanyAddView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Creat
     success_message = "Company created successfully"
     success_url = reverse_lazy("contact:companylist")
     permission_required = "contact.add_company"
+
     def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:companylist')
+
 
     def get_context_data(self, **kwargs):
         context = super(CompanyAddView, self).get_context_data(**kwargs)
@@ -101,8 +104,6 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
         context["companytypes"] = COMPANY_TYPE_CHOICES
         context["employees"] = User.objects.all()
 
-
-
         return context
 
 class CompanyDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -111,6 +112,10 @@ class CompanyDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, De
     permission_required= 'company.delete_company'
     success_message = "Company deleted successfully."
     success_url = reverse_lazy('contact:companylist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:companylist')
 
     def invalid_delete(self):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
@@ -155,9 +160,14 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         context["employees"] = filters.qs
         context["companies"] = Company.objects.all()
         context["projects"] = Project.objects.all()
+        context["roles"] = ROLE_TYPE_CHOICE
         context["projecttypes"] = PROJECT_TYPE_CHOICES
 
         return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:clientlist')
 
 
 class ClientUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -172,6 +182,8 @@ class ClientUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Upd
     def get_context_data(self, **kwargs):
         context = super(ClientUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
+        context["roles"] = ROLE_TYPE_CHOICE
+
         return context
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")

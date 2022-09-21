@@ -1,7 +1,10 @@
+# from webbrowser import registe
 from django.db import models
 from .choice import *
 from django.urls import reverse
-# from accounts.models import User
+# from django import template
+
+# register = template.Library()
 
 class CompanyQueryset(models.QuerySet):
     def is_client(self):
@@ -54,6 +57,7 @@ class Company(models.Model):
     updated             = models.DateField(auto_now_add=True)
     postal_code         = models.IntegerField(blank=True, null=True)
     responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
+    # responsible_person  = models.ForeignKey()
 
 
     objects             = CompanyManager()
@@ -70,4 +74,7 @@ class Company(models.Model):
     def is_responsible_person(self):
         return self.responsible_person
 
+    # @register.simple_tag
+    # def changeStatement(status):
+    #     return not status
 

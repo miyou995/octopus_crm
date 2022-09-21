@@ -104,10 +104,19 @@
                                                     </div>
                                                     <div class="form-group col-md-6 col-12">
                                                         <label for="id_role">Role</label>
-                                                        <input type="text" class="form-control" value="{{user.role}}" name="role" id="id_role">
+                                                        <select name="role" id="id_role" class="invalid-feedback">
+                                                        {% for key, value in roles %}
+                                                            {% if user.role == key %}
+                                                            <option value="{{key}}" selected>{{value}}</option>
+                                                            {% else %}
+                                                            <option value="{{key}}">{{value}}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        </select>
+                                                        {% comment %} <input type="text" class="form-control" value="{{user.role}}" name="role" id="id_role">
                                                         <div class="invalid-feedback">
                                                             Please fill in the last name
-                                                        </div>
+                                                        </div> {% endcomment %}
                                                     </div>
                                                 </div>
                                                 <div class="row">

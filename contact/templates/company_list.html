@@ -88,6 +88,7 @@
                                                     <th>Project</th>
                                                     <th>source</th>
                                                     <th>Date</th>
+                                                    <th>website</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -113,6 +114,7 @@
                                                         <td>{{company.source}}</td>
                                                         <td><span class="d-block text-info">{{company.collab_start}}</span>
                                                         </td>
+                                                        <td><a href="{{company.website}}">{{company.website}}</a></td>
                                                     <td>
                                                             <a href="editcompany_url" data-toggle="modal" data-target="#editModal-{{company.pk}}" class="btn icn">
                                                             <i data-feather="edit"></i>

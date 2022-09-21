@@ -112,18 +112,12 @@ class Project (models.Model):
 
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
     @property
     def get_absolute_url(self):
         return reverse("project:projectdetail", kwargs={"pk": self.pk})
-
-    # @property
-    # def get_contract_name(**kwargs):
-    #     for key, value in CONTRACT_TYPE_CHOICES:
-    #         if key == 'Q':
-    #             value = value
-    #     return value
+    
         
     # @property
     # def get_status_class(self):

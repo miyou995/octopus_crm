@@ -31,7 +31,7 @@
           <label for="id_decision">Decision</label>
           <select class="form-control" name="decision" id="id_decision">
           {% for key, value in decisions %}
-            <option value={{key}} selected>{{value}}</option>
+            <option value="{{key}}" selected>{{value}}</option>
           {% endfor %}
           </select>
         </div>
@@ -59,9 +59,14 @@
           <select class="form-control" name="role" id="id_role">
             <option value="" selected>selcet a role</option>
             {% for key, value in roles %}
-            <option value={{key}}>{{value}}</option>
+            <option value="{{key}}">{{value}}</option>
             {% endfor %}
           </select>
+        </div>
+
+        <div class="form-group col-6">
+          <input type="checkbox" id="id_is_responsible" name="is_responsible" value="{{user.is_responsible}}">
+          <label for="id_is_responsible">Responsible</label><br>
         </div>
 
         <div class="form-group col-6">

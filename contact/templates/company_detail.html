@@ -46,7 +46,9 @@
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> website </span>
-                      <span class="float-right text-muted">{{company.website}}</span>
+                      <span class="float-right text-muted">{% if company.website %}
+                      <a href="{{company.website}}">{{company.website}}</a>
+                      {% endif %}</span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> adress</span>
@@ -54,7 +56,18 @@
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> responsible_person</span>
-                      <span class="float-right text-muted"> {{company.responsible_person}}</span>
+                      <span class="float-right text-muted">
+                        {% for employee in employees %}
+                          {% if  employee.pk == company.responsible_person %}
+                          <a href="{{employee.get_absolute_url}}">{{company.responsible_person|{{personid}}}}sdfdsfds</a>
+                          
+                          {% else %}
+                          <a href="{{employee.get_absolute_url}}">link num: {{employee.pk}}</a>
+                          {{company.responsible_person}}
+                          
+                          {% endif %}
+                        {% endfor %}
+                      </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">cost</span>
@@ -105,7 +118,7 @@
                       {% for employee in employees %}
                       {% if employee.company.pk == company.pk %}
                         <tr>
-                          <td>{{employee.name}}</td>
+                          <td><a href="{{employee.get_absolute_url}}">{{employee.name}}</a></td>
                           <td>{{employee.role}}</td>
                           <td>{{employee.decision}}</td>
                           <td>{{employee.mobile}}</td>
@@ -147,10 +160,25 @@
                           <th style="width: 100px;">Start date</th>
                           <th style="width: 100px;">Status</th>
                           <th style="width: 100px;">Cost</th>
-                          <th style="width: 100px;">Subscription type</th>
+                          <th style="width: 100px;">contract type</th>
                         </tr>
                     
                       </thead>
+
+                      <tbody>
+                        {% for project in company_projects %}
+                        <tr>
+                          <td><a href="{{project.get_absolute_url}}">{{project.name}}</a></td>
+                          <td>{{project.started_date}}</td>
+                          <td>{{project.status}}</td>
+                          <td>{{project.cost}}</td>
+                          <td>{{project.contract}}</td>
+                          {% comment %} <td>project.</td> {% endcomment %}
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+
                       {% comment %}                       
                       <tbody>
                         {% for project in company_projects %}

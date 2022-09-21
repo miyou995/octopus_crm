@@ -85,9 +85,10 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     success_message = "Project added successfully."
     permission_required= 'project.add_project'
     success_url = reverse_lazy('project:projectlist')
+
     def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('project:projectlist')
 
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
@@ -107,9 +108,11 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
     success_message = "Project updated successfully."
     permission_required= 'project.change_project'
     success_url = reverse_lazy('project:projectlist')
+    
     def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('project:projectlist')
+        
     def get_context_data(self, **kwargs):
         context = super(ProjectUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
@@ -121,6 +124,12 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         return context
    
+# def ProjectUpdateView(request, pk):
+#     if request.POST:
+#         return redirect('project:projectlist')
+#     # return redirect(request, 'project:projectlist')
+    
+
 
 class ProjectDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DeleteView):
     model = Project

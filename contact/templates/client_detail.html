@@ -45,7 +45,9 @@
 
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">Role: </span>
-                      <span class="float-right text-muted"> {{user.role}}</span>
+                      <span class="float-right text-muted">{% if user.role %}
+{{user.role}}
+                      {% endif %} </span>
                     </p>
 
                     <p class="clearfix">
@@ -126,7 +128,7 @@
                       {% for project in projects %}
                       {% if user == project.manager %}
                       <tr>
-                        <td> {{project.name}} </td>
+                        <td> <a href="{{project.get_absolute_url}}">{{project.name}}</a> </td>
                         <td>{{project.started_date}}</td>
                         <td>{{project.get_status_display}}</td>
                         <td>{{project.cost}}</td>
