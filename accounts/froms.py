@@ -20,8 +20,8 @@ class UserCreationForm(DjangoUserCreationForm):
 class UserEditForm(forms.ModelForm):
     class Meta: 
         model = models.User
-        fields = ("picture","pseudo","role",  "notes")
-        required= ("pseudo", "role","picture","pseudo","role", "notes")
+        fields = ("picture","pseudo","role",  "notes", "is_responsible")
+        # required= ("pseudo", "role","picture", "notes")
         
          
     #     logger.info(

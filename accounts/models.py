@@ -104,6 +104,7 @@ class User(AbstractUser):
     notes           = tinymce_models.HTMLField( blank=True, null=True)
     is_active       = models.BooleanField(default=False)
     is_manager      = models.BooleanField(default=False)
+    is_responsible  = models.BooleanField(default=False)
     is_admin        = models.BooleanField(default=False)
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
@@ -116,7 +117,7 @@ class User(AbstractUser):
     
     created         = models.DateField(auto_now=True)
     updated         = models.DateField(auto_now_add=True)
-    company         = models.ForeignKey(Company, blank=True, null=True, on_delete=models.CASCADE, related_name='reel_users')
+    company         = models.ForeignKey(Company, blank=True, null=True, on_delete=models.CASCADE, related_name='users_company')
     objects         = UserManager()
 
 

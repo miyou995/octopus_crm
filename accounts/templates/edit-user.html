@@ -33,10 +33,19 @@
                 </div>
                 <div class="col-md-6">
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label" for="id_role">Role :</label>
-                    <div class="col-sm-9">
+                    <label class="col-sm-3 col-form-label" for="id_role">Roledfdfdfdf :</label>
+                    <select name="role" id="id_role">
+                      {% for key, value in roles %}
+                        {% if user.role == key %}
+                          <option value="{{key}}" selected>{{value}}</option>
+                        {% else %}
+                          <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                    {% comment %} <div class="col-sm-9">
                       <input type="text" name="role" class="form-control " maxlength="150" required="" id="id_role" value="{{user.role}}"> 
-                    </div>
+                    </div> {% endcomment %}
                 </div>
               </div>
                 <div class="col-md-6">

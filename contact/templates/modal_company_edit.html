@@ -1,3 +1,4 @@
+{% comment %} {% load models %} {% endcomment %}
 
 <div class="modal fade" id="editModal-{{company.id}}" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -72,13 +73,19 @@
               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                 <label for="id_company_type">company type </label>
                 <select class="form-control" name="company_type" id="id_company_type">
+                  {% comment %} {% with statement=1 %} {% endcomment %}
                     {% for key, value in companytypes %}
+                      {% comment %} {% if company.companytypes == key and statement %} {% endcomment %}
                       {% if company.companytypes == key %}
-                        <option value="{{company.companytypes}}">{{value}}</option>
+                        {% comment %} {% changeStatement statement as statement %} {% endcomment %}
+                        <option value="{{company.companytypes}}" selected>{{value}}</option>
                       {% else %}
+                      {% comment %} <option value="" selected>select company type</option> {% endcomment %}
                         <option value="{{key}}">{{value}}</option>
                       {% endif %}
                     {% endfor %}
+                  {% comment %} {% endwith %} {% endcomment %}
+
                 </select>
               </div>
             </div>
@@ -87,10 +94,13 @@
               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                 <label for="id_project_type">project type </label>
                 <select class="form-control" name="project_type" id="id_project_type">
+                
                     {% for key, value in projecttypes %}
                       {% if company.project_type == key %}
-                        <option value="{{company.project_type}}">{{value}}</option>
+                        <option value="{{company.project_type}}" selected>{{value}}</option>
+                        
                       {% else %}
+                      <option value="" selected>select project type</option>
                         <option value="{{key}}">{{value}}</option>
                       {% endif %}
                     {% endfor %}
@@ -111,7 +121,16 @@
             <div class="form-group form-float center-block">
               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                 <label for="id_responsible_person">Responsible person </label>
-                <input type="text" name="responsible_person" id="id_responsible_person" class="form-control" {% if company.responsible_person %}value="{{company.responsible_person}}" {% endif %}>
+                <select name="responsible_person" id="id_responsible_person" class="form-control">
+                  {% comment %} <option value="" selected="">Select Responsible person</option> {% endcomment %}
+                    {% for employee in employees %}
+                      {% if company.employee.pk == employee.pk %}
+                        <option value="{{employee.pk}}" selected>{{employee.name}}</option>
+                      {% else %}
+                        <option value="{{employee.pk}}">{{employee.name}}</option>
+                      {% endif %}
+                    {% endfor %}
+                </select>
               </div>
             </div>
 

@@ -1,6 +1,7 @@
+from multiprocessing import context
 from pipes import Template
 from pprint import pprint
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import logging
 from django.contrib.auth import login, authenticate
 from django.contrib.messages import constants as messages
@@ -17,6 +18,7 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.utils.functional import lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from .choice import ROLE_TYPE_CHOICE
 
 # Create your views here.
 # logger = logging.getLogger(__name__)
@@ -39,6 +41,11 @@ class SignupsuccessView(TemplateView):
 class UserView(TemplateView):
     model = User
     template_name= "user-detail.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super(UserView, self).get_context_data(**kwargs)
+        context["roles"] = ROLE_TYPE_CHOICE
+        return context
   
 
 class UserUpdateView(SuccessMessageMixin, UpdateView):
@@ -47,13 +54,24 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'profile.html' 
     success_message = "profile updated successfully."
     success_url = reverse_lazy('accounts:profile')
+
+    def get_context_data(self, **kwargs):
+        context =  super(UserUpdateView, self).get_context_data(**kwargs)
+        context["roles"] = ROLE_TYPE_CHOICE
+        return context
+
     def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('project:projectlist')
    
 
 class profileView(TemplateView):
     model = User
     template_name= "profile.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super(profileView, self).get_context_data(**kwargs)
+        context["roles"] = ROLE_TYPE_CHOICE
+        return context
 
 # class AddUser()

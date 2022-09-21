@@ -20,7 +20,7 @@
                             <div class="form-group form-float center-block">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_name" style="font-weight:bold;">Project title</label>
-                                <input type="text"  name="name" id="id_name" class="form-control" {% if project.name %} value="{{project.name}}" {% endif %}  placeholder="Enter a title" required>
+                                <input type="text" name="name" id="id_name" class="form-control" {% if project.name %} value="{{project.name}}" {% endif %}  placeholder="Enter a title" required>
                               </div>
                             </div>
                             <div class="form-group form-float center-block">
@@ -29,7 +29,7 @@
                                 <select class="form-control" name="project_type" id="id_project_type">
                                   {% for key, value in projecttypes %}
                                     {% if project.project_type == key %}
-                                      <option value="{{project.project_type}}">{{value}}</option>
+                                      <option value="{{project.project_type}}" selected>{{value}}</option>
                                     {% else %}
                                       <option value="{{key}}">{{value}}</option>
                                     {% endif %}
@@ -41,7 +41,6 @@
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_company" style="font-weight:bold;">Company </label>
                                 <select class="form-control" name="company" id="id_company">
-                                  <option value="" selected="">Select a company</option>
                                   {% for company in companies %}
                                     {% if project.company.pk == company.pk %}
                                     <option value="{{company.id}}" selected>{{company.name}}</option>
@@ -57,7 +56,6 @@
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label for="id_status" style="font-weight:bold;"> status </label>
                                 <select class="form-control" name="status" id="id_status">
-                                  <option value="" selected="">Select status</option>
                                   {% for key, value in projectstatus %}
                                     {% if project.status == key %}
                                       <option value="{{project.status}}" selected>{{value}}</option>
@@ -138,11 +136,14 @@
                                 <textarea name="description" {% if project.description %} value="{{project.description}}" {% endif %} class="form-control bg-white" id="id_description"> </textarea>
                               </div>
                             </div>
-                          </fieldset>    
+                          </fieldset>  
+                             <div class="actions clearfix"> 
+                            <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" >Edit</button>                     
+                        </div>  
                         </form>
-                        <div class="actions clearfix"> 
+                        {% comment %} <div class="actions clearfix"> 
                             <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" form="editProjectForm-{{project.pk}}">Edit</button>                     
-                        </div>
+                        </div> {% endcomment %}
                   </div>
                 </div>
               </div>
