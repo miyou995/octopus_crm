@@ -58,13 +58,10 @@
                       <span class="float-left" style="font-weight: bold;"> responsible_person</span>
                       <span class="float-right text-muted">
                         {% for employee in employees %}
-                          {% if  employee.pk == company.responsible_person %}
-                          <a href="{{employee.get_absolute_url}}">{{company.responsible_person|{{personid}}}}sdfdsfds</a>
-                          
+                          {% if  employee.is_responsible is not True %}
+                          <a href="#">{{company.employee.name}}</a>
                           {% else %}
-                          <a href="{{employee.get_absolute_url}}">link num: {{employee.pk}}</a>
-                          {{company.responsible_person}}
-                          
+                          <a href="{{employee.get_absolute_url}}">{{employee.name}}</a>
                           {% endif %}
                         {% endfor %}
                       </span>
@@ -118,7 +115,13 @@
                       {% for employee in employees %}
                       {% if employee.company.pk == company.pk %}
                         <tr>
-                          <td><a href="{{employee.get_absolute_url}}">{{employee.name}}</a></td>
+                          <td>
+                          {% if employee.is_responsible is not True %}
+                            <a href="{{employee.get_absolute_url}}">{{employee.name}}</a>
+                          {% else %}
+                            <a href="{{employee.get_absolute_url}}" style ="color: red">{{employee.name}}</a>
+                          {% endif %}
+                          </td>
                           <td>{{employee.role}}</td>
                           <td>{{employee.decision}}</td>
                           <td>{{employee.mobile}}</td>

@@ -105,10 +105,12 @@
                           <td>{{project.started_date}}</td>
                           <td class="text-danger"> {{project.deadline}}</td>
                           
-                          <td><a {% if project.manager %} href="{{project.manager.get_absolute_url}}" {% endif %}>{{project.manager}}</a>  </td>
+                          {% if project.manager %} 
+                            <td><a href="{{project.manager.get_absolute_url}}" >{{project.manager.name}}</a>  </td>
+                          {% endif %}
                           <td class="text-info"> {{project.cost}} DZD</td>
                           <td> {{project.get_project_type_display}} </td>
-                          <td>{{project.get_contract_display}}</td>
+                          <td>{{project.get_contract_display}}</td>   
                           <td><span
                               class="badge badge-pill {{project.get_status_class}}">{{project.get_status_display}}</span>
                           </td>
