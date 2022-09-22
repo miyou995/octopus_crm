@@ -27,6 +27,11 @@ from django.db.models import Sum
 
 #cashflow
 
+
+        
+class CashView(TemplateView):
+    template_name= "cashflow.html"
+
     
 class CashflowAccountListView(ListView): 
     template_name= "account_list.html"
@@ -96,3 +101,4 @@ class AddTransactionView(CreateView):
         context["accounts"] = Account.objects.all()
         context["projects"] = Project.objects.all()
         return context
+
