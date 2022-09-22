@@ -75,6 +75,13 @@
                       <span class="float-left" style="font-weight: bold;"> Start date</span>
                       <span class="float-right text-muted">{{user.collab_start}}</span>
                     </p>
+                    {% if user.is_responsible %}
+                      <p class="clearfix">
+                        <span class="float-left" style="font-weight: bold;"> Responsible of: </span>
+                        <span class="float-right text-muted"><a href="{{user.company.get_absolute_url}}" style ="color: red">{{user.company.name}}</a></span>
+                      </p>
+                    {% else %}
+                    {% endif %}
                   </div>
                 </div>
               </div>

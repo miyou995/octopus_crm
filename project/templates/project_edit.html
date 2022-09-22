@@ -114,7 +114,7 @@
                                 <select class="form-control" name="manager" id="id_manager">
                                   {% for employee in employees %}
                                     {% if project.manager.id == employee.id%}
-                                    <option value="{{project.manager}}" selected>{{employee.name}}</option>
+                                    <option value="{{project.manager.id}}" selected>{{employee.name}}</option>
                                     {% else %}
                                       <option value="{{employee.id}}">{{employee.name}}</option>
                                     {% endif %}

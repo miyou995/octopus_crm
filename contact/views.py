@@ -85,7 +85,7 @@ class CompanyDetailView(RedirectPermissionRequiredMixin, DetailView):
         company_id = self.get_object().id
         context["company_projects"] = Project.objects.filter(company = company_id)
         context["projects"] = Project.objects.all()
-        context["employees"] = User.objects.all()
+        context["employees"] = User.objects.filter(company=company_id).order_by('-is_responsible')
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         context["companytypes"] = COMPANY_TYPE_CHOICES
         return context
@@ -162,6 +162,7 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         context["projects"] = Project.objects.all()
         context["roles"] = ROLE_TYPE_CHOICE
         context["projecttypes"] = PROJECT_TYPE_CHOICES
+        context["decisions"] = DECISION_TYPE_CHOICES
 
         return context
 
@@ -183,6 +184,7 @@ class ClientUpdateView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Upd
         context = super(ClientUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         context["roles"] = ROLE_TYPE_CHOICE
+        context["decisions"] = DECISION_TYPE_CHOICES
 
         return context
     def form_invalid(self, form):
