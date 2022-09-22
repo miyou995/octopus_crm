@@ -12,94 +12,59 @@
       <div class="main-content">
         <section class="section">
           <div class="section-body">
-
-            <div class="row ">
-              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="card">
-                  <div class="card-statistic-4">
-                    <div class="align-items-center justify-content-between">
-                      <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                          <div class="card-content">
-                            <h5 class="font-15"> New Invoices</h5>
-                            <h2 class="mb-3 font-18">10</h2>
-                            <p class="mb-0"><span class="col-green">10%</span> Increase</p>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                          <div class="banner-img">
-                            <img src="{% static '/images/banner/1.png' %}" alt="">
-                          </div>
-                        </div>
-                      </div>
+            
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-cyan">
+                    <i class="fas fa-hiking"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">New Clients</h4>
                     </div>
+                    <div class="card-body pull-right">
+                      10,225
+                    </div>
+                  </div>
+                  <div class="card-chart">
+                    <canvas id="chart-1" height="80"></canvas>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="card">
-                  <div class="card-statistic-4">
-                    <div class="align-items-center justify-content-between">
-                      <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                          <div class="card-content">
-                            <h5 class="font-15"> Customers</h5>
-                            <h2 class="mb-3 font-18">1,287</h2>
-                            <p class="mb-0"><span class="col-orange">09%</span> Decrease</p>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                          <div class="banner-img">
-                            <img src="{% static '/images/banner/2.png' %}" alt="">
-                          </div>
-                        </div>
-                      </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-purple">
+                    <i class="fas fa-drafting-compass"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">New projects</h4>
                     </div>
+                    <div class="card-body pull-right">
+                      2,857
+                    </div>
+                  </div>
+                  <div class="card-chart">
+                    <canvas id="chart-2" height="80"></canvas>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="card">
-                  <div class="card-statistic-4">
-                    <div class="align-items-center justify-content-between">
-                      <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                          <div class="card-content">
-                            <h5 class="font-15">New Project</h5>
-                            <h2 class="mb-3 font-18">128</h2>
-                            <p class="mb-0"><span class="col-green">18%</span>
-                              Increase</p>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                          <div class="banner-img">
-                            <img src="{% static 'images/banner/3.png' %} " alt="">
-                          </div>
-                        </div>
-                      </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-green">
+                    <i class="fas fa-dollar-sign"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4 class="pull-right">Total Earning</h4>
+                    </div>
+                    <div class="card-body pull-right">
+                      $17,458
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="card">
-                  <div class="card-statistic-4">
-                    <div class="align-items-center justify-content-between">
-                      <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
-                          <div class="card-content">
-                            <h5 class="font-15">Revenue</h5>
-                            <h2 class="mb-3 font-18">$48,697</h2>
-                            <p class="mb-0"><span class="col-green">42%</span> Increase</p>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
-                          <div class="banner-img">
-                            <img src="{% static '/images/banner/4.png' %} " alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="card-chart">
+                    <canvas id="chart-3" height="80"></canvas>
                   </div>
                 </div>
               </div>
@@ -191,18 +156,18 @@
                 </div>
               </div>
             </div>
-            {% comment %} <div class="row">
+             {% comment %} <div class="row">
               <div class="col-12 col-sm-12 col-lg-4">
                 <div class="card">
                   <div class="card-header">
                     <h4>Chart</h4>
                   </div>
                   <div class="card-body">
-                    <div id="chart4" class="chartsh"></div>
+                   
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-sm-12 col-lg-4">
+              </div> {% endcomment %}
+             {% comment %} <div class="col-12 col-sm-12 col-lg-4">
                 <div class="card">
                   <div class="card-header">
                     <h4>Chart</h4>
@@ -242,7 +207,7 @@
                   </div>
                   <div class="card-body">
                     <div class="support-ticket media pb-1 mb-3">
-                      <img src="/img/users/user-1.png" class="user-img mr-2" alt="">
+                      <img src="{% static 'images/avatar.png' %}" class="user-img mr-2" alt="">
                       <div class="media-body ml-3">
                         <div class="badge badge-pill badge-success mb-1 float-right">Feature</div>
                         <span class="font-weight-bold">#89754</span>
@@ -254,7 +219,7 @@
                       </div>
                     </div>
                     <div class="support-ticket media pb-1 mb-3">
-                      <img src="/img/users/user-1.png" class="user-img mr-2" alt="">
+                      <img src="{% static 'images/avatar.png' %}" class="user-img mr-2" alt="">
                       <div class="media-body ml-3">
                         <div class="badge badge-pill badge-warning mb-1 float-right">Bug</div>
                         <span class="font-weight-bold">#57854</span>
@@ -266,7 +231,7 @@
                       </div>
                     </div>
                     <div class="support-ticket media pb-1 mb-3">
-                      <img src="/img/users/user-1.png" class="user-img mr-2" alt="">
+                      <img src="{% static 'images/avatar.png' %}" class="user-img mr-2" alt="">
                       <div class="media-body ml-3">
                         <div class="badge badge-pill badge-primary mb-1 float-right">Query</div>
                         <span class="font-weight-bold">#85784</span>
@@ -277,7 +242,7 @@
                       </div>
                     </div>
                     <div class="support-ticket media pb-1 mb-3">
-                      <img src="/img/users/user-1.png" class="user-img mr-2" alt="">
+                      <img src="{% static 'images/avatar.png' %}" class="user-img mr-2" alt="">
                       <div class="media-body ml-3">
                         <div class="badge badge-pill badge-info mb-1 float-right">Enhancement</div>
                         <span class="font-weight-bold">#25874</span>
@@ -297,86 +262,75 @@
                <div class="col-md-6 col-lg-12 col-xl-6"> 
                 <div class="card">
                   <div class="card-header">
-                    <h4>Projects Payments</h4>
+                      <h4>Recent Transactions</h4>
+                      <div class="card-header-form">
+                          <button class="btn btn-primary">View more </button>          
+                      </div>
                   </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-hover mb-0">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Client Name</th>
-                            <th>Date</th>
-                            <th>Payment Method</th>
-                            <th>Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>John Doe </td>
-                            <td>11-08-2018</td>
-                            <td>NEFT</td>
-                            <td>$258</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Cara Stevens
-                            </td>
-                            <td>15-07-2018</td>
-                            <td>PayPal</td>
-                            <td>$125</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>
-                              Airi Satou
-                            </td>
-                            <td>25-08-2018</td>
-                            <td>RTGS</td>
-                            <td>$287</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>
-                              Angelica Ramos
-                            </td>
-                            <td>01-05-2018</td>
-                            <td>CASH</td>
-                            <td>$170</td>
-                          </tr>
-                          <tr>
-                            <td>5</td>
-                            <td>
-                              Ashton Cox
-                            </td>
-                            <td>18-04-2018</td>
-                            <td>NEFT</td>
-                            <td>$970</td>
-                          </tr>
-                          <tr>
-                            <td>6</td>
-                            <td>
-                              John Deo
-                            </td>
-                            <td>22-11-2018</td>
-                            <td>PayPal</td>
-                            <td>$854</td>
-                          </tr>
-                          <tr>
-                            <td>7</td>
-                            <td>
-                              Hasan Basri
-                            </td>
-                            <td>07-09-2018</td>
-                            <td>Cash</td>
-                            <td>$128</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div class="card-body p-0">
+                      <div class="table-responsive">
+                          <table class="table table-striped">
+                              <tr>
+                                  <th>Project</th>
+                                  <th>Date</th>
+                                  <th>Account</th>
+                                  <th>Amount</th>
+                                  <th>Status</th>
+                              </tr>
+                              <tr>
+                                  <td> mobile app</td>
+                                  <td>2018-01-20</td>
+                                  <td class="text-truncate">
+                                      <ul class="list-unstyled order-list m-b-0 m-b-0">
+                                          <li class="team-member team-member-sm"><img class="rounded-circle"
+                                                  src="{% static '/images/avatar.png' %}" alt="user"
+                                                  data-toggle="tooltip" title=""
+                                                  data-original-title="Wildan Ahdian"></li>
+                                      </ul>
+                                  </td>
+                                  <td>1235 DA</td>
+                                  <td>
+                                      <div class="badge badge-success">Payed</div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>CRM</td>
+                                  <td>2018-01-20</td>
+                                  <td class="text-truncate">
+                                      <ul class="list-unstyled order-list m-b-0 m-b-0">
+                                          <li class="team-member team-member-sm"><img class="rounded-circle"
+                                                  src="{% static '/images/avatar.png' %}" alt="user"
+                                                  data-toggle="tooltip" title=""
+                                                  data-original-title="Wildan Ahdian"></li>
+                                      </ul>
+                                  </td>
+                                  <td>1235 DA</td>
+                                  <td>
+                                      <div class="badge badge-danger">not payed</div>
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <td>E-commerce</td>
+                                  <td>2018-01-20</td>
+                                  <td class="text-truncate">
+                                      <ul class="list-unstyled order-list m-b-0 m-b-0">
+                                          <li class="team-member team-member-sm"><img class="rounded-circle"
+                                                  src="{% static '/images/avatar.png' %}" alt="user"
+                                                  data-toggle="tooltip" title=""
+                                                  data-original-title="Wildan Ahdian"></li>
+                                      </ul>
+                                  </td>
+                                  <td>1235 DA</td>
+                                  <td>
+                                      <div class="badge badge-warning">Pending</div>
+                                  </td>
+                              </tr>
+                          </table>
+                      </div>
                   </div>
-                </div>
+              </div>
+              
               </div>
             </div>
           </div>

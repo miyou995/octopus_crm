@@ -5,3 +5,6 @@ from django.views.generic import TemplateView
 
 class InvoiceView(TemplateView):
     template_name = "invoice.html" 
+
+class BillsView(TemplateView):
+    template_name = "bills.html" 
