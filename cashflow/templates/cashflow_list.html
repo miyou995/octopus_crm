@@ -5,13 +5,19 @@
 <title>Cashflow</title>
 {% endblock %}
 
+
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'add-transaction.html'%}
+    </div>
+  </div>
+
 <div class="main-content">
     <section class="section">
         <div class="section-body">
-
             <div class="row">
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 ">
-                    <div class="card">
+                    <div class="card">                       
                         <div class="card-body card-type-3">
                             <div class="row">
                                 <div class="col">
@@ -103,7 +109,9 @@
                         <div class="card-header">
                             <h4>Recent Transactions</h4>
                             <div class="card-header-form">
-                                <button class="btn btn-primary">Add </button>
+                                <button hx-get="{% url 'cashflow:addtransaction' %}" hx-target="#addContent" data-toggle="modal"
+                                data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus"><i
+                                  data-feather="plus"></i></button>
                                 <!-- <form>
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search">

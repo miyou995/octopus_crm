@@ -1,117 +1,123 @@
 <div class="modal fade" id="editContent-{{employee.pk}}" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document">
-
     <div id="editContent-{{employee.pk}}" class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="detailModalLabel">Edit client {{employee.name}}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-          aria-hidden="true">&times;</span></button>
+            aria-hidden="true">&times;</span></button>
       </div>
-
       <div class="modal-body">
-        <form action="{{editclient_url}}" class="wizard_with_validation" id="editEmployeeForm-{{employee.pk}}" method="post">
+        <form action="{{editclient_url}}" id="editEmployeeForm-{{employee.pk}}"
+          method="post">
           {% csrf_token %}
-            <div class="row">
-                <div class="form-group col-6">
-                  <label for="id_name">Name</label>
-                  <input type="text" name="name" id="id_name" {% if employee.name %} value="{{employee.name}}" {% endif %}
-                  required class="form-control" type="text" autofocus>
-                </div>
-                <div class="form-group col-6">
-                  <label for="id_company">Company</label>
-                  <select class="form-control" name="company"  id="id_company">
-                    <option value="" selected>Select a company </option>
-                      {% for company in companies %}
-                        <option  value="{{company.pk}}" {% if employee.company.id == company.id %}selected{% endif %} >{{company.name}}</option>                
-                      {% endfor %}
-                  </select>
-                </div>
-              </div>
-          
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="id_decision">Decision</label>
-                  <select class="form-control" name="decision" id="id_decision">
-                  {% for key, value in decisions %}
-                    {% if employee.decision == key %}
-                    
-                      <option value="{{key}}" selected>{{value}}</option>
-                    {% else %}
-                      <option value="{{key}}">{{value}}</option>
-                    {% endif %}
-                  {% endfor %}
-                  </select>
-                </div>
-                <div class="form-group col-6">
-                  <label for="id_slug">Mobile</label>
-                  <input type="text" name="mobile" id="id_mobile" 
-                    pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" maxlength="200" maxlength="150"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="id_category">Email</label>
-                  <input type="email" name="email"  class="form-control" {% if employee.email %} value="{{employee.email}}" {% endif %} autofocus>
-                </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_name">Name</label>
+              <input type="text" name="name" id="id_name" {% if employee.name %} value="{{employee.name}}" {% endif %}
+                required class="form-control" type="text" autofocus>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_role">role</label>
+              <select class="form-control" name="role" id="id_role">
+                {% for key, value in roles %}
+                {% if employee.role == key %}
+                <option value="{{key}}" selected>{{value}}</option>
+                {% else %}
+                <option value="{{key}}">{{value}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_address">Address</label>
+              <input type="text" name="address" id="id_address" {% if employee.address %} value="{{employee.address}}"
+                {% endif %} class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label for="id_slug">Mobile</label>
+              <input type="text" name="mobile" id="id_mobile"
+                pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" maxlength="200" maxlength="150"
+                class="form-control">
+            </div>
+          </div>
 
-                <div class="form-group col-6">
-                  <label for="id_category">Password</label>
-                  <input type="text" name="password" {% if user.password %} value="{{user.password}}" {% endif %} class="form-control" autofocus>
-                </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_category">Email</label>
+              <input type="email" name="email" class="form-control" {% if employee.email %} value="{{employee.email}}"
+                {% endif %} autofocus>
+            </div>
 
-              <div class="form-group col-6">
-                <label for="id_role">role</label>
-                <select class="form-control" name="role" id="id_role">
-                    {% for key, value in roles %}
-                      {% if employee.role == key %}
-                      <option value="{{key}}" selected>{{value}}</option>
-                      {% else %}
-                      <option value="{{key}}">{{value}}</option>
-                      {% endif %}
-                    {% endfor %}
-                </select>
-              </div>
+            <div class="form-group col-6">
+              <label for="id_category">Password</label>
+              <input type="text" name="password" {% if user.password %} value="{{user.password}}" {% endif %}
+                class="form-control" autofocus>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_company">Company</label>
+              <select class="form-control" name="company" id="id_company">
+                <option value="" selected>Select a company </option>
+                {% for company in companies %}
+                <option value="{{company.pk}}" {% if employee.company.id == company.id %}selected{% endif %}>
+                  {{company.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_decision">Decision</label>
+              <select class="form-control" name="decision" id="id_decision">
+                {% for key, value in decisions %}
+                {% if employee.decision == key %}
 
-              <div class="form-group col-6">
-                <input type="checkbox" id="id_is_responsible" {% if employee.is_responsible %} 
-                value="{{employee.is_responsible}}" checked{% else %} value="{{employee.is_responsible}}"  {% endif %}   name="is_responsible">
-                <label for="id_is_responsible">Responsible</label><br>
-              </div>
-
-              <div class="form-group col-6">
-                <label for="id_address">Address</label>
-                <input type="text" name="address" id="id_address" {% if employee.address %} value="{{employee.address}}" {% endif %} class="form-control">
-              </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="id_source">Source</label>
-                    <input type="text" name="source" id="id_source" {% if employee.source %} value="{{employee.source}}" {% endif %} class="form-control" autofocus>
-                </div>
-              {% comment %} <div class="form-group col-6">
-                <label for="id_project_name">Project name</label>
-                <select class="form-control" name="project_name" id="id_project_name">
-                  <option value="" selected>project name</option>
-                  {% for project in projects %}
-                  <option value="{{project.pk}}" >{{project.name}}</option>
-                  {% endfor %}
-                </select>
-              </div> {% endcomment %}
-              </div>
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="id_collab_start">Collab start</label>
-                  <input type="date" name="collab_start" id="id_collab_start" {% if employee.collab_start %} value="{{employee.collab_start|date:'Y-m-d'}}" {% endif %} class="form-control">
-                </div>
-              </div>
-          </form>
-        <div class="actions clearfix"> 
-          <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem" form="editEmployeeForm-{{employee.pk}}">Edit</button>                     
+                <option value="{{key}}" selected>{{value}}</option>
+                {% else %}
+                <option value="{{key}}">{{value}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label for="id_source">Source</label>
+              <input type="text" name="source" id="id_source" {% if employee.source %} value="{{employee.source}}"
+                {% endif %} class="form-control" autofocus>
+            </div>
+            <div class="form-group col-6">
+              <label for="id_collab_start">Collab start</label>
+              <input type="date" name="collab_start" id="id_collab_start" {% if employee.collab_start %}
+                value="{{employee.collab_start|date:'Y-m-d'}}" {% endif %} class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <input type="checkbox" id="id_is_responsible" {% if employee.is_responsible %}
+                value="{{employee.is_responsible}}" checked{% else %} value="{{employee.is_responsible}}" {% endif %}
+                name="is_responsible">
+              <label for="id_is_responsible">Responsible</label><br>
+            </div>
+          </div>
+          {% comment %}<div class="row">
+            <div class="form-group col-6">
+              <label for="id_project_name">Project name</label>
+              <select class="form-control" name="project_name" id="id_project_name">
+                <option value="" selected>project name</option>
+                {% for project in projects %}
+                <option value="{{project.pk}}">{{project.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>{% endcomment %}
+        </form>
+        <div class="actions clearfix">
+          <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem"
+            form="editEmployeeForm-{{employee.pk}}">Edit</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-

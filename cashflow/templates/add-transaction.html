@@ -1,143 +1,49 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-{% block title %}
-<title>Cashflow</title>
-{% endblock %}
- 
-      <div class="content-wrapper">
-          <div class="page-header">
-              <h3 class="page-title">
-                Transaction
-              </h3>
-          </div>
-          <div class="col-12 grid-margin">
-            <div class="card">
-              <div class="card-body">
-       
-                <h4 class="card-title">Add transaction</h4>
-                <form action="{% url 'project:addtransaction' %}" method="post"  class="form-sample">
-                    {% csrf_token %}
-                    <p class="card-description">
-                    
-                    </p>
-                           
-                              
-                                  {% comment %} row {% endcomment %}
-                                    <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="form-group row">				
-                                          <label class="col-sm-3 col-form-label"  for="id_account">Account: </label>
-                                          <div class="col-sm-9">
-                                            <select class="form-control"  name="account" id="id_account"> 
-                                              <option value="" selected="">Select an account</option>
-                                              {% for account in accounts %}
-                                              <option value="{{account.id}}">{{account.name}}</option>
-                                              {% endfor %}	
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <div class="form-group row">				
-                                          <label class="col-sm-3 col-form-label"  for="id_account">Project: </label>
-                                          <div class="col-sm-9">
-                                            <select class="form-control"  name="account" id="id_account"> 
-                                              <option value="" selected="">Select a project</option>
-                                              {% for project in projects %}
-                                              <option value="{{project.id}}">{{project.name}}</option>
-                                              {% endfor %}	
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                    </div>
-                                  {% comment %} end of row {% endcomment %}
-                                  {% comment %} row {% endcomment %}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                          <div class="form-group row"> 
-                                            <label class="col-sm-3 col-form-label"  for="id_tr_type">transaction type </label>
-                                            <div class="col-sm-9">
-                                              <select class="form-control"  name="tr_type" id="id_tr_type"> 
-                                                <option value="" selected="">Select a transaction type</option>
-                                                <option value="PA">paiement</option>
-                                                <option value="SA">salaire</option>
-                                                <option value="CR">creance</option>
-                                                <option value="CH">charges</option>
-                                                <option value="AL">allouer</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" for="id_other">Other </label>
-                                            <div class="col-sm-9">
-                                              <input  type="text" name="other"  id="id_other"   class="form-control" >
-                                            </div>
-                                          </div>
-                                        </div>  
-                                    </div>
-                                </div>
-                                  {% comment %} end of row {% endcomment %}
-                            {% comment %} row {% endcomment %}
-                              <div class="row">
-                              
-                                   <div class="col-md-6">
-                                        <div class="form-group row">
-                                          <label class="col-sm-3 col-form-label" for="id_amount">Amount</label>
-                                          <div class="col-sm-9">
-                                          <input type="number" name="amount"  id="id_amount" required=""  maxlength="200" class="form-control">
-                                          </div>
-                                        </div>
-                                      </div>  
-                                  <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label" for="id_date">date </label>
-                                        <div class="col-sm-9">
-                                          <input type="date" name="date"  id="id_date" required maxlength="200" class="form-control">
-
-                                        </div>
-                                    </div>
-                                  </div>                         
-                              </div>
-                            {% comment %} end of row {% endcomment %}
-                                  
-                                {% comment %} row {% endcomment %}
-                                <div class="row">
-                                   
-                                  <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label" for="id_note">Note </label>
-                                        <div class="col-sm-9">
-                                          <input type="text" name="note"  id="id_note" required maxlength="200" class="form-control">
-
-                                        </div>
-                                    </div>
-                                  </div>                         
-                              </div>
-                             
-                            {% comment %} end of row {% endcomment %}
-
-                   
-                            <input type="submit" value="Submit" class="btn btn-primary mr-2" name="_save">
-                      </form>
-                      
-           
-              </div>
-            </div>
-          </div>
-
-
-      
-      
-      
-      
-      
-        </div>
-    <!-- main-panel ends -->
+<div id="addContent" class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="detailModalLabel">Add transaction</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
   </div>
-
-  {% endblock content %}
+  <div class="modal-body">
+    <form action="" method="post" id="addtransactionform">
+      <div class="form-group   col-12">
+        <label for="id_name">Title</label>
+        <input type="text" name="Title" id="transa_title" required class="form-control" autofocus>
+      </div>
+      <div class="form-group   col-12">
+        <label for="id_name">Account</label>
+        <select class="form-control" name="account" id="transa_account">
+          <option value="" selected>Chose an account</option>
+          <option value="">account name</option>
+        </select>
+      </div>
+      <div class="form-group   col-12">
+        <label for="id_name">Date</label>
+        <input type="date" name="date" id="transa_date" required class="form-control" autofocus>
+      </div>
+      <div class="form-group   col-12">
+        <label for="id_name">Amount</label>
+        <input type="number" name="amount" id="transa_amount" required class="form-control" autofocus>
+      </div>
+      <div class="form-group   col-12">
+        <label for="id_name">Payement method</label>
+        <select class="form-control" name="pay_method" id="pay_method">
+          <option value="" selected>Cash</option>
+          <option value="">Carte</option>       
+        </select>
+      </div>
+      <div class="form-group   col-12">
+        <label for="id_name">Status</label>
+        <select class="form-control" name="Status" id="transa_status">
+          <option value="" selected>Payed</option>
+          <option value="">Not payed</option>
+          <option value="">Pending</option>
+        </select>
+      </div>
+    </form>
+    <div class="actions clearfix">
+      <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem"
+        form="addtransactionform">Add</button>
+    </div>
+  </div>
+</div>

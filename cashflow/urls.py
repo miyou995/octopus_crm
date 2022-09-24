@@ -18,11 +18,9 @@ urlpatterns = [
    path('accounttdetail/<int:pk>/', login_required(AccountDetailView.as_view()), name="accounttdetail"),
    path('addaccounts', login_required(AddAccountView.as_view()), name="addaccounts"),
 
-   path('cashflowlist', login_required(CashflowListView.as_view()), name='cashflowlist'),
-   path('addtransaction', login_required(AddTransactionView.as_view()), name="addtransaction"),
-   # path('cash/',CashView.as_view(), name="cashflow"),
+   path('cashflow/transactionlist', login_required(CashflowListView.as_view()), name='cashflowlist'),
+   path('cashflow/addtransaction', login_required(AddTransactionView.as_view()), name="addtransaction"),
    
-
 ]
 
 
