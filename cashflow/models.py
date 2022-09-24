@@ -1,22 +1,13 @@
+from secrets import choice
 from django.db import models
 from project.models import Project
 from accounts.models import User
 from django.db.models import Sum
+from .choice import TRANSACTION_STATUS, TRANSACTION_TYPE_CHOICES, ACCOUNT_TYPE
 
 # Create your models here.
 
-ACCOUNT_TYPE= (
-    ('IN', 'In'),
-    ('OU', 'Out'),   
-) 
 
-TRANSACTION_TYPE_CHOICES= (
-    ('PA', 'paiement'),
-    ('SA', 'salaire '),
-    ('CR', 'creance'),
-    ('CH', 'charges'),   
-    ('AL', 'allouer'),  
-)
 
 class AccountQueryset(models.QuerySet):
     def get_actif_account(self):
@@ -50,7 +41,7 @@ class AccountManager(models.Manager):
 class Account(models.Model): 
     # owner        = models.ManyToManyField(Project, related_name="project_name" )
     name                = models.CharField(max_length=250, db_index=True)
-    acc_type            = models.CharField(choices=ACCOUNT_TYPE, db_index=True, max_length=2, null=True)
+    acc_type            = models.CharField(choices=ACCOUNT_TYPE, db_index=True, max_length=2,blank=True, null=True)
     actif               = models.BooleanField()
     created             = models.DateTimeField(auto_now_add=True)
     updated             = models.DateTimeField(auto_now=True)
@@ -91,9 +82,11 @@ class TransactionManager(models.Manager):
 
 class Transaction(models.Model): 
 
+    name        = models.CharField(max_length=180, blank=True, null=True)
     account_sd  = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE, related_name='sender') 
     account_rc  = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE, related_name='receiver') 
-    tr_type     = models.CharField(choices=TRANSACTION_TYPE_CHOICES, max_length=2, null=True, blank=True,)
+    tr_type     = models.CharField(choices=TRANSACTION_TYPE_CHOICES, max_length=2, null=True, blank=True)
+    tr_status   = models.CharField(choices= TRANSACTION_STATUS, blank=True, null=True, max_length=13)
     other       = models.CharField(max_length=254, blank=True, null=True)
     amount      = models.DecimalField(max_digits=20 , decimal_places=0, blank=True, null=True)
     date        = models.DateField(blank=True, null=True)
