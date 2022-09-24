@@ -5,11 +5,9 @@ from django.urls import reverse
 from django.http import HttpResponse, request
 from django.urls.base import reverse_lazy
 from django.views.generic import (
-    TemplateView,
     DetailView,
     ListView,
     UpdateView,
-    ListView,
     DeleteView, 
     FormView
 )

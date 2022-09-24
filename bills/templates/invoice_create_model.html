@@ -1,0 +1,184 @@
+{% comment %} {% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Invoice</title>
+{% endblock %} {% endcomment %}
+
+<div class="modal fade" id="addContent" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+
+
+{% comment %} <div id="addContent" class="modal-content"> {% endcomment %}
+  <div class="modal-header">
+    {% comment %} <h4 class="modal-title" id="detailModalLabel">Add client</h4> {% endcomment %}
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  {% comment %} <div class="modal-header"> {% endcomment %}
+
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="invoice">
+                        <div class="invoice-print">
+                            <div class="row">
+                                <div class=" col-8">
+                                    {% comment %} <div class="invoice-title">
+                                        <img src="{% static 'images/logo.png' %}" style="height: 100px;width: 300px;" alt="">
+                                    </div> {% endcomment %}
+                                </div>
+                                <div style="text-align: right; float: right;"  class="col-4">
+                                    <h4>Octopus Consulting</h4>
+                                    <p>Centre, Blida 09000</p>
+                                    <p>0672606639</p>
+                                    <p>Code postal</p>
+                                </div>
+                            </div>
+                            <h1 class="mt-2 text-center">Facture</h1>
+                            <hr>
+
+                            <form action="{% url 'bills:invoicecreate' %}" method ="post">
+                            {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-inline col-6">
+                                        <strong style="font-size: 18px;">Facturé à :</strong>
+                                        <br><br>
+                                    </div>
+                                    <div class="form-inline col-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-inline col-6">
+                                        <strong>Nom </strong>
+                                        <input class="form-control form-inv" type="text" name="to_name" placeholder="Entrez le nom"
+                                            id="">
+                                    </div>
+                                    <div class="form-inline col-4 ml-4">
+                                        <strong>Facture N°</strong>
+                                        <input type="number" class="form-control form-inv" name="number" id="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {% comment %} <div class="form-inline col-6">
+                                        <strong>Prénom </strong>
+                                        <input class="form-control form-inv" type="text" name="name" placeholder="Entrez le nom"
+                                            id="">
+                                    </div> {% endcomment %}
+                                    {% comment %} <div class="form-inline col-4 ml-4">
+                                        <strong>Date</strong>
+                                        <input class="form-control form-inv" type="date" name="date" id="">
+                                    </div> {% endcomment %}
+                                </div>
+                                <div class="row">
+                                    <div class="form-inline col-6">
+                                        <strong>Adresse</strong>
+                                        <input class="form-control form-inv" type="text" name="adress"
+                                            placeholder="entrez l'adresse" id="">
+                                        <!-- <textarea class="form-control form-inv" placeholder="adresse" name="" id="" cols="30"
+                                        rows="5"></textarea> -->
+                                    </div>
+                                    <div class="form-inline col-4 ml-4">
+                                        <strong>Due date</strong>
+                                        <input class="form-control form-inv" type="date" name="due_date" id="">
+                                    </div>
+
+                                </div>
+                            </form>
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <address>
+                                        <strong>Payment Method:</strong><br>
+                                        Visa ending **** 5687<br>
+                                        test@example.com
+                                    </address>
+                                </div>
+                                <div class="col-md-6 text-md-right">
+                                    <address>
+                                        <strong>Order Date:</strong><br>
+                                        June 26, 2018<br><br>
+                                    </address>
+                                </div>
+                            </div> -->
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="section-title">Order Summary</div>
+                                    <button style="float:right;" class="col-1 btn btn-secondary mb-3"  onclick="add()">add</button>
+                                    <div class="table-responsive">
+                                        <table class="table" id="mytable">
+                                            <thead>
+                                                <th scope="row" style="width:10%">#</th>
+                                                <th style="width:60%">Item</th>
+                                                <th style="width:10%">Price</th>
+                                                <th style="width:10%" >Quantity</th>
+                                                <th style="width:10%">Totals</th>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</td>
+                                                <td>Item name </td>
+                                                <td>1234 DA</td>
+                                                <td>2</td>
+                                                <td>2468 DA</td>
+                                            
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                    
+                                        <table class="tab mt-0" style="float:right;">
+                                            <tbody>
+                                                <tr>
+                                                    <th style="width:100px;" scope="row">Total hors taxe</th>
+                                                    <td style="width:100px">123 DA</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="width:100px;" scope="row">TVA</th>
+                                                    <td style="width:100px;">111 DA</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="width:100px;" scope="row">Total</th>
+                                                    <td style="width:100px;">111 DA</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    
+                                    </div>
+                                    <!-- <div class="row mt-4 text-right ml-6"> -->
+                                        <!-- <div style="float: right;" >
+                                            <table>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" placeholder="subTotal"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" placeholder="tva"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control" placeholder="tota&l"></td>
+                                                </tr>
+                                            </table>
+
+                                        </div> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-md-right">
+                            <div class="float-lg-left mb-lg-0 mb-3">
+                                <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
+                                    Payment</button>
+                                <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
+                            </div>
+                            <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    {% comment %} </div> {% endcomment %}
+    </div>
+</div>
+
+
+{% comment %} {% endblock content %} {% endcomment %}
