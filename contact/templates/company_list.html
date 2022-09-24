@@ -106,7 +106,13 @@
                                                         <td>{{company.name}}</td>
                                                         <td>
                                                         {% for employee in employees %}
-                                                        {% if employee.name == company.responsible_person %} <a href="{{company.responsible_person.get_absolute_url}}">{{company.responsible_person}}</a> {% endif %}
+                                                            {% if employee.is_responsible is not True %} 
+                                                        {% comment %} <a href="{{employee.get_absolute_url}}">{{employee.name}}</a>  {% endcomment %}
+                                                            <a href="#" style="color : yellow">{{company.employee.name}}</a>
+                                                            {% else %}
+                                                            {% comment %} NONE {% endcomment %}
+                                                            <a href="{{employee.get_absolute_url}}" style="color : red">{{employee.name}}</a> 
+                                                            {% endif %}
                                                         {% endfor %}
                                                          </td>
                                                         <td> {{company.get_company_type_display}}</td>

@@ -57,7 +57,15 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="#">Accounts</a></li>
             <li><a class="nav-link" href="#">Transaction</a></li>
-            <li><a class="nav-link" href="#">Bills</a></li>
+            <ul class="dropdown">
+              <a  href="#" class="menu-toggle nav-ulnk has-dropdown">
+                <i data-feather="dollar-sign"></i> <span>Bills</span>
+                <li><a class="nav-link" href="{% url 'bills:invoicelist' %}">Invoices</a></li>
+                <li><a class="nav-link" href="#">Proformas</a></li>
+
+              </a>
+            </ul>
+            {% comment %} <li><a class="nav-link" href="#">Bills</a></li> {% endcomment %}
           </ul>
         </li>
         

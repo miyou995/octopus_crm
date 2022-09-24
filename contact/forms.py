@@ -1,4 +1,3 @@
-import imp
 from xml.parsers.expat import model
 from django.forms import ModelForm
 from .models import Company
@@ -10,8 +9,8 @@ class CompanyAddForm(ModelForm):
         model = Company
         fields = '__all__' 
     
-    def form_valid(self, form):
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     return super().form_valid(form)
 
 
 class AddClientForm(ModelForm):
