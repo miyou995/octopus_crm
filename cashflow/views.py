@@ -16,6 +16,7 @@ from django.views.generic import (
 )
 from django.views.generic.edit import CreateView
 from pprint import pprint
+from bills.views import RedirectPermissionRequiredMixin
 from contact.models import Company
 from .models import  Account, Transaction
 from project.models import Project
@@ -89,16 +90,16 @@ class CashflowListView(ListView):
 
 class AddTransactionView(CreateView):
     template_name= "add-transaction.html"
+    model = Transaction 
     form_class= AddTransactionForm
-    model = Transaction
-    success_url = reverse_lazy('cashflow:cashflowlist')
-    def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
-    def get_context_data(self, **kwargs):
-        context = super(AddTransactionView, self).get_context_data(**kwargs)
-        context["companies"] = Company.objects.all()
-        context["accounts"] = Account.objects.all()
-        context["projects"] = Project.objects.all()
-        return context
+    # success_url = reverse_lazy('cashflow:cashflowlist')
+    # def form_invalid(self, form):
+    #     pprint(form.errors)
+    #     return super().form_invalid(form)
+    # def get_context_data(self, **kwargs):
+    #     context = super(AddTransactionView, self).get_context_data(**kwargs)
+    #     context["companies"] = Company.objects.all()
+    #     context["accounts"] = Account.objects.all()
+    #     context["projects"] = Project.objects.all()
+    #     return context
 
