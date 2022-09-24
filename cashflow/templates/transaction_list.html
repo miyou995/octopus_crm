@@ -8,11 +8,12 @@
 
 <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'add-transaction.html'%}
+      {% include 'transaction_create_model.html'%}
     </div>
   </div>
 
 <div class="main-content">
+         {% include 'snippets/message.html' %}
     <section class="section">
         <div class="section-body">
             <div class="row">
@@ -109,17 +110,17 @@
                         <div class="card-header">
                             <h4>Recent Transactions</h4>
                             <div class="card-header-form">
-                                <button hx-get="{% url 'cashflow:addtransaction' %}" hx-target="#addContent" data-toggle="modal"
+                                <button hx-get="{% url 'cashflow:transactioncreate' %}" hx-target="#addContent" data-toggle="modal"
                                 data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus"><i
                                   data-feather="plus"></i></button>
-                                <!-- <form>
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <div class="input-group-btn">
-                          <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                        </div>
-                      </div>
-                    </form> -->
+                                    <!-- <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                        </form> -->
                             </div>
                         </div>
                         <div class="card-body p-0">

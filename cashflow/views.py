@@ -15,25 +15,30 @@ from django.views.generic import (
     FormView
 )
 from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from pprint import pprint
 from bills.views import RedirectPermissionRequiredMixin
 from contact.models import Company
 from .models import  Account, Transaction
 from project.models import Project
 from .filters import Accountfilter, Transactionfilter
-from .forms import AddAccountForm, AddTransactionForm
+from .forms import AddAccountForm, TransactionCreateForm
 from django.db.models import Sum
-
+from .choice import TRANSACTION_STATUS, TRANSACTION_TYPE_CHOICES, ACCOUNT_TYPE
+from django.contrib import messages
 # Create your views here.
 
 #cashflow
 
 
+class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
+    login_url = reverse_lazy('core:index')
+    def handle_no_permission(self):
+        return redirect(self.get_login_url())
         
 class CashView(TemplateView):
     template_name= "cashflow.html"
 
-    
 class CashflowAccountListView(ListView): 
     template_name= "account_list.html"
     model = Account 
@@ -69,11 +74,12 @@ class AddAccountView(CreateView):
    
 ##### 
 
-class CashflowListView(ListView): 
-    template_name= "cashflow_list.html"
+class TransactionListView(RedirectPermissionRequiredMixin,  ListView): 
+    template_name= "transaction_list.html"
     model = Transaction 
+    permission_required = 'cashflow.view_cashflow'
     def get_context_data(self, **kwargs):
-        context = super(CashflowListView, self).get_context_data(**kwargs)
+        context = super(TransactionListView, self).get_context_data(**kwargs)
         # context["transactions"] =Transaction.objects.all().order_by('date')
         filters=Transactionfilter(self.request.GET, queryset=Transaction.objects.all())
         context["transactions"] = filters.qs
@@ -85,21 +91,31 @@ class CashflowListView(ListView):
         context["total_creance"] =Transaction.payments.get_total_creance()
         context["total_salaire"] =Transaction.payments.get_total_salaire()    
         context["total_allouer"] =Transaction.payments.get_total_allouer()  
+
+        context["transactionstatus"] = TRANSACTION_STATUS
         return context
 
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('cashflow:transactionlist')
 
-class AddTransactionView(CreateView):
-    template_name= "add-transaction.html"
+
+class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
+    template_name= "transaction_create_model.html"
     model = Transaction 
-    form_class= AddTransactionForm
-    # success_url = reverse_lazy('cashflow:cashflowlist')
+    form_class= TransactionCreateForm
+    permission_required = 'cashflow.create_cashflow'
+    success_message = 'Transaction created seccussfully.'
+    success_url = reverse_lazy('cashflow:transactionlist')
+
+
     # def form_invalid(self, form):
-    #     pprint(form.errors)
-    #     return super().form_invalid(form)
-    # def get_context_data(self, **kwargs):
-    #     context = super(AddTransactionView, self).get_context_data(**kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(TransactionCreateView, self).get_context_data(**kwargs)
+        context["transactionstatus"] = TRANSACTION_STATUS
     #     context["companies"] = Company.objects.all()
     #     context["accounts"] = Account.objects.all()
     #     context["projects"] = Project.objects.all()
-    #     return context
+        return context
 
