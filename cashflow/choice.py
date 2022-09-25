@@ -4,9 +4,9 @@ ACCOUNT_TYPE= (
 ) 
 
 TRANSACTION_STATUS =(
-    ('payed', 'PAYED'),
-    ('not payed', 'NOT_PAYED'),
-    ('pending', 'PENDING'),
+    ('PAID', 'paid'),
+    ('NOT_PAID', 'not paid'),
+    ('PENDING', 'pending'),
 )
 TRANSACTION_TYPE_CHOICES= (
     ('PA', 'paiement'),

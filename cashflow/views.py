@@ -20,7 +20,7 @@ from pprint import pprint
 from bills.views import RedirectPermissionRequiredMixin
 from contact.models import Company
 from .models import  Account, Transaction
-from project.models import Project
+# from project.models import Project
 from .filters import Accountfilter, Transactionfilter
 from .forms import AddAccountForm, TransactionCreateForm
 from django.db.models import Sum
@@ -64,9 +64,10 @@ class AddAccountView(CreateView):
     form_class= AddAccountForm
     model = Account
     success_url = reverse_lazy('cashflow:accountlist')
-    def form_invalid(self, form):
-        pprint(form.errors)
-        return super().form_invalid(form)
+    # def form_invalid(self, form):
+    #     pprint(form.errors)
+    #     return super().form_invalid(form)
+
     def get_context_data(self, **kwargs): 
         context = super(AddAccountView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
@@ -82,22 +83,21 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         context = super(TransactionListView, self).get_context_data(**kwargs)
         # context["transactions"] =Transaction.objects.all().order_by('date')
         filters=Transactionfilter(self.request.GET, queryset=Transaction.objects.all())
-        context["transactions"] = filters.qs
+        # context["transactions"] = filters.qs
+        context["transactions"] = Transaction.objects.all()
         context["transactions_count"] =Transaction.objects.all().count()
         context["total"] =Transaction.payments.get_total()
         # context["total_dettes"] = Project.objects.all().aggregate(Sum('get_project_dettes'))
-        context["total_payment"] =Transaction.payments.get_total_payment()
-        context["total_charges"] =Transaction.payments.get_total_charges()
-        context["total_creance"] =Transaction.payments.get_total_creance()
-        context["total_salaire"] =Transaction.payments.get_total_salaire()    
-        context["total_allouer"] =Transaction.payments.get_total_allouer()  
+        # context["total_payment"] =Transaction.payments.get_total_payment()
+        # context["total_charges"] =Transaction.payments.get_total_charges()
+        # context["total_creance"] =Transaction.payments.get_total_creance()
+        # context["total_salaire"] =Transaction.payments.get_total_salaire()    
+        # context["total_allouer"] =Transaction.payments.get_total_allouer()  
 
         context["transactionstatus"] = TRANSACTION_STATUS
         return context
 
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('cashflow:transactionlist')
+   
 
 
 class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
@@ -108,8 +108,9 @@ class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
     success_message = 'Transaction created seccussfully.'
     success_url = reverse_lazy('cashflow:transactionlist')
 
-
-    # def form_invalid(self, form):
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('cashflow:transactionlist')
 
     def get_context_data(self, **kwargs):
         context = super(TransactionCreateView, self).get_context_data(**kwargs)
@@ -119,3 +120,37 @@ class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
     #     context["projects"] = Project.objects.all()
         return context
 
+class TransactionUpdateView(RedirectPermissionRequiredMixin, UpdateView):
+    template_name = "transaction_edit_model.html"
+    model = Transaction
+    form_class = TransactionCreateForm
+    permission_required = 'cashflow.update_cashflow'
+    success_url = reverse_lazy('cashflow:transactionlist')
+    success_message = 'Transaction updated seccussfully.'
+    
+    def get_context_data(self, **kwargs):
+        context = super(TransactionCreateView, self).get_context_data(**kwargs)
+        context["transactionstatus"] = TRANSACTION_STATUS
+
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('cashflow:transactionlist')
+
+
+class TransactionDetailView(RedirectPermissionRequiredMixin, DetailView):
+    template_name = "transaction_detail.html"
+    model = Transaction
+    form_class= AddAccountForm
+    permission_required = 'cashflow.view_cashflow'
+    success_url = reverse_lazy('cashflow:transactionlist')
+
+
+class TransactionDeleteView(RedirectPermissionRequiredMixin, DeleteView):
+    template_name = "transaction_delete_model.html"
+    model = Transaction
+    form_class = TransactionCreateForm
+    permission_required = 'cashflow.delete_cashflow'
+    success_url = reverse_lazy('cashflow:transactionlist')
+    success_message = 'Transaction deleted seccussfully.'

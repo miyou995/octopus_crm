@@ -10,7 +10,20 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'transaction_create_model.html'%}
     </div>
-  </div>
+</div>
+
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'transaction_edit_model.html' with transactionedit_url=transactionedit_url %}
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'transaction_delete_model.html' with transactiondelete_url=transactiondelete_url %}
+    </div>
+</div>
+
 
 <div class="main-content">
          {% include 'snippets/message.html' %}
@@ -23,7 +36,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h6 class=" mb-0">Total transactions</h6>
-                                    <span class="font-weight-bold mb-0">450</span>
+                                    <span class="font-weight-bold mb-0">{{transactions_count}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="card-circle l-bg-orange text-white">
@@ -126,95 +139,58 @@
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <tr>
-                                        <th class="text-center">
-                                            <div class="custom-checkbox custom-checkbox-table custom-control">
-                                                <input type="checkbox" data-checkboxes="mygroup"
-                                                    data-checkbox-role="dad" class="custom-control-input"
-                                                    id="checkbox-all">
-                                                <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                            </div>
-                                        </th>
-                                        <th>Title</th>
-                                        <th>Date</th>
-                                        <th>Account</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">
-                                            <div class="custom-checkbox custom-control">
-                                                <input type="checkbox" data-checkboxes="mygroup"
-                                                    class="custom-control-input" id="checkbox-1">
-                                                <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                        <td> mobile app</td>
-                                        <td>2018-01-20</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                        src="{% static '/images/avatar.png' %}" alt="user"
-                                                        data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian"></li>
-                                            </ul>
-                                        </td>
-                                        <td>1235 DA</td>
-                                        <td>
-                                            <div class="badge badge-success">Payed</div>
-                                        </td>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <div class="custom-checkbox custom-checkbox-table custom-control">
+                                                    <input type="checkbox" data-checkboxes="mygroup"
+                                                        data-checkbox-role="dad" class="custom-control-input"
+                                                        id="checkbox-all">
+                                                    <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                                                </div>
+                                            </th>
+                                            <th>Title</th>
+                                            <th>Date</th>
+                                            {% comment %} <th>Account</th> {% endcomment %}
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for transaction in transactions %}
+                                            <tr>
+                                                <td>{{transaction.name}}</td>
+                                                <td>{{transaction.date}}</td>
+                                                {% comment %} <td>{{transaction.account.name}}</td> {% endcomment %}
+                                                <td>{{transaction.amount}}</td>
 
+                                                <td>
+                                                {% if transaction.tr_status == 'PAID' %}
+                                                    <div class="badge badge-success">{{transaction.tr_status}}</div>
+                                                {% elif transaction.tr_status == 'PENDING' %}
+                                                    <div class="badge badge-warning">{{transaction.tr_status}}</div>
+                                                {% else %}
+                                                    <div class="badge badge-danger">{{transaction.tr_status}}</div>
+                                                {% endif %}
+                                                </td>
 
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">
-                                            <div class="custom-checkbox custom-control">
-                                                <input type="checkbox" data-checkboxes="mygroup"
-                                                    class="custom-control-input" id="checkbox-2">
-                                                <label for="checkbox-2" class="custom-control-label">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                        <td>CRM</td>
-                                        <td>2018-01-20</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                        src="{% static '/images/avatar.png' %}" alt="user"
-                                                        data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian"></li>
-                                            </ul>
-                                        </td>
-                                        <td>1235 DA</td>
-                                        <td>
-                                            <div class="badge badge-danger">not payed</div>
-                                        </td>
+                                                <td>
+                                                    <a href="{{transactionedit_url}}" data-toggle="modal" data-target="#editContent-{{transaction.pk}}" class="btn icn">
+                                                    <i data-feather="edit"></i>
+                                                    </a>
+                        
+                                                    <a href="{{transactiondelete_url}}" data-toggle="modal" data-target="#deleteContent-{{transaction.pk}}" class="btn icn">
+                                                    <i data-feather="trash"></i>
+                                                    </a>
 
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 text-center">
-                                            <div class="custom-checkbox custom-control">
-                                                <input type="checkbox" data-checkboxes="mygroup"
-                                                    class="custom-control-input" id="checkbox-3">
-                                                <label for="checkbox-3" class="custom-control-label">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                        <td>E-commerce</td>
-                                        <td>2018-01-20</td>
-                                        <td class="text-truncate">
-                                            <ul class="list-unstyled order-list m-b-0 m-b-0">
-                                                <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                        src="{% static '/images/avatar.png' %}" alt="user"
-                                                        data-toggle="tooltip" title=""
-                                                        data-original-title="Wildan Ahdian"></li>
-                                            </ul>
-                                        </td>
-                                        <td>1235 DA</td>
-                                        <td>
-                                            <div class="badge badge-warning">Pending</div>
-                                        </td>
-
-
-                                    </tr>
+                                                    <a href="{% url 'cashflow:transactiondetail' transaction.pk %}" class="btn icn">
+                                                    <i data-feather="eye"></i></a>
+                                                </td>
+                                            
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -227,14 +203,21 @@
                                 <div class="row ">
                                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                                         <div class="card-content">
-                                            <h5 class="font-15">Payed</h5>
-                                            <p class="mb-0"><span class="col-green">220DA</span></p>
-                                            <br>
-                                            <h5 class="font-15">Not Payed</h5>
-                                            <p class="mb-0"><span class="col-red">300DA</span></p>
-                                            <br>
-                                            <h5 class="font-15">Pending</h5>
-                                            <p class="mb-0"><span class="col-orange">200DA</span></p>
+                                            {% for transaction in transactions %}
+                                                {% if transaction.tr_status == 'PAID' %}
+                                                <h5 class="font-15">Paid</h5>
+                                                <p class="mb-0"><span class="col-green">{{transaction.amount}} DA</span></p>
+                                                <br>
+                                                <h5 class="font-15">Pending</h5>
+                                                {% elif transaction.tr_status == 'PENDING' %}
+                                                <p class="mb-0"><span class="col-orange">{{transaction.amount}} DA</span></p>
+                                                <br>
+                                                {% else %}
+                                                <h5 class="font-15">Not Paid</h5>
+                                                <p class="mb-0"><span class="col-red">{{transaction.amount}} DA</span></p>
+                                                <br>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 col-xs-6">
@@ -253,5 +236,13 @@
 </section>
 
 </div>
+
+{% for transaction in transactions %}
+    {% url 'cashflow:transactionedit' transaction.pk as transactionedit_url %}
+    {% url 'cashflow:transactiondelete' transaction.pk as transactiondelete_url %}
+    {% include "transaction_edit_model.html" with transactionedit_url=transactionedit_url %}
+    {% include "transaction_delete_model.html" with transactiondelete_url=transactiondelete_url %}
+
+{% endfor %}
 
 {% endblock content %}
