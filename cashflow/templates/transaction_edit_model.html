@@ -1,0 +1,69 @@
+<div class="modal fade" id="editContent-{{transaction.pk}}" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+        <div id="editContent-{{transaction.pk}}" class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="detailModalLabel">Add transaction</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ 'transactionedit_url' }}" method="post" id="edittransactionform-{{transaction.pk}}">
+                {% csrf_token %}
+                <div class="form-group   col-12">
+                    <label for="id_name">Title</label>
+                    <input type="text" name="name" id="transa_title" {% if transaction.name %}
+                    value = "{{transaction.name}}"
+                    {% endif %} required class="form-control" autofocus>
+                </div>
+            {% comment %} 
+                <div class="form-group   col-12">
+                    <label for="id_name">Account</label>
+                    <select class="form-control" name="Account.name" id="transa_account">
+                    <option value="" selected>Chose an account</option>
+                    <option value="">account name</option>
+                    </select>
+                </div> {% endcomment %}
+
+                <div class="form-group   col-12">
+                    <label for="id_name">Date</label>
+                    <input type="date" name="date" id="transa_date" {% if transaction.date %}
+                    value="{{transaction.date|date:"Y-m-d"}}"
+                    {% endif %} required class="form-control" autofocus>
+                </div>
+                <div class="form-group   col-12">
+                    <label for="id_name">Amount</label>
+                    <input type="number" name="amount" min="0" id="transa_amount" {% if transaction.amount %}
+                    value="{{transaction.amount}}"
+                    {% endif %} required class="form-control" autofocus>
+                </div>
+            {% comment %} 
+                <div class="form-group   col-12">
+                    <label for="id_name">Payement method</label>
+                    <select class="form-control" name="pay_method" id="pay_method">
+                    <option value="" selected>Cash</option>
+                    <option value="">Carte</option>       
+                    </select>
+                </div> {% endcomment %}
+
+                <div class="form-group   col-12">
+                    <label for="id_name">Status</label>
+                    <select class="form-control" name="tr_status" id="transa_status">
+                    {% for key, value in transactionstatus %}
+                        {% if transaction.tr_status == key %}
+                            <option value="{{key}}" selected>{{value}}</option>
+                        {% else %}
+                            <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                    {% endfor %}
+
+                    </select>
+                </div>
+                </form>
+                <div class="actions clearfix">
+                <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem"
+                    form="addtransactionform-{{transaction.pk}}">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,3 +44,5 @@ class Ticket(models.Model):
 
     projet              = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title

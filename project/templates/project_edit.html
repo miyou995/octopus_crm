@@ -101,7 +101,7 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label class="col-sm-3 col-form-label" style="font-weight:bold;" for="id_cost">Cost</label>
-                                <input type="number" name="cost" {% if project.cost %} value="{{project.cost}}" {% endif %} id="id_cost" maxlength="200" class="form-control">
+                                <input type="number" name="cost" min="0" {% if project.cost %} value="{{project.cost}}" {% endif %} id="id_cost" maxlength="200" class="form-control">
                               </div>
                             </div>
                           </fieldset>

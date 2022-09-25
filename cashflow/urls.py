@@ -7,6 +7,10 @@ from .views import (
    AddAccountView, 
    TransactionListView,
    TransactionCreateView,
+   TransactionUpdateView,
+   TransactionDeleteView,
+   TransactionDetailView,
+
 )
 from django.contrib.auth.decorators import login_required, permission_required
 app_name= 'cashflow'
@@ -20,6 +24,9 @@ urlpatterns = [
 
    path('cashflow/transactionlist', login_required(TransactionListView.as_view()), name='transactionlist'),
    path('cashflow/addtransaction', login_required(TransactionCreateView.as_view()), name="transactioncreate"),
+   path('cashflow/transactionedit/<int:pk>', login_required(TransactionUpdateView.as_view()), name="transactionedit"),
+   path('cashflow/transactiondelete/<int:pk>', login_required(TransactionDeleteView.as_view()), name="transactiondelete"),
+   path('cashflow/transactiondetail/<int:pk>', login_required(TransactionDetailView.as_view()), name="transactiondetail"),
    
 ]
 

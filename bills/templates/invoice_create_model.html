@@ -5,19 +5,19 @@
 <title>Invoice</title>
 {% endblock %} {% endcomment %}
 
-<div class="modal fade" id="addContent" role="dialog">
-  <div class="modal-dialog modal-dialog-centered " role="document">
+{% comment %} <div class="modal fade" id="addContent" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document"> {% endcomment %}
 
 
-{% comment %} <div id="addContent" class="modal-content"> {% endcomment %}
+<div id="addContent" class="modal-content">
   <div class="modal-header">
     {% comment %} <h4 class="modal-title" id="detailModalLabel">Add client</h4> {% endcomment %}
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
         aria-hidden="true">&times;</span></button>
   </div>
-  {% comment %} <div class="modal-header"> {% endcomment %}
-
-        <div class="main-content">
+    {% comment %} <div class="modal-header"> {% endcomment %}
+<div class="modal-body">
+        {% comment %} <div class="main-content"> {% endcomment %}
             <section class="section">
                 <div class="section-body">
                     <div class="invoice">
@@ -176,8 +176,8 @@
             </section>
 
         </div>
+        {% comment %} </div> {% endcomment %}
     {% comment %} </div> {% endcomment %}
-    </div>
 </div>
 
 

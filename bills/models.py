@@ -28,7 +28,8 @@ class Bill(models.Model):
 
     # class Meta:
     #     abstract = True
-        
+    
+
 
 
 class Invoice(Bill):
@@ -36,6 +37,9 @@ class Invoice(Bill):
     number = models.IntegerField(default = 0 , verbose_name="Numéro de facture", blank= True, null=True)
     class Meta:
         default_related_name = 'Invoice'
+
+    def __str__(self):
+         return self.number
 
     def get_absolute_url(self):
         return reverse("bills:invoicedetail", kwargs={'pk': self.pk})
@@ -45,6 +49,9 @@ class Proforma(Bill):
     number  = models.IntegerField(default = 0 , verbose_name="Numéro de Proforma", blank= True, null=True)
     class Meta:
         default_related_name = 'Proforma'
+    
+    def __str__(self):
+        return self.number
 
 def get_absolute_url(self):
         return reverse("bills:proformadetail", kwargs={'pk': self.pk})
@@ -59,6 +66,9 @@ class BillItem(models.Model):
     tva         = models.BooleanField(default=False)
     note        = models.TextField(blank=True, null=True)
     term        = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+         return self.name
     
 
 

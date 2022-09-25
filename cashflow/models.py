@@ -1,10 +1,13 @@
+import imp
 from secrets import choice
 from django.db import models
 from project.models import Project
 from accounts.models import User
 from django.db.models import Sum
+from django.urls import reverse
 from .choice import TRANSACTION_STATUS, TRANSACTION_TYPE_CHOICES, ACCOUNT_TYPE
-
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 # Create your models here.
 
 
@@ -40,18 +43,18 @@ class AccountManager(models.Manager):
 
 class Account(models.Model): 
     # owner        = models.ManyToManyField(Project, related_name="project_name" )
-    name                = models.CharField(max_length=250, db_index=True)
+    name                = models.CharField(max_length=250, db_index=True, blank=True, null=True)
     acc_type            = models.CharField(choices=ACCOUNT_TYPE, db_index=True, max_length=2,blank=True, null=True)
-    actif               = models.BooleanField()
+    actif               = models.BooleanField(blank=True, null=True)
     created             = models.DateTimeField(auto_now_add=True)
     updated             = models.DateTimeField(auto_now=True)
-    project             = models.ForeignKey(Project, blank=True, null=True, on_delete=models.SET_NULL) # on_delete q4FQ#RF1234rf3
+    project             = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE) # on_delete q4FQ#RF1234rf3
 
     objects             = models.Manager()
     account_managing    = AccountManager()
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 
 class TransactionManager(models.Manager):
@@ -88,7 +91,7 @@ class Transaction(models.Model):
     tr_type     = models.CharField(choices=TRANSACTION_TYPE_CHOICES, max_length=2, null=True, blank=True)
     tr_status   = models.CharField(choices= TRANSACTION_STATUS, blank=True, null=True, max_length=13)
     other       = models.CharField(max_length=254, blank=True, null=True)
-    amount      = models.DecimalField(max_digits=20 , decimal_places=0, blank=True, null=True)
+    amount      = models.DecimalField(max_digits=10 , decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))], blank=True, null=True)
     date        = models.DateField(blank=True, null=True)
     note        = models.CharField(max_length=254, blank=True, null=True)
     created     = models.DateTimeField(auto_now_add=True)
@@ -99,5 +102,11 @@ class Transaction(models.Model):
     made_by     = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="made_transactions") 
     
     def __str__(self):
-        return f"{self.project} - {self.tr_type}"
+        # return f"{self.project} - {self.tr_type}"
+        return f"{self.name}"
+
+    @property
+    def get_absolute_url(self):
+        return reverse("cashflow:transactiondetail", kwargs={"pk": self.pk})
+    
 
