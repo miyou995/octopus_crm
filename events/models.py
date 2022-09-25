@@ -9,11 +9,11 @@ from project.models import Project
 
 # Create your models here.
 
-class event(models.Model):
-    title           = models.CharField(max_length=180, blank=True, null=True)
+class Event(models.Model):
+    name            = models.CharField(max_length=180, blank=True, null=True)
     description     = models.TextField(blank=True, null=True)
-    start_date      = models.DateField()
-    deadline        = models.DateField()
+    start_date      = models.DateField(blank=True, null=True)
+    deadline        = models.DateField(blank=True, null=True)
     start_time      = models.TimeField(blank=True, null=True)
     end_time        = models.TimeField(blank=True, null=True)
 
@@ -21,7 +21,7 @@ class event(models.Model):
     user            = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='user_events')
 
     def __str__(self):
-        return self.title
+        return self.name
 
     # @property
     #     def get_html_url(self):
@@ -36,13 +36,13 @@ TICKET_STATUTE_TYPES = (
 
 
 class Ticket(models.Model):
-    title               = models.CharField(max_length=180)
+    name                = models.CharField(max_length=180, blank=True, null=True)
     description         = models.TextField(blank=True, null=True)
     created             = models.DateTimeField(auto_now_add=True)
     updated             = models.DateTimeField(auto_now=True)
-    statute             = models.CharField(choices=TICKET_STATUTE_TYPES, max_length=2)
+    status              = models.CharField(choices=TICKET_STATUTE_TYPES, max_length=2, blank=True, null=True)
 
     projet              = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.name

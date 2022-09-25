@@ -7,6 +7,12 @@
 <title>Projects</title>
 {% endblock %}
 
+  <div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'event_create_model.html' %}
+    </div>
+  </div>
+
 <div class="main-content">
    
     <section class="section">
@@ -17,7 +23,9 @@
                 <div class="card-header">
                   <h4>Events List</h4>
                   <div class="card-header-form">
-                    <button class="btn btn-primary">Add Event</button>
+                    <button  hx-get="{% url 'events:eventcreate' %}" hx-target="#addContent" data-toggle="modal"
+                        data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
+                        <i data-feather="plus"></i></button>
                     <!-- <form>
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search">
