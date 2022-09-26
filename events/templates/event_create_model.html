@@ -4,9 +4,10 @@
 <div class="modal-content">
       <div class="modal-header">
             <form action="{% url 'events:eventcreate' %}" id="createEventForm" method="POST">
-        <input type="text" name="EventTitle" id="EventTitle" class="form-control form-inv" placeholder="Event Title"
+            {% csrf_token %}
+        <input type="text" name="name" id="EventTitle" class="form-control form-inv" placeholder="Event Title"
           required>
-        <input type="color" name="EventTitle" id="colorEvent" class="" value="#6777ef">
+        {% comment %} <input type="color" name="name_color" id="colorEvent" class="" value="#6777ef"> {% endcomment %}
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
       </div>
@@ -37,6 +38,18 @@
                 <div class="form-group col-4">
                   <label for="id_name" style="font-weight:bold;"> </label>
                   <input type="time" id="" name="end_time" class="form-control popup time">
+                </div>
+              </div>
+
+              <div class="form-group form-float center-block">
+                <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                  <label for="id_project_type" style="font-weight:bold;">Priority</label>
+                  <select class="form-control" name="priority" id="id_project_type">
+                    <option value="" selected="">Select the priority</option>
+                    {% for key, value in eventpriorities %}
+                      <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                  </select>
                 </div>
               </div>
               <!-- <div class="row check" >

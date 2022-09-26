@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic import (
@@ -13,7 +14,7 @@ from django.urls.base import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib import messages
 from events.forms import AddEventForm
-
+from .choice import EVENT_PRIORITY, TICKET_STATUTE_TYPES
 from .models import Event
 
 class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
@@ -31,13 +32,30 @@ class EventsListView(RedirectPermissionRequiredMixin, ListView):
     # form_class = AddEventForm
     permission_required = 'events.view_event'
 
+    def get_context_data(self, **kwargs):
+        context = super(EventsListView, self).get_context_data(**kwargs)
+        context["events"] = Event.objects.all()
+        context["eventpriorities"] = EVENT_PRIORITY
+
+        return context
+
 class EventCreateView(RedirectPermissionRequiredMixin, CreateView):
     template_name = 'event_create_model.html'
     form_class = AddEventForm
     model = Event
     permission_required = 'event.create_event'
     success_message = "Event created successfully."
-    success_url = reverse_lazy('events:eventcreate')
+    success_url = reverse_lazy('events:eventlist')
+
+    def get_context_data(self, **kwargs):
+        context = super(EventCreateView, self).get_context_data(**kwargs)
+        context["eventpriorities"] = EVENT_PRIORITY
+
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('envents:eventlist')
 
 
 class EventUpdateView(RedirectPermissionRequiredMixin, UpdateView):
@@ -46,7 +64,17 @@ class EventUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     model = Event
     permission_required = 'event.create_event'
     success_message = "Event updated successfully."
-    success_url = reverse_lazy('events:eventcreate')
+    success_url = reverse_lazy('events:eventlist')
+
+    def get_context_data(self, **kwargs):
+        context = super(EventCreateView, self).get_context_data(**kwargs)
+        context["eventpriorities"] = EVENT_PRIORITY
+
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('envents:eventlist')
 
 
 class EventDetailView(RedirectPermissionRequiredMixin, DetailView):
@@ -62,4 +90,8 @@ class EventDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     model = Event
     permission_required = 'event.delete_event'
     success_message = "Event deleted successfully."
-    success_url = reverse_lazy('events:eventDelete')
+    success_url = reverse_lazy('events:eventlist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('envents:eventlist')

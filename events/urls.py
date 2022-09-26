@@ -5,7 +5,7 @@ app_name = 'events'
 
 urlpatterns = [
   path('calendar/',CalendarView.as_view(), name='calendar'),
-  path('eventlist/',login_required(EventsListView.as_view()), name='eventslist'),
+  path('eventlist/',login_required(EventsListView.as_view()), name='eventlist'),
   path('eventcreate/',login_required(EventCreateView.as_view()), name='eventcreate'),
   path('eventedit/<int:pk>',login_required(EventUpdateView.as_view()), name='eventedit'),
   path('eventdelete/<int:pk>',login_required(EventDeleteView.as_view()), name='eventdelete'),

@@ -210,3 +210,7 @@ class ClientDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Del
     permission_required= 'client.delete_company'
     success_message = "Client deleted successfully."
     success_url = reverse_lazy('contact:clientlist')
+    
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('envents:eventlist')

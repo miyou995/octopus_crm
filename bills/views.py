@@ -15,6 +15,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from .forms import InvoiceCreateForm, ProformaCreateForm
 from django.urls.base import reverse_lazy
 from django.shortcuts import redirect
+from django.contrib import messages
+
 
 from .models import Bill, BillItem, Invoice, Proforma
 
@@ -65,6 +67,10 @@ class InvoiceDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Deleted Seccessfully'
 
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('bills:invoicelist')
+
 # ##### PROFORMA
 
 class ProformaListView(RedirectPermissionRequiredMixin, ListView):
@@ -99,3 +105,7 @@ class ProformaDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     permission_required = 'proforma.delete_proforma'
     success_url = reverse_lazy("bills:proformalist")
     success_message = 'Proforma Deleted Seccessfully'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('bills:proformalist')
