@@ -1,4 +1,5 @@
 import email
+from pyexpat import model
 from turtle import title
 from unicodedata import name
 from django.db import models
@@ -6,8 +7,10 @@ from contact.models import Company
 from accounts.models import User
 from project.choice import STATUS_TYPE_CHOICES
 from project.models import Project
+from .choice import EVENT_PRIORITY, TICKET_STATUTE_TYPES
 
 # Create your models here.
+
 
 class Event(models.Model):
     name            = models.CharField(max_length=180, blank=True, null=True)
@@ -16,7 +19,7 @@ class Event(models.Model):
     deadline        = models.DateField(blank=True, null=True)
     start_time      = models.TimeField(blank=True, null=True)
     end_time        = models.TimeField(blank=True, null=True)
-
+    priority        = models.CharField(choices=EVENT_PRIORITY, max_length=8, blank=True, null=True)
     company         = models.ForeignKey(Company, blank=True, null=True, on_delete=models.CASCADE, related_name='company_events')
     user            = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='user_events')
 
@@ -29,10 +32,7 @@ class Event(models.Model):
     #         return f'<a href="{url}" style="text-decoration:none; color:#392C70;"> {self.title} </a>'
 
 
-TICKET_STATUTE_TYPES = (
-    ('OP', 'opened'),
-    ('CL', 'closed'),
-)
+
 
 
 class Ticket(models.Model):
