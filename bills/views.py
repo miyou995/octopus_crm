@@ -46,6 +46,10 @@ class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
     template_name = "invoice_create_model.html"
     permission_required = 'invoice.create_invoice'
     seccess_message = 'Invoice created seccessfully.'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:invoicelist')
     
 class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     model = Invoice
@@ -53,6 +57,10 @@ class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     permission_required = 'invoice.update_invoice'
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Updated Seccessfully'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:invoicelist')
 
 class InvoiceDetailView(RedirectPermissionRequiredMixin, DeleteView):
     model = Invoice
@@ -66,6 +74,7 @@ class InvoiceDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     permission_required = 'invoice.delete_invoice'
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Deleted Seccessfully'
+
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
@@ -86,12 +95,20 @@ class ProformaCreateView(RedirectPermissionRequiredMixin, CreateView):
     permission_required = 'proforma.create_proforma'
     seccess_message = 'Proforma created seccessfully.'
 
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:proformalist')
+
 class ProformaUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     model = Proforma
     template_name = 'proforma_update_model.html'
     permission_required = 'proforma.update_proforma'
     success_url = reverse_lazy("bills:proformalist")
     success_message = 'Proforma Updated Seccessfully'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:proformalist')
 
 class ProformaDetailView(RedirectPermissionRequiredMixin, DeleteView):
     model = Proforma

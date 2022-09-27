@@ -1,3 +1,5 @@
+from datetime import date
+import json
 from multiprocessing import context
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -16,6 +18,7 @@ from django.contrib import messages
 from events.forms import AddEventForm
 from .choice import EVENT_PRIORITY, TICKET_STATUTE_TYPES
 from .models import Event
+from django.http import HttpResponse, JsonResponse
 
 class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
     login_url = reverse_lazy('core:index')
@@ -24,6 +27,44 @@ class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
 
 class CalendarView(TemplateView):
     template_name = "calendar.html" 
+    form_class = AddEventForm
+
+    # def event(request):
+    #     all_events = Event.objects.all()
+    # # get_event_types = Events.objects.only('event_category')
+
+    # # if filters applied then get parameter and filter based on condition else return object
+    #     if request.GET:
+    #         event_arr = []
+    #         # if request.GET.get('event_category') == "all":
+    #         #     all_events = Events.objects.all()
+    #         # else:
+    #         #     all_events = Events.objects.filter(event_category__icontains=request.GET.get('event_category'))
+
+    #         for i in all_events:
+    #             event_sub_arr = {}
+    #             event_sub_arr['title'] = i.event_subject
+    #             start_date = date(i.start_date.date(), "%Y-%m-%d")
+    #             end_date = date(i.deadline.date(), "%Y-%m-%d")
+    #             event_sub_arr['start'] = start_date
+    #             event_sub_arr['end'] = end_date
+    #             event_arr.append(event_sub_arr)
+    #         return HttpResponse(json.dumps(event_arr))
+
+    #     # context = {
+    #     #     "events":all_events,
+    #     #     # "get_event_types":get_event_types,
+    #     #     }
+    #     return render(request,'calendar',context)
+
+    def get_context_data(self, **kwargs):
+        context = super(CalendarView, self).get_context_data(**kwargs)
+        context["eventlist"] = Event.objects.all()
+        context["eventpriorities"] = EVENT_PRIORITY
+        # context[]
+
+
+        return context
 
 
 class EventsListView(RedirectPermissionRequiredMixin, ListView):
@@ -34,7 +75,8 @@ class EventsListView(RedirectPermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EventsListView, self).get_context_data(**kwargs)
-        context["events"] = Event.objects.all()
+        # event_id = self.get_object().id
+        context["events"] = Event.objects.order_by('start_date', 'start_time')
         context["eventpriorities"] = EVENT_PRIORITY
 
         return context
@@ -95,3 +137,41 @@ class EventDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('envents:eventlist')
+
+# class CalendarView(EventCreateView, TemplateView):
+    template_name = "calendar.html" 
+    form_class = AddEventForm
+
+    def event(request):
+        all_events = Event.objects.all()
+    # get_event_types = Events.objects.only('event_category')
+
+    # if filters applied then get parameter and filter based on condition else return object
+        if request.GET:
+            event_arr = []
+            # if request.GET.get('event_category') == "all":
+            #     all_events = Events.objects.all()
+            # else:
+            #     all_events = Events.objects.filter(event_category__icontains=request.GET.get('event_category'))
+
+            for i in all_events:
+                event_sub_arr = {}
+                event_sub_arr['title'] = i.event_subject
+                start_date = date(i.start_date.date(), "%Y-%m-%d")
+                end_date = date(i.deadline.date(), "%Y-%m-%d")
+                event_sub_arr['start'] = start_date
+                event_sub_arr['end'] = end_date
+                event_arr.append(event_sub_arr)
+            return JsonResponse(event_arr)
+
+        # context = {
+        #     "events":all_events,
+        #     # "get_event_types":get_event_types,
+        #     }
+        return render(request,'calendar',context)
+
+    def get_context_data(self, **kwargs):
+        context = super(CalendarView, self).get_context_data(**kwargs)
+        context["eventlist"] = Event.objects.all()
+
+        return context
