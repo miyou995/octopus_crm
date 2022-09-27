@@ -15,6 +15,8 @@
                 
                 <form action="{{editevent_url}}" id="editEventForm-{{event.pk}}" method="POST">
                   {% csrf_token %}
+                    <input type="text" name="name" {% if event.name %} value="{{event.name}}"
+                    {% endif %} id="EventTitle" class="form-control form-inv" placeholder="Event Title" required>
                   {% comment %} <form action="{% url 'events:eventedit' %}" id=-{{event.pk}}"editEventForm-{{event.pk}}" method="POST"> {% endcomment %}
 
                   <!-- <div class="row check" style="float: right;" >
