@@ -28,6 +28,7 @@ urlpatterns = [
      path ('', include('contact.urls')), 
      path ('', include('project.urls')), 
      path ('', include('cashflow.urls')),
+    #  path('', include(('events.urls', 'events'),namespace='events') ),
      path('', include('events.urls')),
      path('', include('bills.urls')),
 
