@@ -8,7 +8,10 @@ from accounts.models import User
 from project.choice import STATUS_TYPE_CHOICES
 from project.models import Project
 from .choice import EVENT_PRIORITY, TICKET_STATUTE_TYPES
-
+from django.core.exceptions import ValidationError
+from django.db.models import CheckConstraint, Q, F
+from django.forms.utils import ErrorList
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 
@@ -25,6 +28,48 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        # db_table = 'Event'
+        # managed = True
+        constraints = [
+            CheckConstraint(
+                check=Q(deadline__gt=F('start_date')or Q(end_time__gt=F('start_time'))),
+                name="date_check",
+            ),
+        ]
+
+    def clean(self):
+        # Ensures constraint on model level, raises ValidationError
+        if self.start_date > self.deadline:
+            # raise error for field
+            raise ValidationError(
+                {
+                    'deadline': _('End date cannot be smaller then start date.')
+            }
+            )
+        if self.start_time > self.end_time:
+               raise ValidationError(
+                {
+                    'end_time': _('End time cannot be smaller then start time')
+            })
+            
+    # def clean(self):
+    #     # deadline = self.cleaned_data.get('deadline')
+    #     # end_time = self.cleaned_data.get('end_time')
+    #     if self.start_date > self.deadline:
+    #         if not self._errors.has_key('deadline'):
+    #             # self._errors['deadline'] = ErrorList()
+    #             self._errors['deadline'].append('End date cannot be smaller then start date.')
+    #     if self.start_time > self.end_time:
+    #         # if not self._errors.has_key('end_time'):
+                
+    #         self._errors['end_time'] = ErrorList()
+    #         self._errors['end_time'].append('End time cannot be smaller then start time')
+            # try:
+            #     bus_route.save()
+            # except IntegrityError as err:
+            #     raise CustomException('CUSTOM ERROR MESSAGE')
 
     # @property
     #     def get_html_url(self):

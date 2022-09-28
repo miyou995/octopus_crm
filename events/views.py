@@ -1,6 +1,7 @@
 from datetime import date
 import json
 from multiprocessing import context
+from unittest import result
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic import (
@@ -19,6 +20,10 @@ from events.forms import AddEventForm
 from .choice import EVENT_PRIORITY, TICKET_STATUTE_TYPES
 from .models import Event
 from django.http import HttpResponse, JsonResponse
+from django.db import IntegrityError
+from django.core.exceptions import ValidationError
+
+
 
 class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
     login_url = reverse_lazy('core:index')
@@ -96,27 +101,62 @@ class EventCreateView(RedirectPermissionRequiredMixin, CreateView):
         return context
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('envents:eventlist')
+        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
+        result = redirect("events:eventlist")
+        return result
+
+        # try:
+        #     result = redirect("events:eventlist")
+        # except:
+        #     raise
+        # else:
+        #     return result
+    
+
 
 
 class EventUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     template_name = 'event_edit_model.html'
     form_class = AddEventForm
     model = Event
-    permission_required = 'event.create_event'
+    permission_required = 'event.edite_event'
     success_message = "Event updated successfully."
     success_url = reverse_lazy('events:eventlist')
 
     def get_context_data(self, **kwargs):
-        context = super(EventCreateView, self).get_context_data(**kwargs)
+        context = super(EventUpdateView, self).get_context_data(**kwargs)
         context["eventpriorities"] = EVENT_PRIORITY
-
         return context
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('envents:eventlist')
+        messages.error(self.request, form.errors.as_text())
+        return redirect("events:eventlist")
+
+    # def form_invalid(self, form):
+
+    #     messages.error(self.request, form.errors.as_text())
+    #     # return redirect("events:eventlist")
+
+    #     # messages.add_message(self.request, messages.ERROR, form.errors)
+    #     # result = redirect("events:eventlist")
+    #     try:
+    #         result = redirect("events:eventlist")
+    #         return result
+    #     # except:
+    #     #     raise
+    #     # else:
+    #     #     return result
+
+    #     except ValidationError as err:
+    #         if str(err) == "End date cannot be smaller then start date.":
+    #             raise IntegrityError ("enter a corect date")
+    #         raise
+    #     else:
+    #         # result = redirect("events:eventlist")
+    #         return result
+
+        # return result
+
 
 
 class EventDetailView(RedirectPermissionRequiredMixin, DetailView):
