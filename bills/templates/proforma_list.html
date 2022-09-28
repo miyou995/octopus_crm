@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% block title %}
+<title>proformas</title>
+{% endblock title %}
+
+
+  <div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      {% include 'proforma_create_model.html'%}
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      {% include 'proforma_delete_model.html' with proformadelete_url=proformadelete_url %}
+    </div>
+  </div>
+  <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      {% include 'proforma_update_model.html' with proformaedit_url=proformaedit_url %}
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="alert">
+      {% include 'snippets/message.html' %}
+   </div>
+      <section class="section">
+        <div class="section-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>proformas list</h4>
+                  <div class="card-header-action">
+                    <div class="row">
+                      <button hx-get="{% url 'bills:proformacreate' %}" hx-target="#addContent" data-toggle="modal"
+                        data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus"><i
+                          data-feather="plus"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="total" style="margin-left: 20px;">
+                      <strong>Total : </strong>
+                      {{ proforma_count }}
+                    </div>
+
+                    <form action="" method="GET" style="margin-left:auto ;">
+                      <div class="d-md-flex align-items-center">
+                        <tr class="row">
+                          <td>
+                            <input type="search" class="form-control" placeholder="Project name" aria-label="Search"
+                              name="name"></td>
+                          <td>
+                            <input type="date" class="form-control" placeholder="collab_start" name="started_date">
+                          </td>
+                          <td>
+                            <select class="form-control select" name="project_type">
+                            <option value="">selcet a project type</option>
+                            {% for key, value in projecttypes %}
+                              <option value={{key}}>{{value}}</option>
+                            {% endfor %}
+                            </select>
+                          </td>
+
+                          <td>
+                            <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
+                          </td>
+                        </tr>
+
+                      </div>
+                    </form>
+                  </div>
+                  <hr>
+
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                        <th>Number</th>
+                          <th>Company name</th>
+                          <th>Cost </th>
+                          {% comment %} <th>Email</th> {% endcomment %}
+                          <th>Phone</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for proforma in proformas %}
+                        <tr>
+                        <td>{{proforma.number}}</td>
+
+                        {% comment %} <td> {% if proforma.company %}
+                          <a href="{{proforma.company.get_absolute_url}}">{{proforma.company.name}}</a>
+                          {% endif %}
+                        </td> {% endcomment %}
+                          <td>{{proforma.to_name}}</td>
+                          <td>{{proforma.cost}}</td>
+                          {% comment %} <td>{{proforma.company.email}}</td> {% endcomment %}
+                          <td>{{proforma.to_phone}}</td>
+                          <td>{{proforma.due_date}}</td>
+                          
+                          {% comment %} <td><span class="fe text-warning"> {{proforma.get_decision_display}} </span></td>
+                          <td>
+                            <a href="{{proforma.project.get_absolute_url}}">{{proforma.project_name}}</a>
+                           </td>
+                          <td><span class="d-block text-info">{{proforma.collab_start}}</span></td> {% endcomment %}
+
+                          <td><a href="{{proformaedit_url}}" data-toggle="modal" data-target="#editContent-{{proforma.pk}}" class="btn icn"><i
+                                data-feather="edit"></i></a>
+
+                            <a href="{{proformadelete_url}}" data-toggle="modal" data-target="#deleteContent-{{proforma.pk}}" class="btn icn"><i
+                                data-feather="trash"></i></a>
+                            
+                            <a  href="{% url 'bills:proformadetail' proforma.pk %}"  class="btn icn"> <i data-feather="eye"></i>
+                              </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+{% for proforma in proformas %}
+  {% url 'bills:proformaedit' proforma.pk as proformaedit_url %}
+  {% url 'bills:proformadelete' proforma.pk as proformadelete_url %}
+  {% include "proforma_update_model.html" with proformaedit_url=proformaedit_url %}
+  {% include "proforma_delete_model.html" with proformadelete_url=proformadelete_url %}
+{% endfor %} 
+
+{% endblock content %} 
