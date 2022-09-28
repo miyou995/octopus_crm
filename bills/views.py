@@ -47,6 +47,8 @@ class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
     permission_required = 'invoice.create_invoice'
     seccess_message = 'Invoice created seccessfully.'
 
+    success_url = reverse_lazy('bills:invoicelist')
+
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
         return redirect('bills:invoicelist')
@@ -87,6 +89,11 @@ class ProformaListView(RedirectPermissionRequiredMixin, ListView):
     template_name = 'proforma_list.html'
     permission_required = 'proforma.view_proforma'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProformaListView, self).get_context_data(**kwargs)
+        context["proformas"] = Proforma.objects.all()
+        return context
+
 
 class ProformaCreateView(RedirectPermissionRequiredMixin, CreateView):
     model = Proforma
@@ -94,6 +101,8 @@ class ProformaCreateView(RedirectPermissionRequiredMixin, CreateView):
     template_name = "proforma.html" 
     permission_required = 'proforma.create_proforma'
     seccess_message = 'Proforma created seccessfully.'
+    success_url = reverse_lazy('bills:proformalist')
+
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")

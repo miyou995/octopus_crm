@@ -13,16 +13,16 @@
       {% include 'invoice_create_model.html'%}
     </div>
   </div>
-  {% comment %} <div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-      {% include 'client_delete.html' with deleteclient_url=deleteclient_url%}
+      {% include 'invoice_delete_model.html' with invoicedelete_url=invoicedelete_url %}
     </div>
   </div>
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-      {% include 'client_edit.html' with editclient_url=editclient_url %}
+      {% include 'invoice_update_model.html' with invoiceedit_url=invoiceedit_url %}
     </div>
-  </div> {% endcomment %}
+  </div>
 
   <div class="main-content">
     <div class="alert">
@@ -86,7 +86,7 @@
                         <th>Number</th>
                           <th>Company name</th>
                           <th>Cost </th>
-                          <th>Email</th>
+                          {% comment %} <th>Email</th> {% endcomment %}
                           <th>Phone</th>
                           <th>Date</th>
                           <th>Action</th>
@@ -96,30 +96,32 @@
                         {% for invoice in invoices %}
                         <tr>
                         <td>{{invoice.number}}</td>
-                          <td>{{invoice.cost}} :=> {{invoice.pk}} </td>
 
-                          <td> {% if invoice.company %}
+                        {% comment %} <td> {% if invoice.company %}
                           <a href="{{invoice.company.get_absolute_url}}">{{invoice.company.name}}</a>
                           {% endif %}
-                          </td>
-                          <td>{{invoice.company.email}}</td>
-                          <td>{{invoice.company.mobile}}</td>
+                        </td> {% endcomment %}
+                          <td>{{invoice.to_name}}</td>
+                          <td>{{invoice.cost}}</td>
+                          {% comment %} <td>{{invoice.company.email}}</td> {% endcomment %}
+                          <td>{{invoice.to_phone}}</td>
                           <td>{{invoice.due_date}}</td>
-                          <td><span class="fe text-warning"> {{invoice.get_decision_display}} </span></td>
-                          {% comment %} <td>
+                          
+                          {% comment %} <td><span class="fe text-warning"> {{invoice.get_decision_display}} </span></td>
+                          <td>
                             <a href="{{invoice.project.get_absolute_url}}">{{invoice.project_name}}</a>
-                           </td> {% endcomment %}
-                          <td><span class="d-block text-info">{{invoice.collab_start}}</span></td>
+                           </td>
+                          <td><span class="d-block text-info">{{invoice.collab_start}}</span></td> {% endcomment %}
 
-                          {% comment %} <td><a href="{{editclient_url}}" data-toggle="modal" data-target="#editContent-{{invoice.pk}}" class="btn icn"><i
+                          <td><a href="{{invoiceedit_url}}" data-toggle="modal" data-target="#editContent-{{invoice.pk}}" class="btn icn"><i
                                 data-feather="edit"></i></a>
 
-                            <a href="{{deleteclient_url}}" data-toggle="modal" data-target="#deleteContent-{{invoice.pk}}" class="btn icn"><i
+                            <a href="{{invoicedelete_url}}" data-toggle="modal" data-target="#deleteContent-{{invoice.pk}}" class="btn icn"><i
                                 data-feather="trash"></i></a>
                             
                             <a  href="{% url 'bills:invoicedetail' invoice.pk %}"  class="btn icn"> <i data-feather="eye"></i>
                               </a>
-                          </td> {% endcomment %}
+                          </td>
                         </tr>
                         {% endfor %}
                       </tbody>
@@ -134,13 +136,13 @@
     </div>
   </div>
 </div>
-{% comment %} 
-{% for employee in employees %}
-  {% url 'contact:editclient' employee.pk as editclient_url %}
-  {% url 'contact:clientdelete' employee.pk as deleteclient_url %}
-  {% include "client_edit.html" with editclient_url=editclient_url %}
-  {% include "client_delete.html" with deleteclient_url=deleteclient_url %}
+
+
+{% for invoice in invoices %}
+  {% url 'bills:invoiceedit' invoice.pk as invoiceedit_url %}
+  {% url 'bills:invoicedelete' invoice.pk as invoicedelete_url %}
+  {% include "invoice_update_model.html" with invoiceedit_url=invoiceedit_url %}
+  {% include "invoice_delete_model.html" with invoicedelete_url=invoicedelete_url %}
 {% endfor %} 
-{% endcomment %}
 
 {% endblock content %} 
