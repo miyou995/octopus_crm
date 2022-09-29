@@ -165,6 +165,12 @@ class EventDetailView(RedirectPermissionRequiredMixin, DetailView):
     model = Event
     permission_required = 'event.detail_event'
 
+    def get_context_data(self, **kwargs):
+        context = super(EventDetailView, self).get_context_data(**kwargs)
+        context["eventpriorities"] = EVENT_PRIORITY
+
+        return context
+
 
 class EventDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     template_name = 'event_delete_model.html'

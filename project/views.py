@@ -1,3 +1,5 @@
+from cgitb import reset
+from unittest import result
 from django.db.models.query import QuerySet
 from django.db.models.query_utils import Q
 from django.shortcuts import redirect
@@ -85,8 +87,9 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     success_url = reverse_lazy('project:projectlist')
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('project:projectlist')
+        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
+        result = redirect('project:projectlist')
+        return result
 
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
@@ -108,8 +111,10 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
     success_url = reverse_lazy('project:projectlist')
     
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('project:projectlist')
+        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
+        result = redirect('project:projectlist')
+        return result
+        # return redirect('project:projectlist')
         
     def get_context_data(self, **kwargs):
         context = super(ProjectUpdateView, self).get_context_data(**kwargs)
