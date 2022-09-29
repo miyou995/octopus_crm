@@ -1,6 +1,9 @@
 // $(function () {
 //     $('#mytable').editableTableWidget();
 // });
+
+
+// EDITABLE TABLE WORKING  ***********
 const $tableID = $('#table');
 const $BTN = $('#export-btn');
 const $EXPORT = $('#export');

@@ -12,21 +12,64 @@
 		$('.alert').alert('close');
 	  }        
  
+// add new item to invoice 
+    function items() {
+      return {
+        items: [{
+            id: 1,
+            item: 'Service 1',
+            price:'1200',
+            quantity:'2',
+            total:  '1200',
+            completed: false
+          },
+          {
+            id: 2,
+            item: 'Service 2',
+            price:'100',
+            quantity:'2',
+            total: '200',
+            completed: false
+          }
+        ],
+        
+        addItem() {
+        
+          //RETURN EMPTY ROW
+          this.items.push({
+            id: this.items.length +1,
+            item: 'new Item', 
+            price:'0', 
+            quantity:'0',
+            total:'0',         
+            completed: false
+          });
+          // this.newService = '';
+        },
+        deleteItem(serviceId) {
+          let position = this.items.findIndex(el => el.id == serviceId);
+          this.items.splice(position, 1);
+        }
+      }
+    }
 
-let i =1;
-function add(){
-  var table = document.getElementById("table"); 
-  var row = table.insertRow(-1);
-  var th = document.createElement('th');
-  th.setAttribute('scope','row');
-  th.innerHTML= ++i;
-  row.appendChild(th);
-  for (let j=1; j<4;j++){
-    var cell = row.insertCell(j);
-    cell.tabIndex = 1;
-    cell.innerHTML='empty';
-  }
-}
+
+  
+
+// let i =1;
+// function add(){
+//   var table = document.getElementById("table"); 
+//   var row = table.insertRow(-1);
+//   var th = document.createElement('th');
+//   th.setAttribute('scope','row');
+//   th.innerHTML= ++i;
+//   row.appendChild(th);
+//   for (let j=1; j<4;j++){
+//     var cell = row.insertCell(j);
+//     cell.tabIndex = 1;
+//     cell.innerHTML='empty';
+//   }
+// }
 
 
 

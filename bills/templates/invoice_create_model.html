@@ -21,9 +21,9 @@
     <div class="modal-body">
         <div class="row">
             <div class=" col-8">
-             <div class="invoice-title">
+                <div class="invoice-title">
                     <img src="{% static 'images/logo.png' %}" style="height: 100px;width: 300px;" alt="">
-                </div> 
+                </div>
             </div>
             <div style="text-align: right; float: right;" class="col-4">
                 <h4>Octopus Consulting</h4>
@@ -71,13 +71,13 @@
             </div>
             <div class="row">
                 <div class="form-group col-6">
-                    <label class="label" >Adresse</label>
+                    <label class="label">Adresse</label>
                     <span>
                         <input class="form-control " type="text" name="adress" placeholder="entrez l'adresse" id="">
                     </span>
                 </div>
                 <div class="form-group col-6">
-                    <label class="label" >Due date </label>
+                    <label class="label">Due date </label>
                     <span>
                         <input class="form-control  " type="date" name="due_date" id="">
                     </span>
@@ -87,109 +87,105 @@
         </form>
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-10">
-                <h5>Order Summary</h5></div>
-                <div class="col-md-2">
-                <button class=" btn btn-secondary mb-3" onclick="add()">add</button>
-                </div>
-                </div>
                 <div class="table-responsive">
-                    <div id="table" class="table-editable">
-                        <table class="table table-bordered table-responsive-md table-striped text-center">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" scope="row" style="width:10%">#</th>
-                                    <th class="text-center" style="width:60%">Item</th>
-                                    <th class="text-center" style="width:10%">Price</th>
-                                    <th class="text-center"style="width:10%">Quantity</th>
-                                    <th class="text-center"style="width:10%">Total</th>
-                                    <!-- <th class="text-center"style="width:10%"></th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="pt-3-half" contenteditable="true">1</td>
-                                    <td class="pt-3-half" contenteditable="true">Website</td>
-                                    <td class="pt-3-half" contenteditable="true">2500DA</td>
-                                    <td class="pt-3-half" contenteditable="true">2</td>
-                                    <td class="pt-3-half" contenteditable="true">3000DA</td>                       
-                                    <!-- <td>
-                                        <span class="table-remove"><button type="button"
-                                                class="btn btn-danger  btn-rounded btn-sm my-0"><i class="fa fa-times" aria-hidden="true"></i>                                              
-                                            </button></span>
-                                    </td> -->
-                                </tr>                              
-                            </tbody>
-                        </table>
+                    <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h5>Order Summary</h5>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-secondary mb-3" @click="addItem()">Add</button>
+                            </div>
+                        </div>
+                        <div x-show="items.length">
+                            <div id="table" class="table-editable rounded border text-xs">
+                                <table class="table table-responsive-md table-striped text-center">
+                                    <thead>
+                                        <tr>  
+                                            <th class="text-center" scope="row" >#</th>
+                                            <th class="">Item</th>
+                                                                          
+                                            <th class="text-center" style="width:10%">Price</th>
+                                            <th class="text-center"style="width:10%">Quantity</th>
+                                            <th class="text-center"style="width:10%">Total</th>
+                                            <th class="text-center"style="width:10%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template x-for="item in items" :key="item.id">
+                                            <tr class="border-t">
+                                                <td>
+                                                    <span x-text="item.id"></span>     
+                                                </td>
+                                                <td class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
+                                                    <span x-text="item.item" class="overflow-auto" ></span>                                      
+                                                </td>
+                                               
+                                                <td class="pt-3-half" contenteditable="true">
+                                                    <span x-text="item.price"></span>DA   
+                                                </td>
+                                                <td class="pt-3-half" contenteditable="true">
+                                                    <span x-text="item.quantity"></span>    
+                                                </td>
+                                                <td class="pt-3-half" contenteditable="true">
+                                                    <span x-text="item.total"></span>DA    
+                                                </td>
+                                                <td>  <button
+                                                    class="btn btn-outline-danger"
+                                                    @click="deleteItem(item.id)">x</button></td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
 
-
-
-                                <!-- <table class="table" id="mytable">
-                        <thead>
-                            <th scope="row" style="width:10%">#</th>
-                            <th style="width:60%">Item</th>
-                            <th style="width:10%">Price</th>
-                            <th style="width:10%" >Quantity</th>
-                            <th style="width:10%">Totals</th>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</td>
-                            <td>Item name </td>
-                            <td>1234 DA</td>
-                            <td>2</td>
-                            <td>2468 DA</td>
-                           
-                        </tr>
-                    </tbody>
-                    </table> -->
-                </div>
+                            </div>
+                        </div>
                     </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <address>
-                            <strong>Payment Method:</strong><br>
-                            <!-- Visa ending **** 5687<br>
-                            test@example.com -->
-                        </address>  
-                        <form action="">
-                            <label for="note">Note</label>
-                            <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
-                        </form>                      
                     </div>
-                    <div class="col-md-6">
-                        <div class="table-responsive">
-                            <table class="tab mt-0"  style="float:right;">
-                                <tbody>
-                                    <tr>
-                                        <th  style="width:120px;" scope="row">Total hors taxe</th>
-                                        <td style="width:100px">123 DA</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="width:100px;" scope="row">TVA</th>
-                                        <td style="width:100px;">111 DA</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="width:100px;" scope="row">Total</th>
-                                        <td style="width:100px;">111 DA</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <address>
+                                <strong>Payment Method:</strong><br>
+                                <!-- Visa ending **** 5687<br>
+                             -->
+                            </address>
+                            <form action="">
+                                <label for="note">Note</label>
+                                <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="table-responsive">
+                                <table class="tab mt-0" style="float:right;">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:120px;" scope="row">Total hors taxe</th>
+                                            <td style="width:100px">123 DA</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:100px;" scope="row">TVA</th>
+                                            <td style="width:100px;">111 DA</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:100px;" scope="row">Total</th>
+                                            <td style="width:100px;">111 DA</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr>
-        <div class="text-md-right">
-            <div class="float-lg-left mb-lg-0 mb-3">
-                <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
-                    Payment</button>
+            <hr>
+            <div class="text-md-right">
+                <div class="float-lg-left mb-lg-0 mb-3">
+                    <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
+                        Payment</button>
+                </div>
+                <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
+                <button class="btn btn-primary btn-icon icon-left">Create</button>
             </div>
-            <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
-            <button class="btn btn-primary btn-icon icon-left">Create</button>
         </div>
     </div>
-</div>
