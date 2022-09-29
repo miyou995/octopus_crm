@@ -12,6 +12,8 @@ from django.core.exceptions import ValidationError
 from django.db.models import CheckConstraint, Q, F
 from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
+import datetime
+# from django.utils.timezone import datetime
 # Create your models here.
 
 
@@ -41,7 +43,7 @@ class Event(models.Model):
 
     def clean(self):
         # Ensures constraint on model level, raises ValidationError
-        if self.start_date > self.deadline:
+        if self.start_date > self.deadline :
             # raise error for field
             raise ValidationError(
                 {
@@ -53,6 +55,18 @@ class Event(models.Model):
                 {
                     'end_time': _('End time cannot be smaller then start time')
             })
+
+        if self.start_time < datetime.datetime.now().time() :
+            raise ValidationError({
+                'start_time': _('Start time connot be then todys time')
+            })
+
+        if self.start_date < datetime.date.today():
+            raise ValidationError({
+                'start_date': _('Start date connot be then todys date')
+            })
+
+        
             
     # def clean(self):
     #     # deadline = self.cleaned_data.get('deadline')

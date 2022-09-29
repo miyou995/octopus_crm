@@ -10,6 +10,10 @@ from django.urls import reverse
 from .choice import CONTRACT_TYPE_CHOICES
 from django.core.validators import MinValueValidator
 from decimal import Decimal
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+
 
 class ProjectQueryset(models.QuerySet):
     def is_ecommerce(self):
@@ -122,6 +126,18 @@ class Project (models.Model):
     def get_absolute_url(self):
         return reverse("project:projectdetail", kwargs={"pk": self.pk})
     
+
+    def clean(self):
+        # Ensures constraint on model level, raises ValidationError
+        if self.started_date > self.deadline :
+            # raise error for field
+            raise ValidationError(
+                {
+                    'deadline': _('End date cannot be smaller then start date.')
+            }
+            )
+
+
         
     # @property
     # def get_status_class(self):

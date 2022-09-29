@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% block title %}
+<title>event Details</title>
+{% endblock %}
+<!-- Main Wrapper -->
+
+<div class="content-wrapper">
+  <div class="main-content">
+
+    <section class="section">
+      <div class="section-body">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-4">
+            <div class="card author-box">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="author-box-description">
+                    <div class="author-box-name">
+                      <h3>{{event.name}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="py-4">
+                    
+                    {% comment %} <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Manager</span>
+                      <span class="float-right text-muted">
+                      <a href="{{event.manager.get_absolute_url}}">{{event.manager}}</a>
+                      </span>
+                    </p> {% endcomment %}
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Start Time</span>
+                      <span class="float-right text-muted"> {{event.start_time}}</span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">End Time</span>
+                      <span class="float-right text-muted"> {{event.end_time}}</span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;"> Priority</span>
+                      <span class="float-right text-muted">
+                      {% for key, value in eventpriorities %}
+                        {% if event.priority == key %}
+                          {{value}}
+                        {% endif %}
+                      {% endfor %}
+                      </span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Start Date</span>
+                      <span class="float-right text-muted"> {{event.start_date}}</span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">Deadline</span>
+                      <span class="float-right text-muted"> {{event.deadline}}</span>
+                    </p>
+
+                    <p class="clearfix">
+                      <span class="float-left" style="font-weight: bold;">End Time</span>
+                      <span class="float-right text-muted"> {{event.description}}</span>
+                    </p>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% endblock content %}
