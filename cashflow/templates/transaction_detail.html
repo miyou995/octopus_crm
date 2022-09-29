@@ -79,7 +79,7 @@
                                             <i class="fa fa-money"></i>
                                           </span>
                                           <div class="dash-count">
-                                            <h3>{{account_payment.amount__sum}} DZD</h3>
+                                            {% comment %} <h3>{{account_payment.amount__sum}} DZD</h3> {% endcomment %}
                                           </div>
                                         </div>
                                         <div class="dash-widget-info">
@@ -99,7 +99,7 @@
                                             <i class="fa fa-money"></i>
                                           </span>
                                           <div class="dash-count">
-                                            <h3>{{account_creance.amount__sum}} </h3>
+                                            {% comment %} <h3>{{account_creance.amount__sum}} </h3> {% endcomment %}
                                           </div>
                                         </div>
                                         <div class="dash-widget-info">
@@ -175,7 +175,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {% for transaction in payments  %}
+                                                    {% comment %} {% for transaction in payments  %}
                                                     <tr>
                                                         <td> <a href="">{{transaction.account}} </a></td>
                                                         <td> {{transaction.receiver}} </a></td>
@@ -190,7 +190,7 @@
                                                                 </a>
                                                             </div>
                                                         </td>
-                                                    {% endfor %}
+                                                    {% endfor %} {% endcomment %}
                                                     </tr> 
                                                 </tbody>
                                             </table>

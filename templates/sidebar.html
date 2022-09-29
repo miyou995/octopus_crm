@@ -28,7 +28,7 @@
           </a>
           <ul class="dropdown-menu">             
             <li><a class="nav-link" href="{% url 'events:calendar' %}">Calender</a></li>
-            <li><a class="nav-link" href="{% url 'events:eventslist' %}">Events</a></li>              
+            <li><a class="nav-link" href="{% url 'events:eventlist' %}">Events</a></li>              
           </ul>
         </li>
       
@@ -56,14 +56,26 @@
               data-feather="dollar-sign"></i><span>Cashflow</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="#">Accounts</a></li>
-            <li><a class="nav-link" href="{% url 'cashflow:cashflowlist' %}">Transaction</a></li>
+           <li><a class="nav-link" href="{% url 'cashflow:transactionlist' %}">Transaction</a></li>
             <li>
               <a href="#" class="menu-toggle nav-link has-dropdown">Bills</a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{% url 'bills:invoicelist' %}">Invoices</a></li>
-                <li><a class="nav-link" href="#">Proformas</a></li>
+                <li><a class="nav-link" href="{% url 'bills:proformalist' %}">Proformas</a></li>
               </ul>
             </li>
+
+           <!-- <li><a class="nav-link" href="{% url 'cashflow:transactionlist' %}">Transaction</a></li>
+            <ul class="dropdown">
+              <a  href="#" class="menu-toggle nav-link has-dropdown">
+                <i data-feather="dollar-sign"></i> <span>Bills</span>
+                <li><a class="nav-link" href="{% url 'bills:invoicelist' %}">Invoices</a></li>
+                <li><a class="nav-link" href="{% url 'bills:proformalist' %}">Proformas</a></li>
+
+              </a>
+            </ul> -->
+            {% comment %} <li><a class="nav-link" href="#">Bills</a></li> {% endcomment %}
+            
           </ul>
         </li>
         <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i

@@ -5,39 +5,46 @@
         aria-hidden="true">&times;</span></button>
   </div>
   <div class="modal-body">
-    <form action="" method="post" id="addtransactionform">
+    <form action="{% url 'cashflow:transactioncreate' %}" method="post" id="addtransactionform">
+    {% csrf_token %}
       <div class="form-group   col-12">
         <label for="id_name">Title</label>
-        <input type="text" name="Title" id="transa_title" required class="form-control" autofocus>
+        <input type="text" name="name" id="transa_title" required class="form-control" autofocus>
       </div>
+{% comment %} 
       <div class="form-group   col-12">
         <label for="id_name">Account</label>
-        <select class="form-control" name="account" id="transa_account">
+        <select class="form-control" name="Account.name" id="transa_account">
           <option value="" selected>Chose an account</option>
           <option value="">account name</option>
         </select>
-      </div>
+      </div> {% endcomment %}
+
       <div class="form-group   col-12">
         <label for="id_name">Date</label>
         <input type="date" name="date" id="transa_date" required class="form-control" autofocus>
       </div>
       <div class="form-group   col-12">
         <label for="id_name">Amount</label>
-        <input type="number" name="amount" id="transa_amount" required class="form-control" autofocus>
+        <input type="number" name="amount" id="transa_amount" min="0" required class="form-control" autofocus>
       </div>
+{% comment %} 
       <div class="form-group   col-12">
         <label for="id_name">Payement method</label>
         <select class="form-control" name="pay_method" id="pay_method">
           <option value="" selected>Cash</option>
           <option value="">Carte</option>       
         </select>
-      </div>
+      </div> {% endcomment %}
+
       <div class="form-group   col-12">
         <label for="id_name">Status</label>
-        <select class="form-control" name="Status" id="transa_status">
-          <option value="" selected>Payed</option>
-          <option value="">Not payed</option>
-          <option value="">Pending</option>
+        <select class="form-control" name="tr_status" id="transa_status">
+          <option value="" selected>Select a status</option>
+          {% for key, value in transactionstatus %}
+            <option value="{{key}}">{{value}}</option>
+          {% endfor %}
+
         </select>
       </div>
     </form>

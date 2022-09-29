@@ -12,13 +12,12 @@
       {% include 'project_add.html' %}
     </div>
   </div>
+
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'project_edit.html' with object=project editproject_url=editproject_url %}
     </div>
   </div>
-
-
 
   <div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered " role="document">

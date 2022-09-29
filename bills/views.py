@@ -15,6 +15,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from .forms import InvoiceCreateForm, ProformaCreateForm
 from django.urls.base import reverse_lazy
 from django.shortcuts import redirect
+from django.contrib import messages
+
 
 from django.http import HttpResponse
 from django.views.generic import View
@@ -48,6 +50,12 @@ class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
     template_name = "invoice_create_model.html"
     permission_required = 'invoice.create_invoice'
     seccess_message = 'Invoice created seccessfully.'
+
+    success_url = reverse_lazy('bills:invoicelist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:invoicelist')
     
 class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     model = Invoice
@@ -55,6 +63,10 @@ class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     permission_required = 'invoice.update_invoice'
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Updated Seccessfully'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:invoicelist')
 
 class InvoiceDetailView(RedirectPermissionRequiredMixin, DeleteView):
     model = Invoice
@@ -69,12 +81,22 @@ class InvoiceDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Deleted Seccessfully'
 
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('bills:invoicelist')
+
 # ##### PROFORMA
 
 class ProformaListView(RedirectPermissionRequiredMixin, ListView):
     model = Proforma
     template_name = 'proforma_list.html'
     permission_required = 'proforma.view_proforma'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProformaListView, self).get_context_data(**kwargs)
+        context["proformas"] = Proforma.objects.all()
+        return context
 
 
 class ProformaCreateView(RedirectPermissionRequiredMixin, CreateView):
@@ -83,6 +105,12 @@ class ProformaCreateView(RedirectPermissionRequiredMixin, CreateView):
     template_name = "proforma.html" 
     permission_required = 'proforma.create_proforma'
     seccess_message = 'Proforma created seccessfully.'
+    success_url = reverse_lazy('bills:proformalist')
+
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:proformalist')
 
 class ProformaUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     model = Proforma
@@ -90,6 +118,10 @@ class ProformaUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     permission_required = 'proforma.update_proforma'
     success_url = reverse_lazy("bills:proformalist")
     success_message = 'Proforma Updated Seccessfully'
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:proformalist')
 
 class ProformaDetailView(RedirectPermissionRequiredMixin, DeleteView):
     model = Proforma
@@ -103,6 +135,10 @@ class ProformaDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     permission_required = 'proforma.delete_proforma'
     success_url = reverse_lazy("bills:proformalist")
     success_message = 'Proforma Deleted Seccessfully'
+    
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('bills:proformalist')
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):    

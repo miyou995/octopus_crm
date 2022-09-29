@@ -4,13 +4,15 @@
         float: left;
         vertical-align: middle;
     }
-
     span {
         display: block;
         overflow: hidden;
         padding: 0px 4px 0px 6px;
     }
 </style>
+{% comment %} <div class="modal fade" id="addContent" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document"> {% endcomment %}
+
 
 <div id="addContent" class="modal-content">
     <div class="modal-header">
@@ -33,7 +35,6 @@
             </div>
         </div>
         <h1 class="text-center">Facture</h1>
-
         <form action="{% url 'bills:invoicecreate' %}" method="post">
             {% csrf_token %}
             <div class="row">
@@ -137,7 +138,6 @@
                                         </template>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -173,6 +173,12 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                       <!-- <hr>
+                        <div class="text-md-right">
+                            <div class="float-lg-left mb-lg-0 mb-3">
+                                <button type="submit" class="btn btn-primary btn-icon icon-left" form="createInvoiceForm" ><i class="fas fa-credit-card"></i> Process
+                                    Payment</button>
+                                <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button> -->
                             </div>
                         </div>
                     </div>
@@ -189,3 +195,4 @@
             </div>
         </div>
     </div>
+

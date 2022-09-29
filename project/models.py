@@ -8,6 +8,8 @@ from .choice import *
 from django.db.models import Sum
 from django.urls import reverse
 from .choice import CONTRACT_TYPE_CHOICES
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 class ProjectQueryset(models.QuerySet):
     def is_ecommerce(self):
@@ -94,7 +96,7 @@ class ProjectManager(models.Manager):
 # Create your models here.
 class Project (models.Model): 
     name                    = models.CharField(max_length=254, blank=True, null=True)
-    cost                    = models.DecimalField(max_digits=20 , decimal_places=0, default=0)
+    cost                    = models.DecimalField(max_digits=20 , decimal_places=2, default=0, validators=[MinValueValidator(Decimal('0.01'))], blank=True, null=True)
     started_date            = models.DateField(blank=True, null=True) 
     deadline                = models.DateField(blank=True, null=True) 
     project_type            = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)

@@ -136,4 +136,7 @@ class ProjectDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Del
     permission_required= 'project.delete_project'
     success_url = reverse_lazy('project:projectlist')
 
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('envents:eventlist')
 
