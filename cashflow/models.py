@@ -70,6 +70,22 @@ class TransactionManager(models.Manager):
         return Transaction.objects.filter(tr_type="CH").aggregate(Sum('amount'))
     def get_total_allouer(self):
         return Transaction.objects.filter(tr_type="AL").aggregate(Sum('amount'))
+
+    # def get_total_paid_transactions(self):
+    #     p_t = Transaction.objects.filter(tr_status="PAID").aggregate(Sum('amount'))
+    #     paid_transactions = float(p_t['amount__sum'])
+    #     return paid_transactions
+
+    def get_total_paid_transactions(self):
+        return Transaction.objects.filter(tr_status="PAID").aggregate(Sum('amount'))
+
+    def get_total_not_paid_transactions(self):
+        return Transaction.objects.filter(tr_status="NOT_PAID").aggregate(Sum('amount'))
+
+    def get_total_pending_transactions(self):
+        return Transaction.objects.filter(tr_status="PENDING").aggregate(Sum('amount'))
+
+
     def get_account_payment(self, account_id):
         return Transaction.objects.filter(tr_type="PA", account_id = account_id).aggregate(Sum('amount'))
     def get_account_salaire(self, account_id):
@@ -109,4 +125,6 @@ class Transaction(models.Model):
     def get_absolute_url(self):
         return reverse("cashflow:transactiondetail", kwargs={"pk": self.pk})
     
-
+    # @property
+    # def get_total_paid_transactions(self):
+    #     return Transaction.objects.filter(tr_status="PAID").aggregate(Sum('amount'))

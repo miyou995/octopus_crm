@@ -1,3 +1,5 @@
+from asyncio.locks import _ContextManagerMixin
+from multiprocessing import context
 from django.db.models.query import QuerySet
 from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
@@ -19,7 +21,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from pprint import pprint
 from bills.views import RedirectPermissionRequiredMixin
 from contact.models import Company
-from .models import  Account, Transaction
+from .models import  Account, Transaction, TransactionManager
 # from project.models import Project
 from .filters import Accountfilter, Transactionfilter
 from .forms import AddAccountForm, TransactionCreateForm
@@ -73,7 +75,15 @@ class AddAccountView(CreateView):
         context["companies"] = Company.objects.all()
         return context
    
-##### 
+##### TRANSACTIONS ########
+class ChartTestView(TemplateView):
+    template_name = "dochart.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["transactions"] = Transaction.objects.all()
+        return context
+        
 
 class TransactionListView(RedirectPermissionRequiredMixin,  ListView): 
     template_name= "transaction_list.html"
@@ -87,6 +97,13 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         context["transactions"] = Transaction.objects.all()
         context["transactions_count"] =Transaction.objects.all().count()
         context["total"] =Transaction.payments.get_total()
+        
+        context["transactions_paid"] = TransactionManager.get_total_paid_transactions(self)
+        context["transactions_not_paid"] = TransactionManager.get_total_not_paid_transactions(self)
+        context["transactions_pending"] = TransactionManager.get_total_pending_transactions(self)
+
+
+
         # context["total_dettes"] = Project.objects.all().aggregate(Sum('get_project_dettes'))
         # context["total_payment"] =Transaction.payments.get_total_payment()
         # context["total_charges"] =Transaction.payments.get_total_charges()
