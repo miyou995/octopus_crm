@@ -74,16 +74,16 @@ class AddAccountView(CreateView):
         context = super(AddAccountView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         return context
-   
-##### TRANSACTIONS ########
-class ChartTestView(TemplateView):
-    template_name = "dochart.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["transactions"] = Transaction.objects.all()
-        return context
-        
+
+
+
+
+
+
+
+
+##### TRANSACTIONS ########
 
 class TransactionListView(RedirectPermissionRequiredMixin,  ListView): 
     template_name= "transaction_list.html"
@@ -102,7 +102,7 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         context["transactions_not_paid"] = TransactionManager.get_total_not_paid_transactions(self)
         context["transactions_pending"] = TransactionManager.get_total_pending_transactions(self)
 
-
+        print("ssssssssdiiiiiifouuuuuuu#@#@#@##@#")
 
         # context["total_dettes"] = Project.objects.all().aggregate(Sum('get_project_dettes'))
         # context["total_payment"] =Transaction.payments.get_total_payment()
@@ -111,10 +111,53 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         # context["total_salaire"] =Transaction.payments.get_total_salaire()    
         # context["total_allouer"] =Transaction.payments.get_total_allouer()  
 
+        def pie_chart(request):
+            labels = []
+            data = []
+            # context["transactions"] = Transaction.objects.all()
+            qs = Transaction.objects.order_by('-amount')[:5]
+            print('QERYYY', qs)
+            for tr in qs:
+                print('TR', tr)
+                labels.append(tr.name)
+                data.append(int(tr.amount))
+            print('labels',labels)
+            print('data', data)
+
+            return render(request, 'transaction_list.html', {
+                'labels': labels,
+                'data': data,
+            })
+
         context["transactionstatus"] = TRANSACTION_STATUS
         return context
 
+    def pie_chart(request):
+        labels = []
+        data = []
+        # context["transactions"] = Transaction.objects.all()
+        qs = Transaction.objects.order_by('-amount')[:5]
+        print('QERYYY', qs)
+        for tr in qs:
+            print('TR', tr)
+            labels.append(tr.name)
+            data.append(int(tr.amount))
+        print('labels',labels)
+        print('data', data)
+
+        return render(request, 'transaction_list.html', {
+            'labels': labels,
+            'data': data,
+        })
+
+
    
+
+
+
+
+
+
 
 
 class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
@@ -171,3 +214,57 @@ class TransactionDeleteView(RedirectPermissionRequiredMixin, DeleteView):
     permission_required = 'cashflow.delete_cashflow'
     success_url = reverse_lazy('cashflow:transactionlist')
     success_message = 'Transaction deleted seccussfully.'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class ChartTestView(TemplateView):
+    template_name = "dochart.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["transactions"] = Transaction.objects.all()
+        context["amounts"] = int(Transaction.objects.all())
+        return context
+        
+
+
+def pie_chart(request):
+    labels = []
+    data = []
+    # context["transactions"] = Transaction.objects.all()
+    qs = Transaction.objects.order_by('-amount')[:5]
+    print('QERYYY', qs)
+    for tr in qs:
+        print('TR', tr)
+        labels.append(tr.name)
+        data.append(int(tr.amount))
+    print('labels',labels)
+    print('data', data)
+
+    return render(request, 'transaction_list.html', {
+        'labels': labels,
+        'data': data,
+    })
+
+
+
+
+
+
+
