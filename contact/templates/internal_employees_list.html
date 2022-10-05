@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% block title %}
+<title>Clients</title>
+{% endblock %}
+
+
+  <div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'client_add.html'%}
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      {% include 'client_delete.html' with deleteclient_url=deleteclient_url%}
+    </div>
+  </div>
+  <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      {% include 'client_edit.html' with editclient_url=editclient_url %}
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="alert">
+      {% include 'snippets/message.html' %}
+   </div>
+      <section class="section">
+        <div class="section-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Clients list</h4>
+                  <div class="card-header-action">
+                    <div class="row">
+                      <button hx-get="{% url 'contact:addclient' %}" hx-target="#addContent" data-toggle="modal"
+                        data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus"><i
+                          data-feather="plus"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="total" style="margin-left: 20px;">
+                      <strong>Total : </strong>
+                      {{ client_count }}
+                    </div>
+
+                    <form action="" method="GET" style="margin-left:auto ;">
+                      <div class="d-md-flex align-items-center">
+                        <tr class="row">
+                          <td>
+                            <input type="search" class="form-control" placeholder="Project name" aria-label="Search"
+                              name="name"></td>
+                          <td>
+                            <input type="date" class="form-control" placeholder="collab_start" name="started_date">
+                          </td>
+                          <td>
+                            <select class="form-control select" name="project_type">
+                            <option value="">selcet a project type</option>
+                            {% for key, value in projecttypes %}
+                              <option value={{key}}>{{value}}</option>
+                            {% endfor %}
+                            </select>
+                          </td>
+
+                          <td>
+                            <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
+                          </td>
+                        </tr>
+
+                      </div>
+                    </form>
+                  </div>
+                  <hr>
+
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                          <th>Name </th>
+                          <th>Company</th>
+                          <th>Email</th>
+                          <th>Phone number</th>
+                          <th>Decision</th>
+                          {% comment %} <th>Project</th> {% endcomment %}
+                          <th>source</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                            
+                          <tr>
+                            {% if employee.is_internal is not True %}
+                        {% for employee in employees %}
+
+                              <td>{{employee.name}} {{employee.pk}} </td>
+                              <td> {% if employee.company %}
+                              <a href="{{employee.company.get_absolute_url}}">{{employee.company}}</a>
+                              {% endif %}
+                              </td>
+                              <td>{{employee.email}}</td>
+                              <td>{{employee.mobile}}</td>
+                              <td><span class="fe text-warning"> {{employee.get_decision_display}} </span></td>
+                              {% comment %} <td>
+                                  <a href="{{employee.project.get_absolute_url}}">{{employee.project_name}}</a>
+                              </td> {% endcomment %}
+                              <td>{{employee.source}}</td>
+                              <td><span class="d-block text-info">{{employee.collab_start}}</span></td>
+
+                              <td><a href="{{editclient_url}}" data-toggle="modal" data-target="#editContent-{{employee.pk}}" class="btn icn"><i
+                                      data-feather="edit"></i></a>
+
+                                  <a href="{{deleteclient_url}}" data-toggle="modal" data-target="#deleteContent-{{employee.pk}}" class="btn icn"><i
+                                      data-feather="trash"></i></a>
+                                  
+                                  <a  href="{% url 'contact:clientdetail' employee.pk %}"  class="btn icn"> <i data-feather="eye"></i>
+                                  </a>
+                              </td>
+                        {% endfor %}
+                              {% else %}
+                                <a href="#">{{employee.decision}} $@!$@#$FRFVRVFVVVVVVVVVVVVVVVFDFR@RF@R</a> fvsdv sd dv $@!$@#$FRFVRVFVVVVVVVVVVVVVVVFDFR@RF@R   
+                                <h1>ANDREEE AYOPPPO</h1>
+                              {% endif %}
+                            </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+{% for employee in employees %}
+  {% url 'contact:editclient' employee.pk as editclient_url %}
+  {% url 'contact:clientdelete' employee.pk as deleteclient_url %}
+  {% include "client_edit.html" with editclient_url=editclient_url %}
+  {% include "client_delete.html" with deleteclient_url=deleteclient_url %}
+{% endfor %}
+
+{% endblock content %}

@@ -156,8 +156,9 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         # context["Users"] =User.objects.all().order_by('collab_start')
         context["client_count"] =User.objects.all().count()
         filters=Userfilter(self.request.GET, queryset=User.objects.all().order_by('collab_start'))
-        # context["employees"] = User.objects.all()
-        context["employees"] = filters.qs
+        # context["employees_in"] = User.objects.filter(User.is_internal=User.is_internal).exists()
+        # context["employees"] = filters.qs
+        context["employees"] = User.objects.all()
         context["companies"] = Company.objects.all()
         context["projects"] = Project.objects.all()
         context["roles"] = ROLE_TYPE_CHOICE

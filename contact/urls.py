@@ -18,6 +18,8 @@ urlpatterns = [
     path('editclient/<int:pk>/', login_required(ClientUpdateView.as_view()), name="editclient"),
     path('clientdetail/<int:pk>/', login_required(ClientDetailView.as_view()), name="clientdetail"),
     path('clientdelete/<int:pk>/', login_required(ClientDeleteView.as_view()), name="clientdelete"),
+    path('internalemployeelist', login_required(ClientListView.as_view()), name='internalemployeelist'),
+
 
 ]
 

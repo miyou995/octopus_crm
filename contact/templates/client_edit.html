@@ -101,6 +101,16 @@
               <label for="id_is_responsible">Responsible</label><br>
             </div>
           </div>
+
+          <div class="row">
+            <div class="form-group col-6">
+              <input type="checkbox" id="id_is_internal" {% if employee.is_internal %}
+                value="{{employee.is_internal}}" checked{% else %} value="{{employee.is_internal}}" {% endif %}
+                name="is_internal">
+              <label for="id_is_internal">Internal</label><br>
+            </div>
+          </div>
+
           {% comment %}<div class="row">
             <div class="form-group col-6">
               <label for="id_project_name">Project name</label>
