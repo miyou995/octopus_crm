@@ -10,7 +10,7 @@
 
   <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'client_add.html'%}
+      {% include 'internal_employee_add_model.html'%}
     </div>
   </div>
   <div class="modal fade" id="deleteModal" role="dialog">
@@ -37,7 +37,7 @@
                   <h4>Clients list</h4>
                   <div class="card-header-action">
                     <div class="row">
-                      <button hx-get="{% url 'contact:addclient' %}" hx-target="#addContent" data-toggle="modal"
+                      <button hx-get="{% url 'contact:addinternalemployee' %}" hx-target="#addContent" data-toggle="modal"
                         data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus"><i
                           data-feather="plus"></i></button>
                     </div>
@@ -48,7 +48,7 @@
                   <div class="row">
                     <div class="total" style="margin-left: 20px;">
                       <strong>Total : </strong>
-                      {{ client_count }}
+                      {{ employees_in_count }}
                     </div>
 
                     <form action="" method="GET" style="margin-left:auto ;">
@@ -96,9 +96,9 @@
                       </thead>
                       <tbody>
                             
-                          <tr>
-                            {% if employee.is_internal is not True %}
                         {% for employee in employees %}
+                          <tr>
+                            {% if employee.is_internal  %}
 
                               <td>{{employee.name}} {{employee.pk}} </td>
                               <td> {% if employee.company %}
@@ -123,11 +123,8 @@
                                   <a  href="{% url 'contact:clientdetail' employee.pk %}"  class="btn icn"> <i data-feather="eye"></i>
                                   </a>
                               </td>
-                        {% endfor %}
-                              {% else %}
-                                <a href="#">{{employee.decision}} $@!$@#$FRFVRVFVVVVVVVVVVVVVVVFDFR@RF@R</a> fvsdv sd dv $@!$@#$FRFVRVFVVVVVVVVVVVVVVVFDFR@RF@R   
-                                <h1>ANDREEE AYOPPPO</h1>
                               {% endif %}
+                         {% endfor %}
                             </tr>
 
                       </tbody>

@@ -1,4 +1,6 @@
 # import imp
+from email.policy import default
+from sys import flags
 from django.db import models
 from django.contrib.auth.models import (AbstractUser, BaseUserManager)
 from tinymce import models as tinymce_models
@@ -106,6 +108,8 @@ class User(AbstractUser):
     is_manager      = models.BooleanField(default=False)
     is_responsible  = models.BooleanField(default=False)
     is_admin        = models.BooleanField(default=False)
+    is_internal     = models.BooleanField(default=False)
+    
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
     user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=2, blank=True, null=True)

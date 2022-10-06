@@ -120,7 +120,7 @@ class Project (models.Model):
 
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
     @property
     def get_absolute_url(self):
