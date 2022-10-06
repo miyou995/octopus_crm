@@ -121,16 +121,16 @@ class CompanyDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, De
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
 
 
-##### CLIENTS
+##### CLIENTS@####################33333
 
-class  AddClientView(RedirectPermissionRequiredMixin, SuccessMessageMixin, CreateView):
+class AddClientView(RedirectPermissionRequiredMixin, SuccessMessageMixin, CreateView):
     template_name= "client_add.html"
     form_class= AddClientForm
     model = User
-
     success_message = "the employee created successfully."
     permission_required= 'contact.add_client'
     success_url = reverse_lazy('contact:clientlist')
+
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
@@ -166,6 +166,8 @@ class ClientListView(RedirectPermissionRequiredMixin, ListView):
         context["decisions"] = DECISION_TYPE_CHOICES
 
         return context
+
+    
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
@@ -215,3 +217,25 @@ class ClientDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, Del
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('envents:eventlist')
+
+####### Internal Employees ########3
+
+class InternalEmployeeListView(ClientListView, ListView):
+    template_name = "internal_employees_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(InternalEmployeeListView, self).get_context_data(**kwargs)
+        # context["employees_in_count"] = User.objects.filter(User.is_internal == True).count()
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:internalemployeelist')
+
+class AddInternalEmployeeView(AddClientView):
+    template_name = 'internal_employee_add_model.html'
+    success_url = reverse_lazy('contact:internalemployeelist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:internalemployeelist')
