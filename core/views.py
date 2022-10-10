@@ -1,4 +1,5 @@
 from ast import Return
+# from multiprocessing import Event
 from django.db.models.query import QuerySet
 from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
@@ -14,6 +15,7 @@ from django.views.generic import (
     DeleteView, 
     FormView
 )
+from events.models import Event
 from project.models import Project
 from contact.models import Company
 from django.contrib import messages
@@ -31,6 +33,7 @@ class IndexView(TemplateView):
         context["project_count"] =Project.objects.all().count()
         context["companies"] = Company.objects.all().order_by('collab_start')
         context["company_count"] =Company.objects.all().count()
+        # context["events"] = Event.objects.all()
         # context["employees"] = Employee.objects.all().order_by('collab_start')
         # context["client_count"] =Employee.objects.all().count()
         # context["leads"] = Lead.objects.all().order_by('updated')
