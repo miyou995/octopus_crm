@@ -114,6 +114,7 @@ class Transaction(models.Model):
     updated     = models.DateTimeField(auto_now=True)
     objects     = models.Manager()
     payments    = TransactionManager()
+    # amnt        = models.PositiveIntegerField()
 
     made_by     = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="made_transactions") 
     
