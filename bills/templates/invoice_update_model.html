@@ -107,62 +107,101 @@
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <div class="section-title">Order Summary</div>
-                                    <button style="float:right;" class="col-1 btn btn-secondary mb-3"  onclick="add()">add</button>
                                     <div class="table-responsive">
-                                        <table class="table" id="mytable">
-                                            <thead>
-                                                <th scope="row" style="width:10%">#</th>
-                                                <th style="width:60%">Item</th>
-                                                <th style="width:10%">Price</th>
-                                                <th style="width:10%" >Quantity</th>
-                                                <th style="width:10%">Totals</th>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</td>
-                                                <td>Item name </td>
-                                                <td>1234 DA</td>
-                                                <td>2</td>
-                                                <td>2468 DA</td>
-                                            
-                                            </tr>
-                                        </tbody>
-                                        </table>
-                                    
-                                        <table class="tab mt-0" style="float:right;">
-                                            <tbody>
-                                                <tr>
-                                                    <th style="width:100px;" scope="row">Total hors taxe</th>
-                                                    <td style="width:100px">123 DA</td>
-                                                </tr>
-                                                <tr>
-                                                    <th style="width:100px;" scope="row">TVA</th>
-                                                    <td style="width:100px;">111 DA</td>
-                                                </tr>
-                                                <tr>
-                                                    <th style="width:100px;" scope="row">Total</th>
-                                                    <td style="width:100px;">111 DA</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    
+                                        <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <h5>Order Summary</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-secondary mb-3" @click="addItem()">Add</button>
+                                                </div>
+                                            </div>
+                                            <div x-show="items.length">
+                                                <div id="table" class="table-editable rounded border text-xs">
+                                                    <table class="table table-responsive-md table-striped text-center">
+                                                        <thead>
+                                                            <tr>  
+                                                                <th class="text-center" scope="row" >#</th>
+                                                                <th class="">Item</th>
+                                                                                              
+                                                                <th class="text-center" style="width:10%">Price</th>
+                                                                <th class="text-center"style="width:10%">Quantity</th>
+                                                                <th class="text-center"style="width:10%">Total</th>
+                                                                <th class="text-center"style="width:10%"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <template x-for="item in items" :key="item.id">
+                                                                <tr class="border-t">
+                                                                    <td>
+                                                                        <span x-text="item.id"></span>     
+                                                                    </td>
+                                                                    <td class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
+                                                                        <span x-text="item.item" class="overflow-auto" ></span>                                      
+                                                                    </td>
+                                                                   
+                                                                    <td class="pt-3-half" contenteditable="true">
+                                                                        <span x-text="item.price"></span>DA   
+                                                                    </td>
+                                                                    <td class="pt-3-half" contenteditable="true">
+                                                                        <span x-text="item.quantity"></span>    
+                                                                    </td>
+                                                                    <td class="pt-3-half" contenteditable="true">
+                                                                        <span x-text="item.total"></span>DA    
+                                                                    </td>
+                                                                    <td>  <button
+                                                                        class="btn btn-outline-danger"
+                                                                        @click="deleteItem(item.id)">x</button></td>
+                                                                </tr>
+                                                            </template>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <address>
+                                                    <strong>Payment Method:</strong><br>
+                                                    <!-- Visa ending **** 5687<br>
+                                                 -->
+                                                </address>
+                                                <form action="">
+                                                    <label for="note">Note</label>
+                                                    <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="table-responsive">
+                                                    <table class="tab mt-0" style="float:right;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="width:120px;" scope="row">Total hors taxe</th>
+                                                                <td style="width:100px">123 DA</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="width:100px;" scope="row">TVA</th>
+                                                                <td style="width:100px;">111 DA</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="width:100px;" scope="row">Total</th>
+                                                                <td style="width:100px;">111 DA</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                           <!-- <hr>
+                                            <div class="text-md-right">
+                                                <div class="float-lg-left mb-lg-0 mb-3">
+                                                    <button type="submit" class="btn btn-primary btn-icon icon-left" form="createInvoiceForm" ><i class="fas fa-credit-card"></i> Process
+                                                        Payment</button>
+                                                    <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- <div class="row mt-4 text-right ml-6"> -->
-                                        <!-- <div style="float: right;" >
-                                            <table>
-                                                <tr>
-                                                    <td><input type="text" class="form-control" placeholder="subTotal"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" class="form-control" placeholder="tva"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" class="form-control" placeholder="tota&l"></td>
-                                                </tr>
-                                            </table>
-
-                                        </div> -->
-                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>

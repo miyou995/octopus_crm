@@ -9,7 +9,7 @@
 
 
   <div class="modal fade" id="addModal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       {% include 'invoice_create_model.html'%}
     </div>
   </div>
@@ -25,9 +25,9 @@
   </div>
 
   <div class="main-content">
-    <div class="alert">
+    {% comment %} <div class="alert">
       {% include 'snippets/message.html' %}
-   </div>
+   </div> {% endcomment %}
       <section class="section">
         <div class="section-body">
           <div class="row">
