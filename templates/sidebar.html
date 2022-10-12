@@ -12,9 +12,7 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">
-          
-          <a href="#" style="color:black;">{{ user.get_username }}
-          </a>
+          <a href="#" style="color:black;">{{ user.get_username }}</a>
         </li>
         <li class="dropdown">
           <a href="/" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
@@ -41,22 +39,37 @@
             <li> <a class="nav-link" href="{% url 'contact:internalemployeelist' %}" >Ineternal Employee list</a></li>
           </ul>
         </li>
-        <!-- <li class="active"><a class="nav-link" href="blank.html"><i data-feather="file"></i><span>Blank
-              Page</span></a></li>
-        <li class="menu-header">Otika</li>
-         -->
-         {% comment %} <li class="dropdown">
-          <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="file"></i><span>Bills</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{% url 'bills:invoice' %}">Invoice</a></li>
-            <li><a class="nav-link" href="#">Proforma</a></li>
-          </ul>
-        </li> {% endcomment %}
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="dollar-sign"></i><span>Cashflow</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="#">Accounts</a></li>
+
+            <li><a class="nav-link" href="{% url 'cashflow:transactionlist' %}">Transaction</a></li>
+          </ul>
+          
+        </li>
+        <li class="dropdown">
+          <a  href="#" class="menu-toggle nav-link has-dropdown">
+            <i data-feather="dollar-sign"></i> <span>Bills</span>
+          </a>
+          <ul class="dropdown-menu">             
+            <li><a class="nav-link" href="{% url 'bills:invoicelist' %}">Invoices</a></li>
+            <li><a class="nav-link" href="{% url 'bills:proformalist' %}">Proformas</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="menu-toggle nav-link has-dropdown">
+            <i data-feather="list"></i> <span>Project</span>
+          </a>
+          <ul class="dropdown-menu">             
+            <li><a class="nav-link" href="{% url 'project:projectlist' %}">Project</a></li>
+            <li><a class="nav-link" href="{% url 'project:tasklist' %}">Tasks</a></li>              
+          </ul>
+        </li>
+
            <li><a class="nav-link" href="{% url 'cashflow:transactionlist' %}">Transaction</a></li>
             <li>
               <a href="#" class="menu-toggle nav-link has-dropdown">Bills</a>
@@ -81,6 +94,7 @@
         </li>
         <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i
               data-feather="list"></i><span>Projects</span></a></li>
+
          <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="user-check"></i><span>Auth</span></a>

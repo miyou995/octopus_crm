@@ -2,6 +2,7 @@ import email
 from pyexpat import model
 from turtle import title
 from unicodedata import name
+from django.urls import reverse
 from django.db import models
 from contact.models import Company
 from accounts.models import User
@@ -31,15 +32,23 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
+    @property
+    def get_absolute_url(self):
+        return reverse("events:eventdetail", kwargs={"pk": self.pk})
+
+    # @property
+    # def notification_time(self):
+    #     return 
+
+    # class Meta:
         # db_table = 'Event'
         # managed = True
-        constraints = [
-            CheckConstraint(
-                check=Q(deadline__gt=F('start_date')or Q(end_time__gt=F('start_time'))),
-                name="date_check",
-            ),
-        ]
+        # constraints = [
+        #     CheckConstraint(
+        #         check=Q(deadline__gt=F('start_date')or Q(end_time__gt=F('start_time'))),
+        #         name="date_check",
+        #     ),
+        # ]
 
     def clean(self):
         # Ensures constraint on model level, raises ValidationError
