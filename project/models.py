@@ -1,3 +1,4 @@
+from asyncio import events
 from tokenize import Triple
 from unicodedata import name
 from django.db import models
@@ -12,7 +13,7 @@ from django.core.validators import MinValueValidator
 from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
+from events.choice import EVENT_PRIORITY
 
 
 class ProjectQueryset(models.QuerySet):
@@ -160,17 +161,20 @@ class Project (models.Model):
 
 class Task(models.Model):
     name                = models.CharField(max_length=256, blank=True, null=True)
-    started_date        = models.DateField(blank=True, null=True) 
+    start_date          = models.DateField(blank=True, null=True) 
     deadline            = models.DateField(blank=True, null=True)
     created             = models.DateTimeField(auto_now_add=True)
     description         = tinymce_models.HTMLField( blank=True, null=True)
     updated             = models.DateTimeField(auto_now=True)
-
+    priority            = models.CharField(choices=EVENT_PRIORITY, max_length=7, blank=True, null=True)
     project             = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='tasks')
     user                = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='supervised_tasks')
 
     def __str__(self):
         return self.name
 
-
+    @property
+    def get_absolute_url(self):
+        return reverse("projects:taskdetail", kwargs={'pk': self.pk})
+ 
    

@@ -22,6 +22,8 @@ from .models import Event
 from django.http import HttpResponse, JsonResponse
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 
@@ -86,7 +88,7 @@ class EventsListView(RedirectPermissionRequiredMixin, ListView):
 
         return context
 
-class EventCreateView(RedirectPermissionRequiredMixin, CreateView):
+class EventCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView):
     template_name = 'event_create_model.html'
     form_class = AddEventForm
     model = Event
@@ -115,7 +117,7 @@ class EventCreateView(RedirectPermissionRequiredMixin, CreateView):
 
 
 
-class EventUpdateView(RedirectPermissionRequiredMixin, UpdateView):
+class EventUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, UpdateView):
     template_name = 'event_edit_model.html'
     form_class = AddEventForm
     model = Event
@@ -172,7 +174,7 @@ class EventDetailView(RedirectPermissionRequiredMixin, DetailView):
         return context
 
 
-class EventDeleteView(RedirectPermissionRequiredMixin, DeleteView):
+class EventDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DeleteView):
     template_name = 'event_delete_model.html'
     form_class = AddEventForm
     model = Event

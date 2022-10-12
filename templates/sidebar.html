@@ -70,8 +70,25 @@
           </ul>
         </li>
         
-        <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i
+        {% comment %} <li><a class="nav-link" href="{% url 'project:projectlist' %}"><i
               data-feather="list"></i><span>Projects</span></a></li>
+        <ul class="dropdown-menu">             
+          <li><a class="nav-link" href="{% url 'project:tasklist' %}">Tasks</a></li>              
+        </ul> {% endcomment %}
+
+        <li class="dropdown">
+          <a  href="#" class="menu-toggle nav-link has-dropdown">
+            <i data-feather="list"></i> <span>Project</span>
+          </a>
+          <ul class="dropdown-menu">             
+            <li><a class="nav-link" href="{% url 'project:projectlist' %}">Project</a></li>
+            <li><a class="nav-link" href="{% url 'project:tasklist' %}">Tasks</a></li>              
+          </ul>
+        </li>
+
+
+
+
          <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="user-check"></i><span>Auth</span></a>

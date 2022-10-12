@@ -24,12 +24,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from cashflow.models import Account
 from contact.models import Company
 from accounts.models import User
-from .models import Project
-from .forms import AddProjectForm
+from .models import Project, Task
+from .forms import AddProjectForm, AddTaskForm
 from cashflow.models import Transaction
 from .filters import ProjectFilter
 from django.db.models import Sum
 from .choice import PROJECT_TYPE_CHOICES, CONTRACT_TYPE_CHOICES, STATUS_TYPE_CHOICES, TRANSACTION_TYPE_CHOICES
+from events.choice import EVENT_PRIORITY
 
 import logging
 from pprint import pprint
@@ -145,3 +146,84 @@ class ProjectDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Del
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('envents:eventlist')
 
+######### TASKS #########
+
+
+class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView ):
+    template_name = 'task_list.html'
+    model = Task
+    form_class= AddTaskForm
+    permission_required= 'project.list_task'
+        
+    def get_context_data(self, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        context["employees_in"] = User.objects.all()
+        context["taskpriorities"] = EVENT_PRIORITY
+
+        return context
+
+
+
+class TaskCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView ):
+    template_name = 'task_create_model.html'
+    model = Task
+    form_class= AddTaskForm
+    success_message = "Task created successfully."
+    permission_required= 'project.create_task'
+    success_url = reverse_lazy('project:tasklist')      
+        
+    def get_context_data(self, **kwargs):
+        context = super(TaskCreateView, self).get_context_data(**kwargs)
+        context["employees_in"] = User.objects.all()
+        context["taskpriorities"] = EVENT_PRIORITY
+
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('project:tasklist')
+
+class TaskUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, UpdateView ):
+    template_name = 'task_edit_model.html'
+    model = Task
+    form_class= AddTaskForm
+    success_message = "Task updated successfully."
+    permission_required= 'project.edit_task'
+    success_url = reverse_lazy('project:tasklist')      
+        
+    def get_context_data(self, **kwargs):
+        context = super(TaskCreateView, self).get_context_data(**kwargs)
+        context["employees_in"] = User.objects.all()
+        context["taskpriorities"] = EVENT_PRIORITY
+
+        return context
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('project:tasklist')
+
+
+class TaskDetailView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DetailView ):
+    template_name = 'task_detail.html'
+    model = Task
+    form_class= AddTaskForm
+    permission_required= 'project.view_task'
+        
+    def get_context_data(self, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        context["employees_in"] = User.objects.all()
+        return context
+
+        
+
+class TaskDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView ):
+    template_name = 'task_delete_model.html'
+    model = Task
+    form_class= AddTaskForm
+    success_message = "Task deleted successfully."
+    permission_required= 'project.delete_task'
+    success_url = reverse_lazy('project:tasklist')      
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('project:tasklist')

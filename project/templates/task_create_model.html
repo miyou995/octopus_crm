@@ -1,0 +1,72 @@
+
+<div class="modal-content">
+      <div class="modal-header">
+            <form action="{% url 'task:taskcreate' %}" id="createTaskForm" method="POST">
+            {% csrf_token %}
+        <input type="text" name="name" id="tasktitle" class="form-control form-inv" placeholder="Task Title"
+          required>
+        {% comment %} <input type="color" name="name_color" id="colorEvent" class="" value="#6777ef"> {% endcomment %}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            {% comment %} <form action="{% url 'task:taskcreate' %}" id="createTaskForm" method="POST"> {% endcomment %}
+
+              <!-- <div class="row check" style="float: right;" >
+                    <label for="">Toute la journée</label>
+                    <input type="checkbox" id="" class="checkbox">
+                  </div> -->
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="id_name" style="font-weight:bold;">Start Date</label>
+                  <input type="date" name="start_date" id="" class="form-control popup">
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="id_name" style="font-weight:bold;">End Date</label>
+                  <input type="date" name="deadline" id="" class="form-control popup time">
+                </div>
+                
+              </div>
+
+              <div class="form-group form-float center-block">
+                <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                  <label for="id_project_type" style="font-weight:bold;">Priority</label>
+                  <select class="form-control" name="priority" id="id_task_priority">
+                    <option value="" selected="">Select the priority</option>
+                    {% for key, value in eventpriorities %}
+                      <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              {% comment %} <div class="row">
+                <div class="form-group col-8">
+                  <label for="" style="font-weight:bold;">Members</label>
+                  <select class="form-control popup" name="" id="">
+                    <option value="1" selected>aaaa</option>
+                    <option value="">eeeee</option>
+                    <option value="">eeeee</option>
+                  </select>
+                </div>
+              </div> {% endcomment %}
+
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="id_name" style="font-weight:bold;">Description</label>
+                  <textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+            </form>
+            <div>
+              <button type="submit" style="float:right " class="waves-effect btn btn-primary"
+                form="createTaskForm">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

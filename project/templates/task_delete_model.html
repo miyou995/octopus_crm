@@ -1,25 +1,25 @@
 
-<div class="modal fade" id="deleteContent-{{event.pk}}" role="dialog">
+<div class="modal fade" id="deleteContent-{{task.pk}}" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document">
 
-    <div id="deleteContent-{{event.pk}}" class="modal-content">
+    <div id="deleteContent-{{task.pk}}" class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="deleteModalLabel-{{event.pk}}">Delete event {{event.pk}}</h4>
+        <h4 class="modal-title" id="deleteModalLabel-{{task.pk}}">Delete task {{task.pk}}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
           aria-hidden="true">&times;</span></button>
       </div>
 
       <div class="modal-body">
-        <form action="{{eventdelete_url}}" method="post" id="deleteEventForm-{{event.pk}}" class="form-sample">
+        <form action="{{taskdelete_url}}" method="post" id="deleteTaskForm-{{task.pk}}" class="form-sample">
           {% csrf_token %}
           <p style="font-size: 16px;">
-            Are you sure you want to delete <span class="text-danger">{{event.name}}</span> ?
+            Are you sure you want to delete <span class="text-danger">{{task.name}}</span> ?
           </p>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" form="deleteEventForm-{{event.pk}}">Delete</button>
+        <button type="submit" class="btn btn-primary" form="deleteTaskForm-{{task.pk}}">Delete</button>
       </div>
     </div>
   </div>
