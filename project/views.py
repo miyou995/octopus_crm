@@ -144,7 +144,7 @@ class ProjectDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Del
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
-        return redirect('envents:eventlist')
+        return redirect('project:projectlist')
 
 ######### TASKS #########
 
@@ -159,6 +159,7 @@ class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView
         context = super(TaskListView, self).get_context_data(**kwargs)
         context["employees_in"] = User.objects.all()
         context["taskpriorities"] = EVENT_PRIORITY
+        context["tasks"] = Task.objects.all()
 
         return context
 

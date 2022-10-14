@@ -9,25 +9,48 @@
 
   <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'event_create_model.html' %}
+      {% include 'task_create_model.html' %}
     </div>
   </div>
 
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      {% include 'event_edit_model.html' with editevent_url=editevent_url %}
+      {% include 'task_edit_model.html' with edittask_url=edittask_url %}
     </div>
   </div>
 
   <div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered " role="document">
-      {% include 'event_delete_model.html' with eventdelete_url=eventdelete_url %}
+      {% include 'task_delete_model.html' with taskdelete_url=taskdelete_url %}
     </div>
   </div>
-
+<div class="main-content">
+    <section class="section">
+      <div class="section-body">
+         {% include 'snippets/message.html' %}
+        <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>tasks List</h4>
+                  <div class="card-header-form">
+                    <button  hx-get="{% url 'project:addtask' %}" hx-target="#addContent" data-toggle="modal"
+                        data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
+                        <i data-feather="plus"></i></button>
+                    <!-- <form>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-btn">
+                          <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                      </div>
+                    </form> -->
+                  </div>
+                </div>
                 <div class="card-body p-0">
                   <div class="table-responsive">
                     <table class="table table-striped">
+                    <thead>
                       <tr>
                         <th class="text-center">
                           <div class="custom-checkbox custom-checkbox-table custom-control">
@@ -44,6 +67,11 @@
                         <th>Priority</th>
                         <th>Action</th>
                       </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for task in tasks %}
+                    
                       <tr>
                         <td class="p-0 text-center">
                           <div class="custom-checkbox custom-control">
@@ -52,18 +80,13 @@
                             <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
                           </div>
                         </td>
-                        <td>Create a mobile app</td>
+                        <td>{{task.name}}</td>
                         <td class="text-truncate">
                           <ul class="list-unstyled order-list m-b-0 m-b-0">
                             <li class="team-member team-member-sm"><img class="rounded-circle"
                                 src="assets/img/users/user-8.png" alt="user" data-toggle="tooltip" title=""
                                 data-original-title="Wildan Ahdian"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-9.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="John Deo"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-10.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Sarah Smith"></li>
+
                             <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span></li>
                           </ul>
                         </td>
@@ -73,13 +96,39 @@
                             <div class="progress-bar bg-success" data-width="50%"></div>
                           </div>
                         </td>
-                        <td>2018-01-20</td>
-                        <td>2019-05-28</td>
-                        <td>
-                          <div class="badge badge-success">Low</div>
-                        </td>
-                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                      </tr>
+                        <td {% if task.start_date %}> {{task.start_date}} {% endif %}</td>
+                        <td {% if task.deadline %}> {{task.deadline}} {% endif %}</td>
+
+                         {% if task.priority == 'low' %}
+                          <td>
+                            <div class="badge badge-success">{{task.priority}}</div>
+                          </td>
+                          {% elif task.priority == 'meduim' %}
+                          <td>
+                            <div class="badge badge-info">{{task.priority}}</div>
+                          </td>
+                          {% else %}
+                          <td>
+                            <div class="badge badge-danger">{{task.priority}}</div>
+                          </td>
+                          {% endif %}
+                          <td>
+                            <a href="{{edittask_url}}" data-toggle="modal" data-target="#editContent-{{task.pk}}" class="btn icn">
+                            <i data-feather="edit"></i>
+                            </a>
+ 
+                            <a href="{{taskdelete_url}}" data-toggle="modal" data-target="#deleteContent-{{task.pk}}" class="btn icn">
+                            <i data-feather="trash"></i>
+                            </a>
+
+                            <a href="{% url 'project:taskdetail' task.pk %}" class="btn icn">
+                            <i data-feather="eye"></i></a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+
+                      {% comment %} </tr> {% endcomment %}
                       <tr>
                         <td class="p-0 text-center">
                           <div class="custom-checkbox custom-control">
@@ -113,150 +162,16 @@
                         </td>
                         <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
                       </tr>
-                      <tr>
-                        <td class="p-0 text-center">
-                          <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                              id="checkbox-3">
-                            <label for="checkbox-3" class="custom-control-label">&nbsp;</label>
-                          </div>
-                        </td>
-                        <td>Backup database</td>
-                        <td class="text-truncate">
-                          <ul class="list-unstyled order-list m-b-0 m-b-0">
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-3.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Wildan Ahdian"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-4.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="John Deo"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-5.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Sarah Smith"></li>
-                            <li class="avatar avatar-sm"><span class="badge badge-primary">+3</span></li>
-                          </ul>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-text">55%</div>
-                          <div class="progress" data-height="6">
-                            <div class="progress-bar bg-purple" data-width="55%"></div>
-                          </div>
-                        </td>
-                        <td>2019-07-25</td>
-                        <td>2019-08-17</td>
-                        <td>
-                          <div class="badge badge-info">Average</div>
-                        </td>
-                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td class="p-0 text-center">
-                          <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                              id="checkbox-4">
-                            <label for="checkbox-4" class="custom-control-label">&nbsp;</label>
-                          </div>
-                        </td>
-                        <td>Android App</td>
-                        <td class="text-truncate">
-                          <ul class="list-unstyled order-list m-b-0 m-b-0">
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-7.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="John Deo"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-8.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Sarah Smith"></li>
-                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span></li>
-                          </ul>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-text">70%</div>
-                          <div class="progress" data-height="6">
-                            <div class="progress-bar" data-width="70%"></div>
-                          </div>
-                        </td>
-                        <td>2018-04-15</td>
-                        <td>2019-07-19</td>
-                        <td>
-                          <div class="badge badge-success">Low</div>
-                        </td>
-                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td class="p-0 text-center">
-                          <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                              id="checkbox-5">
-                            <label for="checkbox-5" class="custom-control-label">&nbsp;</label>
-                          </div>
-                        </td>
-                        <td>Logo Design</td>
-                        <td class="text-truncate">
-                          <ul class="list-unstyled order-list m-b-0 m-b-0">
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-9.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Wildan Ahdian"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-10.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="John Deo"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-2.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Sarah Smith"></li>
-                            <li class="avatar avatar-sm"><span class="badge badge-primary">+2</span></li>
-                          </ul>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-text">45%</div>
-                          <div class="progress" data-height="6">
-                            <div class="progress-bar bg-cyan" data-width="45%"></div>
-                          </div>
-                        </td>
-                        <td>2017-02-24</td>
-                        <td>2018-09-06</td>
-                        <td>
-                          <div class="badge badge-danger">High</div>
-                        </td>
-                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td class="p-0 text-center">
-                          <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                              id="checkbox-6">
-                            <label for="checkbox-6" class="custom-control-label">&nbsp;</label>
-                          </div>
-                        </td>
-                        <td>Ecommerce website</td>
-                        <td class="text-truncate">
-                          <ul class="list-unstyled order-list m-b-0 m-b-0">
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-8.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Wildan Ahdian"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-9.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="John Deo"></li>
-                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                src="assets/img/users/user-10.png" alt="user" data-toggle="tooltip" title=""
-                                data-original-title="Sarah Smith"></li>
-                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span></li>
-                          </ul>
-                        </td>
-                        <td class="align-middle">
-                          <div class="progress-text">30%</div>
-                          <div class="progress" data-height="6">
-                            <div class="progress-bar bg-orange" data-width="30%"></div>
-                          </div>
-                        </td>
-                        <td>2018-01-20</td>
-                        <td>2019-05-28</td>
-                        <td>
-                          <div class="badge badge-info">Average</div>
-                        </td>
-                        <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
-                      </tr>
+
                     </table>
                   </div>
                 </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </section>
+</div>
 
 {% for task in tasks %}
   {% url 'project:edittask' task.pk as edittask_url %}
