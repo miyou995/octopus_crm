@@ -36,7 +36,7 @@
               <div class="row">
                 <div class="custom-checkbox custom-control">
                 {% for employee in employees_in %}
-                  <input type="checkbox" id="checkbox-{{employee.pk}}">
+                  <input type="checkbox" id="checkbox-{{employee.pk}}" >
                   <label for="checkbox-{{employee.pk}}" >{{employee.name}}</label>
                 {% endfor %}
                 </div>
