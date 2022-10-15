@@ -322,6 +322,100 @@ function chart3() {
 // });
 
 
+var ctx = document.getElementById("lineChart");
+if (ctx) {
+	ctx.height = 150;
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL","AUG","SEP","OCT","NOV","DEC"],
+			type: 'line',
+			defaultFontFamily: 'Poppins',
+			datasets: [{
+				label: "",
+				data: [0, 30, 10, 120, 50, 63, 10, 30, 10, 120, 50, 63],
+				backgroundColor: 'transparent',
+				borderColor: '#8246e3',
+				borderWidth: 2,
+				pointStyle: 'circle',
+				pointRadius: 3,
+				pointBorderColor: 'transparent',
+				pointBackgroundColor: '#8246e3',
+			}, {
+				label: "Electronics",
+				data: [0, 50, 40, 80, 40, 79, 120, 30, 10, 120, 50, 63],
+				backgroundColor: 'transparent',
+				borderColor: '#f96332',
+				borderWidth: 2,
+				pointStyle: 'circle',
+				pointRadius: 3,
+				pointBorderColor: 'transparent',
+				pointBackgroundColor: '#f96332',
+			}]
+		},
+		options: {
+			responsive: true,
+			tooltips: {
+				mode: 'index',
+				titleFontSize: 12,
+				titleFontColor: '#000',
+				bodyFontColor: '#000',
+				backgroundColor: '#fff',
+				titleFontFamily: 'Poppins',
+				bodyFontFamily: 'Poppins',
+				cornerRadius: 3,
+				intersect: false,
+			},
+			legend: {
+				display: false,
+				labels: {
+					usePointStyle: true,
+					fontFamily: 'Poppins',
+				},
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines: {
+						display: false,
+						drawBorder: false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					},
+					ticks: {
+						fontFamily: "Poppins",
+						fontColor: "#9aa0ac", // Font Color
+					}
+				}],
+				yAxes: [{
+					display: true,
+					gridLines: {
+						display: false,
+						drawBorder: false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value',
+						fontFamily: "Poppins"
+
+					},
+					ticks: {
+						fontFamily: "Poppins",
+						fontColor: "#9aa0ac", // Font Color
+					}
+				}]
+			},
+			title: {
+				display: false,
+				text: 'Normal Legend'
+			}
+		}
+	});
+}
+
+
 var balance_chart = document.getElementById("chart-1").getContext('2d');
 
 var balance_chart_bg_color = balance_chart.createLinearGradient(0, 0, 0, 70);
