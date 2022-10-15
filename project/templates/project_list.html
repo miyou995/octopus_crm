@@ -55,7 +55,8 @@
                       <strong>Total : </strong>
                       {{ project_count }}</div>
 
-                    <form action="" method="GET" style="margin-left:auto ;">
+                    <form action="" method="post" style="margin-left:auto ;">
+                    {% csrf_token %}
                       <div class="d-md-flex align-items-center">
                         <tr class="row">
                           <td>

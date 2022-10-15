@@ -23,7 +23,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from cashflow.models import Account
 from contact.models import Company
-from accounts.models import User
+from accounts.models import User, UserQueryset
 from .models import Project, Task
 from .forms import AddProjectForm, AddTaskForm
 from cashflow.models import Transaction
@@ -55,6 +55,8 @@ class ProjectListView(RedirectPermissionRequiredMixin,ListView):
         context["projects"] = filters.qs
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         context["projectstatus"] = STATUS_TYPE_CHOICES
         context["transactions"] = TRANSACTION_TYPE_CHOICES
@@ -96,6 +98,8 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context = super(AddProjectView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+
         context["projectstatus"] = STATUS_TYPE_CHOICES
         context["transactions"] = TRANSACTION_TYPE_CHOICES
         context["contracts"] = CONTRACT_TYPE_CHOICES
@@ -121,6 +125,8 @@ class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Upd
         context = super(ProjectUpdateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
         context["employees"] = User.objects.all()
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+
         context["projects"] = Project.objects.all()
         context["projectstatus"] = STATUS_TYPE_CHOICES
         context["transactions"] = TRANSACTION_TYPE_CHOICES
@@ -144,7 +150,7 @@ class ProjectDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Del
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
-        return redirect('envents:eventlist')
+        return redirect('project:projectlist')
 
 ######### TASKS #########
 
@@ -157,8 +163,11 @@ class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView
         
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-        context["employees_in"] = User.objects.all()
+        # context["employees_in"] = User.objects.all()
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+
         context["taskpriorities"] = EVENT_PRIORITY
+        context["tasks"] = Task.objects.all()
 
         return context
 
@@ -174,7 +183,7 @@ class TaskCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         
     def get_context_data(self, **kwargs):
         context = super(TaskCreateView, self).get_context_data(**kwargs)
-        context["employees_in"] = User.objects.all()
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
         context["taskpriorities"] = EVENT_PRIORITY
 
         return context

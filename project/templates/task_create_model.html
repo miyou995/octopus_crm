@@ -1,7 +1,7 @@
 
 <div class="modal-content">
       <div class="modal-header">
-            <form action="{% url 'task:taskcreate' %}" id="createTaskForm" method="POST">
+            <form action="{% url 'project:addtask' %}" id="createTaskForm" method="POST">
             {% csrf_token %}
         <input type="text" name="name" id="tasktitle" class="form-control form-inv" placeholder="Task Title"
           required>
@@ -33,12 +33,21 @@
                 
               </div>
 
+              <div class="row">
+                <div class="custom-checkbox custom-control">
+                {% for employee in employees_in %}
+                  <input type="checkbox" id="checkbox-{{employee.pk}}" >
+                  <label for="checkbox-{{employee.pk}}" >{{employee.name}}</label>
+                {% endfor %}
+                </div>
+              </div>
+
               <div class="form-group form-float center-block">
                 <div class="form-line col-lg-14 col-md-14 col-xs-10">
                   <label for="id_project_type" style="font-weight:bold;">Priority</label>
                   <select class="form-control" name="priority" id="id_task_priority">
                     <option value="" selected="">Select the priority</option>
-                    {% for key, value in eventpriorities %}
+                    {% for key, value in taskpriorities %}
                       <option value="{{key}}">{{value}}</option>
                     {% endfor %}
                   </select>

@@ -6,7 +6,7 @@
  */
  "use strict";
 
- $('.alert').show().delay(3000).fadeOut();
+ $('.alert').show().delay(20000).fadeOut();
         
 	function onButtonPress() {
 		$('.alert').alert('close');

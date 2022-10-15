@@ -48,7 +48,9 @@ class UserQueryset(models.QuerySet):
 
     def get_client_not_interested(self):
         return self.objects.filter(client_lead='NI')
- 
+
+    def is_internal_emp(self):
+        return User.objects.filter(is_internal= True)
 
 class UserManager(BaseUserManager):
     user_queryset     = UserQueryset()
@@ -148,3 +150,7 @@ class User(AbstractUser):
     @property
     def is_content_creator(self):
         return self.is_active and (self.is_superuser or self.is_staff and self.groups.filter(name="Content_creator").exists())
+
+    # @property
+    # def is_internal_emp(self):
+    #     return self.is_internal
