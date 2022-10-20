@@ -1,89 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
-{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> {% endcomment %}
 
-{% block scripts %}
-{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> {% endcomment %}
-
- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script>
-
-    var config = {
-      type: 'pie',
-      data: {
-        datasets: [{
-          data: {{ data|safe }},
-          backgroundColor: [
-            '#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'
-          ],
-          label: 'Population'
-        }],
-        labels: {{ labels|safe }}
-      },
-      options: {
-        responsive: true
-      }
-    };
-    console.log('THIS IS LOGGING')
-
-    window.onload = function() {
-      var ctx = document.getElementById('dochart').getContext('2d');
-      window.myPie = new Chart(ctx, config);
-    };
-  </script>
-
-{% endblock scripts %}
-
-{% block content %}
 {% block title %}
 <title>Cashflow</title>
 {% endblock %}
 
 
+{% block content %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script>
-
-    var config = {
-      type: 'pie',
-      data: {
-        datasets: [{
-          data: {{ data|safe }},
-          backgroundColor: [
-            '#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'
-          ],
-          label: 'Population'
-        }],
-        labels: {{ labels|safe }}
-      },
-      options: {
-        responsive: true
-      }
-    };
-    console.log('THIS IS LOGGING')
-
-    window.onload = function() {
-      var ctx = document.getElementById('dochart').getContext('2d');
-      window.myPie = new Chart(ctx, config);
-    };
-  </script>
-
-
-
-
-
-{% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
-
-
-{% comment %} <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> {% endcomment %}
-    
-{{TransactionListView.pie_chart}}
 <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       {% include 'transaction_create_model.html'%}
@@ -301,6 +225,7 @@
                                     </div>
                                     <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 col-xs-6">
                                         <div class="mt-2">
+                                            <canvas id="dochart" height="20vh" width="20vw"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -315,13 +240,43 @@
 
 </div>
 
+
 {% for transaction in transactions %}
     {% url 'cashflow:transactionedit' transaction.pk as transactionedit_url %}
     {% url 'cashflow:transactiondelete' transaction.pk as transactiondelete_url %}
     {% include "transaction_edit_model.html" with transactionedit_url=transactionedit_url %}
     {% include "transaction_delete_model.html" with transactiondelete_url=transactiondelete_url %}
-
 {% endfor %}
 
 {% endblock content %}
 
+{% block scripts %}
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> {% endcomment %}
+
+  <script>
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: [{{ transactions_paid|safe }}, {{transactions_not_paid|safe}},{{transactions_pending|safe}}],
+          backgroundColor: [
+            '#54ca68', '#dc3545','#ffc107'],
+          label: 'Label'
+        }],
+        labels: {{ labelschart|safe }},
+      },
+      options: {
+        responsive: true
+      }
+    };
+    console.log('THIS IS LOGGING')
+
+    window.onload = function() {
+      var ctx = document.getElementById('dochart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+  </script>
+
+
+
+{% endblock scripts %}

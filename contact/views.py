@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls.base import reverse_lazy
 from .models import Company
 from project.models import Project
-from accounts.models import User
+from accounts.models import User, UserQueryset
 from accounts.choice import ROLE_TYPE_CHOICE, DECISION_TYPE_CHOICES, PROJECT_TYPE_CHOICES
 from contact.choice import COMPANY_TYPE_CHOICES
 from project.choice import CONTRACT_TYPE_CHOICES
@@ -21,6 +21,8 @@ from .forms import CompanyAddForm , AddClientForm
 from django.contrib import messages
 from .filters import CompanyFilter, Userfilter
 from pprint import pprint
+
+from collections import Counter
 
 
 class RedirectPermissionRequiredMixin(PermissionRequiredMixin):
@@ -225,7 +227,7 @@ class InternalEmployeeListView(ClientListView, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(InternalEmployeeListView, self).get_context_data(**kwargs)
-        # context["employees_in_count"] = User.objects.filter(User.is_internal == True).count()
+        context["employees_in_count"] = UserQueryset.is_internal_emp(self).count()
         return context
 
     def form_invalid(self, form):
