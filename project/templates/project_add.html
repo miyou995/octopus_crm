@@ -112,12 +112,18 @@
                             <div class="form-group form-float">
                               <div class="form-line col-lg-14 col-md-14 col-xs-10">
                                 <label  style="font-weight:bold;">Team</label>
-                                      <div class="custom-checkbox custom-control">
+                                <br>
+                                      {% comment %} <div class="custom-checkbox custom-control"> {% endcomment %}
                                       {% for employee in employees_in %}
-                                        <input type="checkbox" id="checkbox-{{employee.pk}}" name="team" >
-                                        <label for="checkbox-{{employee.pk}}" >{{employee.name}}</label>
+                                      {% if employee %}
+                                      
+                                        {% comment %} <input type="checkbox" id="checkbox-{{employee.pk}}" name="team" > {% endcomment %}
+                                        <input type="checkbox" id="id_team" name="team" value="{{employee.pk}}">
+                                        <label for="id_team" >{{employee.name}}</label>
+                                        <br>
+                                      {% endif %} 
                                       {% endfor %}
-                                      </div>
+                                      {% comment %} </div> {% endcomment %}
                               </div>
                             </div>
                               

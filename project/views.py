@@ -89,11 +89,6 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     permission_required= 'project.add_project'
     success_url = reverse_lazy('project:projectlist')
 
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
-        result = redirect('project:projectlist')
-        return result
-
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
@@ -105,6 +100,22 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context["contracts"] = CONTRACT_TYPE_CHOICES
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         return context
+
+    
+    def form_valid(self,  form):
+        team_list = self.request.POST.getlist('team')
+        print ("sdfasdfsdfs=====: ", team_list)
+        print(list(map(int,team_list)))
+        # team_list_ids = list(map(int,team_list))
+        # Project.objects.filter(pk__in=team_list_ids)
+        # Project.team = team_list_ids
+        return super().form_valid( form)
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
+        result = redirect('project:projectlist')
+        return result
+
    
  
 class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, UpdateView):

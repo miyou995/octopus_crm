@@ -1,5 +1,6 @@
 from asyncio.locks import _ContextManagerMixin
 from multiprocessing import context
+import re
 from django.db.models.query import QuerySet
 from django.db.models.query_utils import Q
 from django.shortcuts import redirect, render
@@ -89,6 +90,14 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
     template_name= "transaction_list.html"
     model = Transaction 
     permission_required = 'cashflow.view_cashflow'
+
+    def pie_chart(request):        
+        labels = []
+        for key, val in TRANSACTION_STATUS :
+            labels.append(key)
+
+        return { 'labels': labels,}
+
     def get_context_data(self, **kwargs):
         context = super(TransactionListView, self).get_context_data(**kwargs)
         # context["transactions"] =Transaction.objects.all().order_by('date')
@@ -98,11 +107,9 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         context["transactions_count"] =Transaction.objects.all().count()
         context["total"] =Transaction.payments.get_total()
         
-        context["transactions_paid"] = TransactionManager.get_total_paid_transactions(self)
-        context["transactions_not_paid"] = TransactionManager.get_total_not_paid_transactions(self)
-        context["transactions_pending"] = TransactionManager.get_total_pending_transactions(self)
-
-        print("ssssssssdiiiiiifouuuuuuu#@#@#@##@#")
+        context["transactions_paid"] = Transaction.payments.get_total_paid_transactions()['amount__sum']
+        context["transactions_not_paid"] = Transaction.payments.get_total_not_paid_transactions()['amount__sum']
+        context["transactions_pending"] = Transaction.payments.get_total_pending_transactions()['amount__sum']
 
         # context["total_dettes"] = Project.objects.all().aggregate(Sum('get_project_dettes'))
         # context["total_payment"] =Transaction.payments.get_total_payment()
@@ -110,45 +117,9 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         # context["total_creance"] =Transaction.payments.get_total_creance()
         # context["total_salaire"] =Transaction.payments.get_total_salaire()    
         # context["total_allouer"] =Transaction.payments.get_total_allouer()  
-
-        def pie_chart(request):
-            labels = []
-            data = []
-            # context["transactions"] = Transaction.objects.all()
-            qs = Transaction.objects.order_by('-amount')[:5]
-            print('QERYYY', qs)
-            for tr in qs:
-                print('TR', tr)
-                labels.append(tr.name)
-                data.append(int(tr.amount))
-            print('labels',labels)
-            print('data', data)
-
-            return render(request, 'transaction_list.html', {
-                'labels': labels,
-                'data': data,
-            })
-
-        context["transactionstatus"] = TRANSACTION_STATUS
+   
+        context["labelschart"] = self.pie_chart()['labels']
         return context
-
-    def pie_chart(request):
-        labels = []
-        data = []
-        # context["transactions"] = Transaction.objects.all()
-        qs = Transaction.objects.order_by('-amount')[:5]
-        print('QERYYY', qs)
-        for tr in qs:
-            print('TR', tr)
-            labels.append(tr.name)
-            data.append(int(tr.amount))
-        print('labels',labels)
-        print('data', data)
-
-        return render(request, 'transaction_list.html', {
-            'labels': labels,
-            'data': data,
-        })
 
 
    
@@ -241,26 +212,25 @@ class ChartTestView(TemplateView):
         context["transactions"] = Transaction.objects.all()
         context["amounts"] = int(Transaction.objects.all())
         return context
-        
 
 
-def pie_chart(request):
-    labels = []
-    data = []
-    # context["transactions"] = Transaction.objects.all()
-    qs = Transaction.objects.order_by('-amount')[:5]
-    print('QERYYY', qs)
-    for tr in qs:
-        print('TR', tr)
-        labels.append(tr.name)
-        data.append(int(tr.amount))
-    print('labels',labels)
-    print('data', data)
+# def pie_chart(request):
+    # labels = []
+    # data = []
+    # # context["transactions"] = Transaction.objects.all()
+    # qs = Transaction.objects.order_by('-amount')[:5]
+    # print('QERYYY', qs)
+    # for tr in qs:
+    #     print('TR', tr)
+    #     labels.append(tr.name)
+    #     data.append(int(tr.amount))
+    # print('labels',labels)
+    # print('data', data)
 
-    return render(request, 'transaction_list.html', {
-        'labels': labels,
-        'data': data,
-    })
+    # return render(request, 'transaction_list.html', {
+    #     'labels': labels,
+    #     'data': data,
+    # })
 
 
 

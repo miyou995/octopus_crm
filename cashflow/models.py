@@ -8,6 +8,7 @@ from django.urls import reverse
 from .choice import TRANSACTION_STATUS, TRANSACTION_TYPE_CHOICES, ACCOUNT_TYPE
 from django.core.validators import MinValueValidator
 from decimal import Decimal
+from django.shortcuts import render
 # Create your models here.
 
 
@@ -120,7 +121,7 @@ class Transaction(models.Model):
     
     def __str__(self):
         # return f"{self.project} - {self.tr_type}"
-        return f"{self.name}"
+        return self.name
 
     @property
     def get_absolute_url(self):
@@ -129,3 +130,4 @@ class Transaction(models.Model):
     # @property
     # def get_total_paid_transactions(self):
     #     return Transaction.objects.filter(tr_status="PAID").aggregate(Sum('amount'))
+

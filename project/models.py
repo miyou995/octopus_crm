@@ -115,6 +115,7 @@ class Project (models.Model):
     company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
     manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
     team                    = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE,verbose_name="team", related_name='project_teams')
+    # team                    = models.ManyToManyField(User, blank=True, null=True,verbose_name="team", related_name='project_teams')
 
     objects                 = models.Manager()
     managing                = ProjectManager()
@@ -171,7 +172,7 @@ class Task(models.Model):
     user                = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='supervised_tasks')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     @property
     def get_absolute_url(self):

@@ -29,7 +29,7 @@ urlpatterns = [
    path('cashflow/transactiondelete/<int:pk>', login_required(TransactionDeleteView.as_view()), name="transactiondelete"),
    path('cashflow/transactiondetail/<int:pk>', login_required(TransactionDetailView.as_view()), name="transactiondetail"),
    path('chart/',login_required(ChartTestView.as_view()), name='chart'),
-   path('dochart/', views.pie_chart, name='dochart'),
+   # path('dochart/', views.pie_chart, name='dochart'),
 ]
 
 
