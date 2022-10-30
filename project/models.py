@@ -114,7 +114,7 @@ class Project (models.Model):
 
     company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
     manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
-    team                    = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE,verbose_name="team", related_name='project_teams')
+    team                    = models.ManyToManyField(User, blank=True, null=True, verbose_name="team")
     # team                    = models.ManyToManyField(User, blank=True, null=True,verbose_name="team", related_name='project_teams')
 
     objects                 = models.Manager()
@@ -138,6 +138,16 @@ class Project (models.Model):
                     'deadline': _('End date cannot be smaller then start date.')
             }
             )
+    
+    @property
+    def get_team(self):
+        li = self.team.all()
+        print("hello >>>>", li)
+        return self.team.all()
+        
+    def get_teams(self):
+
+        return self.team.all()
 
 
         
