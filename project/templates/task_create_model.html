@@ -66,6 +66,17 @@
 
               <div class="form-group">
                 <div class="form-group">
+                  <label for="id_name" style="font-weight:bold;">Teams</label>
+                  {% comment %} {% for team in team_members %}
+                  <input type="checkbox" id="checkbox" >
+                  <label for="checkbox" >{{team}}</label>
+                  {% endfor %} {% endcomment %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-group">
                   <label for="id_name" style="font-weight:bold;">Description</label>
                   <textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea>
                 </div>

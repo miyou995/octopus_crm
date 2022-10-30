@@ -88,6 +88,19 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     success_message = "Project added successfully."
     permission_required= 'project.add_project'
     success_url = reverse_lazy('project:projectlist')
+    
+    def form_valid(self,  form):
+        team_list = self.request.POST.getlist('team')
+        print ("sdfasdfsdfs=====: ", team_list)
+        team = list(map(int,team_list))
+        print(" OUR TEAM:  ",team)
+        print("this project team:   ", Project.team )
+        return super().form_valid( form)
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
+        result = redirect('project:projectlist')
+        return result
 
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
@@ -101,22 +114,6 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         return context
 
-    
-    def form_valid(self,  form):
-        team_list = self.request.POST.getlist('team')
-        print ("sdfasdfsdfs=====: ", team_list)
-        print(list(map(int,team_list)))
-        # team_list_ids = list(map(int,team_list))
-        # Project.objects.filter(pk__in=team_list_ids)
-        # Project.team = team_list_ids
-        return super().form_valid( form)
-
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, form.errors.as_text())
-        result = redirect('project:projectlist')
-        return result
-
-   
  
 class ProjectUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, UpdateView):
     model = Project
@@ -180,6 +177,11 @@ class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView
         context["taskpriorities"] = EVENT_PRIORITY
         context["tasks"] = Task.objects.all()
 
+
+        context["team_memberss"] = Project.get_teams(self)
+
+        print("weeeeeeeeellllll=== ", context["team_members"])
+
         return context
 
 
@@ -196,6 +198,9 @@ class TaskCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context = super(TaskCreateView, self).get_context_data(**kwargs)
         context["employees_in"] = UserQueryset.is_internal_emp(self)
         context["taskpriorities"] = EVENT_PRIORITY
+        # context["team_members"] = Project.get_team
+
+        # print("weeeeeeeeellllll=== ", context["team_members"])
 
         return context
 

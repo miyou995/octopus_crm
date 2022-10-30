@@ -4,7 +4,7 @@
     
     <div id="editContent-{{project.id}}" class="modal-content">
       <div class="modal-header" >
-        <h4 class="modal-title" id="detailModalLabel">Edit project {{project.pk}}</h4> 
+        <h4 class="modal-title" id="detailModalLabel">Edit project {{project.pk}} ____ {{project.get_team}}</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
           aria-hidden="true">&times;</span></button>
       </div>
@@ -110,8 +110,9 @@
                   <fieldset>
                     <div class="form-group form-float">
                       <div class="form-line col-lg-14 col-md-14 col-xs-10">
-                        <label for="id_manager" style="font-weight:bold;">Manager</label>
-                        <select class="form-control" name="manager" id="id_manager">
+                        <label for="id_manager" style="font-weight:bold;">Manager </label>
+                        {% comment %} <select class="form-control selectric" name="manager" id="id_manager" multiple> {% endcomment %}
+                        <select class="form-control selectric" name="manager" id="id_manager">
                           {% for employee in employees %}
                             {% if project.manager.id == employee.id%}
                             <option value="{{project.manager.id}}" selected>{{employee.name}}</option>
@@ -120,6 +121,23 @@
                             {% endif %}
                           {% endfor %}
                           </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-float">
+                      <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                        <label  style="font-weight:bold;">Team</label>
+                              {% comment %} <div class="custom-checkbox custom-control"> {% endcomment %}
+                              <ul>
+                              {% for employee in employees_in %}
+                              <li>
+                                <input type="checkbox" id="id_team" name="team" value="{{employee.pk}}"  {% if employee in project.get_team %}checked{% endif %} >
+                                <label for="id_team" >{{employee.name}}</label>
+                              </li>
+                              {% endfor %}
+                              </ul>
+
+                              {% comment %} </div> {% endcomment %}
                       </div>
                     </div>
   
@@ -152,4 +170,15 @@
     </div>
   </div>
 </div>
+{% comment %} 
+{% block scripts %}
+  <script src="jquery.selectric.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/lcdsantos/jQuery-Selectric/master/public/jquery.selectric.js"></script>
 
+
+ <script>
+   $('.selectric').selectric();
+ </script>
+
+{% endblock scripts %} {% endcomment %}
