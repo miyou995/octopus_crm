@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.forms import ModelForm, widgets
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Project, Task
+from .models import Project, Task, Teams
 
 class AddProjectForm(ModelForm) :
     class Meta: 
@@ -15,5 +15,10 @@ class AddProjectForm(ModelForm) :
 class AddTaskForm(ModelForm) :
     class Meta: 
         model = Task
+        fields = '__all__' 
+
+class AddTeamForm(ModelForm) :
+    class Meta: 
+        model = Teams
         fields = '__all__' 
  

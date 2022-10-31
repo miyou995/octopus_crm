@@ -2,6 +2,7 @@ from django.urls import path
    
 from project.views import ProjectListView, AddProjectView, ProjectUpdateView, ProjectDetailView,ProjectDeleteView
 from .views import TaskCreateView, TaskListView, TaskDetailView, TaskUpdateView, TaskDeleteView
+from .views import TeamListView, TeamCreateView, TeamUpdateView, TeamDeleteView
 from django.contrib.auth.decorators import login_required, permission_required
 app_name= 'project'
 
@@ -20,6 +21,13 @@ urlpatterns = [
    path('edittask/<int:pk>/', login_required(TaskUpdateView.as_view()), name="edittask"),
    path('taskdetail/<int:pk>/', login_required(TaskDetailView.as_view()), name="taskdetail"),
    path('taskdelete/<int:pk>/', login_required(TaskDeleteView.as_view()), name="taskdelete"),
+
+   #teams
+   path('teams/', login_required(TeamListView.as_view()), name="teamlist"),
+   path('addteam', login_required(TeamCreateView.as_view()), name="addteam"),
+   path('editteam/<int:pk>/', login_required(TeamUpdateView.as_view()), name="editteam"),
+   path('teamdelete/<int:pk>/', login_required(TeamDeleteView.as_view()), name="teamdelete"),
+
 
 ]
 

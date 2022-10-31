@@ -13,6 +13,7 @@ from django.views.generic import (
     DeleteView, 
     FormView
 )
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.decorators import method_decorator
@@ -24,8 +25,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from cashflow.models import Account
 from contact.models import Company
 from accounts.models import User, UserQueryset
-from .models import Project, Task
-from .forms import AddProjectForm, AddTaskForm
+from .models import Project, Task, Teams
+from .forms import AddProjectForm, AddTaskForm, AddTeamForm
 from cashflow.models import Transaction
 from .filters import ProjectFilter
 from django.db.models import Sum
@@ -70,6 +71,7 @@ class ProjectDetailView(RedirectPermissionRequiredMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProjectDetailView, self).get_context_data(**kwargs)
         project = self.get_object()
+        print("sdsdddddddYTTTTTTTTTTTT: ", project)
         # project.get_project_dettes()
         project_id = self.get_object().id
         # context["project_transactions"] = Transaction.objects.filter(project=project_id)
@@ -177,10 +179,10 @@ class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView
         context["taskpriorities"] = EVENT_PRIORITY
         context["tasks"] = Task.objects.all()
 
+        # context["team_members"] = User.objects.filter(project_teams__isnull=False)
 
-        context["team_memberss"] = Project.get_teams(self)
+        # print("weeeeeeeeellllll=== ", context["team_mexmbers"])
 
-        print("weeeeeeeeellllll=== ", context["team_members"])
 
         return context
 
@@ -198,9 +200,9 @@ class TaskCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         context = super(TaskCreateView, self).get_context_data(**kwargs)
         context["employees_in"] = UserQueryset.is_internal_emp(self)
         context["taskpriorities"] = EVENT_PRIORITY
-        # context["team_members"] = Project.get_team
 
-        # print("weeeeeeeeellllll=== ", context["team_members"])
+        context["team_members"] = Project.objects.all()
+        print("weeeeeeeeellllll=== ", context["team_members"])
 
         return context
 
@@ -237,11 +239,12 @@ class TaskDetailView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Detail
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         context["employees_in"] = User.objects.all()
+        
         return context
 
         
 
-class TaskDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView ):
+class TaskDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DeleteView ):
     template_name = 'task_delete_model.html'
     model = Task
     form_class= AddTaskForm
@@ -252,3 +255,72 @@ class TaskDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('project:tasklist')
+
+
+###### TEAMS #######
+
+class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
+    template_name = "teams_list.html"
+    permission_required = "project.list_team"
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+        
+        return context
+
+class TeamCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, CreateView):
+    template_name = "team_create_model.html"
+    model = Teams
+    form_class = AddTeamForm
+    success_message = "Team Added successfully"
+    permission_required = 'Project.add_team'
+    success_url = reverse_lazy('project:teamlist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been added")
+        return redirect('project:teamlist')
+
+    def form_valid(self,  form):
+        team_list = self.request.POST.getlist('id_team')
+        print ("sdfasdfsdfs=====: ", team_list)
+        team = list(map(int,team_list))
+        print(" OUR TEAM:  ",team)
+        # print("this project team:   ", Project.team )
+        return super().form_valid( form)
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamCreateView, self).get_context_data(**kwargs)
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+        
+        return context
+
+class TeamUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    template_name = "team_Update_model.html"
+    model = Teams
+    form_class = AddTeamForm
+    success_message = "Team updated successfully"
+    permission_required = 'Project.edit_team'
+    success_url = reverse_lazy('project:teamlist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been updated")
+        return redirect('project:teamlist')
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamUpdateView, self).get_context_data(**kwargs)
+        context["employees_in"] = UserQueryset.is_internal_emp(self)
+        
+        return context
+    
+class TeamDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DeleteView):
+    template_name = "team_Delete_model.html"
+    model = Teams
+    form_class = AddTeamForm
+    success_message = "Team Added successfully"
+    permission_required = 'Project.delete_team'
+    success_url = reverse_lazy('project:teamlist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
+        return redirect('project:teamlist')
