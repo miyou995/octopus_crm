@@ -2,10 +2,10 @@
 {% load static %}
 
 
-{% block content %}
 {% block title %}
 <title>Tasks</title>
 {% endblock %}
+{% block content %}
 
   <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -68,6 +68,11 @@
                         <th>Action</th>
                       </tr>
                     </thead>
+
+                    {% comment %} {% for project in team_members %}
+                      {{project.name}}
+                    {% endfor %} {% endcomment %}
+                    {{team_members}}
 
                     <tbody>
                     {% for task in tasks %}
