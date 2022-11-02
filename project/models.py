@@ -116,7 +116,7 @@ class Project (models.Model):
     company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
     manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
     # team                    = models.ManyToManyField(User, blank=True, null=True, verbose_name="team2",related_name='project_teams',)
-    team                    = models.ManyToManyField(User, verbose_name="team", related_name='project_teams', through='Teams')
+    # team                    = models.ManyToManyField(User, verbose_name="team", related_name='project_teams', through='Teams')
 
     objects                 = models.Manager()
     managing                = ProjectManager()
@@ -140,14 +140,14 @@ class Project (models.Model):
             }
             )
     
-    @property
-    def get_team(self):
-        li = self.team.all()
-        print("hello >>>>", li)
-        return self.team.all()
+    # @property
+    # def get_team(self):
+    #     li = self.team.all()
+    #     print("hello >>>>", li)
+    #     return self.team.all()
         
-    def get_teams(self):
-        return self.team.all()
+    # def get_teams(self):
+    #     return self.team.all()
 
 
         
@@ -196,3 +196,6 @@ class Teams(models.Model):
     project         = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE, verbose_name="project", related_name="team_of_project")
     task            = models.ForeignKey(Task, blank=True, null=True, on_delete=models.CASCADE, verbose_name="task", related_name="task_to_team")
     is_responsible  = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.name) 

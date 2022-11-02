@@ -279,14 +279,19 @@ class TeamCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been added")
+
+        print("THE ERRORS in INVALID_FORM======: ", form.errors)
+
         return redirect('project:teamlist')
 
     def form_valid(self,  form):
-        team_list = self.request.POST.getlist('id_team')
+        team_list = self.request.POST.getlist('member')
         print ("sdfasdfsdfs=====: ", team_list)
         team = list(map(int,team_list))
+        
         print(" OUR TEAM:  ",team)
         # print("this project team:   ", Project.team )
+        print("THE ERRORS======: ", form.errors)
         return super().form_valid( form)
 
     def get_context_data(self, **kwargs):
