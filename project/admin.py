@@ -1,5 +1,5 @@
 from django.contrib import admin
-from project.models import Project
+from project.models import Project, Teams
 # from import_export.admin import ImportExportModelAdmin  
 
 
@@ -9,4 +9,5 @@ from project.models import Project
 #     pass  
 
 
+admin.site.register(Teams)
 admin.site.register(Project)
