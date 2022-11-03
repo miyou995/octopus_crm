@@ -103,6 +103,9 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         messages.add_message(self.request, messages.ERROR, form.errors.as_text())
         result = redirect('project:projectlist')
         return result
+    
+
+        
 
     def get_context_data(self, **kwargs):
         context = super(AddProjectView, self).get_context_data(**kwargs)
@@ -170,7 +173,8 @@ class TaskListView(RedirectPermissionRequiredMixin,SuccessMessageMixin, ListView
     model = Task
     form_class= AddTaskForm
     permission_required= 'project.list_task'
-        
+
+
     def get_context_data(self, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         # context["employees_in"] = User.objects.all()
@@ -263,9 +267,36 @@ class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
     template_name = "teams_list.html"
     permission_required = "project.list_team"
 
+    def members_of_team(self, pk):
+        teams_id = Teams.objects.all().values_list('id', flat=True)
+        # [members = User.objects.filter(team_member=teams_id[i]) for i in teams_id]
+        for i in teams_id:
+            members = User.objects.filter(team_member=pk)
+            
+        return members
+        
+
     def get_context_data(self, **kwargs):
         context = super(TeamListView, self).get_context_data(**kwargs)
         context["employees_in"] = UserQueryset.is_internal_emp(self)
+        context["teams"] = Teams.objects.all()
+        context["members_team"] = Teams.get_members
+        # teams_id = 
+        context["team.id"] =Teams.objects.all().values_list('id', flat=True)
+
+        teams_id = Teams.objects.all().values_list('id', flat=True)
+
+        context["members"+str(teams_id)] = User.objects.filter(team_member=teams_id)
+        team = Teams.objects.all()
+        context["test"] = team.db
+        # context["members"] = User.objects.filter(team_member__isnull=False)
+        # context["members"] = TeamListView.members_of_team(self, 14)
+        # context["try"] = Teams_member.objects.all()
+        print("the TEAMS====: ", context["teams"])
+        # print("THE MEMBERS OF A TEAM ===///: ", context["members"+str(teams_id)])
+        print("id of TEAMS: ",context["team.id"] )
+
+        print("SEEING RESULT OF TEST:  ",context["test"])
         
         return context
 
@@ -297,6 +328,7 @@ class TeamCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
     def get_context_data(self, **kwargs):
         context = super(TeamCreateView, self).get_context_data(**kwargs)
         context["employees_in"] = UserQueryset.is_internal_emp(self)
+        context["teams"] = Teams.objects.all()
         
         return context
 
