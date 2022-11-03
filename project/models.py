@@ -192,10 +192,15 @@ class Task(models.Model):
  
 class Teams(models.Model):
     name            = models.CharField(max_length=256, blank=True, null=True)
-    member          = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="member", related_name="team_member")
+    member          = models.ManyToManyField(User, verbose_name="member", related_name="team_member")
     project         = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE, verbose_name="project", related_name="team_of_project")
     task            = models.ForeignKey(Task, blank=True, null=True, on_delete=models.CASCADE, verbose_name="task", related_name="task_to_team")
     is_responsible  = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.name) 
+
+    @property
+    def get_members(self):
+        print("Members: >>>>>>>>>>>", self.member.all())
+        return self.member.all()

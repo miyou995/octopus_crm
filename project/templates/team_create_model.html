@@ -18,8 +18,7 @@
               <div class="form-group">
                 <div class="form-group">
                 {% for employee in employees_in %}
-                  <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">]
-                  <input type="hidden" class="class_team" name="user_id">
+                  <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">
                   <label for="id_team" >{{employee.name}}</label>
                   <br>
                 {% endfor %}
