@@ -204,3 +204,10 @@ class Teams(models.Model):
     def get_members(self):
         print("Members: >>>>>>>>>>>", self.member.all())
         return self.member.all()
+
+    def members_of_team(self, pk):
+        teams_id = Teams.objects.all().values_list('id', flat=True)
+        # [members = User.objects.filter(team_member=teams_id[i]) for i in teams_id]
+        for i in teams_id:
+            members = User.objects.filter(team_member=pk)
+        return members

@@ -272,9 +272,7 @@ class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
         # [members = User.objects.filter(team_member=teams_id[i]) for i in teams_id]
         for i in teams_id:
             members = User.objects.filter(team_member=pk)
-            
         return members
-        
 
     def get_context_data(self, **kwargs):
         context = super(TeamListView, self).get_context_data(**kwargs)
@@ -282,21 +280,25 @@ class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
         context["teams"] = Teams.objects.all()
         context["members_team"] = Teams.get_members
         # teams_id = 
-        context["team.id"] =Teams.objects.all().values_list('id', flat=True)
+        context["teamm"] =Teams.objects.all().values_list('id', flat=True)
 
         teams_id = Teams.objects.all().values_list('id', flat=True)
 
-        context["members"+str(teams_id)] = User.objects.filter(team_member=teams_id)
+        context["members_pk"] = User.objects.filter(team_member=teams_id[1]).values('id')
+        # context["pk_of_team"] = Teams.through.all
         team = Teams.objects.all()
         context["test"] = team.db
         # context["members"] = User.objects.filter(team_member__isnull=False)
         # context["members"] = TeamListView.members_of_team(self, 14)
         # context["try"] = Teams_member.objects.all()
         print("the TEAMS====: ", context["teams"])
-        # print("THE MEMBERS OF A TEAM ===///: ", context["members"+str(teams_id)])
-        print("id of TEAMS: ",context["team.id"] )
+        print("THE MEMBERS OF A TEAM ===///: ", context["members_pk"])
+        print("id of TEAMS: ",context["teamm"] )
+        # print("id of members in a team ####: ", context["pk_of_team"])
+        # print("SEEING RESULT OF TEST:  ",context["test"])
 
-        print("SEEING RESULT OF TEST:  ",context["test"])
+        context["id_teams"] = list(Teams.member.through.objects.all().values_list('teams_id'))
+        print("IS IT REALLL?? ", context["id_teams"])
         
         return context
 
