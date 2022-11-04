@@ -63,11 +63,11 @@
                     <div class="tab-content" id="myTabContent-{{team.pk}}">
                       <div class="tab-pane fade show active" id="home-{{team.pk}}" role="tabpanel" aria-labelledby="home-tab">
                         {{team.name}}
-                        {% for member in employees_in %}
-                          {% if member.name in team.member.all %}
-                            {{member.name}} IN IF
+                        {% for memb in employees_in %}
+                          {% if memb.name in team.member.all %}
+                            {{memb.name}} IN IF
                           {% else %}
-                          {{member.name}} :{{team.member.all}} <br>
+                          {{memb.name}} :{{team.member.all}} <br>
                           {% endif %}
                         {% endfor %}
                          {% comment %} {% if team.member.team_member == team.pk %}
@@ -78,11 +78,22 @@
                       </div>
                       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                           {{team.pk}}
-                          {% if team.member.team_member == team.pk %}
+                          {% comment %} {% if team.member.team_member == team.pk %}
                           {{team.member.team_member}} sdfisdfdfdfasdf
                           {% else %}
                           sdfisdfdfdfasdfNMNNNNNN
-                          {% endif %}
+                          {% endif %} {% endcomment %}
+                          {% for i in id_teams %}
+                            {% for j in teamm %}
+                              {% if i == j  %}
+                              KHOLOU : 
+                              {% else %}
+                              AMININ
+                              {% endif %}
+                            {% endfor %}
+                          sidouoiuouou: {{i}}
+                          {% endfor %}
+                          {% comment %} {{team.members_of_team(13)}} {% endcomment %}
                       </div>
                       <div class="tab-pane fade" id="contact-{{team.pk}}" role="tabpanel" aria-labelledby="contact-tab">
                         Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin ligula massa,
