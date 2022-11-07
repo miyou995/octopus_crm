@@ -52,6 +52,10 @@ class UserQueryset(models.QuerySet):
     def is_internal_emp(self):
         return User.objects.filter(is_internal= True)
 
+    @property
+    def is_internal_empl(self):
+        return User.objects.filter(is_internal= True)
+
 class UserManager(BaseUserManager):
     user_queryset     = UserQueryset()
     use_in_migrations = True
@@ -101,7 +105,7 @@ class User(AbstractUser):
 
     picture         = models.ImageField(upload_to='images/faces', null=True, blank=True)
     pseudo          = models.CharField( max_length=150, null=True, blank=True)
-    role            = models.CharField(choices=ROLE_TYPE_CHOICE, max_length=2, blank=True, null=True)
+    role            = models.CharField(choices=ROLE_TYPE_CHOICE, max_length=20, blank=True, null=True)
     decision        = models.CharField(choices=DECISION_TYPE_CHOICES, max_length=2, blank=True, null=True)
     mobile          = models.CharField(max_length=13, unique=True, blank=True, null=True)
 
@@ -115,9 +119,9 @@ class User(AbstractUser):
     
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
-    user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=2, blank=True, null=True)
-    client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=256, blank=True, null=True)
-    project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=2, blank=True, null=True)
+    user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=20, blank=True, null=True)
+    client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=20, blank=True, null=True)
+    project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=20, blank=True, null=True)
     project_name    = models.CharField(max_length=120, blank=True, null=True)
     collab_start    = models.DateField(blank=True, null=True)
     source          = models.CharField( max_length=250, blank=True, null=True)

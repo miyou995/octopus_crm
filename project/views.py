@@ -356,10 +356,16 @@ class TeamDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Delete
     template_name = "team_Delete_model.html"
     model = Teams
     form_class = AddTeamForm
-    success_message = "Team Added successfully"
+    success_message = "Team deleted successfully"
     permission_required = 'Project.delete_team'
     success_url = reverse_lazy('project:teamlist')
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('project:teamlist')
+
+class TeamDetailView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DetailView):
+    template_name = "team_detail.html"
+    model = Teams
+    form_class = AddTeamForm
+    permission_required = 'Project.add_team'

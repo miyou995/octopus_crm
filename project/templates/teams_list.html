@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block content %}
 {% block title %}
 <title>Teams</title>
 {% endblock title %}
 
-{% block content %}
 
 <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -35,75 +35,47 @@
               <h4>Teams List</h4>
               <div class="card-header-form">
                 <button  hx-get="{% url 'project:addteam' %}" hx-target="#addContent" data-toggle="modal"
-                    data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
-                    <i data-feather="plus"></i></button>
+                  data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
+                  <i data-feather="plus"></i>
+                </button>
               </div>
             </div>
+              <div class="col-12 ">
                   {% for team in teams %}
-              <div class="col-12 col-sm-6 col-lg-6">
                 <div class="card">
                   <div class="card-header">
                     <h4>Team: {{team.name}}</h4>
+                      <div class="crud-actions" >
+                        <a href="{{editteam_url}}" data-toggle="modal" data-target="#editContent-{{team.pk}}" class="btn icn">
+                          <i data-feather="edit"></i>
+                          </a>
+
+                          {% comment %} <a href="{{teamdelete_url}}" data-toggle="modal" data-target="#deleteContent-{{team.pk}}" class="btn icn"> {% endcomment %}
+                          <a href="{% url 'project:teamdelete' team.pk %}" data-toggle="modal" data-target="#deleteContent-{{team.pk}}" class="btn icn">
+                          <i data-feather="trash"></i>
+                          </a>
+
+                          <a href="{% url 'project:teamdetail' team.pk %}" class="btn icn">
+                          <i data-feather="eye"></i></a>
+                      </div>
                   </div>
-                  <div class="card-body">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                          aria-controls="home" aria-selected="true">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="profile-tab-{{team.pk}}" data-toggle="tab" href="#profile" role="tab"
-                          aria-controls="profile" aria-selected="false">Profile</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                          aria-controls="contact" aria-selected="false">Contact</a>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent-{{team.pk}}">
-                      <div class="tab-pane fade show active" id="home-{{team.pk}}" role="tabpanel" aria-labelledby="home-tab">
-                        {{team.name}}
-                        {% for memb in employees_in %}
-                          {% if memb.name in team.member.all %}
-                            {{memb.name}} IN IF
-                          {% else %}
-                          {{memb.name}} :{{team.member.all}} <br>
-                          {% endif %}
-                        {% endfor %}
-                         {% comment %} {% if team.member.team_member == team.pk %}
-                          {{team.member.team_member}} sdfisdfdfdfasdf
-                          {% else %}
-                          sdfisdfdfdfasdfNMNNNNNN
-                          {% endif %} {% endcomment %}
-                      </div>
-                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                          {{team.pk}}
-                          {% comment %} {% if team.member.team_member == team.pk %}
-                          {{team.member.team_member}} sdfisdfdfdfasdf
-                          {% else %}
-                          sdfisdfdfdfasdfNMNNNNNN
-                          {% endif %} {% endcomment %}
-                          {% for i in id_teams %}
-                            {% for j in teamm %}
-                              {% if i == j  %}
-                              KHOLOU : 
-                              {% else %}
-                              AMININ
-                              {% endif %}
-                            {% endfor %}
-                          sidouoiuouou: {{i}}
-                          {% endfor %}
-                          {% comment %} {{team.members_of_team(13)}} {% endcomment %}
-                      </div>
-                      <div class="tab-pane fade" id="contact-{{team.pk}}" role="tabpanel" aria-labelledby="contact-tab">
-                        Vestibulum imperdiet odio sed neque ultricies, ut dapibus mi maximus. Proin ligula massa,
-                        gravida in lacinia efficitur, hendrerit eget mauris. Pellentesque fermentum, sem interdum
-                        molestie finibus, nulla diam varius leo, nec varius lectus elit id dolor. Nam malesuada orci non
-                        ornare vulputate. Ut ut sollicitudin magna. Vestibulum eget ligula ut ipsum venenatis ultrices.
-                        Proin bibendum bibendum augue ut luctus.
-                      </div>
-                    </div>
-                  </div>
+                
+                  <div class="card-body team-cardo">
+                    {% for memeber in team.member.all %}
+                        {% comment %} <div class="tab-content nav-team-cardo" id="myTabContent"> {% endcomment %}
+                        {% comment %} <span class="enligne"> {% endcomment %}
+                          {% comment %} <div class="tab-pane fade show active nav-team-cardo enligne" id="home" role="tabpanel" aria-labelledby="home-tab"> {% endcomment %}
+                            <div class="cardo">
+                              <div class="cardo-border-top"></div>
+                              <div class="img"></div>
+                              <span> {{memeber.name}}</span>
+                              <p class="job"> {{memeber.role}}</p>
+                              <button> Click</button>
+                            </div>
+                               
+                          {% comment %} </div> {% endcomment %}
+                      {% comment %} </span> {% endcomment %}
+                    {% endfor %}
                 </div>
             </div>
                   {% endfor %}
@@ -118,6 +90,9 @@
 {% endblock content %}
 
 {% for team in teams %}
-
+{% url 'project:editteam' team.pk as editteam_url %}
+  {% url 'project:teamdelete' team.pk as teamdelete_url %}
+    {% include "team_edit_model.html" with object=team editteam_url=editteam_url %}
+    {% include "team_delete_model.html" with object=team teamdelete_url=teamdelete_url %}
 
 {% endfor %}
