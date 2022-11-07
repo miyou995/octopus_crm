@@ -1,13 +1,13 @@
 COMPANY_TYPE_CHOICES = (
-    ('CL', 'client'),
-    ('F', 'fournisseur'),
-    ('P', 'partenaire'),
-    ('CN', 'concurrent'),
+    ('CLIENT', 'client'),
+    ('FOURNISSEUR', 'fournisseur'),
+    ('PARTENAIRE', 'partenaire'),
+    ('CONCURRENT', 'concurrent'),
 )
 
 PROJECT_TYPE_CHOICES = (
-    ('EC', 'e-commerce'),
-    ('WS', 'web site'),
-    ('WA', 'web app'),
+    ('E-COMMERCE', 'e-commerce'),
+    ('WEB SITE', 'web site'),
+    ('WEB APP', 'web app'),
 )
 

@@ -1,15 +1,15 @@
 PROJECT_TYPE_CHOICES = (
-    ('EC', 'e-commerce'),
-    ('WS', 'web site'),
-    ('WA', 'web app'),
+    ('E-COMMERCE', 'e-commerce'),
+    ('WEB SITE', 'web site'),
+    ('WEB APP', 'web app'),
 )
 
 CONTRACT_TYPE_CHOICES = (
-    ('H', 'hosting'),
-    ('A', 'annual'),
-    ('S', 'semi-annual'),
-    ('Q', 'quarterly'),
-    ('AD', 'adverisement'),
+    ('HOSTING', 'hosting'),
+    ('ANNUAL', 'annual'),
+    ('SEMI-ANNUAL', 'semi-annual'),
+    ('QUARTERLY', 'quarterly'),
+    ('ADVERTISEMENT', 'advertisement'),
 )
 
 STATUS_TYPE_CHOICES= (

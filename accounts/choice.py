@@ -1,22 +1,22 @@
 PROJECT_TYPE_CHOICES = (
-    ('EC', 'e-commerce'),
-    ('WS', 'web site'),
+    ('E-COMMERCE', 'e-commerce'),
+    ('WEB SITE', 'web site'),
     ('WA', 'web app'),
 )
 
 ROLE_TYPE_CHOICE =(
-    ('DS', 'designer'),
-    ('DV', 'developer'),
-    ('AS', 'assistant'),
-    ('CM', 'commercial'),
-    ('MK', 'marketer'),
-    ('CC', 'content creator'),
+    ('DESGFNER', 'designer'),
+    ('DEVELOPER', 'developer'),
+    ('ASSISTANT', 'assistant'),
+    ('COMMERCIAL', 'commercial'),
+    ('MARKETER', 'marketer'),
+    ('CONTENT CREATOR', 'content creator'),
 )
 
 LEADSTATUTE_TYPE_CHOICE = (
-    ('I', 'inrested'),
-    ('CA', 'call again'),
-    ('NI', 'not intrested'), 
+    ('INTERESTED', 'interested'),
+    ('CALL AGAIN', 'call again'),
+    ('NOT INTERESTED', 'not interested'), 
 )
 
 # STATUTE_TYPE_CHOICE = (
@@ -35,6 +35,6 @@ DECISION_TYPE_CHOICES= (
 )
 
 USER_TYPE_CHOICES =(
-    ('IN', 'interne'),
-    ('EX', 'externe'),
+    ('INTERNE', 'interne'),
+    ('EXTERNE', 'externe'),
 )
