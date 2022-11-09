@@ -1,0 +1,2803 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2022-09-08T13:21:16.074Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "sidou",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-09-14T12:22:43.519Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "takii sidou",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-09-19T11:38:29.306Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "16",
+        "object_repr": "wissem",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Project type\", \"Project name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-09-25T13:09:59.407Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "6",
+        "object_repr": "",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2022-09-25T13:09:59.433Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "5",
+        "object_repr": "",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2022-09-25T13:13:11.175Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "4",
+        "object_repr": "None",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2022-09-25T13:13:11.196Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "3",
+        "object_repr": "None",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2022-09-25T13:13:18.573Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "None",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2022-09-25T13:13:18.612Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "None",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.159Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "11",
+        "object_repr": "Teams object (11)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.190Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "10",
+        "object_repr": "Teams object (10)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.211Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "9",
+        "object_repr": "Teams object (9)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.230Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "8",
+        "object_repr": "Teams object (8)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.249Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "7",
+        "object_repr": "Teams object (7)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.269Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "6",
+        "object_repr": "Teams object (6)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.289Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "5",
+        "object_repr": "Teams object (5)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.307Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "4",
+        "object_repr": "Teams object (4)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.326Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "3",
+        "object_repr": "Teams object (3)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.344Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "2",
+        "object_repr": "Teams object (2)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2022-11-02T14:17:32.371Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "1",
+        "object_repr": "Teams object (1)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2022-11-09T14:28:10.939Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "17",
+        "object_repr": "dfdfgdfgdg",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2022-11-09T14:28:11.000Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "16",
+        "object_repr": "best",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2022-11-09T14:28:11.030Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "15",
+        "object_repr": "DevOps",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2022-11-09T14:28:11.060Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "14",
+        "object_repr": "sidouuuuuu",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2022-11-09T14:33:09.842Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "17",
+        "object_repr": "dfdfgdfgdg",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2022-11-09T14:33:09.872Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "16",
+        "object_repr": "best",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2022-11-09T14:33:09.903Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "15",
+        "object_repr": "DevOps",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2022-11-09T14:33:09.933Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "14",
+        "object_repr": "sidouuuuuu",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2022-11-09T14:52:43.984Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "16",
+        "object_repr": "best",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2022-11-09T14:52:44.031Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "15",
+        "object_repr": "DevOps",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2022-11-09T14:52:44.051Z",
+        "user": 1,
+        "content_type": 18,
+        "object_id": "14",
+        "object_repr": "sidouuuuuu",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 6,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 6,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 6,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 6,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add company",
+        "content_type": 7,
+        "codename": "add_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change company",
+        "content_type": 7,
+        "codename": "change_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete company",
+        "content_type": 7,
+        "codename": "delete_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view company",
+        "content_type": 7,
+        "codename": "view_company"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add project",
+        "content_type": 8,
+        "codename": "add_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change project",
+        "content_type": 8,
+        "codename": "change_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete project",
+        "content_type": 8,
+        "codename": "delete_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view project",
+        "content_type": 8,
+        "codename": "view_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add task",
+        "content_type": 9,
+        "codename": "add_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change task",
+        "content_type": 9,
+        "codename": "change_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete task",
+        "content_type": 9,
+        "codename": "delete_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view task",
+        "content_type": 9,
+        "codename": "view_task"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add account",
+        "content_type": 10,
+        "codename": "add_account"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change account",
+        "content_type": 10,
+        "codename": "change_account"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete account",
+        "content_type": 10,
+        "codename": "delete_account"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view account",
+        "content_type": 10,
+        "codename": "view_account"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add transaction",
+        "content_type": 11,
+        "codename": "add_transaction"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change transaction",
+        "content_type": 11,
+        "codename": "change_transaction"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete transaction",
+        "content_type": 11,
+        "codename": "delete_transaction"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view transaction",
+        "content_type": 11,
+        "codename": "view_transaction"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add proforma",
+        "content_type": 12,
+        "codename": "add_proforma"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change proforma",
+        "content_type": 12,
+        "codename": "change_proforma"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete proforma",
+        "content_type": 12,
+        "codename": "delete_proforma"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view proforma",
+        "content_type": 12,
+        "codename": "view_proforma"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add invoice",
+        "content_type": 13,
+        "codename": "add_invoice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change invoice",
+        "content_type": 13,
+        "codename": "change_invoice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete invoice",
+        "content_type": 13,
+        "codename": "delete_invoice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view invoice",
+        "content_type": 13,
+        "codename": "view_invoice"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add bill",
+        "content_type": 14,
+        "codename": "add_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change bill",
+        "content_type": 14,
+        "codename": "change_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete bill",
+        "content_type": 14,
+        "codename": "delete_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view bill",
+        "content_type": 14,
+        "codename": "view_bill"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add bill item",
+        "content_type": 15,
+        "codename": "add_billitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change bill item",
+        "content_type": 15,
+        "codename": "change_billitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete bill item",
+        "content_type": 15,
+        "codename": "delete_billitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view bill item",
+        "content_type": 15,
+        "codename": "view_billitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add ticket",
+        "content_type": 16,
+        "codename": "add_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change ticket",
+        "content_type": 16,
+        "codename": "change_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete ticket",
+        "content_type": 16,
+        "codename": "delete_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view ticket",
+        "content_type": 16,
+        "codename": "view_ticket"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add event",
+        "content_type": 17,
+        "codename": "add_event"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change event",
+        "content_type": 17,
+        "codename": "change_event"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete event",
+        "content_type": 17,
+        "codename": "delete_event"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view event",
+        "content_type": 17,
+        "codename": "view_event"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add teams",
+        "content_type": 18,
+        "codename": "add_teams"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change teams",
+        "content_type": 18,
+        "codename": "change_teams"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete teams",
+        "content_type": 18,
+        "codename": "delete_teams"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view teams",
+        "content_type": 18,
+        "codename": "view_teams"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+        "name": "Can add team member",
+        "content_type": 19,
+        "codename": "add_teammember"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+        "name": "Can change team member",
+        "content_type": 19,
+        "codename": "change_teammember"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+        "name": "Can delete team member",
+        "content_type": 19,
+        "codename": "delete_teammember"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+        "name": "Can view team member",
+        "content_type": 19,
+        "codename": "view_teammember"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "accounts",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "contact",
+        "model": "company"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "project",
+        "model": "project"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "project",
+        "model": "task"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "cashflow",
+        "model": "account"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "cashflow",
+        "model": "transaction"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "bills",
+        "model": "proforma"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "bills",
+        "model": "invoice"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "bills",
+        "model": "bill"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "bills",
+        "model": "billitem"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "events",
+        "model": "ticket"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "events",
+        "model": "event"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "project",
+        "model": "teams"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "project",
+        "model": "teammember"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "3f4sc8dhop0ejapo9wutp2k1zn8t8vzt",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hA6wBRcuvcMzcAwtmpoUtqV8e7apAvd_vfef6mBtnUctlaWYWJ1Vtar0--YKD9K3Qnfqd5mnee6LlPSu6IP2vR15vK8HO7fwUht_NYBQ47WdC5QggLYSeqFHDrnsQcS6pwxYr1IEIwQmJFiZgDG3pLx6v0B9IE3sA:1ojRbj:a6R-XzHOo27FbHtJNVXiO65YKylUsSU6dLA5WAQANyo",
+        "expire_date": "2022-10-28T20:48:39.150Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "aeaujvtcewr293dhzg4eqhg8ym2ybmrj",
+    "fields": {
+        "session_data": ".eJxVjEsOwjAMBe-SNYpqk7gJS_acobLjhBZQKvWzQtwdReoCtm9m3tsMvG_jsK95GSY1FwPm9LsJp2euDeiD6322aa7bMoltij3oam-z5tf1cP8ORl7HVgN2fSDtXCeMPgiVmBURicGJlxKYBQlcOBOAKEXy4kqf1EuIGM3nC8_zN20:1oXgwi:kLWumrvd0KsTHhO715iSTNcsqvXcoDKrD09XvpShMnw",
+        "expire_date": "2022-09-26T10:45:44.426Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "f4kiw5qjor8k6dq36b3d26zebx9t3g6m",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hA6wBRcuvcMzcAwtmpoUtqV8e7apAvd_vfef6mBtnUctlaWYWJ1Vtar0--YKD9K3Qnfqd5mnee6LlPSu6IP2vR15vK8HO7fwUht_NYBQ47WdC5QggLYSeqFHDrnsQcS6pwxYr1IEIwQmJFiZgDG3pLx6v0B9IE3sA:1ohY0z:QoIi2RddCHQPIoNZhayHknllcd41xLWm22eIW9OmHz8",
+        "expire_date": "2022-10-23T15:14:53.662Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "g4xnhlxlstj9i6duehx7x15jmgwjvsqx",
+    "fields": {
+        "session_data": ".eJxVjEsOwjAMBe-SNYpqk7gJS_acobLjhBZQKvWzQtwdReoCtm9m3tsMvG_jsK95GSY1FwPm9LsJp2euDeiD6322aa7bMoltij3oam-z5tf1cP8ORl7HVgN2fSDtXCeMPgiVmBURicGJlxKYBQlcOBOAKEXy4kqf1EuIGM3nC8_zN20:1oWGMR:yIY79WcMe1MzYnEWCa5tOLOEpoJqLYN-tR1SOo4m_KY",
+        "expire_date": "2022-09-22T12:10:23.628Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "glva4p3pl2siwbg8t7ntwvp0f7qfkcmw",
+    "fields": {
+        "session_data": ".eJxVjEsOwjAMBe-SNYpqk7gJS_acobLjhBZQKvWzQtwdReoCtm9m3tsMvG_jsK95GSY1FwPm9LsJp2euDeiD6322aa7bMoltij3oam-z5tf1cP8ORl7HVgN2fSDtXCeMPgiVmBURicGJlxKYBQlcOBOAKEXy4kqf1EuIGM3nC8_zN20:1oqEX5:7LUZ1Nft-wFomOPqqkRTsEO6y96hKyugKo9iB2nmefU",
+        "expire_date": "2022-11-16T14:15:55.780Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mopekoe9v2fpt3wm17g18lqqc9w2br2n",
+    "fields": {
+        "session_data": ".eJxVjEsOwjAMBe-SNYpqk7gJS_acobLjhBZQKvWzQtwdReoCtm9m3tsMvG_jsK95GSY1FwPm9LsJp2euDeiD6322aa7bMoltij3oam-z5tf1cP8ORl7HVgN2fSDtXCeMPgiVmBURicGJlxKYBQlcOBOAKEXy4kqf1EuIGM3nC8_zN20:1odTUy:QMEVNZfLeS5lpS_XHJcR9IjSuPtNiC2jnutV0Heirug",
+        "expire_date": "2022-10-12T09:37:00.910Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ynoo7d5yd01zvloqj162j91nq35afs0w",
+    "fields": {
+        "session_data": ".eJxVjEsOwjAMBe-SNYpqk7gJS_acobLjhBZQKvWzQtwdReoCtm9m3tsMvG_jsK95GSY1FwPm9LsJp2euDeiD6322aa7bMoltij3oam-z5tf1cP8ORl7HVgN2fSDtXCeMPgiVmBURicGJlxKYBQlcOBOAKEXy4kqf1EuIGM3nC8_zN20:1ooAtk:_kESGyOneyOTTyxXhJggTPeYtujooqxjeKkUkToa3FM",
+        "expire_date": "2022-11-10T21:58:48.664Z"
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": "2022-11-02T14:15:55.760Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "date_joined": "2022-09-07T08:07:41.281Z",
+        "name": null,
+        "email": "try@try.com",
+        "picture": "",
+        "pseudo": "sidou",
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": "None",
+        "is_active": true,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": "",
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-07",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-15T09:15:35.377Z",
+        "name": "manar",
+        "email": "new2@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-20",
+        "updated": "2022-09-15",
+        "company": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-15T09:18:09.306Z",
+        "name": "ousama",
+        "email": "new3@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-15",
+        "company": 3,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 7,
+    "fields": {
+        "password": "admin",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-15T10:02:06.902Z",
+        "name": "taki",
+        "email": "new5@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": "1",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-15",
+        "updated": "2022-09-15",
+        "company": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-15T10:04:46.580Z",
+        "name": "reda",
+        "email": "new7@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": "1",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-19",
+        "updated": "2022-09-15",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 16,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-19T11:33:55Z",
+        "name": "wissem",
+        "email": "new15@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": "",
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": "nothing",
+        "collab_start": "2022-09-21",
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-19",
+        "company": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-19T11:51:19.391Z",
+        "name": "v1k1ng",
+        "email": "newss3@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-19",
+        "company": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 19,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-21T11:39:09.976Z",
+        "name": "alonso",
+        "email": "new90@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "AS",
+        "decision": null,
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": "2022-09-21",
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-21",
+        "company": 6,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 20,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-21T13:30:31.325Z",
+        "name": "nike_person",
+        "email": "new_nike@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "AS",
+        "decision": "2",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": "2022-09-21",
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-21",
+        "company": 8,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 21,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-21T16:03:59.322Z",
+        "name": "saleh",
+        "email": "new22@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "DV",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": "2022-09-21",
+        "source": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-21",
+        "company": 8,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 24,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-22T09:21:56.940Z",
+        "name": "lokmane",
+        "email": "new19@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "MK",
+        "decision": "3",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": "2022-09-23",
+        "source": null,
+        "created": "2022-09-22",
+        "updated": "2022-09-22",
+        "company": 8,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 25,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-09-22T11:16:13.558Z",
+        "name": "wiliam",
+        "email": "new08@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "CC",
+        "decision": "2",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": true,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": "2022-09-30",
+        "source": null,
+        "created": "2022-09-22",
+        "updated": "2022-09-22",
+        "company": 6,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 26,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-05T10:45:06.312Z",
+        "name": "Omar",
+        "email": "newO@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "AS",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-05",
+        "updated": "2022-10-05",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 27,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-05T11:00:55.171Z",
+        "name": "philips",
+        "email": "newP@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "MK",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-05",
+        "updated": "2022-10-05",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 28,
+    "fields": {
+        "password": "admin",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-05T13:31:49.165Z",
+        "name": "fadou",
+        "email": "newF@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "AS",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-06",
+        "updated": "2022-10-05",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 29,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-06T08:29:35.717Z",
+        "name": "jeef",
+        "email": "newJ@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "DS",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-06",
+        "updated": "2022-10-06",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 31,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-06T10:08:24.118Z",
+        "name": "mandi",
+        "email": "newM@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-06",
+        "updated": "2022-10-06",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 32,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-06T10:14:29.224Z",
+        "name": "gavi",
+        "email": "newG@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "DV",
+        "decision": "3",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-06",
+        "updated": "2022-10-06",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 33,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JiBPIrUPLcQC86IOsiWE8x$dKQuxsw9XXhWYUH93w3lCkwlj8pQqpZ5gUFalsUcJz0=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-06T10:45:19.840Z",
+        "name": "pedi",
+        "email": "newPP@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-06",
+        "updated": "2022-10-06",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 34,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$d77crTadOrbkaZUyhXkT4z$1ussuCp6Xi6SLIJdgdb4JewGJUHA8bBOP4c9+PaBbDk=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "date_joined": "2022-10-06T11:07:31.997Z",
+        "name": "oussama",
+        "email": "newOO@user.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "DS",
+        "decision": "5",
+        "mobile": null,
+        "notes": null,
+        "is_active": false,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-09",
+        "updated": "2022-10-06",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 35,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$d77crTadOrbkaZUyhXkT4z$1ussuCp6Xi6SLIJdgdb4JewGJUHA8bBOP4c9+PaBbDk=",
+        "last_login": "2022-10-14T20:48:39.110Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "date_joined": "2022-10-09T15:14:15.047Z",
+        "name": "fernando",
+        "email": "admin@admin.com",
+        "picture": "",
+        "pseudo": null,
+        "role": "DV",
+        "decision": "1",
+        "mobile": null,
+        "notes": null,
+        "is_active": true,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": false,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-09",
+        "updated": "2022-10-09",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 36,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$LxDBHAvPeJK1WrLIOATz5o$YPTobjEJWEQVBDy4CWYGJkFih7adVMBNBEXMCnU6EFI=",
+        "last_login": null,
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "date_joined": "2022-10-10T09:10:19.728Z",
+        "name": null,
+        "email": "try1@try.com",
+        "picture": "",
+        "pseudo": null,
+        "role": null,
+        "decision": null,
+        "mobile": null,
+        "notes": null,
+        "is_active": true,
+        "is_manager": false,
+        "is_responsible": false,
+        "is_admin": false,
+        "is_internal": true,
+        "user_type": null,
+        "client_lead": null,
+        "project_type": null,
+        "project_name": null,
+        "collab_start": null,
+        "source": null,
+        "created": "2022-10-10",
+        "updated": "2022-10-10",
+        "company": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 1,
+    "fields": {
+        "name": "takii sidou",
+        "industry": null,
+        "annual_revenue": null,
+        "email": "try@a.com",
+        "mobile": null,
+        "website": null,
+        "adress": null,
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": null,
+        "company_type": "P",
+        "project_type": "EC",
+        "logo": "",
+        "collab_start": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-07",
+        "postal_code": null,
+        "responsible_person": null
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 3,
+    "fields": {
+        "name": "ddddd",
+        "industry": null,
+        "annual_revenue": null,
+        "email": null,
+        "mobile": null,
+        "website": null,
+        "adress": null,
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": null,
+        "company_type": "P",
+        "project_type": "EC",
+        "logo": "",
+        "collab_start": null,
+        "created": "2022-09-21",
+        "updated": "2022-09-14",
+        "postal_code": null,
+        "responsible_person": null
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 4,
+    "fields": {
+        "name": "manaaaaar",
+        "industry": "tech",
+        "annual_revenue": "4",
+        "email": "try.try@gmail.com",
+        "mobile": "0555555777",
+        "website": "http://manar.com",
+        "adress": "blida",
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": null,
+        "company_type": "CL",
+        "project_type": null,
+        "logo": "",
+        "collab_start": "2022-09-12",
+        "created": "2022-09-21",
+        "updated": "2022-09-14",
+        "postal_code": null,
+        "responsible_person": null
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 5,
+    "fields": {
+        "name": "welll;l",
+        "industry": null,
+        "annual_revenue": null,
+        "email": null,
+        "mobile": null,
+        "website": null,
+        "adress": null,
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": null,
+        "company_type": "CL",
+        "project_type": null,
+        "logo": "",
+        "collab_start": "2022-09-21",
+        "created": "2022-09-21",
+        "updated": "2022-09-15",
+        "postal_code": null,
+        "responsible_person": null
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 6,
+    "fields": {
+        "name": "GYMDZ",
+        "industry": null,
+        "annual_revenue": null,
+        "email": "gym@gym.com",
+        "mobile": "0555555777",
+        "website": "http://gym.dz",
+        "adress": null,
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": null,
+        "company_type": "CL",
+        "project_type": "WA",
+        "logo": "",
+        "collab_start": "2022-09-18",
+        "created": "2022-09-18",
+        "updated": "2022-09-18",
+        "postal_code": null,
+        "responsible_person": "aymen"
+    }
+},
+{
+    "model": "contact.company",
+    "pk": 8,
+    "fields": {
+        "name": "Nike",
+        "industry": "vetements",
+        "annual_revenue": "2",
+        "email": "nike@nike.com",
+        "mobile": "0555555788",
+        "website": "http://nike.com",
+        "adress": "alger",
+        "rc_code": null,
+        "art_code": null,
+        "nif_code": null,
+        "nis_code": null,
+        "source": "we",
+        "company_type": "CL",
+        "project_type": null,
+        "logo": "",
+        "collab_start": "2022-09-21",
+        "created": "2022-09-22",
+        "updated": "2022-09-21",
+        "postal_code": null,
+        "responsible_person": "24"
+    }
+},
+{
+    "model": "project.project",
+    "pk": 11,
+    "fields": {
+        "name": "octopus",
+        "cost": "1.00",
+        "started_date": "2022-09-07",
+        "deadline": "2022-09-17",
+        "project_type": "WS",
+        "contract": "H",
+        "contract_expiration": "2022-09-17",
+        "status": "CP",
+        "description": "",
+        "created": "2022-09-17T00:13:10.301Z",
+        "updated": "2022-09-21T14:11:30.347Z",
+        "company": 5,
+        "manager": 1
+    }
+},
+{
+    "model": "project.project",
+    "pk": 15,
+    "fields": {
+        "name": "defactuu",
+        "cost": "3.00",
+        "started_date": "2022-09-18",
+        "deadline": "2022-09-24",
+        "project_type": "WS",
+        "contract": "S",
+        "contract_expiration": "2022-09-18",
+        "status": "PE",
+        "description": "",
+        "created": "2022-09-18T09:12:50.688Z",
+        "updated": "2022-09-21T14:10:25.661Z",
+        "company": 3,
+        "manager": 1
+    }
+},
+{
+    "model": "project.project",
+    "pk": 16,
+    "fields": {
+        "name": "takiiiasas",
+        "cost": "2000.00",
+        "started_date": "2022-10-09",
+        "deadline": "2022-09-24",
+        "project_type": "EC",
+        "contract": "S",
+        "contract_expiration": "2022-09-24",
+        "status": "CF",
+        "description": "sasaaaaaaaa",
+        "created": "2022-09-18T09:18:47.688Z",
+        "updated": "2022-09-18T09:18:47.688Z",
+        "company": 5,
+        "manager": 5
+    }
+},
+{
+    "model": "project.project",
+    "pk": 19,
+    "fields": {
+        "name": "htc",
+        "cost": "2.00",
+        "started_date": null,
+        "deadline": null,
+        "project_type": "EC",
+        "contract": null,
+        "contract_expiration": null,
+        "status": null,
+        "description": "",
+        "created": "2022-09-18T10:56:49.039Z",
+        "updated": "2022-09-18T11:29:02.685Z",
+        "company": null,
+        "manager": 8
+    }
+},
+{
+    "model": "project.project",
+    "pk": 20,
+    "fields": {
+        "name": "workout",
+        "cost": "2.00",
+        "started_date": "2022-09-18",
+        "deadline": "2022-09-29",
+        "project_type": "WA",
+        "contract": "A",
+        "contract_expiration": "2022-09-18",
+        "status": "CF",
+        "description": "web app for gym company",
+        "created": "2022-09-18T15:26:05.554Z",
+        "updated": "2022-09-18T15:26:05.554Z",
+        "company": 6,
+        "manager": 7
+    }
+},
+{
+    "model": "project.project",
+    "pk": 21,
+    "fields": {
+        "name": "facebook",
+        "cost": "-4.00",
+        "started_date": "2022-09-19",
+        "deadline": "2022-09-19",
+        "project_type": "WS",
+        "contract": "A",
+        "contract_expiration": "2022-09-19",
+        "status": "PE",
+        "description": "web site for facebook",
+        "created": "2022-09-19T16:16:55.580Z",
+        "updated": "2022-09-19T16:16:55.580Z",
+        "company": 1,
+        "manager": 17
+    }
+},
+{
+    "model": "project.project",
+    "pk": 27,
+    "fields": {
+        "name": "school",
+        "cost": "4.00",
+        "started_date": "2022-09-16",
+        "deadline": "2022-09-21",
+        "project_type": "WA",
+        "contract": "Q",
+        "contract_expiration": "2022-09-23",
+        "status": "PE",
+        "description": "",
+        "created": "2022-09-21T10:34:51.263Z",
+        "updated": "2022-10-15T01:03:00.520Z",
+        "company": 6,
+        "manager": 17
+    }
+},
+{
+    "model": "project.project",
+    "pk": 54,
+    "fields": {
+        "name": "xws",
+        "cost": "1.00",
+        "started_date": "2022-10-30",
+        "deadline": "2022-11-04",
+        "project_type": null,
+        "contract": null,
+        "contract_expiration": "2022-11-01",
+        "status": null,
+        "description": "",
+        "created": "2022-10-30T12:44:25.008Z",
+        "updated": "2022-10-30T12:44:25.008Z",
+        "company": null,
+        "manager": 8
+    }
+},
+{
+    "model": "project.project",
+    "pk": 55,
+    "fields": {
+        "name": "ww",
+        "cost": "2.00",
+        "started_date": "2022-10-30",
+        "deadline": "2022-12-09",
+        "project_type": null,
+        "contract": null,
+        "contract_expiration": "2022-11-01",
+        "status": null,
+        "description": "",
+        "created": "2022-10-30T14:05:51.140Z",
+        "updated": "2022-10-30T14:05:51.140Z",
+        "company": null,
+        "manager": null
+    }
+},
+{
+    "model": "project.task",
+    "pk": 1,
+    "fields": {
+        "name": "acm",
+        "start_date": "2022-10-05",
+        "deadline": "2022-10-21",
+        "description": "dddd",
+        "priority": null,
+        "user": null,
+        "created": "2022-10-12T15:34:42.640Z",
+        "updated": "2022-10-12T15:34:42.640Z"
+    }
+},
+{
+    "model": "project.task",
+    "pk": 2,
+    "fields": {
+        "name": "aSma",
+        "start_date": "2022-10-12",
+        "deadline": "2022-10-14",
+        "description": "sfdsfdf",
+        "priority": "low",
+        "user": null,
+        "created": "2022-10-12T16:02:32.394Z",
+        "updated": "2022-10-12T16:02:32.394Z"
+    }
+},
+{
+    "model": "project.task",
+    "pk": 3,
+    "fields": {
+        "name": "eee",
+        "start_date": "2022-10-12",
+        "deadline": "2022-10-12",
+        "description": "",
+        "priority": null,
+        "user": null,
+        "created": "2022-10-12T16:22:19.293Z",
+        "updated": "2022-10-12T16:22:19.293Z"
+    }
+},
+{
+    "model": "project.teams",
+    "pk": 14,
+    "fields": {
+        "name": "sidouuuuuu",
+        "project": null,
+        "task": null
+    }
+},
+{
+    "model": "project.teams",
+    "pk": 15,
+    "fields": {
+        "name": "DevOps",
+        "project": null,
+        "task": null
+    }
+},
+{
+    "model": "project.teams",
+    "pk": 16,
+    "fields": {
+        "name": "best",
+        "project": null,
+        "task": null
+    }
+},
+{
+    "model": "project.teams",
+    "pk": 17,
+    "fields": {
+        "name": "dfdfgdfgdg",
+        "project": null,
+        "task": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 17,
+    "fields": {
+        "name": "ACM",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "PAID",
+        "other": null,
+        "amount": "1111.00",
+        "date": "2022-10-19",
+        "note": null,
+        "created": "2022-10-19T15:14:55.713Z",
+        "updated": "2022-10-19T15:14:55.713Z",
+        "made_by": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 18,
+    "fields": {
+        "name": "octoschool",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "PENDING",
+        "other": null,
+        "amount": "1223.00",
+        "date": "2022-10-19",
+        "note": null,
+        "created": "2022-10-19T15:15:24.413Z",
+        "updated": "2022-10-19T15:15:24.413Z",
+        "made_by": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 19,
+    "fields": {
+        "name": "otika",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "NOT_PAID",
+        "other": null,
+        "amount": "2222.00",
+        "date": "2022-10-19",
+        "note": null,
+        "created": "2022-10-19T15:15:53.262Z",
+        "updated": "2022-10-19T15:15:53.262Z",
+        "made_by": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 20,
+    "fields": {
+        "name": "ffdfdfd",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "PAID",
+        "other": null,
+        "amount": "2000.00",
+        "date": "2022-10-20",
+        "note": null,
+        "created": "2022-10-20T07:59:56.275Z",
+        "updated": "2022-10-20T07:59:56.275Z",
+        "made_by": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 21,
+    "fields": {
+        "name": "wellr",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "NOT_PAID",
+        "other": null,
+        "amount": "2222.00",
+        "date": "2022-10-20",
+        "note": null,
+        "created": "2022-10-20T08:06:34.830Z",
+        "updated": "2022-10-20T08:06:34.830Z",
+        "made_by": null
+    }
+},
+{
+    "model": "cashflow.transaction",
+    "pk": 22,
+    "fields": {
+        "name": "erer",
+        "account_sd": null,
+        "account_rc": null,
+        "tr_type": null,
+        "tr_status": "PENDING",
+        "other": null,
+        "amount": "500.00",
+        "date": "2022-10-20",
+        "note": null,
+        "created": "2022-10-20T08:08:43.794Z",
+        "updated": "2022-10-20T08:08:43.794Z",
+        "made_by": null
+    }
+},
+{
+    "model": "bills.bill",
+    "pk": 2,
+    "fields": {
+        "cost": "111",
+        "discount": null,
+        "from_company": null,
+        "to_companty": null,
+        "account": null,
+        "due_date": "2022-09-28",
+        "created": "2022-09-28T10:49:21.169Z",
+        "updated": "2022-09-28T10:49:21.169Z",
+        "description": "",
+        "address": null,
+        "to_name": "sidou",
+        "to_postal_code": null,
+        "to_phone": null
+    }
+},
+{
+    "model": "bills.bill",
+    "pk": 3,
+    "fields": {
+        "cost": "2222",
+        "discount": null,
+        "from_company": null,
+        "to_companty": null,
+        "account": null,
+        "due_date": "2022-09-29",
+        "created": "2022-09-28T10:53:18.311Z",
+        "updated": "2022-09-28T10:53:18.311Z",
+        "description": "",
+        "address": null,
+        "to_name": "amira",
+        "to_postal_code": null,
+        "to_phone": null
+    }
+},
+{
+    "model": "bills.bill",
+    "pk": 4,
+    "fields": {
+        "cost": "2222",
+        "discount": null,
+        "from_company": null,
+        "to_companty": null,
+        "account": null,
+        "due_date": "2022-09-29",
+        "created": "2022-09-28T11:00:09.976Z",
+        "updated": "2022-09-28T11:00:09.976Z",
+        "description": "",
+        "address": null,
+        "to_name": "amira",
+        "to_postal_code": null,
+        "to_phone": "05555555"
+    }
+},
+{
+    "model": "bills.bill",
+    "pk": 5,
+    "fields": {
+        "cost": "43333333",
+        "discount": null,
+        "from_company": null,
+        "to_companty": null,
+        "account": null,
+        "due_date": "2022-09-28",
+        "created": "2022-09-28T11:07:15.405Z",
+        "updated": "2022-09-28T11:07:15.405Z",
+        "description": "",
+        "address": null,
+        "to_name": "lokmane",
+        "to_postal_code": null,
+        "to_phone": "0666666666"
+    }
+},
+{
+    "model": "bills.invoice",
+    "pk": 2,
+    "fields": {
+        "number": 90
+    }
+},
+{
+    "model": "bills.invoice",
+    "pk": 3,
+    "fields": {
+        "number": 6
+    }
+},
+{
+    "model": "bills.invoice",
+    "pk": 4,
+    "fields": {
+        "number": 6
+    }
+},
+{
+    "model": "bills.proforma",
+    "pk": 5,
+    "fields": {
+        "number": 4
+    }
+},
+{
+    "model": "events.event",
+    "pk": 6,
+    "fields": {
+        "name": "shoofing",
+        "description": "hjfggj",
+        "start_date": "2022-09-28",
+        "deadline": "2022-09-28",
+        "start_time": "13:11:00",
+        "end_time": "13:11:00",
+        "priority": "meduim",
+        "company": null,
+        "user": null
+    }
+},
+{
+    "model": "events.event",
+    "pk": 7,
+    "fields": {
+        "name": "gym",
+        "description": "fireeee",
+        "start_date": "2022-09-28",
+        "deadline": "2022-09-27",
+        "start_time": "14:24:00",
+        "end_time": "13:24:00",
+        "priority": "low",
+        "company": null,
+        "user": null
+    }
+},
+{
+    "model": "events.event",
+    "pk": 11,
+    "fields": {
+        "name": "ayem cv",
+        "description": "come on ayme",
+        "start_date": "2022-09-16",
+        "deadline": "2022-09-23",
+        "start_time": null,
+        "end_time": null,
+        "priority": "high",
+        "company": null,
+        "user": null
+    }
+},
+{
+    "model": "events.event",
+    "pk": 12,
+    "fields": {
+        "name": "newww",
+        "description": "testing",
+        "start_date": "2022-09-28",
+        "deadline": "2022-09-27",
+        "start_time": "12:38:00",
+        "end_time": "12:39:00",
+        "priority": "low",
+        "company": null,
+        "user": null
+    }
+},
+{
+    "model": "events.event",
+    "pk": 14,
+    "fields": {
+        "name": "octoschool",
+        "description": "rrer",
+        "start_date": "2022-09-28",
+        "deadline": "2022-09-29",
+        "start_time": "14:59:00",
+        "end_time": "14:59:00",
+        "priority": "meduim",
+        "company": null,
+        "user": null
+    }
+}
+]
