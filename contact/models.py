@@ -3,7 +3,7 @@ from django.db import models
 from .choice import *
 from django.urls import reverse
 # from django import template
-
+from django.conf import settings
 # register = template.Library()
 
 class CompanyQueryset(models.QuerySet):
@@ -56,7 +56,9 @@ class Company(models.Model):
     created             = models.DateField(auto_now=True)
     updated             = models.DateField(auto_now_add=True)
     postal_code         = models.IntegerField(blank=True, null=True)
-    responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
+    # responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
+    responsible_person  = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Responsable de la société",related_name="companies", on_delete=models.SET_NULL, null=True, blank=True)
+
     # responsible_person  = models.ForeignKey()
 
 

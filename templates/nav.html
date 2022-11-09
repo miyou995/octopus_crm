@@ -79,9 +79,8 @@
         class="nav-link dropdown-toggle nav-link-lg nav-link-user"> 
         {% if user.picture %}
         <img alt="image" src="{{user.picture.url}}" alt="profile" class="user-img-radious-style">
-
         {% else %}
-        <img src="{% static 'images/avatar.png' %}" alt="logo" class="user-img-radious-style" />
+          <img src="{% static 'images/avatar.png' %}" alt="logo" class="user-img-radious-style" />
         {% endif %}
         <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">

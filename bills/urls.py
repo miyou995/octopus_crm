@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 
 from bills.views import InvoiceCreateView, InvoiceDeleteView, InvoiceDetailView, InvoiceListView, InvoiceUpdateView
-from .views import GeneratePdf, InvoiceView, ProformaCreateView, ProformaDeleteView, ProformaDetailView, ProformaUpdateView, ProformaListView
+from .views import GeneratePdf, ProformaCreateView, ProformaDeleteView, ProformaDetailView, ProformaUpdateView, ProformaListView
 
 app_name = 'bills'
 
@@ -21,6 +21,5 @@ urlpatterns = [
   path('proforma/delete/<int:pk>',login_required(ProformaDeleteView.as_view()), name='proformadelete'),
   path('proforma/detail/<int:pk>',login_required(ProformaDetailView.as_view()), name='proformadetail'),
   path('proforma/',login_required(ProformaListView.as_view()), name='proformalist'),
-
   path('pdf/',GeneratePdf.as_view()),
 ]

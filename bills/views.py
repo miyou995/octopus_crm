@@ -20,7 +20,7 @@ from django.contrib import messages
 
 from django.http import HttpResponse
 from django.views.generic import View
-from .process import html_to_pdf 
+# from .process import html_to_pdf 
 
 from .models import Bill, BillItem, Invoice, Proforma
 
@@ -143,6 +143,7 @@ class ProformaDeleteView(RedirectPermissionRequiredMixin, DeleteView):
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):    
         # getting the template
-        pdf = html_to_pdf('invoice_create_model.html')    
-         # rendering the template
-        return HttpResponse(pdf, content_type='application/pdf')
+        # pdf = html_to_pdf('invoice_create_model.html')    
+        #  # rendering the template
+        # return HttpResponse(pdf, content_type='application/pdf')
+        pass

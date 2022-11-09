@@ -96,7 +96,7 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
     model = Company
     template_name = 'company_list.html'
     permission_required ='company.list_company'
-    
+
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
         filters= CompanyFilter(self.request.GET, queryset=Company.objects.all().order_by('collab_start'))
@@ -105,7 +105,6 @@ class CompanyListView(RedirectPermissionRequiredMixin, ListView):
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         context["companytypes"] = COMPANY_TYPE_CHOICES
         context["employees"] = User.objects.all()
-
         return context
 
 class CompanyDeleteView(RedirectPermissionRequiredMixin, SuccessMessageMixin, DeleteView):

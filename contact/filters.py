@@ -7,10 +7,11 @@ from .models import Company
 
 class CompanyFilter(django_filters.FilterSet): 
     PROJECT_TYPE_CHOICES = (
-    ('EC', 'e-commerce'),
-    ('WS', 'web site'),
-    ('WA', 'web app'),
+        ('E-COMMERCE', 'e-commerce'),
+        ('WEB SITE', 'web site'),
+        ('WEB APP', 'web app'),
     )
+
     class Meta:
         model = Company
         fields = ['name', 'project_type', 'collab_start']
@@ -21,10 +22,11 @@ class CompanyFilter(django_filters.FilterSet):
 
 class Userfilter(django_filters.FilterSet): 
     PROJECT_TYPE_CHOICES = (
-    ('EC', 'e-commerce'),
-    ('WS', 'web site'),
-    ('WA', 'web app'),
+        ('E-COMMERCE', 'e-commerce'),
+        ('WEB SITE', 'web site'),
+        ('WEB APP', 'web app'),
     )
+
     class Meta:
         model = User
         fields = ['name', 'project_type', 'collab_start']
