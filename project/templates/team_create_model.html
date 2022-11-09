@@ -1,36 +1,57 @@
 
 <div class="modal-content">
-<h3>Create Team</h3>
-      <div class="modal-header">
-            <form action="{% url 'project:addteam' %}" id="createteamForm" method="POST">
-            {% csrf_token %}
-        <input type="text" name="name" id="teamtitle" class="form-control form-inv" placeholder="team Title"
-          required>
-        {% comment %} <input type="color" name="name_color" id="colorEvent" class="" value="#6777ef"> {% endcomment %}
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
+  <div class="modal-header">
+    <h4 class="modal-title">Create Team</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <section class="section">
+      <div class="section-body">       
         <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-            {% comment %} <form action="{% url 'team:teamcreate' %}" id="createteamForm" method="POST"> {% endcomment %}
-
-              <div class="form-group">
-                <div class="form-group">
-                {% for employee in employees_in %}
-                  <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">
-                  <label for="id_team" >{{employee.name}}</label>
-                  <br>
-                {% endfor %}
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
+            <form action="{% url 'project:addteam' %}" id="createteamForm" class="wizard_with_validation" method="POST">
+            {% csrf_token %}
+            <fieldset>
+            <label for="teamtitle" style="font-weight:bold;">Title</label><br>
+              <input type="text" name="name" id="teamtitle" class="form-control form-inv" placeholder="team Title" required>
+                <div class="form-group ">
+                  {% for employee in employees_in %}
+                    <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">
+                    <label for="id_team" >{{employee.name}}</label>
+                    <br>
+                  {% endfor %}
                 </div>
-              </div>
-              <div class="form-group">
+              {% comment %} <div class="form-group"> {% endcomment %}
                 <div class="form-group">
                   <label for="id_name" style="font-weight:bold;">Description</label>
                   <textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea>
                 </div>
-              </div>
+              {% comment %} </div> {% endcomment %}
+              </fieldset>
+
+              <h3></h3>
+              <fieldset>
+                {% comment %} <div class="form-group"> {% endcomment %}
+                {% comment %} <h3>Team Responsible</h3>
+                  <div class="form-group">
+                    {% for employee in employees_in %}
+                    {% if employee in team.member.all %}
+                      <input type="checkbox" class="class_team" id="id_team" name="is_responsible" value="{{employee.pk}}" unchecked>
+                      <label for="id_team" >{{employee.name}}</label>
+                      <br>
+                    {% else %}
+                    {% endif %}
+                      <input type="checkbox" class="class_team" id="id_team" name="is_responsible" value="{{employee.pk}}">
+                      <label for="id_team" >{{employee.name}}</label>
+                      <br>
+                    {% endfor %}
+                  </div> {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+              </fieldset>
             </form>
+
             <div>
               <button type="submit" style="float:right " class="waves-effect btn btn-primary"
                 form="createteamForm">Add</button>
@@ -38,4 +59,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
+  </div>
+</div>

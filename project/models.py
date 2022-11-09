@@ -115,15 +115,15 @@ class Project (models.Model):
 
     company                 = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True,  verbose_name="client", related_name="projects") 
     manager                 = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="manager", related_name='project_managers') 
-    # team                    = models.ManyToManyField(User, blank=True, null=True, verbose_name="team2",related_name='project_teams',)
+    # team                    = models.ForeignKey(Teams, blank=True, null=True, verbose_name="team2",related_name='project_teams',)
     # team                    = models.ManyToManyField(User, verbose_name="team", related_name='project_teams', through='Teams')
 
     objects                 = models.Manager()
     managing                = ProjectManager()
 
 
-    def __str__(self):
-        return str(self.name)
+    # def __str__(self):
+    #     return str(self.name)
     
     @property
     def get_absolute_url(self):
@@ -174,12 +174,12 @@ class Task(models.Model):
     name                = models.CharField(max_length=256, blank=True, null=True)
     start_date          = models.DateField(blank=True, null=True) 
     deadline            = models.DateField(blank=True, null=True)
-    created             = models.DateTimeField(auto_now_add=True)
     description         = tinymce_models.HTMLField( blank=True, null=True)
-    updated             = models.DateTimeField(auto_now=True)
     priority            = models.CharField(choices=EVENT_PRIORITY, max_length=20, blank=True, null=True)
-    project             = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='tasks')
+    # project             = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True, related_name='tasks')
     user                = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='supervised_tasks')
+    created             = models.DateTimeField(auto_now_add=True)
+    updated             = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.name)
@@ -192,10 +192,10 @@ class Task(models.Model):
  
 class Teams(models.Model):
     name            = models.CharField(max_length=256, blank=True, null=True)
-    member          = models.ManyToManyField(User, verbose_name="member", related_name="team_member")
+    member          = models.ManyToManyField(User, verbose_name="member", through="TeamMember")
     project         = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE, verbose_name="project", related_name="team_of_project")
     task            = models.ForeignKey(Task, blank=True, null=True, on_delete=models.CASCADE, verbose_name="task", related_name="task_to_team")
-    is_responsible  = models.BooleanField(default=False)
+    # is_responsible  = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.name) 
@@ -205,9 +205,16 @@ class Teams(models.Model):
         print("Members: >>>>>>>>>>>", self.member.all())
         return self.member.all()
 
-    def members_of_team(self, pk):
-        teams_id = Teams.objects.all().values_list('id', flat=True)
-        # [members = User.objects.filter(team_member=teams_id[i]) for i in teams_id]
-        for i in teams_id:
-            members = User.objects.filter(team_member=pk)
-        return members
+    @property
+    def get_absolute_url(self):
+        return reverse("project:teamdetail", kwargs={'pk': self.pk})
+        
+    @property
+    def get_edit_team_url(self):
+        return reverse("project:editteam", kwargs={'pk': self.pk})
+
+
+class TeamMember(models.Model):
+    member          = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="member_of_team", related_name="team_member_of_team")
+    team            = models.ForeignKey(Teams, on_delete=models.CASCADE, verbose_name="team_of_project", related_name="team_member_of_project")
+    is_responsible  = models.BooleanField(default=False)

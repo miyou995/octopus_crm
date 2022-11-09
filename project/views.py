@@ -282,23 +282,23 @@ class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
         # teams_id = 
         context["teamm"] =Teams.objects.all().values_list('id', flat=True)
 
-        teams_id = Teams.objects.all().values_list('id', flat=True)
+        # teams_id = Teams.objects.all().values_list('id', flat=True)
 
-        context["members_pk"] = User.objects.filter(team_member=teams_id[1]).values('id')
+        # context["members_pk"] = User.objects.filter(team_member=teams_id[1]).values('id')
         # context["pk_of_team"] = Teams.through.all
         team = Teams.objects.all()
         context["test"] = team.db
         # context["members"] = User.objects.filter(team_member__isnull=False)
         # context["members"] = TeamListView.members_of_team(self, 14)
         # context["try"] = Teams_member.objects.all()
-        print("the TEAMS====: ", context["teams"])
-        print("THE MEMBERS OF A TEAM ===///: ", context["members_pk"])
-        print("id of TEAMS: ",context["teamm"] )
+                            # print("the TEAMS====: ", context["teams"])
+                            # print("THE MEMBERS OF A TEAM ===///: ", context["members_pk"])
+                            # print("id of TEAMS: ",context["teamm"] )
         # print("id of members in a team ####: ", context["pk_of_team"])
         # print("SEEING RESULT OF TEST:  ",context["test"])
 
-        context["id_teams"] = list(Teams.member.through.objects.all().values_list('teams_id'))
-        print("IS IT REALLL?? ", context["id_teams"])
+        # context["id_teams"] = list(Teams.member.objects.all().values_list('teams_id'))
+        # print("IS IT REALLL?? ", context["id_teamxs"])
         
         return context
 
@@ -318,13 +318,13 @@ class TeamCreateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         return redirect('project:teamlist')
 
     def form_valid(self,  form):
-        team_list = self.request.POST.getlist('member')
-        print ("sdfasdfsdfs=====: ", team_list)
-        team = list(map(int,team_list))
+        # team_list = self.request.POST.getlist('member')
+        # print ("sdfasdfsdfs=====: ", team_list)
+        # team = list(map(int,team_list))
         
-        print(" OUR TEAM:  ",team)
-        # print("this project team:   ", Project.team )
-        print("THE ERRORS======: ", form.errors)
+        # print(" OUR TEAM:  ",team)
+        # # print("this project team:   ", Project.team )
+        # print("THE ERRORS======: ", form.errors)
         return super().form_valid( form)
 
     def get_context_data(self, **kwargs):
@@ -343,12 +343,15 @@ class TeamUpdateView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Update
     success_url = reverse_lazy('project:teamlist')
 
     def form_invalid(self, form):
+        print('THE DATA IS INVALID', form.errors)
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been updated")
         return redirect('project:teamlist')
 
     def get_context_data(self, **kwargs):
         context = super(TeamUpdateView, self).get_context_data(**kwargs)
         context["employees_in"] = UserQueryset.is_internal_emp(self)
+        context["teams"] = Teams.objects.all()
+
         
         return context
     
@@ -363,6 +366,9 @@ class TeamDeleteView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Delete
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error: the element has not been deleted")
         return redirect('project:teamlist')
+    
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 class TeamDetailView(RedirectPermissionRequiredMixin,SuccessMessageMixin, DetailView):
     template_name = "team_detail.html"
