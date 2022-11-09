@@ -74,7 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                # "core.context_processors.infos",
+                "core.context_processors.infos",
             ],
         },
     },
@@ -149,4 +149,3 @@ USE_L10N =True
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'core:index'
 LOGOUT_REDIRECT_URL = 'accounts:login'
-AUTH_USER_MODEL = "accounts.User"
