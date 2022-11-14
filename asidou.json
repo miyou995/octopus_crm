@@ -1,0 +1,39 @@
+[
+{
+    "model": "project.project",
+    "fields": {
+        "name": "octoschool",
+        "cost": "18.00",
+        "started_date": "2022-09-07",
+        "deadline": "2022-09-17",
+        "project_type": "WS",
+        "contract": "H",
+        "contract_expiration": "2022-09-17",
+        "status": "CP",
+        "description": "",
+        "created": "2022-09-17T00:13:10.301Z",
+        "updated": "2022-09-21T14:11:30.347Z",
+        "company": 5,
+        "manager": 1,
+        "team": null
+    }
+},
+{
+    "model": "project.project",
+    "fields": {
+        "name": "octoaschool",
+        "cost": "20.00",
+        "started_date": "2022-09-07",
+        "deadline": "2022-09-17",
+        "project_type": "WS",
+        "contract": "H",
+        "contract_expiration": "2022-09-17",
+        "status": "CP",
+        "description": "",
+
+        "company": 5,
+        "manager": 1,
+        "team": null
+    }
+}
+]
