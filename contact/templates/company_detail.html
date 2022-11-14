@@ -33,42 +33,73 @@
                   <div class="py-4">
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">industry </span>
-                      <span class="float-right text-muted"> {{company.industry}}</span>
+                      <span class="float-right text-muted">
+                      {% if company.industry %}
+                      {{company.industry}}
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> email </span>
-                      <span class="float-right text-muted"> {{company.email}}</span>
+                      <span class="float-right text-muted">
+                        {% if company.email %}
+                      {{company.email}}
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %} 
+                      </span>
                     </p>
 
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">mobile </span>
-                      <span class="float-right text-muted"> {{company.mobile}} </span>
+                      <span class="float-right text-muted">
+                      {% if company.mobile %}
+                       {{company.mobile}} 
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                      </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> website </span>
                       <span class="float-right text-muted">{% if company.website %}
                       <a href="{{company.website}}">{{company.website}}</a>
-                      {% endif %}</span>
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                      </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> adress</span>
-                      <span class="float-right text-muted">{{company.adress}}</span>
+                      <span class="float-right text-muted">
+                     {% if company.adress %}
+                      {{company.adress}}
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                      </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> responsible_person</span>
                       <span class="float-right text-muted">
-                        {% for employee in employees %}
-                          {% if  employee.is_responsible is not True %}
-                          <a href="#">{{company.employee.name}}</a>
-                          {% else %}
-                          <a href="{{employee.get_absolute_url}}">{{employee.name}}</a>
-                          {% endif %}
-                        {% endfor %}
+                        {% if company.responsible_person %}
+                            <a href="{{company.responsible_person.get_absolute_url}}"><span style="color:red">{{company.responsible_person}}</span></a>
+                            {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                        {% endif %}
                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">cost</span>
-                      <span class="float-right text-muted"> {{company.annual_revenue}}</span>
+                      <span class="float-right text-muted">
+                      {% if company.annual_revenue %}
+                        {{company.annual_revenue}}
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                       </span>
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;">company type</span>
@@ -82,7 +113,13 @@
                     </p>
                     <p class="clearfix">
                       <span class="float-left" style="font-weight: bold;"> Start date</span>
-                      <span class="float-right text-muted">{{company.collab_start}}</span>
+                      <span class="float-right text-muted">
+                      {% if company.collab_start %}
+                      {{company.collab_start}}
+                      {% else %}
+                        <span style="justify-content:center; text-align:center;">-</span>
+                      {% endif %}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -122,10 +159,35 @@
                             <a href="{{employee.get_absolute_url}}" style ="color: red">{{employee.name}}</a>
                           {% endif %}
                           </td>
-                          <td>{{employee.role}}</td>
-                          <td>{{employee.decision}}</td>
-                          <td>{{employee.mobile}}</td>
-                          <td>{{employee.email}}</td>
+                          <td>
+                          {% if employee.role %}
+                          {{employee.role}}
+                            {% else %}
+                              <span style="justify-content:center; text-align:center;">-</span>
+                            {% endif %}
+                          </td>
+
+                          <td>
+                            {% if employee.decision %}
+                          {{employee.decision}}
+                            {% else %}
+                              <span style="justify-content:center; text-align:center;">-</span>
+                            {% endif %}
+                          </td>
+                          <td>
+                          {% if employee.mobile %}
+                          {{employee.mobile}}
+                            {% else %}
+                              <span style="justify-content:center; text-align:center;">-</span>
+                            {% endif %}
+                          </td>
+                          <td>
+                           {% if employee.email %}
+                          {{employee.email}}
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
                         </tr>
                       {% endif %}
                       {% endfor %}
@@ -171,11 +233,45 @@
                       <tbody>
                         {% for project in company_projects %}
                         <tr>
-                          <td><a href="{{project.get_absolute_url}}">{{project.name}}</a></td>
-                          <td>{{project.started_date}}</td>
-                          <td>{{project.status}}</td>
-                          <td>{{project.cost}}</td>
-                          <td>{{project.contract}}</td>
+                          <td>
+                            {% if project.get_absolute_url %}
+                          <a href="{{project.get_absolute_url}}">{{project.name}}</a>
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
+
+                          <td>
+                          {% if project.started_date %}
+                          {{project.started_date}}
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
+
+                          <td>
+                           {% if project.status %}
+                          {{project.status}}
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
+
+                          <td>
+                          {% if project.cost %}
+                          {{project.cost}}
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
+
+                          <td>
+                          {% if project.contract %}
+                          {{project.contract}}
+                          {% else %}
+                            <span style="justify-content:center; text-align:center;">-</span>
+                          {% endif %}
+                          </td>
                           {% comment %} <td>project.</td> {% endcomment %}
                         </tr>
                         {% endfor %}

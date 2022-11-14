@@ -108,7 +108,9 @@
 
                                                         <td>
                                                             {% if company.responsible_person %}
-                                                                {{company.responsible_person}}
+                                                                <a href="{{company.responsible_person.get_absolute_url}}">{{company.responsible_person}}</a>
+                                                                {% else %}
+                                                                <span style="justify-content:center; text-align:center;">-</span>
                                                             {% endif %}
                                                         </td>
                                                         <td> {{company.get_company_type_display}}</td>
