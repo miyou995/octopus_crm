@@ -120,8 +120,8 @@ class User(AbstractUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = []
     user_type       = models.CharField(choices=USER_TYPE_CHOICES, max_length=20, blank=True, null=True)
-    client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=20, blank=True, null=True)
-    project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=20, blank=True, null=True)
+    # client_lead     = models.CharField(choices=LEADSTATUTE_TYPE_CHOICE, max_length=20, blank=True, null=True)
+    # project_type    = models.CharField(choices=PROJECT_TYPE_CHOICES, max_length=20, blank=True, null=True)
     project_name    = models.CharField(max_length=120, blank=True, null=True)
     collab_start    = models.DateField(blank=True, null=True)
     source          = models.CharField( max_length=250, blank=True, null=True)

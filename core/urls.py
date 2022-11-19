@@ -7,6 +7,7 @@ app_name= 'core'
 
 urlpatterns = [
   path('', login_required(IndexView.as_view()), name='index'),
+  path('test', login_required(TestView.as_view()), name='test'),
 ]
 
 

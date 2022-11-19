@@ -45,5 +45,10 @@ class IndexView(TemplateView):
 class TestView(TemplateView):
     template_name = "test.html" 
 
+    def get_context_data(self, **kwargs):
+        context = super(TestView, self).get_context_data(**kwargs)
+        context["projects"] = Project.objects.all().order_by('started_date')
+
+        return context 
 
 

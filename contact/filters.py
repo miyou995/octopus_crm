@@ -29,7 +29,7 @@ class Userfilter(django_filters.FilterSet):
 
     class Meta:
         model = User
-        fields = ['name', 'project_type', 'collab_start']
+        fields = ['name', 'collab_start']
     
     def filter_by_project_type(self, queryset, name, value): 
         expresssion = 'active' if value =='ascending' else '-active'
