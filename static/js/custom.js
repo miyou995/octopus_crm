@@ -23,18 +23,18 @@
             total:  '1200',
             completed: false
           },
-          {
-            id: 2,
-            item: 'Service 2',
-            price:'100',
-            quantity:'2',
-            total: '200',
-            completed: false
-          }
+          // {
+          //   id: 2,
+          //   item: 'Service 2',
+          //   price:'100',
+          //   quantity:'2',
+          //   total: '200',
+          //   completed: false
+          // }
         ],
         
         addItem() {
-        
+        console.log('THIS WORK');
           //RETURN EMPTY ROW
           this.items.push({
             id: this.items.length +1,

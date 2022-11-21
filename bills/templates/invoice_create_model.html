@@ -35,7 +35,7 @@
             </div>
         </div>
         <h1 class="text-center">Facture</h1>
-        <form action="{% url 'bills:invoicecreate' %}" method="post">
+        <form id="createBill" action="{% url 'bills:invoicecreate' %}" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="form-inline col-6">
@@ -90,6 +90,8 @@
             <div class="col-md-12">
                 <div class="table-responsive">
                     <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
+                    <form action="">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
@@ -106,8 +108,8 @@
                                             <th class="text-center" scope="row" >#</th>
                                             <th class="">Item</th>
                                                                           
-                                            <th class="text-center" style="width:10%">Price</th>
-                                            <th class="text-center"style="width:10%">Quantity</th>
+                                            <th class="text-center" style="width:10%" >Price</th>
+                                            <th class="text-center"style="width:10%" >Quantity</th>
                                             <th class="text-center"style="width:10%">Total</th>
                                             <th class="text-center"style="width:10%"></th>
                                         </tr>
@@ -123,10 +125,10 @@
                                                 </td>
                                                
                                                 <td class="pt-3-half" contenteditable="true">
-                                                    <span x-text="item.price"></span>DA   
+                                                    <span x-text="item.price" name="price"></span>DA   
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true">
-                                                    <span x-text="item.quantity"></span>    
+                                                    <span x-text="item.quantity" name="quantity"></span>    
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true">
                                                     <span x-text="item.total"></span>DA    
@@ -140,6 +142,7 @@
                                 </table>
                             </div>
                         </div>
+                    </form>
                     </div>
                     </div>
                     
@@ -151,6 +154,7 @@
                              -->
                             </address>
                             <form action="">
+                            {% csrf_token %}
                                 <label for="note">Note</label>
                                 <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
                             </form>
@@ -191,7 +195,7 @@
                         Payment</button>
                 </div>
                 <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
-                <button class="btn btn-primary btn-icon icon-left">Create</button>
+                <button type="submit" form="createBill" class="btn btn-primary btn-icon icon-left">Create</button>
             </div>
         </div>
     </div>

@@ -12,3 +12,8 @@ class ProformaCreateForm(ModelForm):
     class Meta:
         model = Proforma
         fields = '__all__'
+
+class BillItemCreateForm(ModelForm):
+    class Meta:
+        model = BillItem
+        fields = '__all__'
