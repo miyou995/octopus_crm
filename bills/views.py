@@ -12,7 +12,7 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 #     DeleteView, 
 #     FormView
 # )
-from .forms import InvoiceCreateForm, ProformaCreateForm
+from .forms import InvoiceCreateForm, ProformaCreateForm, BillItemCreateForm
 from django.urls.base import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -147,3 +147,12 @@ class GeneratePdf(View):
         #  # rendering the template
         # return HttpResponse(pdf, content_type='application/pdf')
         pass
+
+
+class BillItemCreateView(CreateView):
+    model = BillItem
+    form_class = BillItemCreateForm
+
+class BillItemDeleteView(DeleteView):
+    model = BillItem
+    # form_class = BillItemCreateForm
