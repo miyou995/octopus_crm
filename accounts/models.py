@@ -128,7 +128,7 @@ class User(AbstractUser):
     
     created         = models.DateField(auto_now=True)
     updated         = models.DateField(auto_now_add=True)
-    company         = models.ForeignKey(Company, blank=True, null=True, on_delete=models.CASCADE, related_name='users_company')
+    company         = models.ForeignKey("contact.Company", blank=True, null=True, on_delete=models.CASCADE, related_name='users_company')
     objects         = UserManager()
 
 
@@ -138,6 +138,10 @@ class User(AbstractUser):
     @property
     def get_absolute_url(self):
         return reverse("contact:clientdetail", kwargs={'pk': self.pk})
+    
+    @property
+    def get_edit_internaluser_url(self):
+        return reverse("contact:clientedit", kwargs={'pk': self.pk})
     
     @property
     def is_assistant(self):

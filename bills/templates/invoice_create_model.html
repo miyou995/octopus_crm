@@ -35,8 +35,18 @@
             </div>
         </div>
         <h1 class="text-center">Facture</h1>
-        <form id="createBill" action="{% url 'bills:invoicecreate' %}" method="post">
+        <form id="createInvoice" action="{% url 'bills:invoicecreate' %}" method="post" enctype="multipart/form-data">
+                
+                {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+                {% endfor %}
+
             {% csrf_token %}
+
+                {{ form.management_form }}
+            {{ form.non_form_errors }}
+
             <div class="row">
                 <div class="form-inline col-6">
                     <strong style="font-size: 18px;">Facturé à :</strong>
@@ -85,13 +95,36 @@
                 </div>
 
             </div>
-        </form>
+        {% comment %} </form> {% endcomment %}
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="table-responsive">
+                {{formset.management_form}}
+                <h1>SIDOUSFODUFOSUFOSUD: == </h1> {{formset}}
+
+                {% for billitem_form in formset %}
+                      <hr>
+                    <h5>
+                    <h1>SIDOUSFODUFOSUFOSUD</h1>
+                        {% if billitem_form.instance.id %}
+                        billitem: {{ billitem_form.instance.title|title }}
+                        {% else %}
+                        {% if form.forms|length > 1 %}
+                            Add another billitem
+                        {% else %}
+                            Add a billitem
+                        {% endif %}
+                        {% endif %}
+                      </h5>
+                        {% for hidden_field in billitem_form.hidden_fields %}
+                            {{ hidden_field.errors }}
+                        {% endfor %}
+                    <table>
+                        {{ billitem_form.as_table }}
+                    </table>
+                {% endfor %}
                     <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
-                    <form action="">
-                        {% csrf_token %}
+                   
                         <div class="row">
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
@@ -142,7 +175,7 @@
                                 </table>
                             </div>
                         </div>
-                    </form>
+                    
                     </div>
                     </div>
                     
@@ -153,11 +186,10 @@
                                 <!-- Visa ending **** 5687<br>
                              -->
                             </address>
-                            <form action="">
-                            {% csrf_token %}
+
                                 <label for="note">Note</label>
                                 <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
-                            </form>
+                            
                         </div>
                         <div class="col-md-6">
                             <div class="table-responsive">
@@ -194,8 +226,9 @@
                     <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
                         Payment</button>
                 </div>
+        </form>
                 <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
-                <button type="submit" form="createBill" class="btn btn-primary btn-icon icon-left">Create</button>
+                <button type="submit" form="createInvoice" class="btn btn-primary btn-icon icon-left">Create</button>
             </div>
         </div>
     </div>

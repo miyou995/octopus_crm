@@ -96,7 +96,7 @@ class AddProjectView(RedirectPermissionRequiredMixin,SuccessMessageMixin, Create
         print ("sdfasdfsdfs=====: ", team_list)
         team = list(map(int,team_list))
         print(" OUR TEAM:  ",team)
-        print("this project team:   ", Project.team )
+        # print("this project team:   ", Project.team )
         return super().form_valid( form)
 
     def form_invalid(self, form):
@@ -291,9 +291,9 @@ class TeamListView(RedirectPermissionRequiredMixin, TemplateView):
         # context["members"] = User.objects.filter(team_member__isnull=False)
         # context["members"] = TeamListView.members_of_team(self, 14)
         # context["try"] = Teams_member.objects.all()
-                            # print("the TEAMS====: ", context["teams"])
-                            # print("THE MEMBERS OF A TEAM ===///: ", context["members_pk"])
-                            # print("id of TEAMS: ",context["teamm"] )
+        #                     print("the TEAMS====: ", context["teams"])
+        #                     print("THE MEMBERS OF A TEAM ===///: ", context["members_pk"])
+        #                     print("id of TEAMS: ",context["teamm"] )
         # print("id of members in a team ####: ", context["pk_of_team"])
         # print("SEEING RESULT OF TEST:  ",context["test"])
 

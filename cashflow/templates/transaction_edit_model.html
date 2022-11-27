@@ -7,7 +7,7 @@
                     aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{ 'transactionedit_url' }}" method="post" id="edittransactionform-{{transaction.pk}}">
+                <form action="{{transaction.get_edit_transaction_url}}" method="post" id="edittransactionform-{{transaction.pk}}">
                 {% csrf_token %}
                 <div class="form-group   col-12">
                     <label for="id_name">Title</label>
@@ -24,6 +24,23 @@
                     </select>
                 </div> {% endcomment %}
 
+                <div class="form-group form-float">
+                    <div class="form-line col-lg-14 col-md-14 col-xs-10">
+                        <label for="id_project" style="font-weight:bold;">project</label>
+
+                        <select class="form-control" name="project" id="id_project">
+                            {% for project in projects %}
+                                {% if transaction.project.pk == project.pk %}
+                                    <option value="{{project.pk}}" selected>{{project.name}}</option>
+                                {% else %}
+                                    <option value="{{project.pk}}">{{project.name}}</option>
+                                {% endif %}
+                            
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group   col-12">
                     <label for="id_name">Date</label>
                     <input type="date" name="date" id="transa_date" {% if transaction.date %}
@@ -32,9 +49,9 @@
                 </div>
                 <div class="form-group   col-12">
                     <label for="id_name">Amount</label>
-                    <input type="number" name="amount" min="0" id="transa_amount" {% if transaction.amount %}
-                    value="{{transaction.amount}}"
-                    {% endif %} required class="form-control" autofocus>
+                    <input type="number" name="amount" min="0" id="transa_amount"
+                     {% if transaction.amount %} value="{{transaction.amount}}" {% endif %}
+                     required class="form-control" autofocus>
                 </div>
             {% comment %} 
                 <div class="form-group   col-12">
@@ -61,7 +78,7 @@
                 </form>
                 <div class="actions clearfix">
                 <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem"
-                    form="addtransactionform-{{transaction.pk}}">Add</button>
+                    form="edittransactionform-{{transaction.pk}}">Add</button>
                 </div>
             </div>
         </div>

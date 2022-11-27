@@ -4,7 +4,7 @@ from multiprocessing import context
 import re
 from django.shortcuts import render
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, FormView
 # from django.views.generic import (
 #     DetailView,
 #     UpdateView,
@@ -23,6 +23,13 @@ from django.views.generic import View
 # from .process import html_to_pdf 
 
 from .models import Bill, BillItem, Invoice, Proforma
+
+
+from django.views.generic.detail import SingleObjectMixin
+from .forms import BillItemFormset
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
 
 
 
@@ -156,3 +163,43 @@ class BillItemCreateView(CreateView):
 class BillItemDeleteView(DeleteView):
     model = BillItem
     # form_class = BillItemCreateForm
+
+
+class BillItemEditView(SingleObjectMixin, FormView):
+    template_name= "invoice_create_model.html"
+    model = Bill
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Bill.objects.all())
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Bill.objects.all())
+        return super().post(request, *args, **kwargs)
+
+    def get_form(self, form_class=BillItemCreateForm):
+        return BillItemFormset(**self.get_form_kwargs(), instance=self.object , form_class= BillItemCreateForm)
+
+    def form_valid(self, formset):
+        formset.save()
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Changes were saved.'
+        )
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('bills:invoicedetail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context =super(BillItemEditView, self).get_context_data(**kwargs)
+        context["test"] = BillItemEditView.get_form()
+        context["formset"] = BillItemFormset
+
+        print("this is foooorm===",context["test"])
+        context["billitemform"] = BillItemCreateForm
+        return context
+        

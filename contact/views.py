@@ -84,10 +84,10 @@ class CompanyDetailView(RedirectPermissionRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
-        company_id = self.get_object().id
-        context["company_projects"] = Project.objects.filter(company = company_id)
+        # company_id = self.get_object().id
+        # context["company_projects"] = Project.objects.filter(company = company_id)
         context["projects"] = Project.objects.all()
-        context["employees"] = User.objects.filter(company=company_id).order_by('-is_responsible')
+        # context["employees"] = User.objects.filter(company=company_id).order_by('-is_responsible')
         context["projecttypes"] = PROJECT_TYPE_CHOICES
         context["companytypes"] = COMPANY_TYPE_CHOICES
         return context
@@ -227,6 +227,8 @@ class InternalEmployeeListView(ClientListView, ListView):
     def get_context_data(self, **kwargs):
         context = super(InternalEmployeeListView, self).get_context_data(**kwargs)
         context["employees_in_count"] = UserQueryset.is_internal_emp(self).count()
+        context["employees_in"] = User.objects.filter(is_internal = True)
+
         return context
 
     def form_invalid(self, form):
@@ -239,4 +241,20 @@ class AddInternalEmployeeView(AddClientView):
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:internalemployeelist')
+
+class InternalEmployeeUpdateView(ClientUpdateView):
+    template_name = 'internal_employee_edit_model.html'
+    success_url = reverse_lazy('contact:internalemployeelist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('contact:internalemployeelist')
+
+class InternalEmployeeDeleteView(ClientDeleteView):
+    template_name = 'internal_employee_delet_model.html'
+    success_url = reverse_lazy('contact:internalemployeelist')
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited element couldn't be removed")
         return redirect('contact:internalemployeelist')

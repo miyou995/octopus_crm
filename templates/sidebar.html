@@ -44,7 +44,7 @@
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="dollar-sign"></i><span>Cashflow</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="#">Accounts</a></li>
+            <li><a class="nav-link" href="{% url 'cashflow:accountlist' %}">Accounts</a></li>
 
             <li><a class="nav-link" href="{% url 'cashflow:transactionlist' %}">Transaction</a></li>
           </ul>

@@ -1,15 +1,15 @@
 <div id="addContent" class="modal-content">
   <div class="modal-header">
-    <h4 class="modal-title" id="detailModalLabel">Add transaction</h4>
+    <h4 class="modal-title" id="detailModalLabel">Add Account</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
         aria-hidden="true">&times;</span></button>
   </div>
   <div class="modal-body">
-    <form action="{% url 'cashflow:transactioncreate' %}" method="post" id="addtransactionform">
+    <form action="{% url 'cashflow:accountcreate' %}" method="post" id="addaccountform">
     {% csrf_token %}
       <div class="form-group   col-12">
         <label for="id_name">Title</label>
-        <input type="text" name="name" id="transa_title" required class="form-control" autofocus>
+        <input type="text" name="name" id="account_name" required class="form-control" autofocus>
       </div>
 {% comment %} 
       <div class="form-group   col-12">
@@ -22,26 +22,33 @@
 
       <div class="form-group form-float">
         <div class="form-line col-lg-14 col-md-14 col-xs-10">
-          <label for="id_project" style="font-weight:bold;">project</label>
+          <label for="id_acc_type" style="font-weight:bold;">Account type</label>
 
-          <select class="form-control" name="project" id="id_project">
-            <option value="" selected>Select project</option>
-            {% for project in projects %}
-              <option value="{{project.pk}}">{{project.name}}</option>
+          <select class="form-control select" name="acc_type" id="id_acc_type">
+            <option value="" selected>Select type</option>
+            {% for key, value in account_types %}
+              <option value="{{key}}">{{value}}</option>
             {% endfor %}
           </select>
         </div>
       </div>
 
+        <div class="form-group   col-12">
+          <label for="id_name">Postal Code</label>
+          <input type="number" name="postal_code" id="postal_code" min="0" required class="form-control" autofocus>
+        </div>
 
-      <div class="form-group   col-12">
-        <label for="id_name">Date</label>
-        <input type="date" name="date" id="transa_date" required class="form-control" autofocus>
-      </div>
-      <div class="form-group   col-12">
-        <label for="id_name">Amount</label>
-        <input type="number" name="amount" id="transa_amount" min="0" required class="form-control" autofocus>
-      </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <input type="checkbox" id="id_is_actif" name="actif" value="{{account.pk}}" />
+                <label for="id_is_actif">Actif</label><br>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="account_description" style="font-weight:bold;">Description</label>
+          <textarea name="description" id="account_description" class="form-control" cols="30" rows="10"></textarea>
+        </div>
 {% comment %} 
       <div class="form-group   col-12">
         <label for="id_name">Payement method</label>
@@ -51,20 +58,23 @@
         </select>
       </div> {% endcomment %}
 
+
+{% comment %} 
       <div class="form-group   col-12">
         <label for="id_name">Status</label>
         <select class="form-control" name="tr_status" id="transa_status">
           <option value="" selected>Select a status</option>
-          {% for key, value in transactionstatus %}
+          {% for key, value in accountstatus %}
             <option value="{{key}}">{{value}}</option>
           {% endfor %}
 
         </select>
-      </div>
+      </div> {% endcomment %}
+      
     </form>
     <div class="actions clearfix">
       <button type="submit" style="float:right " class="waves-effect btn btn-primary" role="menuitem"
-        form="addtransactionform">Add</button>
+        form="addaccountform">Add</button>
     </div>
   </div>
 </div>

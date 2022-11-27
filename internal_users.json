@@ -1,0 +1,37 @@
+[
+    {
+        "model": "accounts.user",
+        "pk": 28,
+        "fields": {
+            "password": "admin",
+            "last_login": null,
+            "is_superuser": false,
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "date_joined": "2022-10-05T13:31:49.165Z",
+            "name": "fadou",
+            "email": "newF@user.com",
+            "picture": "",
+            "pseudo": null,
+            "role": "AS",
+            "decision": "5",
+            "mobile": null,
+            "notes": null,
+            "is_active": false,
+            "is_manager": false,
+            "is_responsible": false,
+            "is_admin": false,
+            "is_internal": true,
+            "user_type": null,
+            "project_name": null,
+            "collab_start": null,
+            "source": null,
+            "created": "2022-10-06",
+            "updated": "2022-10-05",
+            "company": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

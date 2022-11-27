@@ -1,0 +1,194 @@
+[
+    {
+        "model": "project.project",
+        "pk": 11,
+        "fields": {
+            "name": "octopus",
+            "cost": "1.00",
+            "started_date": "2022-09-07",
+            "deadline": "2022-09-17",
+            "project_type": "WS",
+            "contract": "H",
+            "contract_expiration": "2022-09-17",
+            "status": "CP",
+            "description": "",
+            "created": "2022-09-17T00:13:10.301Z",
+            "updated": "2022-09-21T14:11:30.347Z",
+            "company": 5,
+            "manager": 1
+        }
+    },
+    {
+        "model": "project.project",
+        "pk": 15,
+        "fields": {
+            "name": "defactuu",
+            "cost": "3.00",
+            "started_date": "2022-09-18",
+            "deadline": "2022-09-24",
+            "project_type": "WS",
+            "contract": "S",
+            "contract_expiration": "2022-09-18",
+            "status": "PE",
+            "description": "",
+            "created": "2022-09-18T09:12:50.688Z",
+            "updated": "2022-09-21T14:10:25.661Z",
+            "company": 3,
+            "manager": 1
+        }
+    },
+    {
+        "model": "project.project",
+        "pk": 16,
+        "fields": {
+            "name": "takiiiasas",
+            "cost": "2000.00",
+            "started_date": "2022-10-09",
+            "deadline": "2022-09-24",
+            "project_type": "EC",
+            "contract": "S",
+            "contract_expiration": "2022-09-24",
+            "status": "CF",
+            "description": "sasaaaaaaaa",
+            "created": "2022-09-18T09:18:47.688Z",
+            "updated": "2022-09-18T09:18:47.688Z",
+            "company": 5,
+            "manager": 5
+        }
+    },
+    {
+        "model": "project.project",
+        "pk": 19,
+        "fields": {
+            "name": "htc",
+            "cost": "2.00",
+            "started_date": null,
+            "deadline": null,
+            "project_type": "EC",
+            "contract": null,
+            "contract_expiration": null,
+            "status": null,
+            "description": "",
+            "created": "2022-09-18T10:56:49.039Z",
+            "updated": "2022-09-18T11:29:02.685Z",
+            "company": null,
+            "manager": 8
+        }
+    },
+    {
+        "model": "project.project",
+        "pk": 21,
+        "fields": {
+            "name": "facebook",
+            "cost": "-4.00",
+            "started_date": "2022-09-19",
+            "deadline": "2022-09-19",
+            "project_type": "WS",
+            "contract": "A",
+            "contract_expiration": "2022-09-19",
+            "status": "PE",
+            "description": "web site for facebook",
+            "created": "2022-09-19T16:16:55.580Z",
+            "updated": "2022-09-19T16:16:55.580Z",
+            "company": 1,
+            "manager": 17
+        }
+    },
+    {
+        "model": "project.project",
+        "pk": 54,
+        "fields": {
+            "name": "xws",
+            "cost": "1.00",
+            "started_date": "2022-10-30",
+            "deadline": "2022-11-04",
+            "project_type": null,
+            "contract": null,
+            "contract_expiration": "2022-11-01",
+            "status": null,
+            "description": "",
+            "created": "2022-10-30T12:44:25.008Z",
+            "updated": "2022-10-30T12:44:25.008Z",
+            "company": null,
+            "manager": 8
+        }
+    },
+    {
+        "model": "project.task",
+        "pk": 1,
+        "fields": {
+            "name": "acm",
+            "start_date": "2022-10-05",
+            "deadline": "2022-10-21",
+            "description": "dddd",
+            "priority": null,
+            "user": null,
+            "created": "2022-10-12T15:34:42.640Z",
+            "updated": "2022-10-12T15:34:42.640Z"
+        }
+    },
+    {
+        "model": "project.task",
+        "pk": 2,
+        "fields": {
+            "name": "aSma",
+            "start_date": "2022-10-12",
+            "deadline": "2022-10-14",
+            "description": "sfdsfdf",
+            "priority": "low",
+            "user": null,
+            "created": "2022-10-12T16:02:32.394Z",
+            "updated": "2022-10-12T16:02:32.394Z"
+        }
+    },
+    {
+        "model": "project.task",
+        "pk": 3,
+        "fields": {
+            "name": "eee",
+            "start_date": "2022-10-12",
+            "deadline": "2022-10-12",
+            "description": "",
+            "priority": null,
+            "user": null,
+            "created": "2022-10-12T16:22:19.293Z",
+            "updated": "2022-10-12T16:22:19.293Z"
+        }
+    },
+    {
+        "model": "project.teams",
+        "pk": 14,
+        "fields": {
+            "name": "sidouuuuuu",
+            "project": null,
+            "task": null
+        }
+    },
+    {
+        "model": "project.teams",
+        "pk": 15,
+        "fields": {
+            "name": "DevOps",
+            "project": null,
+            "task": null
+        }
+    },
+    {
+        "model": "project.teams",
+        "pk": 16,
+        "fields": {
+            "name": "best",
+            "project": null,
+            "task": null
+        }
+    },
+    {
+        "model": "project.teams",
+        "pk": 17,
+        "fields": {
+            "name": "dfdfgdfgdg",
+            "project": null,
+            "task": null
+        }
+    }
+]
