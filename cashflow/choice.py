@@ -1,6 +1,6 @@
 ACCOUNT_TYPE= (
     ('IN', 'In'),
-    ('OU', 'Out'),   
+    ('OUT', 'Out'),   
 ) 
 
 TRANSACTION_STATUS =(

@@ -20,7 +20,7 @@
   </div>
   <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-      {% include 'client_edit.html' with editclient_url=editclient_url %}
+      {% include 'client_edit.html' with internalemployeeupdate_url=internalemployeeupdate_url %}
     </div>
   </div>
 
@@ -114,7 +114,7 @@
                               <td>{{employee.source}}</td>
                               <td><span class="d-block text-info">{{employee.collab_start}}</span></td>
 
-                              <td><a href="{{editclient_url}}" data-toggle="modal" data-target="#editContent-{{employee.pk}}" class="btn icn"><i
+                              <td><a href="{{internalemployeeupdate_url}}" data-toggle="modal" data-target="#editContent-{{employee.pk}}" class="btn icn"><i
                                       data-feather="edit"></i></a>
 
                                   <a href="{{deleteclient_url}}" data-toggle="modal" data-target="#deleteContent-{{employee.pk}}" class="btn icn"><i
@@ -140,10 +140,10 @@
   </div>
 </div>
 
-{% for employee in employees %}
-  {% url 'contact:editclient' employee.pk as editclient_url %}
-  {% url 'contact:clientdelete' employee.pk as deleteclient_url %}
-  {% include "client_edit.html" with editclient_url=editclient_url %}
+{% for employee in employees_in %}
+  {% url 'contact:internalemployeeupdate' employee.pk as internalemployeeupdate_url %}
+  {% url 'contact:internalemployeedelete' employee.pk as deleteclient_url %}
+  {% include "client_edit.html" with internalemployeeupdate_url=internalemployeeupdate_url %}
   {% include "client_delete.html" with deleteclient_url=deleteclient_url %}
 {% endfor %}
 

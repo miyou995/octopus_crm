@@ -1,98 +1,160 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
 {% block title %}
 <title>Cashflow</title>
 {% endblock %}
-<div class="content-wrapper">
-    <div class="page-header">
-        <h3 class="page-title">
-            Cashflow
-        </h3>
-    </div> 
-    <div class="col-md-6 grid-margin">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-0">Total</h4>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-inline-block pt-3">
-                        <div class="d-md-flex">
-                            <h2 class="mb-0">{{ account_count }} </h2>
-                            
-                        </div>
+{% block content %}
+
+
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'account_create_model.html' %}
+    </div>
+  </div>
+
+  <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      {% include 'account_update_model.html' with object=account editaccount_url=editaccount_url %}
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+      {% include 'account_delete_model.html' with object=account accountdelete_url=accountdelete_url %}
+    </div>
+  </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+          <div class="col-md-6 grid-margin">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title mb-0">Total Transactions</h4>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-inline-block pt-3">
+                          <div class="d-md-flex">
+                              <h2 class="mb-0">{{ transactions_count }} </h2>
+                          </div>
+                      </div>
+                      <div class="d-inline-block">
+                          <i class="fas fa-solid fa-money-bill text-info icon-lg"></i>                                    
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      {% comment %} <div class="alert"> {% endcomment %}
+         {% include 'snippets/message.html' %}
+      {% comment %} </div> {% endcomment %}
+      <section class="section">
+        <div class="section-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="primary">accounts list </h4>
+                  <div class="card-header-action">
+                    <div class="row">
+
+                      <button hx-get="{% url 'cashflow:accountcreate' %}" hx-target="#addContent" data-toggle="modal"
+                        data-target="#addModal" hx-swap="innerHTML" class="btn btn-primary plus">
+                        <i data-feather="plus"></i>
+                      </button>      
                     </div>
-                    <div class="d-inline-block">
-                        <i class="fas fa-solid fa-money-bill text-info icon-lg"></i>                                    
-                    </div>
+                  </div>
+
                 </div>
-            </div>
-        </div>
-    </div> 
-    <div class="row">
-        <div class="col-12 grid-margin">
-            <div class="card">
                 <div class="card-body">
-                    <form action="" method="GET">
-                    <div class="d-md-flex justify-content-between align-items-center">
-                            <tr class="row">    
-                                <input class="form-control mr-sm-2 bg-white" type="search" placeholder="Search" aria-label="Search" name="name">
-                                <td> </td>  
-                                <td > <input type="date" class="form-control bg-white" name="created" > </td> 
-                                <td >
-                                    <select class="form-control select bg-white" name="acc_type" >
-                                        <option value="">select account type</option>
-                                        <option value="IN">IN</option>
-                                        <option value="OU">OUt</option>	
-                                    </select>
-                                </td>
-                            
-                                
-                                <td >  
-                                    <button type="submit" class="btn btn-primary mr-2"> <i class="fas fa-filter"></i></button>
-                                </td>
-                            </tr>
-                        </div>
+                  <div class="row">
+                    <div class="total" style="margin-left: 20px;">
+                      <strong>Total : </strong>
+                      {{ account_count }}</div>
+
+                    <form action="" method="post" style="margin-left:auto ;">
+                    {% csrf_token %}
+                      <div class="d-md-flex align-items-center">
+                        <tr class="row">
+                          <td>
+                            <input type="search" class="form-control" placeholder="account name" aria-label="Search"
+                              name="name"></td>
+                          <td>
+                            <input type="date" class="form-control" placeholder="collab_start" name="started_date">
+                          </td>
+                          <td>
+                            <select class="form-control select" name="acc_type">
+                              <option value="">selcet a Account type</option>
+                              {% for key, value in account_types %}
+                              <option value={{key}}>{{value}}</option>
+                              {% endfor %}
+                            </select>
+                          </td>
+                          <td>
+                            <button type="submit" class="btn btn-primary"><i data-feather="filter"></i></button>
+                          </td>
+                        </tr>
+
+                      </div>
                     </form>
+                  </div>
+                  <hr>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Type</th>
+                          <th>Actif</th>
+                          <th>Project</th>
+                          <th>Postal Code</th>
+                          <th>Description</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for account in accounts %}
+                        <tr>
+                        
+                          <td>{{account.name}}</td>
+                          <td>{{account.acc_type}}</td>
+                          <td> {{account.actif}}</td>
+                          <td>{{account.project}}</td>
+                          <td>{{account.postal_code}}</td>
+                          <td>{{account.description}}</td>
+                          
+                          <td>
+                            <a href="{{accountedit_url}}" data-toggle="modal" data-target="#editContent-{{account.pk}}" class="btn icn">
+                            <i data-feather="edit"></i>
+                            </a>
+ 
+                            <a href="{{accountdelete_url}}" data-toggle="modal" data-target="#deleteContent-{{account.pk}}" class="btn icn">
+                            <i data-feather="trash"></i>
+                            </a>
+
+                            <a href="{% url 'cashflow:accountdetail' account.pk %}" class="btn icn">
+                            <i data-feather="eye"></i></a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </section>
     </div>
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <a href="#" > <button type="submit" class="btn btn-primary mr-2" style="float:right;">New</button><a>
-            <h4 class="card-title">Accounts</h4>
-                <div class="row">
-                        <div class="col-12">
-                            <div class="table-responsive">
-                                <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                    <div class="row">
-                                        {% for account in accounts %} 
-                                            <div class="col-md-3 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="d-flex flex-row">
-                                                            <h6 class="badge badge-pill badge-dark"> {{account.get_acc_type_display}}</h6>
-                                                            <div class="ml-3">
-                                                                <a href="{% url 'cashflow:accounttdetail' account.pk %}" style="text-decoration : none; color:black;" > 
-                                                                <h3>{{account.name}}</h3>  </a>
-                                                                <p class="text-muted"></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                          
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- main-panel ends -->
-</div>
-</div>
+
+{% for account in accounts %}
+  {% url 'cashflow:accountedit' account.pk as editaccount_url %}
+  {% url 'cashflow:accountdelete' account.pk as accountdelete_url %}
+    {% include "account_update_model.html" with object=account editaccount_url=editaccount_url %}
+    {% include "account_delete_model.html" with object=account accountdelete_url=accountdelete_url %}
+{% endfor %}
+
+
+
 {% endblock content %}

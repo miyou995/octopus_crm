@@ -22,6 +22,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from pprint import pprint
 from bills.views import RedirectPermissionRequiredMixin
 from contact.models import Company
+from project.models import Project
 from .models import  Account, Transaction, TransactionManager
 # from project.models import Project
 from .filters import Accountfilter, Transactionfilter
@@ -42,28 +43,34 @@ class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
 class CashView(TemplateView):
     template_name= "cashflow.html"
 
-class CashflowAccountListView(ListView): 
+class AccountListView(ListView): 
     template_name= "account_list.html"
     model = Account 
     def get_context_data(self, **kwargs):
-        context = super(CashflowAccountListView, self).get_context_data(**kwargs)
+        context = super(AccountListView, self).get_context_data(**kwargs)
         context["account_count"] =Account.objects.all().count()
         filters=Accountfilter(self.request.GET, queryset=Account.objects.all())
-        context["accounts"] = filters.qs
+        # context["accounts"] = filters.qs
+        context["accounts"] = Account.objects.all()
+        context["account_count"] = Account.objects.all().count()
+        context["account_types"] = ACCOUNT_TYPE
+        context["transactions_count"] =Transaction.objects.all().count()
+
         return context
 
 class AccountDetailView(DetailView):
     model = Account
-    template_name= "cashflow_account_detail.html"
+    template_name= "account_detail.html"
     def get_context_data(self, **kwargs):
         context = super(AccountDetailView, self).get_context_data(**kwargs)
         account_id = self.get_object().id
-        context["account_transactions"] = Transaction.objects.filter(account=account_id)
+        # context["account_transactions"] = Transaction.objects.filter(account=account_id)
         context["transactions"] = Transaction.objects.all()
+        context["accounts"] = Account.objects.all()
         return context 
 
-class AddAccountView(CreateView):
-    template_name= "add-accounts.html"
+class AccountCreateView(CreateView):
+    template_name= "account_create_model.html"
     form_class= AddAccountForm
     model = Account
     success_url = reverse_lazy('cashflow:accountlist')
@@ -72,8 +79,33 @@ class AddAccountView(CreateView):
     #     return super().form_invalid(form)
 
     def get_context_data(self, **kwargs): 
-        context = super(AddAccountView, self).get_context_data(**kwargs)
+        context = super(AccountCreateView, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.all()
+        context["accounts"] = Account.objects.all()
+        context["account_types"] = ACCOUNT_TYPE
+
+
+
+
+        return context
+
+class AccountUpdateView(UpdateView):
+    template_name= "account_update_model.html"
+    form_class= AddAccountForm
+    model = Account
+    success_url = reverse_lazy('cashflow:accountlist')
+    # def form_invalid(self, form):
+    #     pprint(form.errors)
+    #     return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs): 
+        context = super(AccountUpdateView, self).get_context_data(**kwargs)
+        context["companies"] = Company.objects.all()
+        context["accounts"] = Account.objects.all()
+        context["account_types"] = ACCOUNT_TYPE
+
+
+
         return context
 
 
@@ -98,6 +130,11 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
 
         return { 'labels': labels,}
 
+    for k, v in TRANSACTION_STATUS:
+        print("sudoASDFADSf-----KEYS==", k)
+
+        print("\n\nsudoASDFADSf-----VALUES==", v)
+
     def get_context_data(self, **kwargs):
         context = super(TransactionListView, self).get_context_data(**kwargs)
         # context["transactions"] =Transaction.objects.all().order_by('date')
@@ -110,6 +147,10 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         context["transactions_paid"] = Transaction.payments.get_total_paid_transactions()['amount__sum']
         context["transactions_not_paid"] = Transaction.payments.get_total_not_paid_transactions()['amount__sum']
         context["transactions_pending"] = Transaction.payments.get_total_pending_transactions()['amount__sum']
+
+        context["projects"] = Project.objects.all()
+        context["transactionstatus"] = TRANSACTION_STATUS
+
 
         # context["total_dettes"] = Project.objects.all().aggregate(Sum('get_project_dettes'))
         # context["total_payment"] =Transaction.payments.get_total_payment()
@@ -146,6 +187,8 @@ class TransactionCreateView(RedirectPermissionRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(TransactionCreateView, self).get_context_data(**kwargs)
         context["transactionstatus"] = TRANSACTION_STATUS
+        context["projects"] = Project.objects.all()
+
     #     context["companies"] = Company.objects.all()
     #     context["accounts"] = Account.objects.all()
     #     context["projects"] = Project.objects.all()
@@ -162,6 +205,7 @@ class TransactionUpdateView(RedirectPermissionRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(TransactionCreateView, self).get_context_data(**kwargs)
         context["transactionstatus"] = TRANSACTION_STATUS
+        # context["transactions"] = Transaction.objects.all()
 
         return context
 

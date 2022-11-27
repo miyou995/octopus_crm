@@ -9,6 +9,7 @@ from .choice import TRANSACTION_STATUS, TRANSACTION_TYPE_CHOICES, ACCOUNT_TYPE
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 from django.shortcuts import render
+from project.models import Project
 # Create your models here.
 
 
@@ -44,9 +45,11 @@ class AccountManager(models.Manager):
 
 class Account(models.Model): 
     # owner        = models.ManyToManyField(Project, related_name="project_name" )
-    name                = models.CharField(max_length=250, db_index=True, blank=True, null=True)
-    acc_type            = models.CharField(choices=ACCOUNT_TYPE, db_index=True, max_length=2,blank=True, null=True)
+    name                = models.CharField(max_length=252, db_index=True, blank=True, null=True)
+    acc_type            = models.CharField(choices=ACCOUNT_TYPE, db_index=True, max_length=3,blank=True, null=True)
     actif               = models.BooleanField(blank=True, null=True)
+    description         = models.TextField(blank=True, null=True)
+    # postal_code         = models.PositiveIntegerField(default=0)
     created             = models.DateTimeField(auto_now_add=True)
     updated             = models.DateTimeField(auto_now=True)
     project             = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE) # on_delete q4FQ#RF1234rf3
@@ -57,6 +60,11 @@ class Account(models.Model):
     def __str__(self):
         return self.name
 
+    def get_account_edit_url(self):
+        return reverse('cashflow:accountedit', kwargs={'pk':self.pk})
+
+    def get_absolute_url(self):
+        return reverse('cashflow:accountdetail', kwargs={'pk':self.pk})
 
 class TransactionManager(models.Manager):
     def get_total(self):
@@ -111,6 +119,7 @@ class Transaction(models.Model):
     amount      = models.DecimalField(max_digits=10 , decimal_places=2,validators=[MinValueValidator(Decimal('0.01'))], blank=True, null=True)
     date        = models.DateField(blank=True, null=True)
     note        = models.CharField(max_length=254, blank=True, null=True)
+    project     = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="transactions_project",blank=True, null=True,)
     created     = models.DateTimeField(auto_now_add=True)
     updated     = models.DateTimeField(auto_now=True)
     objects     = models.Manager()
@@ -126,6 +135,10 @@ class Transaction(models.Model):
     @property
     def get_absolute_url(self):
         return reverse("cashflow:transactiondetail", kwargs={"pk": self.pk})
+
+    @property
+    def get_edit_transaction_url(self):
+        return reverse("cashflow:transactionedit", kwargs={"pk": self.pk})
     
     # @property
     # def get_total_paid_transactions(self):

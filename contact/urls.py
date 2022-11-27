@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import CompanyListView, CompanyAddView, CompanyDetailView, CompanyUpdateView, CompanyDeleteView
-from .views import  ClientListView, AddClientView, ClientUpdateView, ClientDetailView, ClientDeleteView,InternalEmployeeListView, AddInternalEmployeeView
+from .views import  (ClientListView, AddClientView, ClientUpdateView, ClientDetailView, ClientDeleteView,
+                    InternalEmployeeListView, AddInternalEmployeeView, InternalEmployeeUpdateView, InternalEmployeeDeleteView)
 
 from django.contrib.auth.decorators import login_required
 
@@ -20,6 +21,8 @@ urlpatterns = [
     path('clientdelete/<int:pk>/', login_required(ClientDeleteView.as_view()), name="clientdelete"),
     path('internalemployeelist', login_required(InternalEmployeeListView.as_view()), name='internalemployeelist'),
     path('internalemployeelist/addinternalemployee', login_required(AddInternalEmployeeView.as_view()), name='addinternalemployee'),
+    path('internalemployeeupdate/<int:pk>', login_required(InternalEmployeeUpdateView.as_view()), name='internalemployeeupdate'),
+    path('internalemployeedelete/<int:pk>', login_required(InternalEmployeeDeleteView.as_view()), name='internalemployeedelete'),
     
 
 

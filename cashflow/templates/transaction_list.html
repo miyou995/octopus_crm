@@ -144,15 +144,17 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">
+                                            {% comment %} <th class="text-center">
                                                 <div class="custom-checkbox custom-checkbox-table custom-control">
                                                     <input type="checkbox" data-checkboxes="mygroup"
                                                         data-checkbox-role="dad" class="custom-control-input"
                                                         id="checkbox-all">
                                                     <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                                 </div>
-                                            </th>
+                                            </th> {% endcomment %}
+
                                             <th>Title</th>
+                                            <th>Project</th>
                                             <th>Date</th>
                                             {% comment %} <th>Account</th> {% endcomment %}
                                             <th>Amount</th>
@@ -164,6 +166,7 @@
                                         {% for transaction in transactions %}
                                             <tr>
                                                 <td>{{transaction.name}}</td>
+                                                <td><a href="{{transaction.project.get_absolute_url}}">{{transaction.project.name}}</a></td>
                                                 <td>{{transaction.date}}</td>
                                                 {% comment %} <td>{{transaction.account.name}}</td> {% endcomment %}
                                                 <td>{{transaction.amount}}</td>
@@ -209,15 +212,27 @@
                                             {% comment %} {% for transaction in transactions %} {% endcomment %}
                                                 {% comment %} {% if transaction.tr_status == 'PAID' %} {% endcomment %}
                                                 <h5 class="font-15">Paid</h5>
-                                                <p class="mb-0"><span class="col-green">{{transactions_paid}} DA</span></p>
+                                                <p class="mb-0"><span class="col-green">{% if transactions_paid %}
+                                                {{transactions_paid}} DA</span></p>
+                                                {% else %}
+                                                0 DA
+                                                {% endif %}
                                                 <br>
                                                 <h5 class="font-15">Pending</h5>
                                                 {% comment %} {% elif transaction.tr_status == 'PENDING' %} {% endcomment %}
-                                                <p class="mb-0"><span class="col-orange">{{transactions_pending}} DA</span></p>
+                                                <p class="mb-0"><span class="col-orange">{% if transactions_pending %}
+                                                {{transactions_pending}} DA</span></p>
+                                                {% else %}
+                                                0 DA
+                                                {% endif %}
                                                 <br>
                                                 {% comment %} {% else %} {% endcomment %}
                                                 <h5 class="font-15">Not Paid</h5>
-                                                <p class="mb-0"><span class="col-red">{{transactions_not_paid}} DA</span></p>
+                                                <p class="mb-0"><span class="col-red">{% if transactions_not_paid %}
+                                                {{transactions_not_paid}} DA</span></p>
+                                                {% else %}
+                                                0 DA
+                                                {% endif %}
                                                 <br>
                                                 {% comment %} {% endif %} {% endcomment %}
                                             {% comment %} {% endfor %} {% endcomment %}

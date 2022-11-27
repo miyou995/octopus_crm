@@ -56,7 +56,7 @@ class Company(models.Model):
     collab_start        = models.DateField(blank=True, null=True)
     created             = models.DateField(auto_now=True)
     updated             = models.DateField(auto_now_add=True)
-    postal_code         = models.IntegerField(blank=True, null=True)
+    postal_code         = models.IntegerField(default=0000,blank=True, null=True, verbose_name="The postal Code")
     # responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
     responsible_person  = models.ForeignKey('accounts.User', verbose_name="Responsable de la société",related_name="companies", on_delete=models.SET_NULL, null=True, blank=True)
 

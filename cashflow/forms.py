@@ -12,4 +12,4 @@ class TransactionCreateForm(ModelForm) :
     class Meta: 
         model = Transaction
         # fields = '__all__' 
-        fields = ['name', 'amount','tr_status', 'date']
+        fields = ['name', 'amount','tr_status', 'date', 'project']
