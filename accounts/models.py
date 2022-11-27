@@ -133,7 +133,7 @@ class User(AbstractUser):
 
 
     def __str__(self):
-        return self.name
+        return str(self.email)
     
     @property
     def get_absolute_url(self):

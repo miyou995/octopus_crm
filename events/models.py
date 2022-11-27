@@ -30,7 +30,7 @@ class Event(models.Model):
     user            = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='user_events')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     @property
     def get_absolute_url(self):

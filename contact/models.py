@@ -59,7 +59,6 @@ class Company(models.Model):
     postal_code         = models.IntegerField(default=0000,blank=True, null=True, verbose_name="The postal Code")
     # responsible_person  = models.CharField(max_length=100,  blank=True, null=True)
     responsible_person  = models.ForeignKey('accounts.User', verbose_name="Responsable de la société",related_name="companies", on_delete=models.SET_NULL, null=True, blank=True)
-
     # responsible_person  = models.ForeignKey()
 
 
@@ -67,15 +66,16 @@ class Company(models.Model):
     # camopany_managing   = CompanyQueryset().as_manager()
 
     def __str__(self):
-        return self.name
+        print(self.id)
+        return str("2") 
         
     @property
     def get_absolute_url(self):
         return reverse("contact:companydetail", kwargs={"pk": self.pk})
 
-    @property
-    def is_responsible_person(self):
-        return self.responsible_person
+    # @property
+    # def is_responsible_person(self):
+    #     return self.responsible_person
 
     # @register.simple_tag
     # def changeStatement(status):

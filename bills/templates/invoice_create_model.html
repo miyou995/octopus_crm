@@ -36,16 +36,16 @@
         </div>
         <h1 class="text-center">Facture</h1>
         <form id="createInvoice" action="{% url 'bills:invoicecreate' %}" method="post" enctype="multipart/form-data">
-                
+{% comment %}                 
                 {% for hidden_field in form.hidden_fields %}
                 {{ hidden_field.errors }}
                 {{ hidden_field }}
-                {% endfor %}
+                {% endfor %} {% endcomment %}
 
             {% csrf_token %}
-
+{% comment %} 
                 {{ form.management_form }}
-            {{ form.non_form_errors }}
+            {{ form.non_form_errors }} {% endcomment %}
 
             <div class="row">
                 <div class="form-inline col-6">
@@ -99,38 +99,17 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="table-responsive">
-                {{formset.management_form}}
-                <h1>SIDOUSFODUFOSUFOSUD: == </h1> {{formset}}
-
-                {% for billitem_form in formset %}
-                      <hr>
-                    <h5>
-                    <h1>SIDOUSFODUFOSUFOSUD</h1>
-                        {% if billitem_form.instance.id %}
-                        billitem: {{ billitem_form.instance.title|title }}
-                        {% else %}
-                        {% if form.forms|length > 1 %}
-                            Add another billitem
-                        {% else %}
-                            Add a billitem
-                        {% endif %}
-                        {% endif %}
-                      </h5>
-                        {% for hidden_field in billitem_form.hidden_fields %}
-                            {{ hidden_field.errors }}
-                        {% endfor %}
-                    <table>
-                        {{ billitem_form.as_table }}
-                    </table>
-                {% endfor %}
                     <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
-                   
+                        <div class="row">
+
+                                
+                        </div>
                         <div class="row">
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-secondary mb-3" @click="addItem()">Add</button>
+                                <span class="btn btn-secondary mb-3" @click="addItem()">Add</span>
                             </div>
                         </div>
                         <div x-show="items.length">
@@ -140,7 +119,6 @@
                                         <tr>  
                                             <th class="text-center" scope="row" >#</th>
                                             <th class="">Item</th>
-                                                                          
                                             <th class="text-center" style="width:10%" >Price</th>
                                             <th class="text-center"style="width:10%" >Quantity</th>
                                             <th class="text-center"style="width:10%">Total</th>
@@ -148,27 +126,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{formset.management_form}}
+                                        {% comment %} {% for form in formset %}
+                                            {{form}}
+                                        {% endfor %} {% endcomment %}
                                         <template x-for="item in items" :key="item.id">
                                             <tr class="border-t">
-                                                <td>
+                                               <td>
                                                     <span x-text="item.id"></span>     
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
-                                                    <span x-text="item.item" class="overflow-auto" ></span>                                      
+                                                    {% comment %} <span x-text="item.item" class="overflow-auto" ></span> {% endcomment %}
+                                                    <input type="text" name="items-0-name" class="overflow-auto" maxlength="180" id="id_items-0-name">
                                                 </td>
                                                
                                                 <td class="pt-3-half" contenteditable="true">
-                                                    <span x-text="item.price" name="price"></span>DA   
+                                                    <input type="number" name="items-0-price" min="0" id="id_items-0-price">
+
+                                                    {% comment %} <span x-text="item.price" name="price"></span>DA    {% endcomment %}
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true">
-                                                    <span x-text="item.quantity" name="quantity"></span>    
+                                                    <input type="number" name="items-0-quantity" min="0" id="id_items-0-quantity">
+                                                    {% comment %} <span x-text="item.quantity" name="quantity"></span>     {% endcomment %}
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true">
-                                                    <span x-text="item.total"></span>DA    
+                                                    <span x-text="item.total"></span> DA    
                                                 </td>
-                                                <td>  <button
+                                                <td>  
+                                                    <button
                                                     class="btn btn-outline-danger"
-                                                    @click="deleteItem(item.id)">x</button></td>
+                                                    @click="deleteItem(item.id)">x</button>
+                                                </td> 
                                             </tr>
                                         </template>
                                     </tbody>

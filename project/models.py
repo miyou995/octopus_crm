@@ -100,7 +100,7 @@ class ProjectManager(models.Manager):
 
 
 # Create your models here.
-class Project (models.Model): 
+class Project(models.Model): 
     name                    = models.CharField(max_length=254, blank=True, null=True)
     cost                    = models.DecimalField(max_digits=20 , decimal_places=2, default=0, validators=[MinValueValidator(Decimal('0.01'))], blank=True, null=True)
     started_date            = models.DateField(blank=True, null=True) 
@@ -122,8 +122,8 @@ class Project (models.Model):
     managing                = ProjectManager()
 
 
-    # def __str__(self):
-    #     return str(self.name)
+    def __str__(self):
+        return str(self.name)
     
     @property
     def get_absolute_url(self):
