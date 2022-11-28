@@ -6804,7 +6804,7 @@ a.close.disabled {
 
 @media(min-width:576px) {
     .modal-dialog {
-        max-width: 500px;
+        max-width: 800px;
         margin: 1.75rem auto
     }
 
@@ -6836,7 +6836,12 @@ a.close.disabled {
         max-width: 800px
     }
 }
+@media(min-width:992px) {
 
+    .bill-width{
+        max-width: 860px;
+    }
+}
 @media(min-width:1200px) {
     .modal-xl {
         max-width: 1140px

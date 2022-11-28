@@ -45,13 +45,35 @@ class InvoiceListView(RedirectPermissionRequiredMixin, ListView):
     template_name = 'invoice_list.html'
     permission_required = 'invoice.view_invoice'
 
+
+    # def form_valid(self, form, invoice_formset):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     # saving ProductMeta Instances
+    #     invoice_items = invoice_formset.save(commit=False)
+    #     for item in invoice_items:
+    #         item.bill_ofc = self.object
+    #         item.save()
+    #     return redirect(reverse("bills:invoicelist"))
+    # # def get(self, request, *args, **kwargs):
+    # #     return redirect('bills:invoicelist')
+
+    # def post(self, request, *args, **kwargs):
+    #     self.object = None
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     invoice_formset = BillItemFormset(self.request.POST)
+    #     if form.is_valid() and invoice_formset.is_valid():
+    #         return self.form_valid(form, invoice_formset)
+    #     else:
+    #         return self.form_invalid(form, invoice_formset)
+
     def get_context_data(self, **kwargs):
         context = super(InvoiceListView, self).get_context_data(**kwargs)
         context["invoices"] = Invoice.objects.all()
-        context["formset"] = BillItemFormset()
+        # context["formset"] = BillItemFormset()
 
         return context
-
 
 class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
     model = Invoice
@@ -69,7 +91,10 @@ class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(InvoiceCreateView, self).get_context_data(**kwargs)
         context["formset"] = BillItemFormset()
-
+        # context["total_item"] = get_total_item_price
+        # for i in context["formset"]:
+        #     print("this is a froensndfnasdfset:== ", i.price)
+        # context["fname"] = BillItemFormset()
         return context
         
     def form_valid(self, form, invoice_formset):
