@@ -70,7 +70,7 @@ class BillItem(models.Model):
 
     def __str__(self):
          return self.name
-    
+    @property
     def get_total_item_price(self):
         return self.quantity*self.price
 

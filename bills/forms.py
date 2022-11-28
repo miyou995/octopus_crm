@@ -20,4 +20,4 @@ class BillItemCreateForm(ModelForm):
         model = BillItem
         fields = '__all__'
 
-BillItemFormset = inlineformset_factory(Bill, BillItem, form=BillItemCreateForm,fields=('name', 'quantity', 'price'),extra=2)
+BillItemFormset = inlineformset_factory(Bill, BillItem, form=BillItemCreateForm,fields=('name', 'quantity', 'price'),extra=1)

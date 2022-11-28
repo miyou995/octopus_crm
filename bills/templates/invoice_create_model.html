@@ -9,12 +9,15 @@
         overflow: hidden;
         padding: 0px 4px 0px 6px;
     }
+    .bill-width{
+        width: 860px;
+    }
 </style>
 {% comment %} <div class="modal fade" id="addContent" role="dialog">
   <div class="modal-dialog modal-dialog-centered " role="document"> {% endcomment %}
 
 
-<div id="addContent" class="modal-content">
+<div id="addContent" class="modal-content bill-width" style="">
     <div class="modal-header">
         {% comment %} <h4 class="modal-title" id="detailModalLabel">Add client</h4> {% endcomment %}
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -96,7 +99,7 @@
 
             </div>
         {% comment %} </form> {% endcomment %}
-        <div class="row mt-2">
+        <div class="row mt-2 ">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <div class=" col-12 lex flex-col max-w-lg mx-auto" x-data="items()">
@@ -108,8 +111,8 @@
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
                             </div>
-                            <div class="col-md-2">
-                                <span class="btn btn-secondary mb-3" @click="addItem()">Add</span>
+                            <div class="col-md-2" x-data="{ inc: 0 }">
+                                <span class="btn btn-secondary mb-3" @click="addItem()" >Add</span>
                             </div>
                         </div>
                         <div x-show="items.length">
@@ -126,39 +129,57 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{formset.management_form}}
-                                        {% comment %} {% for form in formset %}
-                                            {{form}}
-                                        {% endfor %} {% endcomment %}
+                                        <input type="hidden" name="items-TOTAL_FORMS" value="1" id="id_items-TOTAL_FORMS">
+                                        <input type="hidden" name="items-INITIAL_FORMS" value="0" id="id_items-INITIAL_FORMS">
+                                        <input type="hidden" name="items-MIN_NUM_FORMS" value="0" id="id_items-MIN_NUM_FORMS">
+                                        <input type="hidden" name="items-MAX_NUM_FORMS" value="1000" id="id_items-MAX_NUM_FORMS">
+                                           {% comment %} {{form}} {% endcomment %}
+                                         {% comment %} {{form.management_form}}
+                                       {% for form in formset %}
+                                       
+                                       {{form}}
+                                       {% endfor %} {% endcomment %}
                                         <template x-for="item in items" :key="item.id">
-                                            <tr class="border-t">
-                                               <td>
+                                        {% comment %} <input type="hidden" name="items-TOTAL_FORMS" :value=`${item.id}` id="id_items-TOTAL_FORMS"> {% endcomment %}
+
+                                            <tr class="border-t" >
+                                               <td id="id_bill_item">
                                                     <span x-text="item.id"></span>     
                                                 </td>
-                                                <td class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
+
+                                                <td id="id_bill_item_name" class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
                                                     {% comment %} <span x-text="item.item" class="overflow-auto" ></span> {% endcomment %}
-                                                    <input type="text" name="items-0-name" class="overflow-auto" maxlength="180" id="id_items-0-name">
+                                                     <input type="text" :name=`items-${item.id}-name` class="overflow-auto" maxlength="180" :id=`id_items-${item.id}-name`>
+                                                     
+                                                     {% comment %} <input type="text" name="items-0-name" maxlength="180" id="id_items-0-name"> {% endcomment %}
                                                 </td>
                                                
-                                                <td class="pt-3-half" contenteditable="true">
-                                                    <input type="number" name="items-0-price" min="0" id="id_items-0-price">
-
+                                                <td id="id_bill_item_price" class="pt-3-half" contenteditable="true">
+                                                    <input type="number" :name=`items-${item.id}-price` min="0" :id=`id_items-${item.id}-price`>
                                                     {% comment %} <span x-text="item.price" name="price"></span>DA    {% endcomment %}
                                                 </td>
-                                                <td class="pt-3-half" contenteditable="true">
-                                                    <input type="number" name="items-0-quantity" min="0" id="id_items-0-quantity">
+                                                <td id="id_bill_item_quantity" class="pt-3-half" contenteditable="true">
+                                                    <input type="number" :name=`items-${item.id}-quantity` min="0" id=`id_items-${item.id}-quantity`>
+
                                                     {% comment %} <span x-text="item.quantity" name="quantity"></span>     {% endcomment %}
                                                 </td>
                                                 <td class="pt-3-half" contenteditable="true">
                                                     <span x-text="item.total"></span> DA    
                                                 </td>
                                                 <td>  
-                                                    <button
-                                                    class="btn btn-outline-danger"
-                                                    @click="deleteItem(item.id)">x</button>
+                                                    {% comment %} <button {% endcomment %}
+                                                    <span><input class="btn btn-outline-danger" @click="deleteItem(item.id)" type="button" 
+                                                    :name=`items-${item.id}-DELETE` :id=`id_items-${item.id}-DELETE` value="x"></span>
+                                                  
+                                                    {% comment %} class="btn btn-outline-danger" @click="deleteItem(item.id)">x</button> {% endcomment %}
                                                 </td> 
-                                            </tr>
+                                                </tr>
+
+                                                {% comment %} sfdsdfsdfsdfsdf {% endcomment %}
+                                                
                                         </template>
+                                         {% comment %} {% endfor %} {% endcomment %}
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -220,4 +241,3 @@
             </div>
         </div>
     </div>
-

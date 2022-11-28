@@ -131,8 +131,6 @@ class TransactionListView(RedirectPermissionRequiredMixin,  ListView):
         return { 'labels': labels,}
 
     for k, v in TRANSACTION_STATUS:
-        print("sudoASDFADSf-----KEYS==", k)
-
         print("\n\nsudoASDFADSf-----VALUES==", v)
 
     def get_context_data(self, **kwargs):
