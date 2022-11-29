@@ -58,21 +58,25 @@ class Proforma(Bill):
 
 
 class BillItem(models.Model):
-    name        = models.CharField(max_length=180, blank=True, null=True)
-    bill_ofc    = models.ForeignKey(Bill, related_name="items", on_delete=models.CASCADE) #on_delete $@!FWFEF@#$F
-    description = models.TextField(blank=True, null=True)
-    quantity    = models.PositiveIntegerField(blank=True, null=True)
-    price       = models.PositiveIntegerField(blank=True, null=True)
-    tax         = models.BooleanField(default=False)
-    tva         = models.BooleanField(default=False)
-    note        = models.TextField(blank=True, null=True)
-    term        = models.TextField(blank=True, null=True)
+    name                        = models.CharField(max_length=180, blank=True, null=True)
+    bill_ofc                    = models.ForeignKey(Bill, related_name="items", on_delete=models.CASCADE) #on_delete $@!FWFEF@#$F
+    description                 = models.TextField(blank=True, null=True)
+    quantity                    = models.PositiveIntegerField(blank=True, null=True)
+    price                       = models.PositiveIntegerField(blank=True, null=True)
+    tax                         = models.BooleanField(default=False)
+    tva                         = models.BooleanField(default=False)
+    note                        = models.TextField(blank=True, null=True)
+    term                        = models.TextField(blank=True, null=True)
+    total_price_item            = models.PositiveIntegerField(blank=True, null=True)
+    total_price_hors_taxe       = models.PositiveIntegerField(blank=True, null=True)
+    total_price                 = models.PositiveIntegerField(blank=True, null=True)
+    
 
     def __str__(self):
          return self.name
     @property
     def get_total_item_price(self):
-        return self.quantity*self.price
+        return self.quantity * self.price
 
     # def get_total_tva(self):
     #     return self.  

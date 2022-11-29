@@ -111,7 +111,7 @@
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
                             </div>
-                            <div class="col-md-2" x-data="{ inc: 0 }">
+                            <div class="col-md-2" >
                                 <span class="btn btn-secondary mb-3" @click="addItem()" >Add</span>
                             </div>
                         </div>
@@ -138,32 +138,33 @@
                                        {% for form in formset %}
                                        
                                        {{form}}
-                                       {% endfor %} {% endcomment %}
-                                        <template x-for="item in items" :key="item.id">
+                                       {% endfor %}  {% endcomment %}
+                                        <template x-for="item in items" :key="item.id" >
                                         {% comment %} <input type="hidden" name="items-TOTAL_FORMS" :value=`${item.id}` id="id_items-TOTAL_FORMS"> {% endcomment %}
 
-                                            <tr class="border-t" >
+                                            <tr class="border-t" x-data="{ price: 0, quantity: 0, total_item_price: 0 }" x-effect="total_item_price = quantity * price" >
                                                <td id="id_bill_item">
                                                     <span x-text="item.id"></span>     
                                                 </td>
 
                                                 <td id="id_bill_item_name" class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
                                                     {% comment %} <span x-text="item.item" class="overflow-auto" ></span> {% endcomment %}
-                                                     <input type="text" :name=`items-${item.id}-name` class="overflow-auto" maxlength="180" :id=`id_items-${item.id}-name`>
+                                                     <input type="text"  :name=`items-${item.id}-name` class="overflow-auto" maxlength="180" :id=`id_items-${item.id}-name`>
                                                      
                                                      {% comment %} <input type="text" name="items-0-name" maxlength="180" id="id_items-0-name"> {% endcomment %}
                                                 </td>
                                                
                                                 <td id="id_bill_item_price" class="pt-3-half" contenteditable="true">
-                                                    <input type="number" :name=`items-${item.id}-price` min="0" :id=`id_items-${item.id}-price`>
+                                                    <input type="number" x-model.number="price" :name=`items-${item.id}-price` min="0" :id=`id_items-${item.id}-price`>
                                                     {% comment %} <span x-text="item.price" name="price"></span>DA    {% endcomment %}
                                                 </td>
                                                 <td id="id_bill_item_quantity" class="pt-3-half" contenteditable="true">
-                                                    <input type="number" :name=`items-${item.id}-quantity` min="0" id=`id_items-${item.id}-quantity`>
+                                                    <input type="number" x-model.number="quantity" :name=`items-${item.id}-quantity` min="0" id=`id_items-${item.id}-quantity`>
 
                                                     {% comment %} <span x-text="item.quantity" name="quantity"></span>     {% endcomment %}
                                                 </td>
-                                                <td class="pt-3-half" contenteditable="true">
+                                                <td id="id_bill_item_total_price" class="pt-3-half" contenteditable="true">
+                                                <input x-text="item.total" type="text" x-model.number="total_item_price" :name=`items-${item.id}-total_price_item` min="0" :id=`id_items-${item.id}-total_price_item`>
                                                     <span x-text="item.total"></span> DA    
                                                 </td>
                                                 <td>  
@@ -204,18 +205,25 @@
                             <div class="table-responsive">
                                 <table class="tab mt-0" style="float:right;">
                                     <tbody>
-                                        <tr>
-                                            <th style="width:120px;" scope="row">Total hors taxe</th>
-                                            <td style="width:100px">123 DA</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="width:100px;" scope="row">TVA</th>
-                                            <td style="width:100px;">111 DA</td>
-                                        </tr>
-                                        <tr>
-                                            <th style="width:100px;" scope="row">Total</th>
-                                            <td style="width:100px;">111 DA</td>
-                                        </tr>
+                                        {% comment %} <template x-for="item in items" :key="item.id" > {% endcomment %}
+
+                                            <tr x-data="{total_item_price: 0}" x-affect="total_price_hors_tax = total_hors_tax + total_item_price ">
+                                                <th style="width:120px;" scope="row">Total hors taxe</th>
+                                                <input type="number" x-model.number="total_price_hors_tax" :name=`items-${item.id}-total_price_hors_tax` min="0" :id=`id_items-${item.id}-total_price_hors_taxe`>
+                                                <td style="width:100px"> DA</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="width:100px;" scope="row">TVA</th>
+                                                <td style="width:100px;">111 DA</td>
+                                            </tr>
+                                            <tr>
+                                            <input type="number" x-model.number="total_price" :name=`items-${item.id}-total_price` min="0" :id=`id_items-${item.id}-total_price`>
+                                                <th style="width:100px;" scope="row">Total</th>
+                                                <td style="width:100px;">111 DA</td>
+                                            </tr>
+
+                                        {% comment %} </template> {% endcomment %}
+
                                     </tbody>
                                 </table>
                        <!-- <hr>
