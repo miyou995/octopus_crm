@@ -24,14 +24,7 @@
             total:  '1200',
             completed: false
           },
-          // {
-          //   id: 2,
-          //   item: 'Service 2',
-          //   price:'100',
-          //   quantity:'2',
-          //   total: '200',
-          //   completed: false
-          // }
+
         ],
         
         addItem() {
@@ -48,21 +41,14 @@
             completed: false
           });
           console.log("SIDOU IS TESTING ...");
-          // this.newService = '';
-          // console.log(document.getElementById("id_items-TOTAL_FORMS"));
-          // id_items-0-price
-          // document.getElementById(`id_items-${i}-price`).id = `id_items-${i++}-price`;
-          // i++;
-          // console.log("ferrrr",i);
+
 
           const totalForms = document.getElementById("id_items-TOTAL_FORMS") ;
           totalForms.value = this.items.length;
           
           console.log("ferrrrtotalForms",totalForms);
         },
-        totalItem(){
-          
-        },
+
         deleteItem(serviceId) {
           let position = this.items.findIndex(el => el.id == serviceId);
           this.items.splice(position, 1);
@@ -83,3 +69,9 @@
         i++;
   });
     }
+          // this.newService = '';
+          // console.log(document.getElementById("id_items-TOTAL_FORMS"));
+          // id_items-0-price
+          // document.getElementById(`id_items-${i}-price`).id = `id_items-${i++}-price`;
+          // i++;
+          // console.log("ferrrr",i);
