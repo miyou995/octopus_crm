@@ -21,5 +21,5 @@ class BillItemCreateForm(ModelForm):
         fields = '__all__'
 
 BillItemFormset = inlineformset_factory(Bill, BillItem,
- fields=('name', 'quantity', 'price', 'total_price_item', 'total_price_hors_taxe' ,'total_price'),
+ fields=('name', 'quantity', 'price'),
  extra=1)

@@ -67,9 +67,9 @@ class BillItem(models.Model):
     tva                         = models.BooleanField(default=False)
     note                        = models.TextField(blank=True, null=True)
     term                        = models.TextField(blank=True, null=True)
-    total_price_item            = models.PositiveIntegerField(blank=True, null=True)
-    total_price_hors_taxe       = models.PositiveIntegerField(blank=True, null=True)
-    total_price                 = models.PositiveIntegerField(blank=True, null=True)
+    # total_price_item            = models.PositiveIntegerField(blank=True, null=True)
+    # total_price_hors_taxe       = models.PositiveIntegerField(blank=True, null=True)
+    # total_price                 = models.PositiveIntegerField(blank=True, null=True)
     
 
     def __str__(self):
