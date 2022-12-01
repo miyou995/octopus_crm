@@ -43,16 +43,13 @@
         </div>
         <h1 class="text-center">Facture</h1>
         <form id="createInvoice" action="{% url 'bills:invoicecreate' %}" method="post" enctype="multipart/form-data">
-{% comment %}                 
+            {% comment %}                 
                 {% for hidden_field in form.hidden_fields %}
                 {{ hidden_field.errors }}
                 {{ hidden_field }}
                 {% endfor %} {% endcomment %}
 
             {% csrf_token %}
-{% comment %} 
-                {{ form.management_form }}
-            {{ form.non_form_errors }} {% endcomment %}
 
             <div class="row">
                 <div class="form-inline col-6">
@@ -102,15 +99,12 @@
                 </div>
 
             </div>
-        {% comment %} </form> {% endcomment %}
         <div class="row mt-2 ">
-            <div class="col-md-12">
-                <div class="table-responsive" x-data="items()">
+            <div class="col-md-12" x-data="items()">
+                <div class="table-responsive" >
                     <div class=" col-12 lex flex-col max-w-lg mx-auto" >
-                        <div class="row">
-
-                                
-                        </div>
+                        {% comment %} <div class="row">
+                        </div> {% endcomment %}
                         <div class="row">
                             <div class="col-md-10">
                                 <h5>Order Summary</h5>
@@ -137,110 +131,90 @@
                                         <input type="hidden" name="items-INITIAL_FORMS" value="0" id="id_items-INITIAL_FORMS">
                                         <input type="hidden" name="items-MIN_NUM_FORMS" value="0" id="id_items-MIN_NUM_FORMS">
                                         <input type="hidden" name="items-MAX_NUM_FORMS" value="1000" id="id_items-MAX_NUM_FORMS">
-                                           {% comment %} {{form}} {% endcomment %}
-                                         {% comment %} {{form.management_form}}
-                                       {% for form in formset %}
-                                       
-                                       {{form}}
-                                       {% endfor %}  {% endcomment %}
-                                        <template x-for="item in items" :key="item.id" >
-                                        {% comment %} <input type="hidden" name="items-TOTAL_FORMS" :value=`${item.id}` id="id_items-TOTAL_FORMS"> {% endcomment %}
 
-                                            {% comment %} <tr class="border-t" x-data="{ price: 0, quantity: 0, total_item_price: 0 }" x-effect="total_item_price = quantity * price" > {% endcomment %}
-                                            {% comment %} <tr class="border-t" x-effect="total_item_price = quantity * price" > {% endcomment %}
+                                        <template x-for="item in items" :key="item.id" >
+
                                             <tr class="border-t" >
                                                <td id="id_bill_item">
                                                     <span x-text="item.id"></span>     
                                                 </td>
 
                                                 <td id="id_bill_item_name" class="pt-3-half" contenteditable="true" class="flex justify-between items-center px-4 py-1">
-                                                    {% comment %} <span x-text="item.item" class="overflow-auto" ></span> {% endcomment %}
-                                                     <input type="text"  :name=`items-${item.id}-name` class="overflow-auto" maxlength="180" :id=`id_items-${item.id}-name`>
-                                                     
-                                                     {% comment %} <input type="text" name="items-0-name" maxlength="180" id="id_items-0-name"> {% endcomment %}
+                                                    <input type="text"  :name=`items-${item.id}-name` class="overflow-auto" maxlength="180" :id=`id_items-${item.id}-name`>
                                                 </td>
                                                
                                                 <td id="id_bill_item_price" class="pt-3-half" contenteditable="true">
                                                     <input type="number" x-model="item.price" :name=`items-${item.id}-price` min="0" :id=`id_items-${item.id}-price` @input="item.setPrice($event.target.value)">
-                                                    {% comment %} <span x-text="item.price" name="price"></span>DA    {% endcomment %}
                                                 </td>
+
                                                 <td id="id_bill_item_quantity" class="pt-3-half" contenteditable="true">
                                                     <input type="number" x-model="item.quantity" :name=`items-${item.id}-quantity` min="0" id=`id_items-${item.id}-quantity` @input="item.setQuantity($event.target.value)">
-
-                                                    {% comment %} <span x-text="item.quantity" name="quantity"></span>     {% endcomment %}
                                                 </td>
-                                                <td id="id_bill_item_total_price" class="pt-3-half" contenteditable="true">
-                                                {% comment %} <input x-text="item.total" type="text" x-model.number="total_item_price" :name=`items-${item.id}-total_price_item` min="0" :id=`id_items-${item.id}-total_price_item`> {% endcomment %}
-                                                    <span x-model="item.total" x-text="item.total"></span> DA  
-                                                    THIS IS A TOTALL: <span x-text="totalHorsTaxe()"></span>  
+
+                                                <td id="id_bill_item_total_price" class="pt-3-half total-price-item" contenteditable="true">
+                                                    <span x-model="item.total" x-text="item.total"></span>  DA
                                                 </td>
                                                 <td>  
-                                                    {% comment %} <button {% endcomment %}
+                                                    <button id ="id_bill_item_namendcomment"
                                                     <span><input class="btn btn-outline-danger" @click="deleteItem(item.id)" type="button" 
-                                                    :name=`items-${item.id}-DELETE` :id=`id_items-${item.id}-DELETE` value="x"></span>
-                                                  
-                                                    {% comment %} class="btn btn-outline-danger" @click="deleteItem(item.id)">x</button> {% endcomment %}
-                                                </td> 
-                                                </tr>
+                                                    :name=`items-${item.id}-DELETE` :id=`id_items-${item.id}-DELETE` value="x"></span></button>
 
-                                                {% comment %} sfdsdfsdfsdfsdf {% endcomment %}
-                                                
-                                        </template>
-                                         {% comment %} {% endfor %} {% endcomment %}
-                                    
+                                        </template>                                    
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     
                     </div>
-                    </div>
+                </div>
                     
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <address>
-                                <strong>Payment Method:</strong><br>
-                                <!-- Visa ending **** 5687<br>
-                             -->
-                            </address>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <address>
+                            <strong>Payment Method:</strong><br>
+                            <!-- Visa ending **** 5687<br>
+                            -->
+                        </address>
 
-                                <label for="note">Note</label>
-                                <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
-                            
+                            <label for="note">Note</label>
+                            <textarea name="note" class="form-control" id="note" cols="30" rows="10"></textarea>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="tab mt-0" style="float:right;">
+                                <tbody>
+                                    {% comment %} <template x-for="item in items" :key="item.id" > {% endcomment %}
+
+                                        <tr>
+                                            <th style="width:120px;" scope="row">Total hors taxe</th>
+                                            {% comment %} <input type="number" x-model.number="total_price_hors_tax" :name=`items-${item.id}-total_price_hors_tax` min="0" :id=`id_items-${item.id}-total_price_hors_taxe`> {% endcomment %}
+                                            
+                                            {% comment %} <td class="table-responsive-item" style="width:100px; display:flex;"><span x-text="total()"></span> DA</td> {% endcomment %}
+                                            <td class="table-responsive-item" ><span x-text="totalHorsTaxe()"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:100px;" scope="row">TVA</th>
+                                            <td style="width:100px;">111 DA</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:100px;" scope="row">Total</th>
+                                            <td style="width:100px;">111 DA</td>
+                                        </tr>
+
+                                    {% comment %} </template> {% endcomment %}
+
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-md-6">
-                            <div class="table-responsive">
-                                <table class="tab mt-0" style="float:right;">
-                                    <tbody>
-                                        {% comment %} <template x-for="item in items" :key="item.id" > {% endcomment %}
-
-                                            <tr>
-                                                <th style="width:120px;" scope="row">Total hors taxe</th>
-                                                {% comment %} <input type="number" x-model.number="total_price_hors_tax" :name=`items-${item.id}-total_price_hors_tax` min="0" :id=`id_items-${item.id}-total_price_hors_taxe`> {% endcomment %}
-                                                <span x-text="totalHorsTaxe()"></span>
-                                                <td style="width:100px" > DA</td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:100px;" scope="row">TVA</th>
-                                                <td style="width:100px;">111 DA</td>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:100px;" scope="row">Total</th>
-                                                <td style="width:100px;">111 DA</td>
-                                            </tr>
-
-                                        {% comment %} </template> {% endcomment %}
-
-                                    </tbody>
-                                </table>
-                            <!-- <hr>
-                            <div class="text-md-right">
+                        {% comment %} <hr>
+                        <div class="text-md-right">
                             <div class="float-lg-left mb-lg-0 mb-3">
                                 <button type="submit" class="btn btn-primary btn-icon icon-left" form="createInvoiceForm" ><i class="fas fa-credit-card"></i> Process
                                     Payment</button>
-                                <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button> -->
+                                <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button> 
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
 
                 </div>
@@ -248,13 +222,13 @@
             <hr>
             <div class="text-md-right">
                 <div class="float-lg-left mb-lg-0 mb-3">
-                    <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-credit-card"></i> Process
-                        Payment</button>
+                    <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-credit-card"></i> 
+                    Process Payment</button>
                 </div>
-        </form>
                 <!-- <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button> -->
                 <button type="submit" form="createInvoice" class="btn btn-primary btn-icon icon-left">Create</button>
             </div>
-        </div>
+        </form>
     </div>
+</div>
 
