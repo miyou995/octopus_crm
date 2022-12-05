@@ -188,6 +188,10 @@ class Task(models.Model):
     def get_absolute_url(self):
         return reverse("projects:taskdetail", kwargs={'pk': self.pk})
 
+    @property
+    def get_edit_task_url(self):
+        return reverse("projects:edittask", kwargs={'pk': self.pk})
+
     
  
 class Teams(models.Model):

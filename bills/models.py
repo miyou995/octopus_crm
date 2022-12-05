@@ -22,6 +22,8 @@ class Bill(models.Model):
     to_name             = models.CharField(max_length=450, blank=True, null=True)
     # # to_address          = city.Field()
     # # to_city             = city.Field()
+    note                = models.TextField(blank=True, null=True)
+
     to_postal_code      = models.DecimalField(max_digits=7,decimal_places=0, blank=True, null=True)
     to_phone            = models.CharField(max_length=13, blank=True, null=True)
     # account             = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE, related_name='account_bills')
@@ -42,6 +44,9 @@ class Invoice(Bill):
     def __str__(self):
          return str(self.number)
 
+    def get_invoice_edit_url(self):
+        return reverse("bills:invoiceedit", kwargs={'pk': self.pk})
+
     def get_absolute_url(self):
         return reverse("bills:invoicedetail", kwargs={'pk': self.pk})
 
@@ -56,6 +61,9 @@ class Proforma(Bill):
     def get_absolute_url(self):
             return reverse("bills:proformadetail", kwargs={'pk': self.pk})
 
+    def get_proforma_edit_url(self):
+        return reverse("bills:proformaedit", kwargs={'pk': self.pk})
+
 
 class BillItem(models.Model):
     name                        = models.CharField(max_length=180, blank=True, null=True)
@@ -65,7 +73,6 @@ class BillItem(models.Model):
     price                       = models.PositiveIntegerField(blank=True, null=True)
     tax                         = models.BooleanField(default=False)
     tva                         = models.BooleanField(default=False)
-    note                        = models.TextField(blank=True, null=True)
     term                        = models.TextField(blank=True, null=True)
     # total_price_item            = models.PositiveIntegerField(blank=True, null=True)
     # total_price_hors_taxe       = models.PositiveIntegerField(blank=True, null=True)

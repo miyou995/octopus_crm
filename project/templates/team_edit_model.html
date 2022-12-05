@@ -4,53 +4,53 @@
     
       <div id="editContent-{{team.pk}}" class="modal-content">
         <div class="modal-content">
-      <h3>edit Team</h3>
-      <div class="modal-header">
-            <form action="{{team.get_edit_team_url}}" id="editteamForm-{{team.pk}}" method="POST">
-            {% csrf_token %}
+          <h3>edit Team</h3>
+          <div class="modal-header">
+                <form action="{{team.get_edit_team_url}}" id="editteamForm-{{team.pk}}" method="POST">
+                {% csrf_token %}
 
-        <input type="text" name="name" id="teamtitle" class="form-control form-inv" placeholder="team Title"
-        {% if team.name %} value="{{team.name}}" {% endif %} required>
-        {% comment %} <input type="color" name="name_color" id="colorEvent" class="" value="#6777ef"> {% endcomment %}
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-            {% comment %} <form action="{% url 'project:editteam' %}" id="editteamForm-{{team.pk}}" method="POST"> {% endcomment %}
+            <input type="text" name="name" id="teamtitle" class="form-control form-inv" placeholder="team Title"
+            {% if team.name %} value="{{team.name}}" {% endif %} required>
+            {% comment %} <input type="color" name="name_color" id="colorEvent" class="" value="#6777ef"> {% endcomment %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                {% comment %} <form action="{% url 'project:editteam' %}" id="editteamForm-{{team.pk}}" method="POST"> {% endcomment %}
 
-              <div class="form-group">
-                <div class="form-group">
-                {% for employee in employees_in %}
-                {% if employee in team.member.all %}
-                  <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}" checked>
-                  <label for="id_team" >{{employee.name}}</label>
-                  <br>
-                {% else %}
-                  <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">
-                  <label for="id_team" >{{employee.name}}</label>
-                  <br>
-                {% endif %}
-                  
-                {% endfor %}
+                  <div class="form-group">
+                    <div class="form-group">
+                    {% for employee in employees_in %}
+                    {% if employee in team.member.all %}
+                      <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}" checked>
+                      <label for="id_team" >{{employee.name}}</label>
+                      <br>
+                    {% else %}
+                      <input type="checkbox" class="class_team" id="id_team" name="member" value="{{employee.pk}}">
+                      <label for="id_team" >{{employee.name}}</label>
+                      <br>
+                    {% endif %}
+                      
+                    {% endfor %}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label for="id_name" style="font-weight:bold;">Description</label>
+                      <textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                  </div>
+                </form>
+                <div>
+                  <button type="submit" style="float:right " class="waves-effect btn btn-primary"
+                    form="editteamForm-{{team.pk}}">Add</button>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="form-group">
-                  <label for="id_name" style="font-weight:bold;">Description</label>
-                  <textarea name="description" id="" class="form-control" cols="30" rows="10"></textarea>
-                </div>
-              </div>
-            </form>
-            <div>
-              <button type="submit" style="float:right " class="waves-effect btn btn-primary"
-                form="editteamForm-{{team.pk}}">Add</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
   </div>
 </div>

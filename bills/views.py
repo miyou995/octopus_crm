@@ -40,6 +40,92 @@ class RedirectPermissionRequiredMixin(PermissionRequiredMixin,):
         return redirect(self.get_login_url())
 
 
+# class BillItemEditView(FormView):
+#     # template_name= "invoice_create_model.html"
+#     # model = Bill
+
+#     # def get(self, request, *args, **kwargs):
+#     #     self.object = self.get_object(queryset=BillItem.objects.all())
+#     #     return super().get(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         self.object = self.get_object(queryset=BillItem.objects.all())
+#         return super().post(request, *args, **kwargs)
+
+#     def get_form(self, form_class=None):
+#         return BillItemFormset(**self.get_form_kwargs(), instance=self.object)
+
+#     def form_valid(self, formset):
+#         formset.save()
+
+#         messages.add_message(
+#             self.request,
+#             messages.SUCCESS,
+#             'Changes were saved.'
+#         )
+
+#         return HttpResponseRedirect(self.get_success_url())
+
+#     def get_success_url(self):
+#         return reverse('bills:invoicedetail', kwargs={'pk': self.object.pk})
+
+#     # def get_context_data(self, **kwargs):
+#     #     context =super(BillItemEditView, self).get_context_data(**kwargs)
+#     #     context["test"] = BillItemEditView.get_form()
+
+#     #     print("this is foooorm===",context["test"])
+#     #     context["billitemform"] = BillItemCreateForm
+#     #     return context
+
+
+        
+class InvoiceItem(FormView):
+    # success_url = reverse_lazy('bills:invoicelist')
+    
+    # def get_form(self, form_class=None):
+    #     return BillItemFormset(**self.get_form_kwargs(), instance=self.object)
+    
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
+        return redirect('bills:invoicelist')
+    
+    # def get_context_data(self, **kwargs):
+        context = super(InvoiceCreateView, self).get_context_data(**kwargs)
+        context["formset"] = BillItemFormset()
+        # context["total_item"] = get_total_item_price
+        # for i in context["formset"]:
+        #     print("this is a froensndfnasdfset:== ", i.price)
+        # context["fname"] = BillItemFormset()
+        return context
+        
+    def form_valid(self, form, invoice_formset):
+        self.object = form.save(commit=False)
+        self.object.save()
+        # saving ProductMeta Instances
+        invoice_items = invoice_formset.save(commit=False)
+        for item in invoice_items:
+            item.bill_ofc = self.object
+            item.save()
+        return redirect(reverse("bills:invoicelist"))
+
+
+
+    # def get(self, request, *args, **kwargs):
+    #     return redirect('bills:invoicelist')
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        invoice_formset = BillItemFormset(self.request.POST)
+        if form.is_valid() and invoice_formset.is_valid():
+            return self.form_valid(form, invoice_formset)
+        else:
+            return self.form_invalid(form, invoice_formset)
+
+
+
+
 class InvoiceListView(RedirectPermissionRequiredMixin, ListView):
     model = Invoice
     template_name = 'invoice_list.html'
@@ -71,11 +157,13 @@ class InvoiceListView(RedirectPermissionRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(InvoiceListView, self).get_context_data(**kwargs)
         context["invoices"] = Invoice.objects.all()
+        # id=self.kwargs['pk']
+
         # context["formset"] = BillItemFormset()
 
         return context
 
-class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
+class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView, InvoiceItem):
     model = Invoice
     form_class = InvoiceCreateForm
     template_name = "invoice_create_model.html"
@@ -84,51 +172,31 @@ class InvoiceCreateView(RedirectPermissionRequiredMixin, CreateView):
 
     success_url = reverse_lazy('bills:invoicelist')
 
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('bills:invoicelist')
-    
     def get_context_data(self, **kwargs):
-        context = super(InvoiceCreateView, self).get_context_data(**kwargs)
-        context["formset"] = BillItemFormset()
-        # context["total_item"] = get_total_item_price
-        # for i in context["formset"]:
-        #     print("this is a froensndfnasdfset:== ", i.price)
-        # context["fname"] = BillItemFormset()
+        context = super().get_context_data(**kwargs)
+        context["bill_items"] = BillItem.objects.all()
         return context
-        
-    def form_valid(self, form, invoice_formset):
-        self.object = form.save(commit=False)
-        self.object.save()
-        # saving ProductMeta Instances
-        invoice_items = invoice_formset.save(commit=False)
-        for item in invoice_items:
-            item.bill_ofc = self.object
-            item.save()
-        return redirect(reverse("bills:invoicelist"))
-    # def get(self, request, *args, **kwargs):
-    #     return redirect('bills:invoicelist')
 
-    def post(self, request, *args, **kwargs):
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        invoice_formset = BillItemFormset(self.request.POST)
-        if form.is_valid() and invoice_formset.is_valid():
-            return self.form_valid(form, invoice_formset)
-        else:
-            return self.form_invalid(form, invoice_formset)
+    pass
 
-class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView):
+
+
+class InvoiceUpdateView(RedirectPermissionRequiredMixin, UpdateView, InvoiceItem):
     model = Invoice
     template_name = 'invoice_update_model.html'
     permission_required = 'invoice.update_invoice'
     success_url = reverse_lazy("bills:invoicelist")
     success_message = 'Invoice Updated Seccessfully'
 
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Error comited please enter your real informtions")
-        return redirect('bills:invoicelist')
+    def get_context_data(self, **kwargs):
+        context = super(InvoiceUpdateView, self).get_context_data(**kwargs)
+        test = context["bill_items"] = BillItem.objects.filter(BillItem.bill_ofc == Invoice.pk)
+        print("this is what i need ===:",test )
+        return context
+
+    pass
+
+
 
 class InvoiceDetailView(RedirectPermissionRequiredMixin, DeleteView):
     model = Invoice
@@ -220,40 +288,40 @@ class BillItemDeleteView(DeleteView):
     # form_class = BillItemCreateForm
 
 
-class BillItemEditView(SingleObjectMixin, FormView):
-    template_name= "invoice_create_model.html"
-    model = Bill
+# class BillItemEditView(SingleObjectMixin, FormView):
+#     template_name= "invoice_create_model.html"
+#     model = Bill
 
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=Bill.objects.all())
-        return super().get(request, *args, **kwargs)
+#     def get(self, request, *args, **kwargs):
+#         self.object = self.get_object(queryset=Bill.objects.all())
+#         return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=Bill.objects.all())
-        return super().post(request, *args, **kwargs)
+#     def post(self, request, *args, **kwargs):
+#         self.object = self.get_object(queryset=Bill.objects.all())
+#         return super().post(request, *args, **kwargs)
 
-    def get_form(self, form_class=BillItemCreateForm):
-        return BillItemFormset(**self.get_form_kwargs(), instance=self.object , form_class= BillItemCreateForm)
+#     def get_form(self, form_class=None):
+#         return BillItemFormset(**self.get_form_kwargs(), instance=self.object)
 
-    def form_valid(self, formset):
-        formset.save()
+#     def form_valid(self, formset):
+#         formset.save()
 
-        messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'Changes were saved.'
-        )
+#         messages.add_message(
+#             self.request,
+#             messages.SUCCESS,
+#             'Changes were saved.'
+#         )
 
-        return HttpResponseRedirect(self.get_success_url())
+#         return HttpResponseRedirect(self.get_success_url())
 
-    def get_success_url(self):
-        return reverse('bills:invoicedetail', kwargs={'pk': self.object.pk})
+#     def get_success_url(self):
+#         return reverse('bills:invoicedetail', kwargs={'pk': self.object.pk})
 
-    def get_context_data(self, **kwargs):
-        context =super(BillItemEditView, self).get_context_data(**kwargs)
-        context["test"] = BillItemEditView.get_form()
+#     def get_context_data(self, **kwargs):
+#         context =super(BillItemEditView, self).get_context_data(**kwargs)
+#         context["test"] = BillItemEditView.get_form()
 
-        print("this is foooorm===",context["test"])
-        context["billitemform"] = BillItemCreateForm
-        return context
+#         print("this is foooorm===",context["test"])
+#         context["billitemform"] = BillItemCreateForm
+#         return context
         
