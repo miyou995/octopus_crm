@@ -99,7 +99,7 @@
                         <tr>
                           <td>{{employee.name}} {{employee.pk}} </td>
                           <td> {% if employee.company %}
-                          <a href="{{employee.company.get_absolute_url}}">{{employee.company}}</a>
+                          <a href="{{employee.company.get_absolute_url}}">{{employee.company.name}}</a>
                           {% endif %}
                           </td>
                           <td>{{employee.email}}</td>
