@@ -111,7 +111,7 @@ class TransactionManager(models.Manager):
 class Transaction(models.Model): 
 
     name        = models.CharField(max_length=180, blank=True, null=True)
-    account_sd  = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender') 
+    account_sd  = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender', blank=True, null=True) 
     account_rc  = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE, related_name='receiver') 
     tr_type     = models.CharField(choices=TRANSACTION_TYPE_CHOICES, max_length=2, null=True, blank=True)
     tr_status   = models.CharField(choices= TRANSACTION_STATUS, blank=True, null=True, max_length=13)
@@ -130,7 +130,7 @@ class Transaction(models.Model):
     
     def __str__(self):
         # return f"{self.project} - {self.tr_type}"
-        return self.account_sd
+        return self.name
 
     @property
     def get_absolute_url(self):
